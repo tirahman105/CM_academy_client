@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-            Footer section by 
+            Footer section by Roni vai
         </div>
     );
 };
