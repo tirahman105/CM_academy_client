@@ -35,7 +35,7 @@ const FAQ = () => {
     };
 
     return (
-        <div className='py-4'>
+        <div className='bg-gray-100 py-4'>
             <h1 className="text-3xl font-bold mb-6 text-center">Frequently Asked Questions</h1>
             <div className='flex flex-col md:flex-row gap-5'>
                 <div className='w-full mx-auto px-6'>
