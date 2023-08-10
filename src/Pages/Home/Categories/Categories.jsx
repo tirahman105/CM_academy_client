@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import "./Categories.css";
+
 function Categories() {
   const [courses, setCourses] = useState([]);
   const [activeCourse, setActiveCourse] = useState(null);
@@ -7,50 +9,62 @@ function Categories() {
   useEffect(() => {
     fetch("/courses.json")
       .then((response) => response.json())
-      .then((data) => setCourses(data.courses));
+      .then((data) => {
+        setCourses(data.courses);
+        setActiveCourse(data.courses[0]); // Set the first course as active initially
+      });
   }, []);
 
   const handleCourseClick = (course) => {
     console.log(course);
     setActiveCourse(course);
   };
-//TODO: Animation will be added soon
+
   return (
-    <div className="p-4 ">
-      <h1 className="text-4xl font-semibold mb-10 text-center">
+    <div className="px-4 w-10/12 mx-auto">
+      <h1 className="text-4xl font-bold mb-10 text-center">
         Explore Top Courses
       </h1>
-      <div className="flex space-x-4 mb-10">
+      <div className="flex overflow-x-auto gap-2 mb-10 sticky top-[20px] z-50 ">
         {courses.map((course) => (
           <button
             key={course.title}
             onClick={() => handleCourseClick(course)}
-            className={`px-4 py-2 rounded-md font-bold text-white ${
+            className={`w-[300px] px-4 py-2 rounded-md font-bold text-white text-sm transition-all duration-300 ${
               activeCourse === course
-                ? "bg-blue-500 text-white"
-                : "bg-gray-300 text-gray-800"
+                ? "bg-cyan-600 bg-opacity-40 backdrop-blur-md text-white w-[300px]"
+                : "bg-gray-500 bg-opacity-30 backdrop-blur-md text-gray-800 w-[300px]"
             }`}
           >
             {course.title}
           </button>
         ))}
       </div>
-      <div className="mt-4">
+      <div className="mt-4  flex items-center justify-center">
         {activeCourse && (
           <div className="">
             <h2 className="text-2xl font-bold mt-4 mb-10 text-center">
               {activeCourse.title}
             </h2>
-            <div className="list-disc pl-6 grid md:grid-cols-4 gap-5 text-white">
+            <div className="  grid  md:grid-cols-4 gap-5 text-white  ">
               {activeCourse.subCourses.map((subCourse) => (
                 <div
                   key={subCourse.title}
-                  className="mt-2 border p-4 bg-slate-400 rounded-lg shadow-md"
+                  className="mt-2 border p-4 bg-slate-100 rounded-lg shadow-md w-[350px]"
                 >
-                  <strong>{subCourse.title}</strong>
-                  <div>Duration: {subCourse.duration}</div>
-                  <div>Instructor: {subCourse.instructor}</div>
-                  <div>Rating: {subCourse.rating}</div>
+                  <div className="h-[200px] bg-cyan-500 bg-opacity-50  rounded-lg shadow-md mb-4"></div>
+                  <strong className="text-gray-800 text-xl">
+                    {subCourse.title}
+                  </strong>
+                  <div className="text-gray-600">
+                    Instructor: {subCourse.instructor}
+                  </div>
+                  <div className="text-gray-600">
+                    Duration: {subCourse.duration}
+                  </div>
+                  <div className="text-gray-600">
+                    Rating: {subCourse.rating}
+                  </div>
                 </div>
               ))}
             </div>
