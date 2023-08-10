@@ -1,5 +1,6 @@
 
 import './App.css'
+import FAQ from './Pages/Home/FAQ/FAQ'
 
 function App() {
  
@@ -8,6 +9,7 @@ function App() {
     <>
      
       <h1>CM Academy</h1>
+      <FAQ></FAQ>
   
     </>
   )
