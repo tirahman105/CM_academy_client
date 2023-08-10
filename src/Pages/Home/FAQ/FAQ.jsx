@@ -34,9 +34,6 @@ const faqs = [
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   return (
     <div className="py-4">

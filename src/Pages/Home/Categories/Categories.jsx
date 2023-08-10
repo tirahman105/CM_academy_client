@@ -14,7 +14,7 @@ function Categories() {
     console.log(course);
     setActiveCourse(course);
   };
-
+//TODO: Animation will be added soon
   return (
     <div className="p-4 ">
       <h1 className="text-4xl font-semibold mb-10 text-center">
