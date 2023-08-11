@@ -27,7 +27,7 @@ function Categories() {
         <h1 className="text-4xl font-bold mb-10 text-center text-[#12C29F]">
           Explore Top Courses
         </h1>
-        <div className="flex overflow-x-auto gap-2 mb-10 sticky top-[20px] z-50  bg-opacity-30 backdrop-blur-md  border-b-2
+        <div className="flex overflow-x-auto gap-2 mb-10 sticky top-[20px] z-50  bg-opacity-50 backdrop-blur-lg bg-[#EBEBEB]  border-b-2
 
 border-slate-300">
           {courses.map((course, index) => (
@@ -45,9 +45,9 @@ border-slate-300">
               {course.title}
               {index === activeButtonPosition && (
                 <div
-                  className="absolute w-2/3 h-1 bg-[#12C29F] bottom-0 transform scale-x-0 origin-left transition-transform duration-300"
+                  className="absolute w-[78%] h-1 bg-[#12C29F] bottom-0 transform scale-x-0 origin-left transition-transform duration-300"
                   style={{
-                    transform: `scaleX(${underlineWidth === index ? 1 : 0})`,
+                    transform: `scaleX(${underlineWidth == index ? 1 : 0})`,
                   }}
                 ></div>
               )}
