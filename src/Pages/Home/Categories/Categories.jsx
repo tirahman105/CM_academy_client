@@ -54,7 +54,7 @@ border-slate-300">
             </button>
           ))}
         </div>
-        <div className="mt-4  flex items-center justify-center bg-gradient-to-b bg-gradient px-10 py-6 rounded-xl">
+        <div className="mt-4  flex items-center justify-center bg-gradient-to-b bg-gradient px-4 md:px-10 py-6 rounded-xl">
           {activeCourse && (
             <div className="">
               <h2 className="text-2xl font-bold mt-4 mb-10 text-center text-white">
