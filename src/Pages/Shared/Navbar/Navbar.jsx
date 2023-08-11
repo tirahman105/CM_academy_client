@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import logo from '../../../../public/cm-logo-png.ico';
 
 const Navbar = () => {
+
+    
     return (
         <>
 
@@ -33,7 +35,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 font-semibold">
+                    <ul className="menu menu-horizontal px-1 font-semibold bg-white">
                         <li> <Link>Home</Link></li>
                         <li tabIndex={0}>
                             <details>
@@ -42,6 +44,7 @@ const Navbar = () => {
                                     <li><a>Development</a></li>
                                     <li><a>Design</a></li>
                                     <li><a>Office Productivity</a></li>
+                                    <li><a>Personal Development</a></li>
 
                                 </ul>
                             </details>
