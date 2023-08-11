@@ -51,7 +51,7 @@ const FAQ = () => {
                                 {faqs.map((faq, index) => (
                                     <div
                                         key={index}
-                                        className="border border-2 p-4 rounded-md cursor-pointer
+                                        className="border-2 p-4 rounded-md cursor-pointer
                                          hover:bg-[#d5ebf0]"
                                         onClick={() => toggleFAQ(index)}
                                     >
