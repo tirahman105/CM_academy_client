@@ -27,25 +27,25 @@ function Categories() {
         <h1 className="text-4xl font-bold mb-10 text-center text-[#12C29F]">
           Explore Top Courses
         </h1>
-        <div className="flex overflow-x-auto gap-2 mb-10 sticky top-[20px] z-50  bg-opacity-50 backdrop-blur-lg bg-[#EBEBEB]  border-b-2
+        <div className="flex items-center justify-center overflow-x-auto gap-2 mb-10 sticky top-[0px] z-50  bg-opacity-50 backdrop-blur-lg bg-[#EBEBEB]  
 
 border-slate-300">
-          {courses.map((course, index) => (
+          {courses.slice(0, 5).map((course, index) => (
             <button
               key={course.title}
               onClick={() => handleCourseClick(course, index)}
               onMouseEnter={() => setUnderlineWidth(index)}
               onMouseLeave={() => setUnderlineWidth(activeButtonPosition)}
-              className={` px-4 py-2 rounded-md font-bold  text-sm transition-all duration-300 relative ${
+              className={`md:h-[70px] px-4 py-2 rounded-md font-bold  text-sm transition-all duration-300 relative ${
                 activeCourse === course
-                  ? " text-[#12C29F]  "
+                  ? " text-[#12C29F] rounded-lg "
                   : " text-gray-800 "
               }`}
             >
               {course.title}
               {index === activeButtonPosition && (
                 <div
-                  className="absolute w-[78%] h-1 bg-[#12C29F] bottom-0 transform scale-x-0 origin-left transition-transform duration-300"
+                  className="absolute w-[100%] h-1 bg-[#12C29F] left-0 bottom-0 transform scale-x-0 origin-left transition-transform duration-300"
                   style={{
                     transform: `scaleX(${underlineWidth == index ? 1 : 0})`,
                   }}
