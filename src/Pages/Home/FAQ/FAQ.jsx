@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import faqAnimation from "../../../assets/faqAnimation.json"
 import Lottie from "lottie-react";
+import { HiMinus, HiPlus } from 'react-icons/hi';
 
 
 const faqs = [
@@ -36,7 +37,11 @@ const FAQ = () => {
 
     return (
         <div className='bg-gray-100 py-4'>
-            <h1 className="text-3xl font-bold mb-6 text-center">Frequently Asked Questions</h1>
+            <h1 className="text-4xl font-bold mb-6 text-center text-[#0AAE8D]">FAQ</h1>
+            <p className='text-lg mb-10 text-center'>
+                Common questions asked by students and instructors
+            </p>
+
             <div className='flex flex-col md:flex-row gap-5'>
                 <div className='w-full mx-auto px-6'>
                     <div className="lg:min-h-screen flex justify-center items-center">
@@ -46,21 +51,24 @@ const FAQ = () => {
                                 {faqs.map((faq, index) => (
                                     <div
                                         key={index}
-                                        className="border p-4 rounded-md cursor-pointer hover:bg-gray-200"
+                                        className="border border-2 p-4 rounded-md cursor-pointer
+                                         hover:bg-[#d5ebf0]"
                                         onClick={() => toggleFAQ(index)}
                                     >
                                         <div className="flex justify-between items-center">
-                                            <span className="font-semibold text-[#47c7cb]">{faq.question}</span>
-                                            <span>{activeIndex === index ? '-' : '+'}</span>
+                                            <span className="font-bold">{faq.question}</span>
+                                            <span>{activeIndex === index ?
+                                                <HiMinus size={25} /> : <HiPlus size={25} />}</span>
+
                                         </div>
-                                        {activeIndex === index && <p className="mt-2">{faq.answer}</p>}
+                                        {activeIndex === index && <p className="mt-2 ">{faq.answer}</p>}
                                     </div>
                                 ))}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='w-full h-96  mx-auto lg:px-6'>
+                <div className='w-full h-96  mx-auto lg:px-6 mb-20'>
                     <Lottie animationData={faqAnimation} loop={true} />
                 </div>
             </div>
