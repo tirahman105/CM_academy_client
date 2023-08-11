@@ -54,7 +54,7 @@ const KeySponsor = () => {
     return (
         <div className="bg-gray-100 py-4">
             <div className="container mx-auto">
-                <h2 className="text-3xl font-bold mb-6 text-center">Leading Key Sponsor Companies</h2>
+                <h2 className="text-4xl  text-[#0AAE8D] font-bold mb-10 text-center">Leading Key Sponsor Companies</h2>
                 <Marquee direction="left" speed={30}>
                     {sponsors.map((sponsor, index) => (
                         <a
