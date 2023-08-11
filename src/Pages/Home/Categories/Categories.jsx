@@ -66,7 +66,7 @@ border-slate-300">
                     key={subCourse.title}
                     className="mt-2 border p-4 bg-slate-100 rounded-lg shadow-md"
                   >
-                    <div className="h-[200px] bg-[#112d3a]  rounded-lg shadow-md mb-4"></div>
+                    <div className="h-[200px] bg-[#123140]  rounded-lg shadow-md mb-4"></div>
                     <strong className="text-gray-800 text-xl">
                       {subCourse.title}
                     </strong>
