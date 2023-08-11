@@ -8,21 +8,22 @@ const Features = () => {
     // Mapping of titles to image URLs
     
     const titleToData = {
-        'Recorded classes': {
-          image: 'https://res.cloudinary.com/cross-border-education-technologies-pte-ltd/image/upload/q_auto/f_auto/c_scale,w_841/v1687694515/Shikho%20Website%20V3/Homepage/Feature%20Image%20Carousel/Live_and_Recorded_Class_m1e0eg',
-          smallImage: 'https://cdn.apito.io/media/shikho_website_v2_8ma77/shikhoHomepageV3/13SX02ME9W_live_class.svg',
+        'Recorded Classes': {
+          image: 'https://i.ibb.co/JkS6sV7/cm-section-2.jpg',
+          smallImage:'https://cdn-icons-png.flaticon.com/256/579/579851.png',
+          
         },
-        'class notes': {
-            image: 'https://res.cloudinary.com/cross-border-education-technologies-pte-ltd/image/upload/q_auto/f_auto/c_scale,w_841/v1671090186/Shikho%20Website%20V3/Homepage/Feature%20Image%20Carousel/Website_Banner_Animeted_Video_841x656_qgv12n',
-            smallImage: 'https://cdn.apito.io/media/shikho_website_v2_8ma77/shikhoHomepageV3/4NHE7RLLN2_class_note.svg',
+        'Class Notes': {
+            image: 'https://i.ibb.co/7kyLPzm/cm-section-3.jpg',
+            smallImage: '  https://cdn-icons-png.flaticon.com/512/3334/3334344.png',
         },
         'MCQ Test': {
-            image: 'https://res.cloudinary.com/cross-border-education-technologies-pte-ltd/image/upload/q_auto/f_auto/c_scale,w_841/v1670221272/Shikho%20Website%20V3/Homepage/Feature%20Image%20Carousel/Website_Banner_%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%95%E0%A6%9F%E0%A6%BF%E0%A6%B8_MCQ_%E0%A6%9F%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F_841x656_gt6s6z',
-            smallImage: 'https://cdn.apito.io/media/shikho_website_v2_8ma77/shikhoHomepageV3/X7BYBS85UQ_live_mcq_test.svg',
+            image: 'https://i.ibb.co/7kLJNJ1/cm-section-4.jpg',
+            smallImage: ' https://cdn0.iconfinder.com/data/icons/online-education-butterscotch-vol-2/512/Online_Tests-512.png',
         },
-        'Practice task': {
-            image: 'https://res.cloudinary.com/cross-border-education-technologies-pte-ltd/image/upload/q_auto/f_auto/c_scale,w_841/v1670221271/Shikho%20Website%20V3/Homepage/Feature%20Image%20Carousel/Website_Banner_Live_Exam_841x656_om8gg0',
-            smallImage: 'https://cdn.apito.io/media/shikho_website_v2_8ma77/shikhoHomepageV3/76E6MGTRAE_practice_mcq_test.svg',
+        'Practice Task': {
+            image:'https://i.ibb.co/sQm06YF/cm-section-5.jpg',
+            smallImage: 'https://cdn-icons-png.flaticon.com/512/201/201649.png',
         }
          
     }
@@ -34,36 +35,49 @@ const Features = () => {
     const initialTitle = Object.keys(titleToData)[0];
 
   return (
-    <div className="mt-20 bg-[#1A213A]">
+    <div className="mt-20 bg-white">
      <div>
      
-     <h2 className="text-white text-3xl text-center p-10">Everything in CM Academic Program</h2>
-     <p className="text-white text-center text-xl">To keep you ahead of the curve in class studies and board exam preparation, this program includes-</p>
+     <h2 className="text-black text-3xl text-center px-4 pt-8 font-bold">Everything in CM Academic Program</h2>
+     <p className="text-black text-center text-xl mt-2 px-8 font-semibold">To keep you ahead of the curve in class studies and board exam preparation, this program includes-</p>
      </div>
 
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-10">
-      <div className="w-4/5">
+      <div className="flex flex-col-reverse  md:flex-row     gap-10  p-4 md:p-10">
+      <div className="w-4/5 md:w-3/5  mx-auto">
           {Object.keys(titleToData).map((title) => (
-            <div
-              key={title}
-              className={`mt-4 flex   items-center cursor-pointer p-7 rounded md:bg-white  justify-center md:justify-start  gap-7   ${selectedTitle === title ? 'bg-blue-500 text-white border-2 border-blue-500' : ' text-black md:border border-gray-200'}`}
+            
+            
+            <div  key={title}
+             
+              className={`mt-10 md:mt-14 flex   items-center justify-center md:justify-start cursor-pointer rounded bg-[#A5CAD3] h-14 md:h-20  ${selectedTitle === title ? '  text-white border-2 border-pink-500' : ' text-black md:border border-gray-200'}`}
               onClick={() => handleTitleClick(title)}
             >
-              <img
-                src={titleToData[title].smallImage}
-                alt={`${title} Small Image`}
-                className="w-8 h-8 rounded-full mr-2"
-              />
-              <p style={{ fontSize: "24px" }} className="text-white md:text-gray-800">{title}</p> 
+             <div className="w-2/5">
+             <img
+             src={titleToData[title].smallImage}
+             alt={`${title} Small Image`}
+             className="w-20 h-20 md:w-28 md:h-28 rounded-full  relative right-10 md:right-5"
+           />
+             </div>
+              
+             <div className="w-4/5">
+             <p  className="text-black md:text-gray-800 text-xl md:text-2xl font-bold ">{title}</p> 
+
+             </div>
+              
             </div>
+
+            
+            
+            
           ))}
         </div>
-        <div className=" ">
+        <div className=" w-full">
           <img
             src={selectedTitle ? titleToData[selectedTitle].image : titleToData[initialTitle].image}
             alt={`${selectedTitle || initialTitle} Image`}
-            className="max-w-full h-auto mx-auto"
+            className="   max-w-full h-auto mx-auto mt-10   rounded-lg"
           />
         </div>
 
