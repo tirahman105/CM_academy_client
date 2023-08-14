@@ -1,0 +1,22 @@
+/* Hide horizontal scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 0.25em;
+}
+
+.bg-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    #007096,
+    #009F7E
+  ); /* Change colors as needed */
+}
