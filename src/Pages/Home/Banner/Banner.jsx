@@ -5,7 +5,7 @@ import "./Banner.css"
 const Banner = () => {
     return (
         <Carousel>
-            <div className="flex flex-col min-h-screen bg-[#A5CAD3] text-left items-center relative sm:flex-row">
+            <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#47c7cb] to-[#aaedf0] text-left items-center sm:flex-row">
                 <div className="text-container sm:w-1/2 p-10">
                     <p className="text-white">Welcome to CM Academy</p>
                     <h1 className="mb-5 text-5xl font-semibold text-white">
@@ -27,7 +27,7 @@ const Banner = () => {
                     </Link>
                 </div>
                 <div className="image-container sm:w-1/2">
-                    <img src="https://i.ibb.co/DMMs4fx/banner-bg-boy.png" alt="" />
+                    <img src="https://i.ibb.co/rMmTnVj/front-view-male-student-wearing-black-backpack-holding-copybooks-files-blue-wall-Photo-Room-png-Phot.png" alt="" />
                 </div>
             </div>
 
@@ -56,7 +56,7 @@ const Banner = () => {
 
                 </div>
                 <div className="image-container sm:w-1/2">
-                    <img src="https://i.ibb.co/DMMs4fx/banner-bg-boy.png" alt="" />
+                    <img src="https://i.ibb.co/7YdxPXq/wepik-export-20230811110844dpm4.png" alt="" />
                 </div>
             </div>
 
@@ -85,7 +85,7 @@ const Banner = () => {
                     </Link>
                 </div>
                 <div className="image-container sm:w-1/2">
-                    <img src="https://i.ibb.co/DMMs4fx/banner-bg-boy.png" alt="" />
+                    <img src="https://i.ibb.co/7YdxPXq/wepik-export-20230811110844dpm4.png" alt="" />
                 </div>
             </div>
 
