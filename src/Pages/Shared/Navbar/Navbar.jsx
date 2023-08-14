@@ -29,7 +29,7 @@ const Navbar = () => {
                             <li><Link to='/instructor' >Become an Instructor</Link></li>
                         </ul>
                     </div>
-                    <Link to="/" className="font-extrabold text-3xl flex items-center align-middle">
+                    <Link to="/" className="font-extrabold lg:text-3xl sm:text-xl flex items-center align-middle">
                         <img src={logo} alt="" className="w-8 h-8" />
                         CM Academy
                     </Link>
