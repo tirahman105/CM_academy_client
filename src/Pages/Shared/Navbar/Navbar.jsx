@@ -26,7 +26,7 @@ const Navbar = () => {
                                     </ul>
                                 </details>
                             </li>
-                            <li>Become Instructor</li>
+                            <li><Link to='/instructor' >Become an Instructor</Link></li>
                         </ul>
                     </div>
                     <Link to="/" className="font-extrabold text-3xl flex items-center align-middle">
@@ -49,7 +49,7 @@ const Navbar = () => {
                                 </ul>
                             </details>
                         </li>
-                        <li><a className="ml-auto">Become an Instructor</a></li>
+                        <li><Link to='/instructor' className="ml-auto">Become an Instructor</Link></li>
 
                     </ul>
                 </div>
