@@ -26,10 +26,10 @@ const Navbar = () => {
                                     </ul>
                                 </details>
                             </li>
-                            <li>Become Instructor</li>
+                            <li><Link to='/instructor' >Become an Instructor</Link></li>
                         </ul>
                     </div>
-                    <Link to="/" className="font-extrabold text-3xl flex items-center align-middle">
+                    <Link to="/" className="font-extrabold lg:text-3xl sm:text-xl flex items-center align-middle">
                         <img src={logo} alt="" className="w-8 h-8" />
                         CM Academy
                     </Link>
@@ -49,13 +49,13 @@ const Navbar = () => {
                                 </ul>
                             </details>
                         </li>
-                        <li><a className="ml-auto">Become an Instructor</a></li>
+                        <li><Link to='/instructor' className="ml-auto">Become an Instructor</Link></li>
 
                     </ul>
                 </div>
                 <div className="navbar-end">
 
-                    <a className="btn btn-success text-white">Login</a>
+                    <Link to='/signin' className="btn btn-success text-white">Login</Link>
                 </div>
             </div>
 
