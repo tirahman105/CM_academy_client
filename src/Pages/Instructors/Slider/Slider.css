@@ -1,0 +1,26 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slider {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .slider-item {
+    flex: 0 0 100%;
+    /* Add styling for each item, e.g., padding, margin, etc. */
+  }
+  
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .next-btn {
+    right: 0;
+  }
