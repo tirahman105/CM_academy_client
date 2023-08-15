@@ -12,10 +12,10 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-           <Categories></Categories>
-           <Features></Features>
-           <WhyUs></WhyUs>
-           <StatSection></StatSection>
+            <Categories></Categories>
+            <Features></Features>
+            <WhyUs></WhyUs>
+            <StatSection></StatSection>
             <FAQ></FAQ>
             <KeySponsor></KeySponsor>
         </div>

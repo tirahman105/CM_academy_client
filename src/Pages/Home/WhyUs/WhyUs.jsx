@@ -4,12 +4,16 @@ import Lottie from 'lottie-react';
 import animationData from '../../../../src/assets/animation_ll3r94gu.json';
 
 const WhyUs = () => {
-    
+
 
     return (
-        <div className="bg-gray-100 py-12 md:py-20">
+        <div className="pt-12 md:pt-20">
             <div className="container mx-auto px-4">
-                <h1 className='text-4xl text-center font-bold mt-10 mb-10'>Why Choose us?</h1>
+                <h1 className='text-4xl font-bold mb-5 text-center text-[#12C29F]'>Why Choose us?</h1>
+                <p className="text-center font-semibold mb-20">
+                    Empowering Futures, One Click at a Time. <br />
+                    Discover Excellence with Personalized Learning, Expert Educators, and
+                    Seamless Technology. Join us in Redefining Education.</p>
                 <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
                     <div className="md:w-1/2 mb-6 md:mb-0">
                         <Lottie animationData={animationData} height={300} width={300} />

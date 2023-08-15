@@ -52,10 +52,11 @@ const sponsors = [
 
 const KeySponsor = () => {
     return (
-        <div className="bg-gray-100 py-4">
+        <div className="pt-16">
             <div className="container mx-auto">
-                <h2 className="text-4xl  text-[#0AAE8D] font-bold mb-10 text-center">Leading Key Sponsor Companies</h2>
-                <Marquee direction="left" speed={30}>
+                <h2 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">Leading Key Sponsor Companies</h2>
+                <p className='text-center font-semibold mb-10'> Our Esteemed Sponsor Companies Shaping the Future of Learning.</p>
+                <Marquee className='mb-5' direction="left" speed={30}>
                     {sponsors.map((sponsor, index) => (
                         <a
                             key={index}

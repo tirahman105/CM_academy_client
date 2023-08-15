@@ -36,9 +36,9 @@ const FAQ = () => {
     };
 
     return (
-        <div className='bg-gray-100 py-4'>
-            <h1 className="text-4xl font-bold mb-6 text-center text-[#0AAE8D]">FAQ</h1>
-            <p className='text-lg mb-10 text-center'>
+        <div className='pt-12 lg:pb-1'>
+            <h1 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">Frequently Asked Questions</h1>
+            <p className='text-center font-semibold mb-20'>
                 Common questions asked by students and instructors
             </p>
 
@@ -51,8 +51,8 @@ const FAQ = () => {
                                 {faqs.map((faq, index) => (
                                     <div
                                         key={index}
-                                        className="border-2 p-4 rounded-md cursor-pointer
-                                         hover:bg-[#d5ebf0]"
+                                        className=" border-b-4  border-b-[#62D4D8] p-4 rounded-md cursor-pointer
+                                         hover:bg-gray-300"
                                         onClick={() => toggleFAQ(index)}
                                     >
                                         <div className="flex justify-between items-center">
@@ -68,7 +68,7 @@ const FAQ = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-full h-96  mx-auto lg:px-6 mb-20'>
+                <div className='w-full h-96  mx-auto lg:px-6'>
                     <Lottie animationData={faqAnimation} loop={true} />
                 </div>
             </div>

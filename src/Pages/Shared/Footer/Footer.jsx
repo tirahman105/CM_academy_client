@@ -3,7 +3,7 @@ const Footer = () => {
     return (
         <>
 
-            <footer className="footer p-10 bg-base-200 text-base-content">
+            <footer className="footer p-10 bg-[#0E1133] text-white">
                 <div>
                     <span className="footer-title">Services</span>
                     <a className="link link-hover">Branding</a>
@@ -25,11 +25,12 @@ const Footer = () => {
                     <a className="link link-hover">Cookie policy</a>
                 </div>
             </footer>
-            <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+            <footer className="footer px-10 py-4 border-t text-white bg-[#0E1133]  
+            border-white">
                 <div className="items-center grid-flow-col">
-                <img src={logo} alt="" className="h-10 w-10" />
+                    <img src={logo} alt="" className="h-10 w-10" />
 
-                    <p>CM Academy <br />Providing reliable tech since 2000</p>
+                    <p><span className='font-bold text-[#0AAE8D]  text-xl'>CM Academy</span> <br />Providing reliable tech since 2023</p>
                 </div>
                 <div className="md:place-self-center md:justify-self-end">
                     <div className="grid grid-flow-col gap-4">
@@ -41,7 +42,7 @@ const Footer = () => {
                 </div>
 
             </footer>
-            <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+            <footer className="footer footer-center p-4 bg-[#0E1133] text-white">
                 <div>
                     <p>Copyright © 2023 - All rights reserved by CM Academy</p>
                 </div>
