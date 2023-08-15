@@ -3,7 +3,7 @@ import logo from '../../../../public/cm-logo-png.ico';
 
 const Navbar = () => {
 
-    
+
     return (
         <>
 
@@ -13,7 +13,7 @@ const Navbar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 font-semibold">
 
                             <li> <Link>Home</Link></li>
                             <li className="bg-white" tabIndex={0}>
@@ -29,9 +29,9 @@ const Navbar = () => {
                             <li><Link to='/instructor' >Become an Instructor</Link></li>
                         </ul>
                     </div>
-                    <Link to="/" className="font-extrabold lg:text-3xl sm:text-xl flex items-center align-middle">
-                        <img src={logo} alt="" className="w-8 h-8" />
-                        CM Academy
+                    <Link to="/" className="flex items-center gap-3">
+                        <img src={logo} alt="" className="w-10 h-10" />
+                        <span className="font-bold lg:text-3xl  text-[#0AAE8D]">CM Academy</span>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -55,7 +55,9 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
 
-                    <Link to='/signin' className="btn btn-success text-white">Login</Link>
+                    <Link to='/signin' className="btn border-0 text-white bg-[#0AAE8D]
+                         hover:bg-white hover:text-[#0AAE8D]
+                          hover:animate-pulse">Login</Link>
                 </div>
             </div>
 
