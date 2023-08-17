@@ -1,0 +1,20 @@
+/* Hide horizontal scrollbar */
+::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 0.25em;
+  }
+  
+  .bg-gradient {
+    background: rgb(0,112,150);
+    background: linear-gradient(90deg, rgba(0,112,150,1) 35%, rgba(0,159,126,1) 100%);
+  }
+  

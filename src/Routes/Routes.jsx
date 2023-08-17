@@ -1,13 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
-import Instructors from "../Pages/Instructors/Instructors/Instructors";
-import SignIn from "../Pages/Authentication/SignIn/SignIn";
-import SignUp from "../Pages/Authentication/SignUp/SignUp";
-import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
-import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
-
-
+import CourseDetails from "../Pages/CourseDetails/CourseDetails";
+import AllCourseCategories from "../Pages/AllCourseCategories/AllCourseCategories";
 
 const router = createBrowserRouter([
   {
@@ -19,26 +14,14 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/instructor",
-        element: <Instructors></Instructors>
+        path: "/courseDetails", // Define the path with parameters
+        element: <CourseDetails ></CourseDetails>,
       },
       {
-        path: "login",
-        element:<SignIn></SignIn>
+        path: "/courseCategories", // Define the path with parameters
+        element: <AllCourseCategories></AllCourseCategories>,
       },
-      {
-        path:"signup",
-        element: <SignUp></SignUp>
-      },
-      {
-        path: "/terms",
-        element: <TermsAndConditions></TermsAndConditions>,
-      },
-      {
-        path: "/policy",
-        element: <PrivacyPolicy></PrivacyPolicy>
-      }
-    ]
+    ],
   },
 ]);
 
