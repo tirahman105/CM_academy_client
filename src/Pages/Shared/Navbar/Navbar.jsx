@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import logo from "../../../../public/cm-logo-png.ico";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <div className="navbar bg-base-100">
@@ -31,30 +42,44 @@ const Navbar = () => {
                 {" "}
                 <Link>Home</Link>
               </li>
-                  <Link to="/courseCategories">Course Categories</Link>
-             
-              <li>Become Instructor</li>
+              <li className="bg-white" tabIndex={0}>
+                <details>
+                  <summary>Course Catagories</summary>
+                  <ul className="p-2">
+                    <li>
+                      <a>Development</a>
+                    </li>
+                    <li>
+                      <a>Design</a>
+                    </li>
+                    <li>
+                      <a>Office Productivity</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <Link to="/instructor">Become an Instructor</Link>
+              </li>
             </ul>
           </div>
           <Link
             to="/"
-            className="font-extrabold text-3xl flex items-center align-middle"
+            className="font-extrabold lg:text-3xl sm:text-xl flex items-center align-middle"
           >
             <img src={logo} alt="" className="w-8 h-8" />
-            <div className=" w-[200px] ">
-              <p className="text-sm md:text-2xl">CM Academy</p>
-            </div>
+            CM Academy
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 font-semibold">
+          <ul className="menu menu-horizontal px-1 font-semibold bg-white">
             <li>
               {" "}
               <Link>Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link to="/courseCategories">Course Categories</Link>
-              {/* <details>
+              <details>
+                <summary>Course Catagories</summary>
                 <ul className="p-2">
                   <li>
                     <a>Development</a>
@@ -65,16 +90,31 @@ const Navbar = () => {
                   <li>
                     <a>Office Productivity</a>
                   </li>
+                  <li>
+                    <a>Personal Development</a>
+                  </li>
                 </ul>
-              </details> */}
+              </details>
             </li>
             <li>
-              <a className="ml-auto">Become an Instructor</a>
+              <Link to="/instructor" className="ml-auto">
+                Become an Instructor
+              </Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-success text-white">Login</a>
+          {user?.email ? (
+            <>
+              <button onClick={handleLogOut} className="btn btn-success ">
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className="btn btn-success text-white">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </>
