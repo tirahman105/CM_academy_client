@@ -1,16 +1,15 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const SignIn = () => {
-  // const handleLogin = event => {
-  //     event.preventDefault();
-  //     const form = event.target;
-  //     const email = form.email.value;
-  //     const password = form.password.value;
-  //     console.log(email, password);
-  // };
+  const [error, setError] = useState("")
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
 
   const {
     register,
@@ -18,19 +17,31 @@ const SignIn = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, logOut } = useContext(AuthContext);
+
+
+
 
   const onSubmit = (data) => {
     const { email, password } = data;
-  
+
     console.log(data);
     signIn(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        if (user.emailVerified === false) {
+          logOut()
+          return setError("Email is not verified");
+        }
+        setError()
         reset();
-        alert('Sign in successful')
-      });
+        navigate(from, { replace: true });
+
+      })
+      .catch(error => {
+        setError(error.message);
+      })
   }
 
   return (
@@ -67,6 +78,8 @@ const SignIn = () => {
                   Forgot password?
                 </a>
               </label>
+              <p className="text-xs px-1 font-semibold text-red-600">{error}</p>
+
             </div>
             <div className="form-control mt-6">
               <input className="btn btn-success" type="submit" value="Login" />
@@ -77,6 +90,7 @@ const SignIn = () => {
                 {" "}
                 Sign Up
               </Link>
+
             </p>
           </form>
         </div>
