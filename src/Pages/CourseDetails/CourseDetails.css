@@ -1,0 +1,14 @@
+/* Define the transition for max-height during expansion */
+.answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ;
+  }
+  
+  /* Apply animation to open answers */
+  .answer.open {
+    max-height: 1000px; /* Adjust as needed */
+     transition: max-height 0.3s ease-in-out;
+  
+  }
+  
