@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import GoogleSignin from "../GoogleSignin/GoogleSignin";
 
 const SignIn = () => {
   const [error, setError] = useState("")
@@ -94,7 +95,8 @@ const SignIn = () => {
             <div className="form-control mt-6">
               <input className="btn btn-success" type="submit" value="Login" />
             </div>
-            <p className="my-5 text-center">
+            <GoogleSignin></GoogleSignin>
+            <p className="my-2 text-center">
               Already have an account?
               <Link className="text-orange-700 font-bold" to="/signup">
                 {" "}
@@ -102,6 +104,7 @@ const SignIn = () => {
               </Link>
 
             </p>
+           
           </form>
         </div>
 
