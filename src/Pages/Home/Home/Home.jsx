@@ -6,16 +6,18 @@ import Features from '../Features/Features';
 import WhyUs from '../WhyUs/WhyUs';
 import StatSection from '../StatSection/StatSection';
 import KeySponsor from '../KeySponsor/KeySponsor';
+import ChatBox from '../ChatBox/ChatBox';
 
 
 const Home = () => {
     return (
         <div>
+            <ChatBox></ChatBox>
             <Banner></Banner>
-           <Categories></Categories>
-           <Features></Features>
-           <WhyUs></WhyUs>
-           <StatSection></StatSection>
+            <Categories></Categories>
+            <Features></Features>
+            <WhyUs></WhyUs>
+            <StatSection></StatSection>
             <FAQ></FAQ>
             <KeySponsor></KeySponsor>
         </div>
