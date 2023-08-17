@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../../../../public/cm-logo-png.ico';
 const Footer = () => {
     return (
@@ -20,8 +21,8 @@ const Footer = () => {
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
+                    <Link to="/terms" className="link link-hover">Terms of use</Link>
+                    <Link to="/policy" className="link link-hover">Privacy policy</Link>
                     <a className="link link-hover">Cookie policy</a>
                 </div>
             </footer>
