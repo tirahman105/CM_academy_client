@@ -31,22 +31,8 @@ const Navbar = () => {
                 {" "}
                 <Link>Home</Link>
               </li>
-              <li className="bg-white" tabIndex={0}>
-                <details>
-                  <summary>Course Catagories</summary>
-                  <ul className="p-2">
-                    <li>
-                      <a>Development</a>
-                    </li>
-                    <li>
-                      <a>Design</a>
-                    </li>
-                    <li>
-                      <a>Office Productivity</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
+                  <Link to="/courseCategories">Course Categories</Link>
+             
               <li>Become Instructor</li>
             </ul>
           </div>
@@ -67,8 +53,8 @@ const Navbar = () => {
               <Link>Home</Link>
             </li>
             <li tabIndex={0}>
-              <details>
-                <summary>Course Catagories</summary>
+              <Link to="/courseCategories">Course Categories</Link>
+              {/* <details>
                 <ul className="p-2">
                   <li>
                     <a>Development</a>
@@ -80,7 +66,7 @@ const Navbar = () => {
                     <a>Office Productivity</a>
                   </li>
                 </ul>
-              </details>
+              </details> */}
             </li>
             <li>
               <a className="ml-auto">Become an Instructor</a>

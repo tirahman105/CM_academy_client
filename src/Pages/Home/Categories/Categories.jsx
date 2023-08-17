@@ -56,7 +56,7 @@ function Categories() {
               {course.title}
               {index === activeButtonPosition && (
                 <div
-                  className="absolute w-[100%] h-1 bg-[#12C29F] left-0 bottom-0 transform scale-x-0 origin-left transition-transform duration-300"
+                  className="absolute w-[100%] h-1 bg-gradient left-0 bottom-0 transform scale-x-0 origin-left transition-transform duration-300"
                   style={{
                     transform: `scaleX(${underlineWidth === index ? 1 : 0})`,
                   }}
@@ -65,7 +65,7 @@ function Categories() {
             </button>
           ))}
         </div>
-        <div className="mt-4 flex items-center justify-center bg-gradient-to-b bg-gradient px-4 md:px-10 py-6 rounded-xl">
+        <div className="mt-4 flex items-center justify-center bg-gradient px-4 md:px-10 py-6 rounded-xl">
           {activeCourse && (
             <div className="">
               <h2 className="text-2xl font-bold mt-4 mb-10 text-center text-white">

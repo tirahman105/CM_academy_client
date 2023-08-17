@@ -38,7 +38,7 @@ const CourseDetails = () => {
     <div className="relative  mx-auto max-w-[1800px]">
       {/*Banner section */}
       <section className="bg-[#007096] rounded-md sticky top-0  z-10 ">
-        <div className="py-4 px-2 md:w-1/2">
+        <div className="py-4 px-10 md:w-1/2">
           <h2 className="text-4xl font-bold text-white">{subCourse.title} </h2>
           <p className=" mt-4 text-white">{subCourse.courseDescription}</p>
           <p className="mt-2 flex  items-center gap-3">
@@ -51,7 +51,7 @@ const CourseDetails = () => {
             />
           </p>
           <p className="text-xl text-white mt-2">
-            ৳ <span className="ml-2">2500</span>
+            ৳<span className="ml-2">2500</span>
           </p>
         </div>
       </section>
