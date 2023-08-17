@@ -217,6 +217,11 @@ const SignUp = () => {
       })
   }
 
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -262,7 +267,7 @@ const SignUp = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="password"
+                 type={showPassword ? "text" : "password"}
                 {...register("password", {
                   required: true,
                   minLength: 6,
@@ -294,6 +299,10 @@ const SignUp = () => {
               {errors.password && (
                 <span className="text-red-600">Password is required</span>
               )}
+                <label className="mt-4">
+              <input type="checkbox" onChange={toggleShowPassword} />
+              <span className="label-text ml-2">Show password</span>
+            </label>
               <p className="text-xs px-1 font-semibold text-red-600 pt-3">{error}</p>
             </div>
 
