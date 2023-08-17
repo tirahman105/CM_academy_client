@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home/Home";
 import Instructors from "../Pages/Instructors/Instructors/Instructors";
 import SignIn from "../Pages/Authentication/SignIn/SignIn";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 
 
 
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path:"signup",
         element: <SignUp></SignUp>
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions></TermsAndConditions>,
+      },
+      {
+        path: "/policy",
+        element: <PrivacyPolicy></PrivacyPolicy>
       }
     ]
   },
