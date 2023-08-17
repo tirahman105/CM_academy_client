@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import GoogleSignin from "../GoogleSignin/GoogleSignin";
 
 const SignIn = () => {
   const [error, setError] = useState("")
@@ -44,6 +45,11 @@ const SignIn = () => {
       })
   }
 
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -67,7 +73,7 @@ const SignIn = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="password"
+                 type={showPassword ? "text" : "password"}
                 {...register("password")}
                 name="password"
                 placeholder="password"
@@ -78,13 +84,19 @@ const SignIn = () => {
                   Forgot password?
                 </a>
               </label>
+
+              <label className="mt-4">
+              <input type="checkbox" onChange={toggleShowPassword} />
+              <span className="label-text ml-2">Show password</span>
+            </label>
               <p className="text-xs px-1 font-semibold text-red-600">{error}</p>
 
             </div>
             <div className="form-control mt-6">
               <input className="btn btn-success" type="submit" value="Login" />
             </div>
-            <p className="my-5 text-center">
+            <GoogleSignin></GoogleSignin>
+            <p className="my-2 text-center">
               Already have an account?
               <Link className="text-orange-700 font-bold" to="/signup">
                 {" "}
@@ -92,6 +104,7 @@ const SignIn = () => {
               </Link>
 
             </p>
+           
           </form>
         </div>
 

@@ -1,0 +1,1018 @@
+{
+  "categories": [
+    {
+      "title": "Digital Marketing",
+      "subCategories": [
+        {
+          "title": "Social Media Marketing",
+          "instructor": "Jane Doe",
+          "rating": 4.7,
+          "courseDescription": "Learn effective strategies for leveraging social media platforms.",
+          "aboutInstructor": "Jane Doe is a seasoned digital marketer with over 10 years of experience.",
+          "instructorImage": "jane_doe.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to create engaging social media content, target the right audience, and analyze campaign performance.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Social Media Marketing",
+              "sessions": [
+                "Understanding the role of social media in marketing",
+                "Exploring different social media platforms"
+              ]
+            },
+            {
+              "milestone": "Content Creation and Strategy",
+              "sessions": [
+                "Creating compelling visual content",
+                "Planning and scheduling posts"
+              ]
+            },
+            {
+              "milestone": "Audience Targeting",
+              "sessions": [
+                "Identifying and segmenting your target audience",
+                "Using social media analytics tools"
+              ]
+            },
+            {
+              "milestone": "Engagement and Community Building",
+              "sessions": [
+                "Building a loyal follower base",
+                "Managing comments and interactions"
+              ]
+            },
+            {
+              "milestone": "Campaign Analysis and Optimization",
+              "sessions": [
+                "Measuring key metrics",
+                "Iterating and improving your campaigns"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of social media marketing techniques.",
+            "whoIsCourseFor": "This course is perfect for aspiring marketers, business owners, and individuals interested in expanding their digital marketing skills.",
+            "courseDifference": "Unlike other courses, we focus on practical strategies and real-world application."
+          },
+          "doneThisCourse": 5200,
+          "timeToFinish": "8 hours",
+          "videoCount": 25,
+          "noteCount": 15,
+          "quizCount": 5
+        },
+        {
+          "title": "Search Engine Optimization (SEO)",
+          "instructor": "John Smith",
+          "rating": 4.9,
+          "courseDescription": "Master the art of optimizing websites for search engines.",
+          "aboutInstructor": "John Smith is an SEO expert with a track record of driving organic traffic growth.",
+          "instructorImage": "john_smith.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to perform keyword research, optimize on-page elements, and build high-quality backlinks.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to SEO",
+              "sessions": [
+                "Understanding the importance of SEO",
+                "Exploring search engine ranking factors"
+              ]
+            },
+            {
+              "milestone": "Keyword Research",
+              "sessions": [
+                "Identifying relevant keywords",
+                "Using keyword research tools"
+              ]
+            },
+            {
+              "milestone": "On-Page Optimization",
+              "sessions": [
+                "Optimizing meta tags and headings",
+                "Creating SEO-friendly content"
+              ]
+            },
+            {
+              "milestone": "Off-Page Optimization",
+              "sessions": [
+                "Building high-quality backlinks",
+                "Guest posting and outreach"
+              ]
+            },
+            {
+              "milestone": "Technical SEO",
+              "sessions": [
+                "Optimizing site speed and mobile-friendliness",
+                "Schema markup and structured data"
+              ]
+            },
+            {
+              "milestone": "SEO Analytics and Reporting",
+              "sessions": [
+                "Tracking keyword rankings",
+                "Analyzing website traffic"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a deep dive into the world of SEO, equipping you with the skills needed to improve website visibility.",
+            "whoIsCourseFor": "This course is suitable for marketers, website owners, and anyone interested in enhancing their website's search engine performance.",
+            "courseDifference": "Our course focuses on hands-on SEO techniques and practical implementation."
+          },
+          "doneThisCourse": 3900,
+          "timeToFinish": "10 hours",
+          "videoCount": 30,
+          "noteCount": 12,
+          "quizCount": 4
+        },
+        {
+          "title": "Email Marketing",
+          "instructor": "Emily Johnson",
+          "rating": 4.8,
+          "courseDescription": "Learn to create effective email marketing campaigns.",
+          "aboutInstructor": "Emily Johnson is a seasoned marketer specializing in email campaigns.",
+          "instructorImage": "emily_johnson.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to build email lists, craft compelling email content, and analyze campaign success.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Email Marketing",
+              "sessions": [
+                "Understanding the role of email marketing",
+                "Exploring different email platforms"
+              ]
+            },
+            {
+              "milestone": "Building Email Lists",
+              "sessions": [
+                "Creating lead magnets",
+                "Segmenting and targeting subscribers"
+              ]
+            },
+            {
+              "milestone": "Creating Compelling Email Content",
+              "sessions": [
+                "Writing effective subject lines",
+                "Designing eye-catching templates"
+              ]
+            },
+            {
+              "milestone": "Campaign Execution and Automation",
+              "sessions": [
+                "Scheduling and sending campaigns",
+                "Implementing drip campaigns"
+              ]
+            },
+            {
+              "milestone": "Analyzing Email Performance",
+              "sessions": [
+                "Measuring open rates and click-through rates",
+                "A/B testing strategies"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive guide to mastering the art of email marketing.",
+            "whoIsCourseFor": "Business owners, marketers, and individuals interested in harnessing the power of email campaigns will benefit from this course.",
+            "courseDifference": "Unlike other courses, we emphasize practical techniques and real-world case studies."
+          },
+          "doneThisCourse": 6200,
+          "timeToFinish": "6 hours",
+          "videoCount": 20,
+          "noteCount": 10,
+          "quizCount": 3
+        },
+        {
+          "title": "Pay-Per-Click (PPC) Advertising",
+          "instructor": "Michael Brown",
+          "rating": 4.6,
+          "courseDescription": "Master the art of creating effective PPC ad campaigns.",
+          "aboutInstructor": "Michael Brown is a PPC specialist with a proven track record of driving high-converting traffic.",
+          "instructorImage": "michael_brown.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to set up PPC campaigns, select keywords, write compelling ad copy, and analyze campaign performance.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to PPC Advertising",
+              "sessions": [
+                "Understanding the basics of PPC",
+                "Exploring different PPC platforms"
+              ]
+            },
+            {
+              "milestone": "Keyword Research and Selection",
+              "sessions": [
+                "Identifying high-converting keywords",
+                "Using keyword research tools"
+              ]
+            },
+            {
+              "milestone": "Creating Effective Ad Copy",
+              "sessions": [
+                "Writing compelling headlines",
+                "Crafting persuasive ad text"
+              ]
+            },
+            {
+              "milestone": "Campaign Setup and Budgeting",
+              "sessions": [
+                "Setting up campaigns and ad groups",
+                "Allocating and managing budgets"
+              ]
+            },
+            {
+              "milestone": "Ad Campaign Monitoring and Optimization",
+              "sessions": [
+                "Analyzing campaign metrics",
+                "Adjusting bids and targeting"
+              ]
+            },
+            {
+              "milestone": "Conversion Tracking and ROI",
+              "sessions": [
+                "Implementing conversion tracking",
+                "Calculating return on investment (ROI)"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a comprehensive guide to mastering PPC advertising, from campaign setup to optimization.",
+            "whoIsCourseFor": "This course is ideal for marketers, business owners, and individuals aiming to excel in PPC campaign management.",
+            "courseDifference": "Our course stands out by focusing on hands-on strategies and real-world application."
+          },
+          "doneThisCourse": 3200,
+          "timeToFinish": "7 hours",
+          "videoCount": 22,
+          "noteCount": 8,
+          "quizCount": 4
+        },
+        {
+          "title": "Content Marketing",
+          "instructor": "Sophia Williams",
+          "rating": 4.5,
+          "courseDescription": "Learn how to create and distribute valuable content to attract and engage your target audience.",
+          "aboutInstructor": "Sophia Williams is a content marketing expert with a passion for storytelling and audience engagement.",
+          "instructorImage": "sophia_williams.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to develop a content strategy, create different types of content, and measure the impact of your efforts.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Content Marketing",
+              "sessions": [
+                "Understanding the role of content in marketing",
+                "Exploring the content marketing landscape"
+              ]
+            },
+            {
+              "milestone": "Content Strategy and Planning",
+              "sessions": [
+                "Defining your target audience",
+                "Mapping out a content calendar"
+              ]
+            },
+            {
+              "milestone": "Creating Compelling Blog Posts",
+              "sessions": [
+                "Crafting attention-grabbing headlines",
+                "Structuring engaging blog content"
+              ]
+            },
+            {
+              "milestone": "Visual Content Creation",
+              "sessions": [
+                "Designing infographics and images",
+                "Creating impactful video content"
+              ]
+            },
+            {
+              "milestone": "Content Distribution and Promotion",
+              "sessions": [
+                "Optimizing for SEO and social media",
+                "Leveraging email and influencer marketing"
+              ]
+            },
+            {
+              "milestone": "Measuring Content Performance",
+              "sessions": [
+                "Tracking engagement and conversions",
+                "Using analytics to refine your strategy"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of content marketing principles and effective tactics.",
+            "whoIsCourseFor": "Marketers, writers, and business owners seeking to enhance their content marketing skills will benefit from this course.",
+            "courseDifference": "Our course emphasizes practical content creation and strategic distribution."
+          },
+          "doneThisCourse": 4800,
+          "timeToFinish": "9 hours",
+          "videoCount": 28,
+          "noteCount": 14,
+          "quizCount": 3
+        }
+      ]
+    },
+    {
+      "title": "Web Development",
+      "subCategories": [
+        {
+          "title": "HTML and CSS Fundamentals",
+          "instructor": "Alex Turner",
+          "rating": 4.6,
+          "courseDescription": "Master the basics of web development with HTML and CSS.",
+          "aboutInstructor": "Alex Turner is a web developer with a passion for teaching coding fundamentals.",
+          "instructorImage": "alex_turner.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to build and style web pages using HTML and CSS.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to HTML and CSS",
+              "sessions": [
+                "Understanding the role of HTML and CSS in web development",
+                "Setting up your development environment"
+              ]
+            },
+            {
+              "milestone": "HTML Basics",
+              "sessions": [
+                "Creating HTML documents and elements",
+                "Working with text and links"
+              ]
+            },
+            {
+              "milestone": "CSS Basics",
+              "sessions": [
+                "Styling elements with CSS",
+                "Managing layouts and positioning"
+              ]
+            },
+            {
+              "milestone": "CSS Flexbox and Grid",
+              "sessions": [
+                "Creating flexible layouts with Flexbox",
+                "Designing grid-based structures"
+              ]
+            },
+            {
+              "milestone": "Responsive Web Design",
+              "sessions": [
+                "Designing for different screen sizes",
+                "Implementing media queries"
+              ]
+            },
+            {
+              "milestone": "Website Deployment",
+              "sessions": [
+                "Choosing a hosting provider",
+                "Uploading your website to a server"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a solid foundation in web development using HTML and CSS.",
+            "whoIsCourseFor": "Aspiring web developers, designers, and beginners interested in building websites will find value in this course.",
+            "courseDifference": "Our course focuses on practical coding skills and real-world projects."
+          },
+          "doneThisCourse": 6500,
+          "timeToFinish": "12 hours",
+          "videoCount": 35,
+          "noteCount": 20,
+          "quizCount": 4
+        },
+        {
+          "title": "JavaScript for Interactive Websites",
+          "instructor": "Emma Davis",
+          "rating": 4.9,
+          "courseDescription": "Learn to build interactive and dynamic websites with JavaScript.",
+          "aboutInstructor": "Emma Davis is a front-end developer and JavaScript enthusiast.",
+          "instructorImage": "emma_davis.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to add interactivity to web pages using JavaScript.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to JavaScript",
+              "sessions": [
+                "Understanding the role of JavaScript in web development",
+                "Setting up a JavaScript development environment"
+              ]
+            },
+            {
+              "milestone": "JavaScript Basics",
+              "sessions": [
+                "Working with variables and data types",
+                "Control structures and loops"
+              ]
+            },
+            {
+              "milestone": "DOM Manipulation",
+              "sessions": [
+                "Selecting and modifying HTML elements",
+                "Handling user events"
+              ]
+            },
+            {
+              "milestone": "Functions and Objects",
+              "sessions": [
+                "Creating reusable functions",
+                "Working with JavaScript objects"
+              ]
+            },
+            {
+              "milestone": "AJAX and Fetch API",
+              "sessions": [
+                "Making asynchronous requests",
+                "Fetching data from APIs"
+              ]
+            },
+            {
+              "milestone": "Project: Interactive Website",
+              "sessions": [
+                "Building a dynamic to-do list",
+                "Adding interactive forms"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a comprehensive guide to using JavaScript for building interactive web applications.",
+            "whoIsCourseFor": "Web developers, designers, and individuals interested in adding dynamic elements to websites will benefit from this course.",
+            "courseDifference": "Our course focuses on hands-on JavaScript projects and practical coding skills."
+          },
+          "doneThisCourse": 5800,
+          "timeToFinish": "10 hours",
+          "videoCount": 30,
+          "noteCount": 18,
+          "quizCount": 3
+        },
+        {
+          "title": "Responsive Web Design",
+          "instructor": "Daniel Lee",
+          "rating": 4.7,
+          "courseDescription": "Learn to design websites that adapt to various screen sizes and devices.",
+          "aboutInstructor": "Daniel Lee is a web designer with expertise in creating responsive and user-friendly interfaces.",
+          "instructorImage": "daniel_lee.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to create responsive web designs using CSS and media queries.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Responsive Web Design",
+              "sessions": [
+                "Understanding the importance of responsive design",
+                "Exploring responsive design principles"
+              ]
+            },
+            {
+              "milestone": "Media Queries and Flexbox",
+              "sessions": [
+                "Implementing media queries for different breakpoints",
+                "Creating flexible layouts with Flexbox"
+              ]
+            },
+            {
+              "milestone": "Responsive Typography and Images",
+              "sessions": [
+                "Adjusting font sizes and line heights",
+                "Optimizing images for different screens"
+              ]
+            },
+            {
+              "milestone": "Mobile-First Design",
+              "sessions": [
+                "Designing for mobile devices",
+                "Progressive enhancement"
+              ]
+            },
+            {
+              "milestone": "Responsive Navigation",
+              "sessions": [
+                "Designing and implementing mobile-friendly menus",
+                "Creating navigation bars"
+              ]
+            },
+            {
+              "milestone": "Testing and Optimization",
+              "sessions": [
+                "Testing on different devices and browsers",
+                "Performance optimization"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of responsive web design techniques and best practices.",
+            "whoIsCourseFor": "Web designers, developers, and anyone interested in creating adaptable and visually appealing websites will find value in this course.",
+            "courseDifference": "Our course focuses on practical responsive design implementation and real-world projects."
+          },
+          "doneThisCourse": 4100,
+          "timeToFinish": "9 hours",
+          "videoCount": 28,
+          "noteCount": 16,
+          "quizCount": 3
+        },
+        {
+          "title": "Backend Development with Node.js",
+          "instructor": "Olivia Parker",
+          "rating": 4.8,
+          "courseDescription": "Learn to build powerful backend applications using Node.js.",
+          "aboutInstructor": "Olivia Parker is a full-stack developer specializing in backend development with Node.js.",
+          "instructorImage": "olivia_parker.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to build scalable and efficient backend applications using Node.js and Express.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Node.js and Backend Development",
+              "sessions": [
+                "Understanding the role of Node.js in backend development",
+                "Setting up a Node.js development environment"
+              ]
+            },
+            {
+              "milestone": "Node.js Basics and Modules",
+              "sessions": [
+                "Working with the Node.js runtime",
+                "Using built-in and third-party modules"
+              ]
+            },
+            {
+              "milestone": "Creating APIs with Express",
+              "sessions": [
+                "Building RESTful APIs",
+                "Handling HTTP requests and responses"
+              ]
+            },
+            {
+              "milestone": "Authentication and User Management",
+              "sessions": [
+                "Implementing user registration and login",
+                "Securing APIs with JWT"
+              ]
+            },
+            {
+              "milestone": "Database Integration with MongoDB",
+              "sessions": [
+                "Connecting to MongoDB",
+                "Performing CRUD operations"
+              ]
+            },
+            {
+              "milestone": "Testing and Deployment",
+              "sessions": [
+                "Writing unit and integration tests",
+                "Deploying Node.js applications"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a comprehensive guide to backend development using Node.js, covering APIs, databases, and more.",
+            "whoIsCourseFor": "Developers interested in building backend systems, APIs, and server-side applications will benefit from this course.",
+            "courseDifference": "Our course emphasizes practical backend development skills and real-world project implementation."
+          },
+          "doneThisCourse": 2700,
+          "timeToFinish": "11 hours",
+          "videoCount": 32,
+          "noteCount": 14,
+          "quizCount": 4
+        }
+      ]
+    },
+    {
+      "title": "Photography",
+      "subCategories": [
+        {
+          "title": "Understanding Camera Settings",
+          "instructor": "Emma White",
+          "rating": 4.8,
+          "courseDescription": "Master the art of using camera settings to capture stunning photographs.",
+          "aboutInstructor": "Emma White is a professional photographer with expertise in using camera settings creatively.",
+          "instructorImage": "emma_white.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to control exposure, shutter speed, aperture, and ISO settings to achieve desired effects.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Camera Settings",
+              "sessions": [
+                "Understanding the importance of camera settings",
+                "Exploring different camera modes"
+              ]
+            },
+            {
+              "milestone": "Exposure Triangle",
+              "sessions": [
+                "Mastering the relationship between shutter speed, aperture, and ISO",
+                "Controlling exposure for various lighting conditions"
+              ]
+            },
+            {
+              "milestone": "Creative Effects with Aperture",
+              "sessions": [
+                "Creating shallow depth of field",
+                "Achieving sharpness and bokeh"
+              ]
+            },
+            {
+              "milestone": "Freezing and Blurring Motion",
+              "sessions": [
+                "Capturing fast-moving subjects with high shutter speeds",
+                "Creating motion blur with slow shutter speeds"
+              ]
+            },
+            {
+              "milestone": "Mastering Low Light Photography",
+              "sessions": [
+                "Using low ISO settings",
+                "Working with available light sources"
+              ]
+            },
+            {
+              "milestone": "Composition Techniques",
+              "sessions": [
+                "Applying the rule of thirds",
+                "Using leading lines and framing"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of camera settings and techniques for capturing visually appealing photographs.",
+            "whoIsCourseFor": "Photography enthusiasts, beginners, and individuals seeking to improve their photography skills will find value in this course.",
+            "courseDifference": "Our course focuses on practical photography techniques and creative use of camera settings."
+          },
+          "doneThisCourse": 3800,
+          "timeToFinish": "7 hours",
+          "videoCount": 24,
+          "noteCount": 12,
+          "quizCount": 3
+        },
+        {
+          "title": "Composition and Framing Techniques",
+          "instructor": "James Johnson",
+          "rating": 4.7,
+          "courseDescription": "Learn the art of composition and framing to create visually compelling photographs.",
+          "aboutInstructor": "James Johnson is a professional photographer known for his creative framing and composition skills.",
+          "instructorImage": "james_johnson.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to use framing, perspective, and visual elements to create impactful photographs.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Composition",
+              "sessions": [
+                "Understanding the role of composition in photography",
+                "Exploring different composition techniques"
+              ]
+            },
+            {
+              "milestone": "Rule of Thirds and Balance",
+              "sessions": [
+                "Applying the rule of thirds",
+                "Creating balance and symmetry"
+              ]
+            },
+            {
+              "milestone": "Framing and Leading Lines",
+              "sessions": [
+                "Using natural elements to frame subjects",
+                "Creating depth with leading lines"
+              ]
+            },
+            {
+              "milestone": "Creating Depth and Perspective",
+              "sessions": [
+                "Using foreground and background elements",
+                "Creating a sense of scale and depth"
+              ]
+            },
+            {
+              "milestone": "Visual Elements and Patterns",
+              "sessions": [
+                "Incorporating shapes, colors, and patterns",
+                "Using repetition and contrast"
+              ]
+            },
+            {
+              "milestone": "Emotion and Storytelling",
+              "sessions": [
+                "Infusing emotion into your photographs",
+                "Telling stories through composition"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a comprehensive guide to mastering composition and framing techniques to enhance your photography skills.",
+            "whoIsCourseFor": "Photographers, hobbyists, and anyone interested in creating visually captivating photographs will benefit from this course.",
+            "courseDifference": "Our course focuses on practical composition exercises and real-world application."
+          },
+          "doneThisCourse": 2900,
+          "timeToFinish": "6 hours",
+          "videoCount": 20,
+          "noteCount": 10,
+          "quizCount": 3
+        },
+        {
+          "title": "Lighting and Exposure Control",
+          "instructor": "Sophia Adams",
+          "rating": 4.9,
+          "courseDescription": "Master the art of lighting and exposure to capture stunning photographs in any situation.",
+          "aboutInstructor": "Sophia Adams is a professional photographer renowned for her mastery of lighting and exposure techniques.",
+          "instructorImage": "sophia_adams.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to manipulate natural and artificial light, control exposure settings, and enhance image quality.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Lighting and Exposure",
+              "sessions": [
+                "Understanding the role of light in photography",
+                "Exploring different types of lighting"
+              ]
+            },
+            {
+              "milestone": "Natural Light Techniques",
+              "sessions": [
+                "Using golden hour and blue hour lighting",
+                "Modifying light with reflectors and diffusers"
+              ]
+            },
+            {
+              "milestone": "Studio Lighting Setup",
+              "sessions": [
+                "Setting up and using studio lights",
+                "Creating different lighting effects"
+              ]
+            },
+            {
+              "milestone": "Exposure Triangle Mastery",
+              "sessions": [
+                "Balancing aperture, shutter speed, and ISO",
+                "Achieving proper exposure in challenging conditions"
+              ]
+            },
+            {
+              "milestone": "High Dynamic Range (HDR) Photography",
+              "sessions": [
+                "Capturing and merging multiple exposures",
+                "Creating balanced and detailed images"
+              ]
+            },
+            {
+              "milestone": "Low Light and Night Photography",
+              "sessions": [
+                "Mastering low light shooting",
+                "Capturing cityscapes and starry skies"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of lighting and exposure techniques to elevate your photography skills.",
+            "whoIsCourseFor": "Photographers, enthusiasts, and individuals seeking to improve their photography in various lighting conditions will find value in this course.",
+            "courseDifference": "Our course emphasizes practical lighting exercises and techniques for achieving stunning photographs."
+          },
+          "doneThisCourse": 4300,
+          "timeToFinish": "8 hours",
+          "videoCount": 28,
+          "noteCount": 14,
+          "quizCount": 3
+        },
+        {
+          "title": "Portrait Photography",
+          "instructor": "Michael Brown",
+          "rating": 4.6,
+          "courseDescription": "Learn the art of capturing compelling portraits and conveying emotion through photography.",
+          "aboutInstructor": "Michael Brown is an accomplished portrait photographer known for his ability to capture genuine moments.",
+          "instructorImage": "michael_brown.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to compose, light, and direct subjects to create impactful portrait photographs.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Portrait Photography",
+              "sessions": [
+                "Understanding the significance of portrait photography",
+                "Exploring different styles of portrait photography"
+              ]
+            },
+            {
+              "milestone": "Posing and Composition",
+              "sessions": [
+                "Guiding subjects for natural poses",
+                "Creating flattering compositions"
+              ]
+            },
+            {
+              "milestone": "Indoor and Outdoor Lighting",
+              "sessions": [
+                "Using natural light and artificial sources",
+                "Creating mood and atmosphere with lighting"
+              ]
+            },
+            {
+              "milestone": "Environmental Portraiture",
+              "sessions": [
+                "Incorporating surroundings into portraits",
+                "Creating narrative-driven images"
+              ]
+            },
+            {
+              "milestone": "Capturing Emotion and Expression",
+              "sessions": [
+                "Directing subjects for authentic emotions",
+                "Telling stories through facial expressions"
+              ]
+            },
+            {
+              "milestone": "Editing and Post-Processing",
+              "sessions": [
+                "Enhancing portraits in post-production",
+                "Retouching techniques and color grading"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a comprehensive guide to mastering the art of portrait photography, capturing authentic moments and emotions.",
+            "whoIsCourseFor": "Photographers, enthusiasts, and individuals interested in portrait photography and storytelling through images will benefit from this course.",
+            "courseDifference": "Our course focuses on practical portrait photography techniques and real-world case studies."
+          },
+          "doneThisCourse": 3500,
+          "timeToFinish": "9 hours",
+          "videoCount": 26,
+          "noteCount": 12,
+          "quizCount": 3
+        }
+      ]
+    },
+    {
+      "title": "Financial Planning",
+      "subCategories": [
+        {
+          "title": "Budgeting and Finance Management",
+          "instructor": "William Smith",
+          "rating": 4.7,
+          "courseDescription": "Learn essential budgeting and financial management skills for personal and business success.",
+          "aboutInstructor": "William Smith is a financial consultant with a passion for educating individuals on effective money management.",
+          "instructorImage": "william_smith.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to create and stick to a budget, manage expenses, and plan for financial goals.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Budgeting",
+              "sessions": [
+                "Understanding the importance of budgeting",
+                "Exploring different budgeting methods"
+              ]
+            },
+            {
+              "milestone": "Creating a Personal Budget",
+              "sessions": [
+                "Assessing income and expenses",
+                "Allocating funds for different categories"
+              ]
+            },
+            {
+              "milestone": "Effective Expense Management",
+              "sessions": [
+                "Tracking and reducing discretionary spending",
+                "Managing fixed and variable expenses"
+              ]
+            },
+            {
+              "milestone": "Setting and Achieving Financial Goals",
+              "sessions": [
+                "Defining short-term and long-term goals",
+                "Creating actionable plans"
+              ]
+            },
+            {
+              "milestone": "Emergency Funds and Saving Strategies",
+              "sessions": [
+                "Building an emergency fund",
+                "Exploring different saving options"
+              ]
+            },
+            {
+              "milestone": "Investment Basics and Strategies",
+              "sessions": [
+                "Understanding different investment vehicles",
+                "Creating a diversified investment portfolio"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of budgeting and financial management techniques to achieve financial stability.",
+            "whoIsCourseFor": "Individuals, students, and professionals seeking to enhance their budgeting and money management skills will benefit from this course.",
+            "courseDifference": "Our course emphasizes practical budgeting strategies and real-world financial scenarios."
+          },
+          "doneThisCourse": 5200,
+          "timeToFinish": "6 hours",
+          "videoCount": 22,
+          "noteCount": 12,
+          "quizCount": 3
+        },
+        {
+          "title": "Investing in Stocks and Bonds",
+          "instructor": "Emily Johnson",
+          "rating": 4.9,
+          "courseDescription": "Learn the fundamentals of investing in stocks and bonds to grow your wealth.",
+          "aboutInstructor": "Emily Johnson is a finance expert with a strong background in investment analysis and portfolio management.",
+          "instructorImage": "emily_johnson.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to analyze stocks, evaluate bond investments, and construct a diversified investment portfolio.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Investing",
+              "sessions": [
+                "Understanding the basics of investing",
+                "Exploring different investment options"
+              ]
+            },
+            {
+              "milestone": "Fundamental Analysis of Stocks",
+              "sessions": [
+                "Evaluating financial statements",
+                "Assessing company performance and value"
+              ]
+            },
+            {
+              "milestone": "Technical Analysis and Market Trends",
+              "sessions": [
+                "Analyzing price charts and patterns",
+                "Identifying market trends"
+              ]
+            },
+            {
+              "milestone": "Bond Investment Strategies",
+              "sessions": [
+                "Understanding different types of bonds",
+                "Assessing bond risk and return"
+              ]
+            },
+            {
+              "milestone": "Building a Diversified Portfolio",
+              "sessions": [
+                "Allocating assets across different investments",
+                "Managing risk through diversification"
+              ]
+            },
+            {
+              "milestone": "Investment Performance and Monitoring",
+              "sessions": [
+                "Measuring portfolio performance",
+                "Adjusting and rebalancing investments"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course offers a comprehensive guide to investing in stocks and bonds, with a focus on informed decision-making and portfolio management.",
+            "whoIsCourseFor": "Aspiring investors, finance professionals, and individuals interested in growing their wealth through strategic investments will find value in this course.",
+            "courseDifference": "Our course emphasizes practical investment analysis and real-time market scenarios."
+          },
+          "doneThisCourse": 3800,
+          "timeToFinish": "7 hours",
+          "videoCount": 26,
+          "noteCount": 14,
+          "quizCount": 3
+        },
+        {
+          "title": "Retirement Planning and Wealth",
+          "instructor": "Daniel Brown",
+          "rating": 4.8,
+          "courseDescription": "Plan for a secure retirement and build lasting wealth with effective financial strategies.",
+          "aboutInstructor": "Daniel Brown is a certified financial planner with expertise in retirement planning and wealth management.",
+          "instructorImage": "daniel_brown.jpg",
+          "whatYouWillLearn": "In this course, you'll learn how to create a retirement plan, manage investments, and achieve long-term financial security.",
+          "courseOutline": [
+            {
+              "milestone": "Introduction to Retirement Planning",
+              "sessions": [
+                "Understanding the importance of retirement planning",
+                "Exploring different retirement account options"
+              ]
+            },
+            {
+              "milestone": "Creating a Retirement Savings Strategy",
+              "sessions": [
+                "Setting retirement goals and timelines",
+                "Maximizing contributions and tax advantages"
+              ]
+            },
+            {
+              "milestone": "Investment Strategies for Retirement",
+              "sessions": [
+                "Building a diversified retirement portfolio",
+                "Managing risk and return"
+              ]
+            },
+            {
+              "milestone": "Retirement Income Sources",
+              "sessions": [
+                "Social Security, pensions, and other income sources",
+                "Creating a withdrawal plan"
+              ]
+            },
+            {
+              "milestone": "Estate Planning and Wealth Transfer",
+              "sessions": [
+                "Creating a will and trust",
+                "Minimizing estate taxes"
+              ]
+            },
+            {
+              "milestone": "Longevity and Healthcare Costs",
+              "sessions": [
+                "Planning for healthcare expenses in retirement",
+                "Addressing the challenges of longevity"
+              ]
+            }
+          ],
+          "faq": {
+            "aboutCourse": "This course provides a comprehensive understanding of retirement planning and wealth management strategies to achieve financial independence.",
+            "whoIsCourseFor": "Individuals approaching retirement, professionals in financial planning, and anyone interested in securing their financial future will benefit from this course.",
+            "courseDifference": "Our course emphasizes practical retirement planning techniques and real-world financial scenarios."
+          },
+          "doneThisCourse": 2800,
+          "timeToFinish": "8 hours",
+          "videoCount": 30,
+          "noteCount": 16,
+          "quizCount": 3
+        }
+      ]
+    }
+  ] 
+}
