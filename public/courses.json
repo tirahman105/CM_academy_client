@@ -1,415 +1,114 @@
 {
-    "courses": [
-      {
-        "title": "Digital Marketing Mastery",
-        "subCourses": [
-          {
-            "title": "Social Media Marketing Strategies",
-            "duration": "6 weeks",
-            "instructor": "Jane Doe",
-            "rating": 4.7
-          },
-          {
-            "title": "Search Engine Optimization (SEO) Techniques",
-            "duration": "5 weeks",
-            "instructor": "John Smith",
-            "rating": 4.9
-          },
-          {
-            "title": "Email Marketing for Success",
-            "duration": "4 weeks",
-            "instructor": "Emily Johnson",
-            "rating": 4.8
-          },
-          {
-            "title": "Pay-Per-Click (PPC) Advertising Demystified",
-            "duration": "5 weeks",
-            "instructor": "Michael Brown",
-            "rating": 4.6
-          },
-          {
-            "title": "Content Marketing and Blogging Essentials",
-            "duration": "6 weeks",
-            "instructor": "Sophia Williams",
-            "rating": 4.5
-          },
-          {
-            "title": "Analytics and Data-driven Decision Making",
-            "duration": "4 weeks",
-            "instructor": "David Wilson",
-            "rating": 4.8
-          }
-        ]
-      },
-      {
-        "title": "Web Development Bootcamp",
-        "subCourses": [
-          {
-            "title": "HTML and CSS Fundamentals",
-            "duration": "6 weeks",
-            "instructor": "Alex Turner",
-            "rating": 4.6
-          },
-          {
-            "title": "JavaScript for Interactive Websites",
-            "duration": "5 weeks",
-            "instructor": "Emma Davis",
-            "rating": 4.9
-          },
-          {
-            "title": "Responsive Web Design Principles",
-            "duration": "4 weeks",
-            "instructor": "Daniel Lee",
-            "rating": 4.7
-          },
-          {
-            "title": "Backend Development with Node.js",
-            "duration": "5 weeks",
-            "instructor": "Olivia Parker",
-            "rating": 4.8
-          },
-          {
-            "title": "Database Management and Integration",
-            "duration": "6 weeks",
-            "instructor": "William Smith",
-            "rating": 4.5
-          },
-          {
-            "title": "Deployment and Hosting Strategies",
-            "duration": "4 weeks",
-            "instructor": "Sophia Taylor",
-            "rating": 4.7
-          }
-        ]
-      },
-      {
-        "title": "Photography Fundamentals",
-        "subCourses": [
-          {
-            "title": "Understanding Camera Settings and Modes",
-            "duration": "5 weeks",
-            "instructor": "Emma White",
-            "rating": 4.8
-          },
-          {
-            "title": "Composition and Framing Techniques",
-            "duration": "4 weeks",
-            "instructor": "James Johnson",
-            "rating": 4.7
-          },
-          {
-            "title": "Lighting and Exposure Control",
-            "duration": "6 weeks",
-            "instructor": "Sophia Adams",
-            "rating": 4.9
-          },
-          {
-            "title": "Portrait Photography Tips and Tricks",
-            "duration": "5 weeks",
-            "instructor": "Michael Brown",
-            "rating": 4.6
-          },
-          {
-            "title": "Photo Editing and Retouching Basics",
-            "duration": "4 weeks",
-            "instructor": "Olivia Parker",
-            "rating": 4.8
-          },
-          {
-            "title": "Creating Stunning Visual Stories",
-            "duration": "6 weeks",
-            "instructor": "Daniel Lee",
-            "rating": 4.9
-          }
-        ]
-      },
-      {
-        "title": "Financial Planning 101",
-        "subCourses": [
-          {
-            "title": "Budgeting and Personal Finance Management",
-            "duration": "6 weeks",
-            "instructor": "William Smith",
-            "rating": 4.7
-          },
-          {
-            "title": "Investing in Stocks and Bonds",
-            "duration": "5 weeks",
-            "instructor": "Emily Johnson",
-            "rating": 4.9
-          },
-          {
-            "title": "Retirement Planning and Wealth Building",
-            "duration": "4 weeks",
-            "instructor": "John Smith",
-            "rating": 4.8
-          },
-          {
-            "title": "Debt Management and Credit Score Improvement",
-            "duration": "5 weeks",
-            "instructor": "Jane Doe",
-            "rating": 4.6
-          },
-          {
-            "title": "Tax Strategies for Financial Success",
-            "duration": "6 weeks",
-            "instructor": "David Wilson",
-            "rating": 4.5
-          },
-          {
-            "title": "Creating a Solid Financial Future",
-            "duration": "4 weeks",
-            "instructor": "Sophia Williams",
-            "rating": 4.7
-          }
-        ]
-      },
-      {
-        "title": "Graphic Design Essentials",
-        "subCourses": [
-          {
-            "title": "Design Principles and Color Theory",
-            "duration": "5 weeks",
-            "instructor": "Alex Turner",
-            "rating": 4.8
-          },
-          {
-            "title": "Typography and Layout Design",
-            "duration": "4 weeks",
-            "instructor": "Emma Davis",
-            "rating": 4.7
-          },
-          {
-            "title": "Creating Visual Identity and Branding",
-            "duration": "6 weeks",
-            "instructor": "James Johnson",
-            "rating": 4.9
-          },
-          {
-            "title": "Illustration and Digital Art Techniques",
-            "duration": "5 weeks",
-            "instructor": "Michael Brown",
-            "rating": 4.6
-          },
-          {
-            "title": "User Interface (UI) Design Basics",
-            "duration": "4 weeks",
-            "instructor": "Olivia Parker",
-            "rating": 4.8
-          },
-          {
-            "title": "Print and Digital Design Projects",
-            "duration": "6 weeks",
-            "instructor": "William Smith",
-            "rating": 4.9
-          }
-        ]
-      },
-      {
-        "title": "Python Programming for Beginners",
-        "subCourses": [
-          {
-            "title": "Introduction to Python Syntax and Concepts",
-            "duration": "6 weeks",
-            "instructor": "Sophia Adams",
-            "rating": 4.7
-          },
-          {
-            "title": "Working with Variables and Data Types",
-            "duration": "5 weeks",
-            "instructor": "Daniel Lee",
-            "rating": 4.9
-          },
-          {
-            "title": "Conditional Statements and Loops",
-            "duration": "4 weeks",
-            "instructor": "Emily Johnson",
-            "rating": 4.8
-          },
-          {
-            "title": "Functions and Modular Programming",
-            "duration": "5 weeks",
-            "instructor": "John Smith",
-            "rating": 4.6
-          },
-          {
-            "title": "File Handling and Data Manipulation",
-            "duration": "6 weeks",
-            "instructor": "Jane Doe",
-            "rating": 4.8
-          },
-          {
-            "title": "Building Simple Python Applications",
-            "duration": "4 weeks",
-            "instructor": "David Wilson",
-            "rating": 4.7
-          }
-        ]
-      },
-      {
-        "title": "Healthy Cooking Made Easy",
-        "subCourses": [
-          {
-            "title": "Nutrition Basics for a Balanced Diet",
-            "duration": "5 weeks",
-            "instructor": "Alex Turner",
-            "rating": 4.8
-          },
-          {
-            "title": "Meal Planning and Grocery Shopping Tips",
-            "duration": "4 weeks",
-            "instructor": "Emma Davis",
-            "rating": 4.7
-          },
-          {
-            "title": "Cooking Techniques for Flavorful Dishes",
-            "duration": "6 weeks",
-            "instructor": "James Johnson",
-            "rating": 4.9
-          },
-          {
-            "title": "Plant-Based and Gluten-Free Cooking",
-            "duration": "5 weeks",
-            "instructor": "Michael Brown",
-            "rating": 4.6
-          },
-          {
-            "title": "Healthy Desserts and Snacks",
-            "duration": "4 weeks",
-            "instructor": "Olivia Parker",
-            "rating": 4.8
-          },
-          {
-            "title": "Creating Nutritious Meal Plans",
-            "duration": "6 weeks",
-            "instructor": "William Smith",
-            "rating": 4.9
-          }
-        ]
-      },
-      {
-        "title": "Creative Writing Workshop",
-        "subCourses": [
-          {
-            "title": "Crafting Engaging Short Stories",
-            "duration": "6 weeks",
-            "instructor": "Sophia Adams",
-            "rating": 4.7
-          },
-          {
-            "title": "Developing Dynamic Characters and Dialogue",
-            "duration": "5 weeks",
-            "instructor": "Daniel Lee",
-            "rating": 4.9
-          },
-          {
-            "title": "Exploring Different Writing Styles and Genres",
-            "duration": "4 weeks",
-            "instructor": "Emily Johnson",
-            "rating": 4.8
-          },
-          {
-            "title": "Poetry Writing and Poetic Devices",
-            "duration": "5 weeks",
-            "instructor": "John Smith",
-            "rating": 4.6
-          },
-          {
-            "title": "Plot Development and Story Arcs",
-            "duration": "6 weeks",
-            "instructor": "Jane Doe",
-            "rating": 4.8
-          },
-          {
-            "title": "Self-Publishing and Sharing Your Work",
-            "duration": "4 weeks",
-            "instructor": "David Wilson",
-            "rating": 4.7
-          }
-        ]
-      },
-      {
-        "title": "Guitar for Beginners",
-        "subCourses": [
-          {
-            "title": "Guitar Anatomy and Basic Playing Techniques",
-            "duration": "5 weeks",
-            "instructor": "Alex Turner",
-            "rating": 4.8
-          },
-          {
-            "title": "Learning Chords and Strumming Patterns",
-            "duration": "4 weeks",
-            "instructor": "Emma Davis",
-            "rating": 4.7
-          },
-          {
-            "title": "Playing Melodies and Simple Songs",
-            "duration": "6 weeks",
-            "instructor": "James Johnson",
-            "rating": 4.9
-          },
-          {
-            "title": "Introduction to Guitar Music Theory",
-            "duration": "5 weeks",
-            "instructor": "Michael Brown",
-            "rating": 4.6
-          },
-          {
-            "title": "Fingerstyle Guitar and Acoustic Techniques",
-            "duration": "4 weeks",
-            "instructor": "Olivia Parker",
-            "rating": 4.8
-          },
-          {
-            "title": "Jamming and Performing with Confidence",
-            "duration": "6 weeks",
-            "instructor": "William Smith",
-            "rating": 4.9
-          }
-        ]
-      },
-      {
-        "title": "Introduction to Data Science",
-        "subCourses": [
-          {
-            "title": "Data Cleaning and Preprocessing",
-            "duration": "6 weeks",
-            "instructor": "Sophia Adams",
-            "rating": 4.7
-          },
-          {
-            "title": "Exploratory Data Analysis (EDA)",
-            "duration": "5 weeks",
-            "instructor": "Daniel Lee",
-            "rating": 4.9
-          },
-          {
-            "title": "Data Visualization with Python Libraries",
-            "duration": "4 weeks",
-            "instructor": "Emily Johnson",
-            "rating": 4.8
-          },
-          {
-            "title": "Statistical Analysis and Hypothesis Testing",
-            "duration": "5 weeks",
-            "instructor": "John Smith",
-            "rating": 4.6
-          },
-          {
-            "title": "Machine Learning Fundamentals",
-            "duration": "6 weeks",
-            "instructor": "Jane Doe",
-            "rating": 4.8
-          },
-          {
-            "title": "Presenting Data Insights Effectively",
-            "duration": "4 weeks",
-            "instructor": "David Wilson",
-            "rating": 4.7
-          }
-        ]
-      }
-    ]
-  }
-  
+  "categories": [
+    {
+      "title": "Digital Marketing",
+      "subCategories": [
+        {
+          "title": "Social Media Marketing",
+          "instructor": "Jane Doe",
+          "rating": 4.7
+        },
+        {
+          "title": "Search Engine Optimization (SEO)",
+          "instructor": "John Smith",
+          "rating": 4.9
+        },
+        {
+          "title": "Email Marketing",
+          "instructor": "Emily Johnson",
+          "rating": 4.8
+        },
+        {
+          "title": "Pay-Per-Click (PPC) Advertising",
+          "instructor": "Michael Brown",
+          "rating": 4.6
+        },
+        {
+          "title": "Content Marketing",
+          "instructor": "Sophia Williams",
+          "rating": 4.5
+        }
+      ]
+    },
+    {
+      "title": "Web Development",
+      "subCategories": [
+        {
+          "title": "HTML and CSS Fundamentals",
+          "instructor": "Alex Turner",
+          "rating": 4.6
+        },
+        {
+          "title": "JavaScript for Interactive Websites",
+          "instructor": "Emma Davis",
+          "rating": 4.9
+        },
+        {
+          "title": "Responsive Web Design",
+          "instructor": "Daniel Lee",
+          "rating": 4.7
+        },
+        {
+          "title": "Backend Development with Node.js",
+          "instructor": "Olivia Parker",
+          "rating": 4.8
+        }
+      ]
+    },
+    {
+      "title": "Photography",
+      "subCategories": [
+        {
+          "title": "Understanding Camera Settings",
+          "instructor": "Emma White",
+          "rating": 4.8
+        },
+        {
+          "title": "Composition and Framing Techniques",
+          "instructor": "James Johnson",
+          "rating": 4.7
+        },
+        {
+          "title": "Lighting and Exposure Control",
+          "instructor": "Sophia Adams",
+          "rating": 4.9
+        },
+        {
+          "title": "Portrait Photography",
+          "instructor": "Michael Brown",
+          "rating": 4.6
+        }
+      ]
+    },
+    {
+      "title": "Financial Planning",
+      "subCategories": [
+        {
+          "title": "Budgeting and Finance Management",
+          "instructor": "William Smith",
+          "rating": 4.7
+        },
+        {
+          "title": "Investing in Stocks and Bonds",
+          "instructor": "Emily Johnson",
+          "rating": 4.9
+        },
+        {
+          "title": "Retirement Planning",
+          "instructor": "John Smith",
+          "rating": 4.8
+        },
+        {
+          "title": "Debt Management",
+          "instructor": "Jane Doe",
+          "rating": 4.6
+        },
+        {
+          "title": "Tax Strategies",
+          "instructor": "David Wilson",
+          "rating": 4.5
+        }
+      ]
+    }
+  ]
+}
