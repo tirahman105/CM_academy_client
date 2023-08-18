@@ -50,16 +50,16 @@ const Begineer = () => {
         "The way that you teach — what you bring to it — is up to you.",
         "How we help you We offer plenty of resources on how to create your first course. And, our instructor dashboard and curriculum pages help keep you organized",
       ],
-      imageSrc: "https://s.udemycdn.com/teaching/plan-your-curriculum-v3.jpg",
+      imageSrc: "https://img.freepik.com/premium-vector/businessman-looking-board-it-s-full-stickers-appointment-announcements-along-with-meeting-times-negotiate-with-his-clients-flat-style-cartoon-illustration-vector_610956-1144.jpg?w=2000",
     },
     {
-      title: "Record your video",
+      title: "Add Your Content",
       paragraphs: [
         "Use basic tools like a smartphone or a DSLR camera. Add a good microphone and you’re ready to start.",
         "If you don’t like being on camera, just capture your screen. Either way, we recommend two hours or more of video for a paid course.",
         "Our support team is available to help you throughout the process and provide feedback on test videos.",
       ],
-      imageSrc: "https://s.udemycdn.com/teaching/record-your-video-v3.jpg",
+      imageSrc: "https://i.ibb.co/w6pJ5F7/upload.png",
     },
     {
       title: "Launch your Course",
@@ -68,7 +68,7 @@ const Begineer = () => {
         "Your course will be discoverable in our marketplace where you earn revenue from each paid enrollment.",
         "Our custom coupon tool lets you offer enrollment incentives while our global promotions drive traffic to courses. There’s even more opportunity for courses chosen for Udemy Business.",
       ],
-      imageSrc: "https://s.udemycdn.com/teaching/launch-your-course-v3.jpg",
+      imageSrc: "https://img.freepik.com/premium-vector/business-startup-successful-launching-product-with-rocket-concept-creative-ideas-entrepreneurial-concept-business-project-startup-process-idea-through-planning-strategy-time-management_735449-40.jpg?w=2000",
     },
   ];
 
