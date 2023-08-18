@@ -8,6 +8,8 @@ import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Instructors from "../Pages/Instructors/Instructors/Instructors";
 import AddCourses from "../Pages/Dashboard/Instructor/AddCourses/AddCourses";
 import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/InstructorSignUp";
+import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
+import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -39,12 +41,22 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
+        path:"/reset-password/:oobCode",
+        element:<ResetPassword></ResetPassword>
+
+      },
+      {
+        path:"/forgot-password",
+        element:<ForgotPassword></ForgotPassword>
+
+      },
+      {
         path:"instructorSignUp",
         element:<InstructorSignUp></InstructorSignUp>
       }
     ],
   },
-  
+
       {
         path:"/addcourse",
         element: <AddCourses></AddCourses>
