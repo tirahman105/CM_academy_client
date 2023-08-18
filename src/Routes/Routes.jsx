@@ -6,6 +6,8 @@ import AllCourseCategories from "../Pages/AllCourseCategories/AllCourseCategorie
 import SignIn from "../Pages/Authentication/SignIn/SignIn";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Instructors from "../Pages/Instructors/Instructors/Instructors";
+import AddCourses from "../Pages/Dashboard/Instructor/AddCourses/AddCourses";
+import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/InstructorSignUp";
 
 const router = createBrowserRouter([
   {
@@ -35,9 +37,18 @@ const router = createBrowserRouter([
       {
         path:"signup",
         element: <SignUp></SignUp>
+      },
+      {
+        path:"instructorSignUp",
+        element:<InstructorSignUp></InstructorSignUp>
       }
     ],
   },
+  
+      {
+        path:"/addcourse",
+        element: <AddCourses></AddCourses>
+      }
 ]);
 
 export default router;
