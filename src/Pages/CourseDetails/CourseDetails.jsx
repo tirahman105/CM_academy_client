@@ -288,7 +288,7 @@ const CourseDetails = () => {
         </div>
 
         {/*   Video add  section */}
-        <div className="  md:top-52 lg:top-52 xl:top-40 px-10 md:fixed  md:left-[400px] lg:left-[700px] xl:left-[1500px]  md:z-20">
+        <div className="  md:top-52 lg:top-52 xl:top-40 px-10 md:fixed md:left-[500px] lg:left-[850px]  md:z-20">
           <div className="aspect-[16/9] ">
             <iframe
               className="w-full h-full rounded-t-md"
