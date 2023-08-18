@@ -156,18 +156,14 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { getAuth, sendEmailVerification } from "firebase/auth";
+import { sendEmailVerification } from "firebase/auth";
 import Swal from "sweetalert2";
 
-
 const SignUp = () => {
-
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/login";
-
-
 
   const {
     register,
@@ -180,9 +176,9 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then(result => {
+      .then((result) => {
         const loggedUser = result.user;
-        logOut()
+        logOut();
         reset();
         Swal.fire({
           position: 'center',
@@ -190,22 +186,44 @@ const SignUp = () => {
           title: 'Registration Successfully',
           showConfirmButton: false,
           timer: 1500
-        })
+        });
         navigate(from, { replace: true });
-        sendVerificationEmail(loggedUser)
+        sendVerificationEmail(loggedUser);
 
+        // Save user data to  server with role "student"
+        const saveUser = {
+          fullName: data.fullName,
+         
+          email: data.email,
+          role: "student",
+        };
+
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("User data saved to the server.");
+            } else {
+              console.error("Failed to save user data:", response.statusText);
+            }
+          })
+          .catch((error) => {
+            console.error("Error saving user data:", error);
+          });
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
-      })
-    console.log(data);
-  }
-
-
+      });
+  };
 
   const sendVerificationEmail = (user) => {
     sendEmailVerification(user)
-      .then(result => {
+      .then((result) => {
         console.log(result);
         Swal.fire({
           position: 'center',
@@ -213,14 +231,15 @@ const SignUp = () => {
           title: 'Before login Your email Verify Please',
           showConfirmButton: false,
           timer: 1500
-        })
-      })
-  }
+        });
+      });
+  };
 
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
 
   return (
     <div className="hero min-h-screen bg-base-200">
