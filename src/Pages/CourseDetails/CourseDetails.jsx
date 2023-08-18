@@ -34,6 +34,8 @@ const CourseDetails = () => {
     }
   };
 
+
+
   return (
     <div className="relative  mx-auto max-w-[1800px]">
       {/*Banner section */}
@@ -293,11 +295,17 @@ const CourseDetails = () => {
           <div className="md:border border-gray-300 md:p-10    ">
             {/*   First information  section */}
             <div>
-              <h2 className=" mt-4 text-3xl font-semibold">{subCourse.title}</h2>
+              <h2 className=" mt-4 text-3xl font-semibold">
+                {subCourse.title}
+              </h2>
               <h1>
                 <span className=" text-xl font-semibold">৳0 </span> <s>৳2500</s>{" "}
               </h1>
-              <button className="mt-5 bg-blue-500 text-white p-3 w-full font-bold rounded-md">
+              <button
+                className="mt-5 bg-blue-500 text-white p-3 w-full font-bold rounded-md"
+               
+               
+              >
                 Enroll Course
               </button>
             </div>
