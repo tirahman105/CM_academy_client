@@ -23,7 +23,7 @@ const CheckOut = () => {
     const onSubmit = (data) => {
         console.log(data);
         data.courseId = subCourse._id;
-        fetch('http://localhost:5000/order', {
+        fetch('https://payment-server-ssl-production.up.railway.app/order', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)
