@@ -8,6 +8,11 @@ import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Instructors from "../Pages/Instructors/Instructors/Instructors";
 import AddCourses from "../Pages/Dashboard/Instructor/AddCourses/AddCourses";
 import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/InstructorSignUp";
+import PaymentSuccess from "../payments/PaymentFailSuccess/PaymentSuccess";
+import CheckOut from "../payments/PaymentCheckout/CheckOut";
+import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
+import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
+import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +46,30 @@ const router = createBrowserRouter([
       {
         path:"instructorSignUp",
         element:<InstructorSignUp></InstructorSignUp>
+      },
+      {
+        path:"/reset-password/:oobCode",
+        element:<ResetPassword></ResetPassword>
+
+      },
+      {
+        path:"/forgot-password",
+        element:<ForgotPassword></ForgotPassword>
+
+      },
+      {
+        path: 'checkout',
+        element: <CheckOut></CheckOut>
+      },
+      {
+        path: 'payment/success/:tranId',
+        element: <PaymentSuccess></PaymentSuccess>
+      },
+      {
+        path: 'payment/fail/:tranId',
+        element: <PaymentFail></PaymentFail>
       }
+
     ],
   },
   
@@ -52,3 +80,6 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+
+
