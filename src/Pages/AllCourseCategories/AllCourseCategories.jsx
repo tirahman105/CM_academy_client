@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AllCourseCategories.css";
-import { useNavigate } from "react-router-dom";
-
-// ... Other imports
-
-// ... Other imports
+import { useLocation, useNavigate } from "react-router-dom";
 
 function AllCourseCategories() {
   const [courses, setCourses] = useState([]);
@@ -13,7 +9,13 @@ function AllCourseCategories() {
   const [underlineWidth, setUnderlineWidth] = useState(0);
   const [showAllCourses, setShowAllCourses] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [forceRerender, setForceRerender] = useState(false);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedCategory = queryParams.get("category");
+
+  // console.log(selectedCategory);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,16 +24,28 @@ function AllCourseCategories() {
       .then((data) => {
         setCourses(data[0].categories);
 
-        if (!activeCourse) {
+        // Find the index of the selected category in the courses array
+        const selectedCategoryIndex = data[0].categories.findIndex(
+          (category) => category.title == selectedCategory
+        );
+
+        if (selectedCategoryIndex !== -1) {
+          setActiveCourse(data[0].categories[selectedCategoryIndex]);
+          setActiveButtonPosition(selectedCategoryIndex);
+          setShowAllCourses(false);
+        } else if (!activeCourse) {
           setActiveCourse(data[0].categories[0]);
         }
       });
-  }, [activeCourse]);
+  }, [ selectedCategory,showAllCourses]);
+  
 
   const handleCourseClick = (course, index) => {
     setActiveCourse(course);
     setActiveButtonPosition(index === -1 ? -1 : index);
     setShowAllCourses(index === -1);
+    setForceRerender(prevState => !prevState);
+
   };
 
   const handleSearch = () => {
@@ -59,25 +73,28 @@ function AllCourseCategories() {
     <div className="py-4 bg-[#EBEBEB]">
       <div className="px-4 w-10/12 mx-auto">
         <div className="bg-gradient rounded-xl flex items-center justify-center overflow-x-auto gap-2 mb-10 sticky top-[0px] z-50 bg-opacity-50 backdrop-blur-lg bg-[#EBEBEB] border-slate-300">
-          <button
-            onClick={() => {
-              setSearchQuery("");
-              handleCourseClick(null, -1);
-            }}
-            className={`md:h-[70px] px-4 py-2 rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative ${
-              showAllCourses ? "text-[#12C29F] rounded-lg" : "text-white"
-            }`}
-          >
-            All
-            {showAllCourses && (
-              <div
-                className="absolute w-[100%] h-1 bg-white left-0 bottom-2 transform scale-x-0 origin-left transition-transform duration-300"
-                style={{
-                  transform: `scaleX(${showAllCourses ? 1 : 0})`,
-                }}
-              ></div>
-            )}
-          </button>
+          {!selectedCategory && (
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                handleCourseClick(null, -1);
+              }}
+              className={`md:h-[70px] px-4 py-2 rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative ${
+                showAllCourses ? "text-[#12C29F] rounded-lg" : "text-white"
+              }`}
+            >
+              All
+              {showAllCourses && (
+                <div
+                  className="absolute w-[100%] h-1 bg-white left-0 bottom-2 transform scale-x-0 origin-left transition-transform duration-300"
+                  style={{
+                    transform: `scaleX(${showAllCourses ? 1 : 0})`,
+                  }}
+                ></div>
+              )}
+            </button>
+          )}
+
           {courses.slice(0, 5).map((course, index) => (
             <button
               key={course.id}

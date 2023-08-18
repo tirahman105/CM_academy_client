@@ -15,7 +15,7 @@ const useStudent = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/users/student/${user.email}`, {
+        const response = await fetch(`https://cm-academy-test-server-production.up.railway.app/users/student/${user.email}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
