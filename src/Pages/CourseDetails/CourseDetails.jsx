@@ -10,18 +10,20 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./CourseDetails.css";
 
 const CourseDetails = () => {
   const location = useLocation();
   const { subCourse } = location.state || {};
+  const navigate = useNavigate()
 
   console.log(subCourse);
   subCourse.courseOutline.map((m) => {
     console.log(m.milestone);
   });
+
   const videoId = "-BDJUvaZb-A"; // Replace with your actual YouTube video ID
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -35,6 +37,10 @@ const CourseDetails = () => {
   };
 
 
+  const handleCheckout = (subCourse) => {
+    navigate("/checkout", { state: { subCourse } });
+    console.log(subCourse);
+  }
 
   return (
     <div className="relative  mx-auto max-w-[1800px]">
@@ -295,19 +301,18 @@ const CourseDetails = () => {
           <div className="md:border border-gray-300 md:p-10    ">
             {/*   First information  section */}
             <div>
-              <h2 className=" mt-4 text-3xl font-semibold">
-                {subCourse.title}
-              </h2>
+              <h2 className=" mt-4 text-3xl font-semibold">{subCourse.title}</h2>
               <h1>
                 <span className=" text-xl font-semibold">৳0 </span> <s>৳2500</s>{" "}
               </h1>
-              <button
-                className="mt-5 bg-blue-500 text-white p-3 w-full font-bold rounded-md"
-               
-               
-              >
-                Enroll Course
-              </button>
+
+
+              
+                <button onClick={() => handleCheckout(subCourse)} className="mt-5 bg-blue-500 text-white p-3 w-full font-bold rounded-md">
+                  Enroll Now
+                </button>
+              
+
             </div>
             {/*    Second information  section */}
 
