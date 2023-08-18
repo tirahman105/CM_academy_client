@@ -8,6 +8,9 @@ import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Instructors from "../Pages/Instructors/Instructors/Instructors";
 import AddCourses from "../Pages/Dashboard/Instructor/AddCourses/AddCourses";
 import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/InstructorSignUp";
+import PaymentSuccess from "../payments/PaymentFailSuccess/PaymentSuccess";
+import CheckOut from "../payments/PaymentCheckout/CheckOut";
+import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +44,20 @@ const router = createBrowserRouter([
       {
         path:"instructorSignUp",
         element:<InstructorSignUp></InstructorSignUp>
+      },
+      {
+        path: 'checkout',
+        element: <CheckOut></CheckOut>
+      },
+      {
+        path: 'payment/success/:tranId',
+        element: <PaymentSuccess></PaymentSuccess>
+      },
+      {
+        path: 'payment/fail/:tranId',
+        element: <PaymentFail></PaymentFail>
       }
+
     ],
   },
   
