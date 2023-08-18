@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
-import { FcGoogle } from 'react-icons/fc'
+import { FaFacebookF } from "react-icons/fa";
 
-const GoogleSignin = () => {
+const FacebookSignIn = () => {
 
-    const { googleSignIn } = useContext(AuthContext);
+    const { facebookSignIn } = useContext(AuthContext);
 
-    const handleGoogleSignIn = () => {
+    const handleFacebookSignIn = () => {
         console.log('clicked')
-        googleSignIn()
+        facebookSignIn()
         .then(result => {
             const loggedInUser = result.user;
             console.log(loggedInUser);
@@ -19,15 +19,14 @@ const GoogleSignin = () => {
 
     return (
         <div>
-      <div className="divider"></div>
-      <div className="w-full text-center">
+      <div className="w-full text-center ">
       <div
-          onClick={handleGoogleSignIn}
+          onClick={handleFacebookSignIn}
           className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
         >
-          <FcGoogle size={32} />
+          <FaFacebookF className='text-blue-600' size={32} />
 
-          <p>Continue with Google</p>
+          <p>Continue with Facebook</p>
         </div>
         
       </div>
@@ -35,4 +34,4 @@ const GoogleSignin = () => {
     );
 };
 
-export default GoogleSignin;
+export default FacebookSignIn;
