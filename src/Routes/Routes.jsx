@@ -11,6 +11,8 @@ import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/Instructo
 import PaymentSuccess from "../payments/PaymentFailSuccess/PaymentSuccess";
 import CheckOut from "../payments/PaymentCheckout/CheckOut";
 import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
+import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
+import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,16 @@ const router = createBrowserRouter([
         element:<InstructorSignUp></InstructorSignUp>
       },
       {
+        path:"/reset-password/:oobCode",
+        element:<ResetPassword></ResetPassword>
+
+      },
+      {
+        path:"/forgot-password",
+        element:<ForgotPassword></ForgotPassword>
+
+      },
+      {
         path: 'checkout',
         element: <CheckOut></CheckOut>
       },
@@ -68,3 +80,6 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+
+

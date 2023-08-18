@@ -1,16 +1,15 @@
-
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import GoogleSignin from "../GoogleSignin/GoogleSignin";
+import FacebookSignIn from "../FacebookSignIn/FacebookSignIn";
 
 const SignIn = () => {
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
 
   const {
     register,
@@ -19,9 +18,6 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
   const { signIn, logOut } = useContext(AuthContext);
-
-
-
 
   const onSubmit = (data) => {
     const { email, password } = data;
@@ -32,18 +28,17 @@ const SignIn = () => {
         const user = result.user;
         console.log(user);
         if (user.emailVerified === false) {
-          logOut()
+          logOut();
           return setError("Email is not verified");
         }
-        setError()
+        setError();
         reset();
         navigate(from, { replace: true });
-
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
-      })
-  }
+      });
+  };
 
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
@@ -54,7 +49,7 @@ const SignIn = () => {
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         {/* Form on the right side */}
-        <div className="card  md:w-1/2 max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -73,38 +68,41 @@ const SignIn = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                 type={showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 {...register("password")}
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
+              <div className="flex justify-between items-center">
+                <label className="mt-4">
+                  <input type="checkbox" onChange={toggleShowPassword} />
+                  <span className="label-text ml-2">Show password</span>
+                </label>
 
-              <label className="mt-4">
-              <input type="checkbox" onChange={toggleShowPassword} />
-              <span className="label-text ml-2">Show password</span>
-            </label>
+                <label className="label">
+                  <Link
+                    to="/forgot-password"
+                    className="text-blue-600 label-text underline"
+                  >
+                    Forgot Password?
+                  </Link>
+                </label>
+              </div>
               <p className="text-xs px-1 font-semibold text-red-600">{error}</p>
-
             </div>
             <div className="form-control mt-6">
               <input className="btn btn-success" type="submit" value="Login" />
             </div>
             <GoogleSignin></GoogleSignin>
+            <FacebookSignIn></FacebookSignIn>
             <p className="my-2 text-center">
               Already have an account?
               <Link className="text-orange-700 font-bold" to="/signup">
                 {" "}
                 Sign Up
               </Link>
-
             </p>
-           
           </form>
         </div>
 
