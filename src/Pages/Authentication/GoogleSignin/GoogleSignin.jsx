@@ -19,7 +19,7 @@ const GoogleSignin = () => {
             };
 
             
-            fetch("http://localhost:5000/users", {
+            fetch("https://cm-academy-test-server-production.up.railway.app/users", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
