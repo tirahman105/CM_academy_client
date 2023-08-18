@@ -43,7 +43,7 @@ function Categories() {
         <div className="flex items-center justify-center overflow-x-auto gap-2 mb-10 sticky top-[0px] z-50  bg-opacity-50 backdrop-blur-lg bg-[#EBEBEB] border-slate-300">
           {courses.slice(0, 5).map((course, index) => (
             <button
-              key={course.id}
+              key={index}
               onClick={() => handleCourseClick(course, index)}
               onMouseEnter={() => setUnderlineWidth(index)}
               onMouseLeave={() => setUnderlineWidth(activeButtonPosition)}

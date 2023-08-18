@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import logo from "../../../../public/cm-logo-png.ico";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useInstructor from "../../../Hooks/useInstructor";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+  const [isInstructor] = useInstructor()
 
   const handleLogOut = () => {
     logOut()
@@ -15,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 ">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -46,15 +47,15 @@ const Navbar = () => {
                 <details>
                   <summary>Course Catagories</summary>
                   <ul className="p-2">
-                    <li>
-                      <a>Development</a>
-                    </li>
-                    <li>
-                      <a>Design</a>
-                    </li>
-                    <li>
-                      <a>Office Productivity</a>
-                    </li>
+                    <Link to="/courseCategories?category=Digital%20Marketing">
+                      Digital Marketing
+                    </Link>
+                    <Link to="/courseCategories?category=Web%20Development">
+                      Web Development
+                    </Link>
+                    <Link to="/courseCategories?category=Photography">
+                      Photography
+                    </Link>
                   </ul>
                 </details>
               </li>
@@ -67,8 +68,8 @@ const Navbar = () => {
             to="/"
             className="font-extrabold lg:text-3xl sm:text-xl flex items-center align-middle"
           >
-            <img src={logo} alt="" className="w-8 h-8" />
-            CM Academy
+            <img src={logo} alt="" className="w-8 h-8 md:h-14 md:w-14 mr-4 sm:ml-8" />
+            <p> CM Academy</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -80,36 +81,51 @@ const Navbar = () => {
             <li tabIndex={0}>
               <details>
                 <summary>Course Catagories</summary>
-                <ul className="p-2">
+                <ul className="p-2 z-[100]">
                   <li>
-                    <a>Development</a>
+                    <Link to="/courseCategories?category=Digital%20Marketing">
+                      Digital Marketing
+                    </Link>
                   </li>
                   <li>
-                    <a>Design</a>
+                    <Link to="/courseCategories?category=Web%20Development">
+                      Web Development
+                    </Link>
                   </li>
                   <li>
-                    <a>Office Productivity</a>
-                  </li>
-                  <li>
-                    <a>Personal Development</a>
+                    <Link to="/courseCategories?category=Photography">
+                      Photography
+                    </Link>
                   </li>
                 </ul>
               </details>
             </li>
-            <li>
-              <Link to="/instructor" className="ml-auto">
-                Become an Instructor
-              </Link>
-            </li>
+            {!isInstructor && (
+              <li>
+                <Link to="/instructor" className="ml-auto">
+                  Become an Instructor
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end hidden sm:block ">
           {user?.email ? (
-            <>
+            <div className="flex  justify-evenly">
+              <div className="bg-gradient sm:h-12 gap-2 rounded-full flex items-center justify-between px-2 py-1 ">
+                <p className="text-white text-xs sm:tsx font-semibold tracking-wider ml-1">
+                  {user.displayName}
+                </p>
+                <img
+                  className=" rounded-full h-9  sm:h-10 shadow-lg"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </div>
               <button onClick={handleLogOut} className="btn btn-success ">
                 Logout
               </button>
-            </>
+            </div>
           ) : (
             <Link to="/login" className="btn btn-success text-white">
               Login

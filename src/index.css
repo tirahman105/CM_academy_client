@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bg-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      #0488b4,
+    #66e3e8
+    ); /* Change colors as needed */
+  }
+  
