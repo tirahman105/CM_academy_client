@@ -1,29 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-const Checkout = () => {
-    const [course, setCourse] = useState(null);
-    const { id } = useParams();
+const CheckOut = () => {
     const { register, handleSubmit, setValue } = useForm();
 
-    console.log(id);
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/course/${id}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch course data');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setCourse(data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, [id]);
+    const location = useLocation();
+    const { subCourse } = location.state || {};
+    console.log(subCourse);
+    console.log(subCourse._id);
+
 
 
     useEffect(() => {
@@ -35,7 +22,7 @@ const Checkout = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-        data.courseId = id;
+        data.courseId = subCourse._id;
         fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -82,21 +69,24 @@ const Checkout = () => {
 
 
 
+
+
+
             <div className="flex flex-col md:flex-row justify-center items-start gap-4 h-screen mt-20">
-                {/* Left side - Course info */}
+
                 <div className="bg-white p-8 rounded-lg border-2 border-gray-200 w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mb-4 md:mb-0">
-                    {course ? (
+                    {subCourse ? (
                         <div className="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
                             <img
-                                src={course?.image}
-                                alt={course?.title}
+                                src={subCourse.image}
+                                alt={subCourse.title}
                                 className="mb-4 w-28 md:w-40 rounded-md"
                             />
                             <div>
                                 <h2 className="text-xl md:text-2xl font-bold mb-2 text-gray-700">
-                                    {course?.title}
+                                    {subCourse.title}
                                 </h2>
-                                <p className="text-gray-600 font-bold">${course?.price}</p>
+                                <p className="text-gray-600 font-bold">৳ 2500</p>
                             </div>
                         </div>
                     ) : (
@@ -104,18 +94,42 @@ const Checkout = () => {
                     )}
                 </div>
 
-                {/* Right side - Payment info */}
+
                 <div className="bg-white p-8 rounded-lg border-2 border-gray-200 w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
                     <h2 className="text-xl md:text-2xl font-semibold mb-4">Payment Summary</h2>
 
                     <div className="flex justify-between text-gray-700 mb-4">
                         <p className="text-lg md:text-xl font-semibold">Course Price:</p>
-                        <p className="text-lg md:text-xl font-bold">${course?.price}</p>
+                        <p className="text-lg md:text-xl font-bold">৳ 2500</p>
+                    </div>
+                    <div className="flex justify-between text-gray-700 mb-4">
+                        <p className="text-lg md:text-xl font-semibold">Discount:</p>
+                        <p className="text-lg md:text-xl font-bold">৳ 2500</p>
+                    </div>
+                    <hr className='border-1 border-gray-400 mb-4 mt-4' />
+                    <div className="flex justify-between text-gray-700 mb-4">
+                        <p className="text-lg md:text-xl font-semibold">Total:</p>
+                        <p className="text-lg md:text-xl font-bold">৳ 00.00</p>
                     </div>
 
                     <hr className="border-1 border-gray-400 mb-4" />
 
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="mb-4">
+                            <label htmlFor="mobile" className="block text-gray-700 font-medium mb-2">
+                                Price
+                            </label>
+                            <input
+                                readOnly
+                                defaultValue='00'
+                                required
+                                type="text"
+                                id="price"
+                                name="price"
+                                {...register("price")}
+                                className="border rounded-md px-3 py-2 w-full bg-gray-100 focus:outline-none focus:none"
+                            />
+                        </div>
                         <div className="mb-4">
                             <label htmlFor="mobile" className="block text-gray-700 font-medium mb-2">
                                 Mobile Number
@@ -151,8 +165,11 @@ const Checkout = () => {
                     </form>
                 </div>
             </div>
+
         </div>
+
+
     );
 };
 
-export default Checkout;
+export default CheckOut;
