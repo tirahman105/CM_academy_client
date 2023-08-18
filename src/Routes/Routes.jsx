@@ -6,9 +6,10 @@ import AllCourseCategories from "../Pages/AllCourseCategories/AllCourseCategorie
 import SignIn from "../Pages/Authentication/SignIn/SignIn";
 import SignUp from "../Pages/Authentication/SignUp/SignUp";
 import Instructors from "../Pages/Instructors/Instructors/Instructors";
-import Checkout from "../payments/PaymentCheckout/CheckOut";
-import PaymentSuccess from "../payments/PaymentFailSuccess/PaymentSuccess";
-import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
+import AddCourses from "../Pages/Dashboard/Instructor/AddCourses/AddCourses";
+import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/InstructorSignUp";
+import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
+import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -40,19 +41,26 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
-        path: 'checkout',
-        element: <Checkout></Checkout>
+        path:"/reset-password/:oobCode",
+        element:<ResetPassword></ResetPassword>
+
       },
       {
-        path: 'payment/success/:tranId',
-        element: <PaymentSuccess></PaymentSuccess>
+        path:"/forgot-password",
+        element:<ForgotPassword></ForgotPassword>
+
       },
       {
-        path: 'payment/fail/:tranId',
-        element: <PaymentFail></PaymentFail>
+        path:"instructorSignUp",
+        element:<InstructorSignUp></InstructorSignUp>
       }
     ],
   },
+
+      {
+        path:"/addcourse",
+        element: <AddCourses></AddCourses>
+      }
 ]);
 
 export default router;
