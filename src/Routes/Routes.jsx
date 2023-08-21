@@ -14,6 +14,7 @@ import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import CoursePage from "../Pages/CoursePage/CoursePage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +81,7 @@ const router = createBrowserRouter([
   
       {
         path:"/addcourse",
-        element: <AddCourses></AddCourses>
+        element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
       }
 ]);
 
