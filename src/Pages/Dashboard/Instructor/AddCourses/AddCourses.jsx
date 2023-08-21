@@ -12,7 +12,7 @@ const AddCourses = () => {
     };
 
     return (
-        <div>
+        <div> <h1 className='text-5xl text-center'>Add new course</h1>
             <InstructorNav></InstructorNav>
             <div className='flex '>
                 <div className='w-1/6 bg-slate-300'>
