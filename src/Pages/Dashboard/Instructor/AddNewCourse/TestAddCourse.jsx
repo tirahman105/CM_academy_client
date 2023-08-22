@@ -3,50 +3,80 @@ import { useForm } from 'react-hook-form';
 const TestAddCourse = () => {
 
 
-    // Quiz Section
-    const [quizzes, setQuizzes] = useState([]);
-    const [addingQuiz, setAddingQuiz] = useState(false);
+
+
+
+
+
+
+
     const [newQuizQuestion, setNewQuizQuestion] = useState('');
-    const [newQuizOptions, setNewQuizOptions] = useState(['', '', '', '']);
+    const [quizOptions, setQuizOptions] = useState([]);
     const [newQuizCorrectOption, setNewQuizCorrectOption] = useState(0);
     const [newQuizExplanation, setNewQuizExplanation] = useState('');
+    const [addingQuiz, setAddingQuiz] = useState(false);
 
-    const startAddingQuiz = () => {
-        setNewQuizQuestion('');
-        setNewQuizOptions(['', '', '', '']);
-        setNewQuizCorrectOption(0);
-        setNewQuizExplanation('');
-        setAddingQuiz(true);
-    };
-
-    const addNewQuiz = () => {
-        const newQuiz = {
-            question: newQuizQuestion,
-            options: newQuizOptions,
-            correctOption: newQuizCorrectOption,
-            explanation: newQuizExplanation,
-        };
-        setQuizzes([...quizzes, newQuiz]);
-        setAddingQuiz(false);
-    };
-
-    const addMoreQuestion = () => {
-        startAddingQuiz();
-    };
-
-
-
-    const [courseThumbnail, setCourseThumbnail] = useState('');
-    const [courseIntroVideo, setCourseIntroVideo] = useState('');
-    const [quizOptions, setQuizOptions] = useState([]);
     const addQuizOption = () => {
         setQuizOptions([...quizOptions, '']);
     };
+
     const removeQuizOption = (index) => {
         const updatedOptions = [...quizOptions];
         updatedOptions.splice(index, 1);
         setQuizOptions(updatedOptions);
     };
+    const [quizzes, setQuizzes] = useState([]);
+
+    const addNewQuiz = () => {
+        if (newQuizQuestion && quizOptions.length >= 2 && newQuizCorrectOption >= 0 && newQuizCorrectOption < quizOptions.length && newQuizExplanation) {
+            const newQuiz = {
+                question: newQuizQuestion,
+                options: quizOptions,
+                correctOption: newQuizCorrectOption,
+                explanation: newQuizExplanation
+            };
+            setQuizzes([...quizzes, newQuiz]);
+            setNewQuizQuestion('');
+            setQuizOptions([]);
+            setNewQuizCorrectOption(0);
+            setNewQuizExplanation('');
+            setAddingQuiz(false);
+        }
+    };
+
+    const addMoreQuestion = () => {
+        setNewQuizQuestion('');
+        setQuizOptions([]);
+        setNewQuizCorrectOption(0);
+        setNewQuizExplanation('');
+        setAddingQuiz(false);
+    };
+
+
+
+
+
+
+
+
+
+    const handleQuizOptionChange = (index, value) => {
+        const updatedOptions = [...quizOptions];
+        updatedOptions[index] = value;
+        setQuizOptions(updatedOptions);
+    };
+
+
+
+
+
+
+
+
+
+
+    const [courseThumbnail, setCourseThumbnail] = useState('');
+    const [courseIntroVideo, setCourseIntroVideo] = useState('');
 
     const [activeTab, setActiveTab] = useState('basicInfo');
     const switchTab = (tabName) => {
@@ -77,11 +107,6 @@ const TestAddCourse = () => {
         }
     };
 
-    const handleQuizOptionChange = (index, value) => {
-        const updatedOptions = [...newQuizOptions];
-        updatedOptions[index] = value;
-        setNewQuizOptions(updatedOptions);
-    };
 
 
     const [newMilestoneTitle, setNewMilestoneTitle] = useState('');
@@ -490,7 +515,7 @@ const TestAddCourse = () => {
                         <button
                             type='button'
                             className='btn btn-outline mr-3 btn-sm mt-2'
-                            onClick={startAddingQuiz}
+                            onClick={() => setAddingQuiz(true)}
                         >
                             Add Quiz
                         </button>
@@ -568,15 +593,11 @@ const TestAddCourse = () => {
                                 >
                                     Add More Question
                                 </button>
-                                <div className='flex justify-center mt-4'>
-                                    <button type='button' className='btn btn-success  mb-5' onClick={() => switchTab('courseCurriculum')}>
-                                        Back to Curriculum
-                                    </button>
-                                </div>
                             </div>
                         )}
                     </div>
                 )}
+
             </form>
         </div>
     );
