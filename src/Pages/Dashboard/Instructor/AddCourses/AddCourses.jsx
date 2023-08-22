@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import InstructorNav from '../InstructorNav/InstructorNav';
 import AddNewCourse from '../AddNewCourse/AddNewCourse';
+import AddNewCourseUpdated from '../AddNewCourse/AddNewCourseUpdated';
+import AddNewCourseUpdated2 from '../AddNewCourse/AddNewCourseUpdated2';
+import AddRNewCourse from '../AddNewCourse/AddRNewCourse';
+
 
 
 
@@ -23,7 +27,7 @@ const AddCourses = () => {
 
                         {showAddCourse ? (
                             <div>
-                              <AddNewCourse></AddNewCourse>
+                          <AddNewCourseUpdated2></AddNewCourseUpdated2>
                             </div>
                         ) : (
                             <div className='flex justify-center'>
