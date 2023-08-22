@@ -14,6 +14,7 @@ import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import CoursePage from "../Pages/CoursePage/CoursePage";
+import QuestionForm from "../Pages/Dashboard/Instructor/AddNewCourse/QuestionForm";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 
@@ -40,28 +41,28 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element:<SignIn></SignIn>
+        element: <SignIn></SignIn>
       },
       {
-        path:"signup",
+        path: "signup",
         element: <SignUp></SignUp>
       },
       {
-        path:"instructorSignUp",
-        element:<InstructorSignUp></InstructorSignUp>
+        path: "instructorSignUp",
+        element: <InstructorSignUp></InstructorSignUp>
       },
       {
-        path:"coursepage",
+        path: "coursepage",
         element: <CoursePage></CoursePage>
       },
       {
-        path:"/reset-password/:oobCode",
-        element:<ResetPassword></ResetPassword>
+        path: "/reset-password/:oobCode",
+        element: <ResetPassword></ResetPassword>
 
       },
       {
-        path:"/forgot-password",
-        element:<ForgotPassword></ForgotPassword>
+        path: "/forgot-password",
+        element: <ForgotPassword></ForgotPassword>
 
       },
       {
@@ -78,6 +79,17 @@ const router = createBrowserRouter([
       }
 
     ],
+  },
+
+  {
+    path: "/addcourse",
+    element: <AddCourses></AddCourses>
+  }
+  ,
+
+  {
+    path: "/quiz",
+    element: <QuestionForm></QuestionForm>
   },
   
       // {
