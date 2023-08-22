@@ -13,9 +13,9 @@ const StatSection = () => {
 
     return (
 
-        <div className="container mx-auto px-4 pt-16">
+        <div className="container mx-auto pt-16 home-container">
             <h1 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">Key Statistics</h1>
-            <p className='text-center font-semibold mb-20'>Our Instructors give  you best resources for every course</p>
+            <p className='text-center font-semibold mb-10'>Our Instructors give  you best resources for every course</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-16 lg:mb-16">
                 {/* Card 1 */}
                 <div className="card">

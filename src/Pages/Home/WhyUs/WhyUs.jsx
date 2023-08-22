@@ -7,7 +7,7 @@ const WhyUs = () => {
 
 
     return (
-        <div className="pt-12 md:pt-20">
+        <div className="pt-12 md:pt-20 home-container">
             <div className="container mx-auto px-4">
                 <h1 className='text-4xl font-bold mb-5 text-center text-[#12C29F]'>Why Choose us?</h1>
                 <p className="text-center font-semibold mb-20">

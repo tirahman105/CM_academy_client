@@ -21,7 +21,7 @@ const Banner = () => {
                         Through Technology
                     </h1>
 
-                    <p className="py-10  text-white h-72 lg:h-36">
+                    <p className="py-10  text-white h-80  lg:h-36">
                         <Typewriter
                             words={
                                 ["Our main aim for CM Academy Empowering Learning Through Technology is to make learning easier and more fun. We want everyone, from students to professionals, to have access to great education using our online platform. Our platform will have cool features that help both educators and learners. We want to create a friendly place where people can share what they know and learn new things together."]}

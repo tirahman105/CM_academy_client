@@ -11,3 +11,8 @@
     ); /* Change colors as needed */
   }
   
+
+.home-container{
+   @apply  max-w-screen-xl mx-auto;
+}
+

@@ -36,7 +36,7 @@ const FAQ = () => {
     };
 
     return (
-        <div className='pt-12 lg:pb-1'>
+        <div className='pt-12 lg:pb-1 home-container'>
             <h1 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">Frequently Asked Questions</h1>
             <p className='text-center font-semibold mb-20'>
                 Common questions asked by students and instructors
