@@ -110,6 +110,17 @@ const AddRNewCourse = () => {
             answer: faqItem.answer
         }));
 
+        const [courseRequirements, setCourseRequirements] = useState([]);
+        const [courseRequirement, setCourseRequirement] = useState('');
+
+        const addCourseRequirement = () => {
+            if (courseRequirement) {
+                setCourseRequirements([...courseRequirements, courseRequirement]);
+                setCourseRequirement(''); // Clear input after adding
+            }
+        };
+
+
         const formData = {
             courseCategory: data.courseCategory,
             title: data.title,
@@ -127,6 +138,10 @@ const AddRNewCourse = () => {
             videoCount: parseInt(data.videoCount),
             noteCount: parseInt(data.noteCount),
             quizCount: parseInt(data.quizCount),
+
+
+
+            courseRequirements: courseRequirements,
 
         };
 
@@ -254,6 +269,29 @@ const AddRNewCourse = () => {
                                     {...register('courseDescription')}
                                 />
                             </div>
+
+
+
+                            <div className='form-control mb-3'>
+                                <label className='label'>
+                                    <span className='text-sm font-bold'>Course Requirements</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    className="input input-bordered bg-gray-200 h-100 m-3 ml-0 w-full"
+                                    placeholder="Course Requirement"
+                                    value={courseRequirement}
+                                    onChange={(e) => setCourseRequirement(e.target.value)}
+                                />
+                                <button type='button' className='btn btn-outline mr-3 btn-sm' onClick={addCourseRequirement}>
+                                    Add Requirement
+                                </button>
+                            </div>
+
+
+
+
+
                             {/* Who is Course For*/}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -266,7 +304,17 @@ const AddRNewCourse = () => {
                                     {...register('whoIsCourseFor')}
                                 />
                             </div>
-                            {/* Who is Course For */}
+
+
+
+                            <input
+                                type="text"
+                                className="input input-bordered bg-gray-200 h-100 m-3 ml-0 w-full"
+                                placeholder="Course Requirement"
+                                value={courseRequirement}
+                                onChange={(e) => setCourseRequirement(e.target.value)}
+                            />
+
                         </div>
                         <div className='flex justify-center mt-4'>
                             <button type='button' className='btn btn-success  mb-5' onClick={() => switchTab('courseCurriculum')}>
