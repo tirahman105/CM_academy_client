@@ -394,6 +394,8 @@ const AddNewCourse = () => {
             </form>
         </div>
     );
+
+
 };
 
 export default AddNewCourse;

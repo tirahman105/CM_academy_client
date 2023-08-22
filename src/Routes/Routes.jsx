@@ -14,6 +14,12 @@ import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import CoursePage from "../Pages/CoursePage/CoursePage";
+import QuestionForm from "../Pages/Dashboard/Instructor/AddNewCourse/QuestionForm";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import AddNewBlog from "../Pages/Dashboard/Instructor/AddNewBlog/AddNewBlog";
+import AllBlog from "../Pages/Blogs/AllBlog";
+import BlogDetails from "../Pages/Blogs/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -38,28 +44,28 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element:<SignIn></SignIn>
+        element: <SignIn></SignIn>
       },
       {
-        path:"signup",
+        path: "signup",
         element: <SignUp></SignUp>
       },
       {
-        path:"instructorSignUp",
-        element:<InstructorSignUp></InstructorSignUp>
+        path: "instructorSignUp",
+        element: <InstructorSignUp></InstructorSignUp>
       },
       {
-        path:"coursepage",
+        path: "coursepage",
         element: <CoursePage></CoursePage>
       },
       {
-        path:"/reset-password/:oobCode",
-        element:<ResetPassword></ResetPassword>
+        path: "/reset-password/:oobCode",
+        element: <ResetPassword></ResetPassword>
 
       },
       {
-        path:"/forgot-password",
-        element:<ForgotPassword></ForgotPassword>
+        path: "/forgot-password",
+        element: <ForgotPassword></ForgotPassword>
 
       },
       {
@@ -73,14 +79,50 @@ const router = createBrowserRouter([
       {
         path: 'payment/fail/:tranId',
         element: <PaymentFail></PaymentFail>
-      }
+      },
+      {
+        path: 'allblog',
+        element: <AllBlog></AllBlog>
+      },
+      {
+        path: '/blog-details/:id',
+        element: <BlogDetails></BlogDetails>
+      },
+      {path:'course-page',
+      element: <CoursePage></CoursePage>
+    }
 
     ],
   },
+
+  {
+    path: "/addcourse",
+    element: <AddCourses></AddCourses>
+  }
+  ,
+
+  {
+    path: "/quiz",
+    element: <QuestionForm></QuestionForm>
+  },
   
+      // {
+      //   path:"/addcourse",
+      //   element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
+      // }
       {
-        path:"/addcourse",
-        element: <AddCourses></AddCourses>
+        path: "dashboard",
+        element:<Dashboard></Dashboard>,
+        children: [
+          {
+            path:"addcourse",
+            element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
+          },
+          {
+            path: 'addblog',
+            element: <AddNewBlog></AddNewBlog>
+          }
+        ]
       }
 ]);
 
