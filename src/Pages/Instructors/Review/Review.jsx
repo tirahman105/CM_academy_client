@@ -47,10 +47,9 @@ const Review = () => {
   ];
 
   return (
-    <div className="container mx-auto py-8">
-      <h2 className="text-3xl md:text-5xl text-center font-bold mb-20"> Instructors Review</h2>
-      <Slider items={items} />
-    </div>
+    <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8">
+    <Slider items={items} />
+</div>
   );
 };
 

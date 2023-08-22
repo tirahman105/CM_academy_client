@@ -1,24 +1,28 @@
-import { useState } from 'react';
+  
+import   { useState } from 'react';
 import { BiLike, BiDislike, BiBookmark, BiCheck } from 'react-icons/bi';
 
-const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange }) => {
+const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange, onNextModule, onPreviousModule }) => {
   const currentVideo = videoList[currentModuleIndex];
-  
+
   const handlePrevious = () => {
     if (currentModuleIndex > 0) {
       onModuleChange(currentModuleIndex - 1);
+    } else {
+      onPreviousModule();
     }
   };
-  
+
   const handleNext = () => {
     if (currentModuleIndex < videoList.length - 1) {
       onModuleChange(currentModuleIndex + 1);
+    } else {
+      onNextModule();
     }
   };
 
   const [likeStatus, setLikeStatus] = useState('none'); // 'none', 'liked', 'disliked'
   const [bookmarked, setBookmarked] = useState(false);
-
 
   const handleLike = () => {
     if (likeStatus === 'liked') {
@@ -50,15 +54,17 @@ const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange }) => {
 
   return (
     <div className="p-4 rounded-lg">
-      <iframe
-        title="Course Video"
-        width="100%"
-        height="400"
-        src={`https://www.youtube.com/embed/${currentVideo.videoUrl}`}
-        frameBorder="0"
-        allowFullScreen
-      ></iframe>
-        <div className="bg-gray-500 flex p-4 mt-4 justify-between text-white">
+      <div className="aspect-w-16 aspect-h-9 lg:aspect-h-12">
+        <iframe
+          title="Course Video"
+          className="w-full h-full"
+          src={`https://www.youtube.com/embed/${currentVideo.videoUrl}`}
+          frameBorder="0"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className="bg-gray-500 flex flex-col md:flex-row p-4 mt-4 justify-between text-white">
+      
       <div className="flex items-center gap-3">
         <p className="text-xl font-bold">Feedback</p>
         {likeStatus === 'liked' ? (
@@ -91,18 +97,17 @@ const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange }) => {
             onClick={handleBookmark}
           />
         )}
-      </div>
     </div>
-
-      <div className="mt-3 w-full md:flex justify-between items-center gap-32 lg:gap-56 xl:gap-96">
-        <div className="w-full">
-          <h3 className="text-md font-semibold mt-3 ">{currentVideo.module}</h3>
+      </div>
+      <div className="mt-3 w-full md:flex md:justify-between items-center gap-4 lg:gap-8 xl:gap-16">
+        <div className="w-full md:w-3/5">
+          <h3 className="text-[16px] md:text-xl font-semibold mt-3">{currentVideo.module}</h3>
         </div>
-        <div className="mt-3 w-full flex gap-2">
-          <button className="btn btn-outline btn-secondary py-2 px-4 mr-2 w-2/5 md:w-24" onClick={handlePrevious}>
+        <div className="mt-3 w-full md:w-2/5 flex flex-col md:flex-row gap-2">
+          <button className="btn btn-outline btn-secondary py-2 md:py-3 px-4 md:w-1/2" onClick={handlePrevious}>
             Previous
           </button>
-          <button className="bg-green-500 text-white rounded-md py-2 px-4 w-2/5 md:w-24" onClick={handleNext}>
+          <button className="bg-green-500 text-white rounded-md py-2 md:py-3 px-4 md:w-1/2" onClick={handleNext}>
             Next
           </button>
         </div>
@@ -112,5 +117,4 @@ const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange }) => {
 };
 
 export default CourseVideo;
-
 
