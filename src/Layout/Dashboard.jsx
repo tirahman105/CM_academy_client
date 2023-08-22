@@ -23,6 +23,7 @@ const Dashboard = () => {
   const Menus = [
     { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard" },
     { title: "Add New Course", icon: <BiListPlus />, src: "/dashboard/addcourse" },
+    { title: "Add New Blog", icon: <BiListPlus />, src: "/dashboard/addcourse" },
   ];
   return (
     <div className="flex">
@@ -58,7 +59,7 @@ const Dashboard = () => {
         </ul>
       </div>
       <div className="p-7 text-2xl font-semibold flex-1 h-screen">
-        <h1>Hello!{user.displayName}</h1>
+        <h1>Hello!{user?.displayName}</h1>
         <hr />
         <Outlet></Outlet>
       </div>
