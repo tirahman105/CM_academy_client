@@ -17,6 +17,9 @@ import CoursePage from "../Pages/CoursePage/CoursePage";
 import QuestionForm from "../Pages/Dashboard/Instructor/AddNewCourse/QuestionForm";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
+import AddNewBlog from "../Pages/Dashboard/Instructor/AddNewBlog/AddNewBlog";
+import AllBlog from "../Pages/Blogs/AllBlog";
+import BlogDetails from "../Pages/Blogs/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -76,7 +79,15 @@ const router = createBrowserRouter([
       {
         path: 'payment/fail/:tranId',
         element: <PaymentFail></PaymentFail>
-      }
+      },
+      {
+        path: 'allblog',
+        element: <AllBlog></AllBlog>
+      },
+      {
+        path: '/blog-details/:id',
+        element: <BlogDetails></BlogDetails>
+      },
 
     ],
   },
@@ -103,6 +114,10 @@ const router = createBrowserRouter([
           {
             path:"addcourse",
             element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
+          },
+          {
+            path: 'addblog',
+            element: <AddNewBlog></AddNewBlog>
           }
         ]
       }

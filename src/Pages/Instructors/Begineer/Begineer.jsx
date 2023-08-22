@@ -73,31 +73,33 @@ const Begineer = () => {
   ];
 
   return (
-    <div className="max-w mx-auto p-20 mt-20">
-      <h2 className="text-3xl md:text-5xl text-center font-bold"> How to begin</h2>
-      <div className=" mt-20 flex  border-b border-gray-300  mb-4 justify-center ">
+    <div className="max-w-5xl mx-auto p-5 md:p-10 lg:p-20 mt-5 md:mt-10 lg:mt-20">
+    <h2 className="text-lg md:text-3xl lg:text-5xl text-center font-bold">How to begin</h2>
+    <div className="mt-5 md:mt-10 lg:mt-20 flex flex-wrap border-b border-gray-300 mb-3 md:mb-4 lg:mb-6 justify-center">
         {tabs.map((tab, index) => (
-          <Tab
-            key={index}
-            label={tab.title}
-            isActive={activeTab === index}
-            onClick={() => handleTabClick(index)}
-          />
+            <Tab
+                key={index}
+                label={tab.title}
+                isActive={activeTab === index}
+                onClick={() => handleTabClick(index)}
+            />
         ))}
-      </div>
-      <div>
-        {tabs.map((tab, index) => (
-          <TabContent
-            key={index}
-            title={tab.title}
-            paragraphs={tab.paragraphs}
-            imageSrc={tab.imageSrc}
-            isActive={activeTab === index}
-          />
-        ))}
-      </div>
     </div>
+    <div>
+        {tabs.map((tab, index) => (
+            <TabContent
+                key={index}
+                title={tab.title}
+                paragraphs={tab.paragraphs}
+                imageSrc={tab.imageSrc}
+                isActive={activeTab === index}
+            />
+        ))}
+    </div>
+</div>
+
   );
 };
 
 export default Begineer;
+ 

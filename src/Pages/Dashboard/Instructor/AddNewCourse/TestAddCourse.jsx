@@ -1,38 +1,15 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+const TestAddCourse = () => {
 
 
-const AddNewCourseUpdated2 = () => {
-
-
-    // Inside AddNewCourse component
-
-
-    const [courseThumbnail, setCourseThumbnail] = useState('');
-    const [courseIntroVideo, setCourseIntroVideo] = useState('');
-
-
-    const [quizOptions, setQuizOptions] = useState([]);
-
-    const addQuizOption = () => {
-        setQuizOptions([...quizOptions, '']);
-    };
-
-    const removeQuizOption = (index) => {
-        const updatedOptions = [...quizOptions];
-        updatedOptions.splice(index, 1);
-        setQuizOptions(updatedOptions);
-    };
-
-
-
-
+    // Quiz Section
     const [quizzes, setQuizzes] = useState([]);
+    const [addingQuiz, setAddingQuiz] = useState(false);
     const [newQuizQuestion, setNewQuizQuestion] = useState('');
     const [newQuizOptions, setNewQuizOptions] = useState(['', '', '', '']);
     const [newQuizCorrectOption, setNewQuizCorrectOption] = useState(0);
     const [newQuizExplanation, setNewQuizExplanation] = useState('');
-    const [addingQuiz, setAddingQuiz] = useState(false);
 
     const startAddingQuiz = () => {
         setNewQuizQuestion('');
@@ -43,38 +20,41 @@ const AddNewCourseUpdated2 = () => {
     };
 
     const addNewQuiz = () => {
-        if (newQuizQuestion && newQuizOptions.every(option => option !== '') && newQuizExplanation) {
-            const newQuizItem = {
-                question: newQuizQuestion,
-                options: newQuizOptions,
-                correctOption: newQuizCorrectOption,
-                explanation: newQuizExplanation
-            };
-            setQuizzes([...quizzes, newQuizItem]);
-            setNewQuizQuestion('');
-            setNewQuizOptions(['', '', '', '']);
-            setNewQuizCorrectOption(0);
-            setNewQuizExplanation('');
-            setAddingQuiz(false);
-        }
+        const newQuiz = {
+            question: newQuizQuestion,
+            options: newQuizOptions,
+            correctOption: newQuizCorrectOption,
+            explanation: newQuizExplanation,
+        };
+        setQuizzes([...quizzes, newQuiz]);
+        setAddingQuiz(false);
+    };
+
+    const addMoreQuestion = () => {
+        startAddingQuiz();
     };
 
 
 
+    const [courseThumbnail, setCourseThumbnail] = useState('');
+    const [courseIntroVideo, setCourseIntroVideo] = useState('');
+    const [quizOptions, setQuizOptions] = useState([]);
+    const addQuizOption = () => {
+        setQuizOptions([...quizOptions, '']);
+    };
+    const removeQuizOption = (index) => {
+        const updatedOptions = [...quizOptions];
+        updatedOptions.splice(index, 1);
+        setQuizOptions(updatedOptions);
+    };
 
     const [activeTab, setActiveTab] = useState('basicInfo');
-
-
-    // Other state variables and methods...
-
     const switchTab = (tabName) => {
         setActiveTab(tabName);
     };
 
     const [newFaqQuestion, setNewFaqQuestion] = useState('');
     const [newFaqAnswer, setNewFaqAnswer] = useState('');
-
-
 
     const handleFaqQuestionChange = (e) => {
         setNewFaqQuestion(e.target.value);
@@ -112,112 +92,20 @@ const AddNewCourseUpdated2 = () => {
     };
 
 
-
-
-    const [others, setOthers] = useState([]);
-    const [addingOthers, setAddingOthers] = useState(false);
-    const [selectedOtherOption, setSelectedOtherOption] = useState(''); // Dropdown option
-
-    const startAddingOthers = () => {
-        setSelectedOtherOption('');
-        setAddingOthers(true);
-    };
-
-    const saveOther = () => {
-        if (selectedOtherOption) {
-            setOthers([...others, { option: selectedOtherOption, value: '' }]);
-            setSelectedOtherOption('');
-            setAddingOthers(false);
-        }
-    };
-
-    const handleOtherValueChange = (index, value) => {
-        const updatedOthers = [...others];
-        updatedOthers[index].value = value;
-        setOthers(updatedOthers);
-    };
-
-    const addMoreQuestion = () => {
-        const newQuestion = {
-            question: '',
-            options: ['', '', '', ''],
-            correctOption: 0,
-            explanation: ''
-        };
-        setQuizzes([...quizzes, newQuestion]);
-    };
-
-    {
-        quizzes.map((quiz, quizIndex) => (
-            <div key={quizIndex}>
-                {/* Question input */}
-                <input
-                    type="text"
-                    className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                    placeholder={`Question ${quizIndex + 1}`}
-                    value={quiz.question}
-                    onChange={(e) => handleQuizQuestionChange(quizIndex, e.target.value)}
-                />
-
-                {/* Options input fields */}
-                {quiz.options.map((option, optionIndex) => (
-                    <input
-                        key={optionIndex}
-                        type="text"
-                        className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                        placeholder={`Option ${optionIndex + 1}`}
-                        value={option}
-                        onChange={(e) => handleQuizOptionChange(quizIndex, optionIndex, e.target.value)}
-                    />
-                ))}
-
-                {/* Correct option selection */}
-                <select
-                    className="input input-bordered bg-gray-200 h-10"
-                    value={quiz.correctOption}
-                    onChange={(e) => handleQuizCorrectOptionChange(quizIndex, parseInt(e.target.value))}
-                >
-                    {quiz.options.map((_, index) => (
-                        <option key={index} value={index}>{`Option ${index + 1}`}</option>
-                    ))}
-                </select>
-
-                {/* Explanation input */}
-                <textarea
-                    className="input input-bordered bg-gray-200 h-20 m-3 w-full"
-                    placeholder={`Explanation for Question ${quizIndex + 1}`}
-                    value={quiz.explanation}
-                    onChange={(e) => handleQuizExplanationChange(quizIndex, e.target.value)}
-                />
-            </div>
-        ))
-    }
-
-    // const [coursePrice, setCoursePrice] = useState(); 
-
-
     const [faq, setFaq] = useState([]);
     const [addingFaq, setAddingFaq] = useState(false);
-    const [courseCategory, setCourseCategory] = useState('Digital Marketing'); // Default category
+
 
     const startAddingFaq = () => {
         setNewFaqQuestion('');
         setNewFaqAnswer('');
         setAddingFaq(true);
     };
-
-
-
     const { register, handleSubmit } = useForm();
     const [courseOutline, setCourseOutline] = useState([]);
     const [courseRequirements, setCourseRequirements] = useState([]);
 
     const onSubmit = (data) => {
-        const courseSessions = newMilestoneSessions.map(session => ({
-            sessionTitle: session.sessionTitle,
-            description: session.description,
-            videoLink: session.videoLink
-        }));
 
         const courseMilestones = courseOutline.map(milestone => ({
             milestone: milestone.milestone,
@@ -229,11 +117,6 @@ const AddNewCourseUpdated2 = () => {
             answer: faqItem.answer
         }));
 
-
-
-
-
-
         const formData = {
             courseCategory: data.courseCategory,
             title: data.title,
@@ -243,10 +126,7 @@ const AddNewCourseUpdated2 = () => {
             whoIsCourseFor: data.whoIsCourseFor,
             courseOutline: courseMilestones,
             faq: faqList,
-            doneThisCourse: parseInt(data.doneThisCourse),
-            timeToFinish: data.timeToFinish,
-            quizzes: quizzes, // Include the quizzes array here
-
+            quizzes: quizzes,
             coursePrice: parseInt(data.coursePrice),
             courseRequirements: courseRequirements,
             courseThumbnail: courseThumbnail,
@@ -256,12 +136,6 @@ const AddNewCourseUpdated2 = () => {
 
         console.log(formData);
     };
-
-
-
-
-
-
 
     const [newMilestoneSessions, setNewMilestoneSessions] = useState([
         {
@@ -404,8 +278,6 @@ const AddNewCourseUpdated2 = () => {
                                 />
                             </div>
 
-
-
                             <div className='form-control mb-3'>
                                 <label className='label'>
                                     <span className='text-sm font-bold'>Course Price</span>
@@ -435,8 +307,6 @@ const AddNewCourseUpdated2 = () => {
                                 />
                             </div>
 
-
-
                             {/* Who is Course For*/}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -449,9 +319,6 @@ const AddNewCourseUpdated2 = () => {
                                     {...register('whoIsCourseFor')}
                                 />
                             </div>
-
-
-
 
                         </div>
                         <div className='flex justify-center mt-4'>
@@ -538,8 +405,6 @@ const AddNewCourseUpdated2 = () => {
                                                         </div>
                                                     ))}
 
-
-
                                                     <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addNewSession}>
                                                         Add Session
                                                     </button>
@@ -555,10 +420,6 @@ const AddNewCourseUpdated2 = () => {
                                 </div>
                             </div>
                         </div>
-
-
-
-
 
                         <div className='form-control mb-3'>
                             <div className='form-control mb-3'>
@@ -623,8 +484,6 @@ const AddNewCourseUpdated2 = () => {
                     </div>
 
                 )}
-
-
 
                 {activeTab === 'quiz' && (
                     <div>
@@ -718,17 +577,9 @@ const AddNewCourseUpdated2 = () => {
                         )}
                     </div>
                 )}
-
-
-
-
-
-
-
-
             </form>
         </div>
     );
 };
 
-export default AddNewCourseUpdated2;
+export default TestAddCourse;
