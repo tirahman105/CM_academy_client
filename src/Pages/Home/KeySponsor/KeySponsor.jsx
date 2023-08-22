@@ -52,7 +52,7 @@ const sponsors = [
 
 const KeySponsor = () => {
     return (
-        <div className="pt-16">
+        <div className="pt-6 home-container">
             <div className="container mx-auto">
                 <h2 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">Leading Key Sponsor Companies</h2>
                 <p className='text-center font-semibold mb-10'> Our Esteemed Sponsor Companies Shaping the Future of Learning.</p>

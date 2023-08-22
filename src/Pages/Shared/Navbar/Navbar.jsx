@@ -10,13 +10,13 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => { })
       .catch((error) => console.log(error));
   };
 
   return (
     <>
-      <div className="navbar bg-base-100 ">
+      <div className="navbar bg-base-100 home-container mx-auto px-4">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -62,13 +62,18 @@ const Navbar = () => {
               <li>
                 <Link to="/instructor">Become an Instructor</Link>
               </li>
+              <li>
+                <button onClick={handleLogOut} className="btn btn-success btn-sm w-20 ">
+                  Logout
+                </button>
+              </li>
             </ul>
           </div>
           <Link
             to="/"
-            className="font-extrabold lg:text-3xl sm:text-xl flex items-center align-middle"
+            className="font-extrabold lg:text-3xl sm:text-xl lg:-ml-12 flex gap-3 justify-start items-center"
           >
-            <img src={logo} alt="" className="w-8 h-8 md:h-14 md:w-14 mr-4 sm:ml-8" />
+            <img src={logo} alt="" className="w-8 h-8 md:h-14 md:w-14 sm:ml-8" />
             <p> CM Academy</p>
           </Link>
         </div>
@@ -109,15 +114,15 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div className="navbar-end hidden sm:block ">
+        <div className="navbar-end  hidden sm:block ">
           {user?.email ? (
-            <div className="flex  justify-evenly">
+            <div className="flex justify-end gap-12">
               <div className="bg-gradient sm:h-12 gap-2 rounded-full flex items-center justify-between px-2 py-1 ">
                 <p className="text-white text-xs sm:tsx font-semibold tracking-wider ml-1">
                   {user.displayName}
                 </p>
                 <img
-                  className=" rounded-full h-9  sm:h-10 shadow-lg"
+                  className=" rounded-full h-9  sm:h-10 shadow-lg sm:block"
                   src={user.photoURL}
                   alt=""
                 />
@@ -127,7 +132,7 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-            <Link to="/login" className="btn btn-success text-white">
+            <Link to="/login" className="btn btn-success text-white lg:ml-96">
               Login
             </Link>
           )}
