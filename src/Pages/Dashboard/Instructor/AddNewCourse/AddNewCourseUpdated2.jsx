@@ -227,6 +227,7 @@ const AddNewCourseUpdated2 = () => {
             quizzes: quizzes, // Include the quizzes array here
 
             coursePrice: parseInt(data.coursePrice),
+
         };
 
 
@@ -365,6 +366,57 @@ const AddNewCourseUpdated2 = () => {
 
 
 
+                            <div className='form-control mb-3'>
+                                <div className='form-control mb-3'>
+                                    <label className='label'>
+                                        <span className='text-xl font-bold'>FAQ</span>
+                                    </label>
+                                    <div className='space-y-4'>
+                                        {faq.map((faqItem, faqIndex) => (
+                                            <div key={faqIndex}>
+                                                <h4 className='font-semibold'>{faqItem.question}</h4>
+                                                <p>{faqItem.answer}</p>
+                                            </div>
+                                        ))}
+                                        {!addingFaq && (
+                                            <button
+                                                type='button'
+                                                className='btn btn-success mt-2'
+                                                onClick={() => startAddingFaq()}
+                                            >
+                                                Add FAQ
+                                            </button>
+                                        )}
+                                        {addingFaq && (
+                                            <div>
+                                                <div>
+                                                    <input
+                                                        type='text'
+                                                        className='input input-bordered bg-gray-200 h-100 m-3 ml-0'
+                                                        placeholder='Question'
+                                                        value={newFaqQuestion}
+                                                        onChange={handleFaqQuestionChange}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <textarea
+                                                        className='input input-bordered bg-gray-200 h-40 m-3'
+                                                        placeholder='Answer'
+                                                        value={newFaqAnswer}
+                                                        onChange={handleFaqAnswerChange}
+                                                    />
+                                                </div>
+                                                <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={saveFaq}>
+                                                    Save FAQ
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
 
                         </div>
                         <div className='flex justify-center mt-4'>
@@ -473,54 +525,7 @@ const AddNewCourseUpdated2 = () => {
 
 
 
-                        <div className='form-control mb-3'>
-                            <div className='form-control mb-3'>
-                                <label className='label'>
-                                    <span className='text-xl font-bold'>FAQ</span>
-                                </label>
-                                <div className='space-y-4'>
-                                    {faq.map((faqItem, faqIndex) => (
-                                        <div key={faqIndex}>
-                                            <h4 className='font-semibold'>{faqItem.question}</h4>
-                                            <p>{faqItem.answer}</p>
-                                        </div>
-                                    ))}
-                                    {!addingFaq && (
-                                        <button
-                                            type='button'
-                                            className='btn btn-success mt-2'
-                                            onClick={() => startAddingFaq()}
-                                        >
-                                            Add FAQ
-                                        </button>
-                                    )}
-                                    {addingFaq && (
-                                        <div>
-                                            <div>
-                                                <input
-                                                    type='text'
-                                                    className='input input-bordered bg-gray-200 h-100 m-3 ml-0'
-                                                    placeholder='Question'
-                                                    value={newFaqQuestion}
-                                                    onChange={handleFaqQuestionChange}
-                                                />
-                                            </div>
-                                            <div>
-                                                <textarea
-                                                    className='input input-bordered bg-gray-200 h-40 m-3'
-                                                    placeholder='Answer'
-                                                    value={newFaqAnswer}
-                                                    onChange={handleFaqAnswerChange}
-                                                />
-                                            </div>
-                                            <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={saveFaq}>
-                                                Save FAQ
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
+
                         <div className='flex items-center justify-center '>
                             {/* <div className='flex justify-center mt-4'>
                                 <button type='button' className='btn btn-success' onClick={() => switchTab('basicInfo')}>

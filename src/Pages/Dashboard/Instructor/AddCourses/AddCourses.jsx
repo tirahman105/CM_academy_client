@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import InstructorNav from '../InstructorNav/InstructorNav';
 import AddNewCourse from '../AddNewCourse/AddNewCourse';
 import AddNewCourseUpdated from '../AddNewCourse/AddNewCourseUpdated';
 import AddNewCourseUpdated2 from '../AddNewCourse/AddNewCourseUpdated2';
@@ -16,32 +15,14 @@ const AddCourses = () => {
     };
 
     return (
-        <div>
-            <InstructorNav></InstructorNav>
+        <div> 
             <div className='flex '>
-                <div className='w-1/6 bg-slate-300'>
+                <div >
                 </div>
 
                 <div className='w-5/6'>
                     <div className="mt-20">
-
-                        {showAddCourse ? (
-                            <div>
-                          <AddNewCourseUpdated2></AddNewCourseUpdated2>
-                            </div>
-                        ) : (
-                            <div className='flex justify-center'>
-                                <button
-                                    className="btn border-0 text-white bg-[#0AAE8D]
-                         hover:bg-white hover:text-[#0AAE8D]
-                          hover:animate-pulse"
-                                    onClick={handleButtonClick}
-                                >
-
-                                    Add New Course
-                                </button>
-                            </div>
-                        )}
+                    <AddNewCourseUpdated2></AddNewCourseUpdated2>
 
                     </div>
                 </div>
