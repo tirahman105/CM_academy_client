@@ -7,6 +7,7 @@ import WhyUs from '../WhyUs/WhyUs';
 import StatSection from '../StatSection/StatSection';
 import KeySponsor from '../KeySponsor/KeySponsor';
 import ChatBox from '../ChatBox/ChatBox';
+import HomeBlog from '../HomeBlog/HomeBlog';
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
             <WhyUs></WhyUs>
             <StatSection></StatSection>
             <FAQ></FAQ>
+            <HomeBlog></HomeBlog>
             <KeySponsor></KeySponsor>
         </div>
     );
