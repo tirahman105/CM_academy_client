@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyCourses = () => {
+const MyCourseInstructor = () => {
     return (
         <div>
             <h1 className='text-2xl'>All courses of Instructors</h1>
@@ -8,4 +8,4 @@ const MyCourses = () => {
     );
 };
 
-export default MyCourses;
+export default MyCourseInstructor;

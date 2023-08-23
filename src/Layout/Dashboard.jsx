@@ -13,8 +13,8 @@ const Dashboard = () => {
 
   console.log(user);
   const [open, setOpen] = useState(true);
-  const isAdmin = false;
-  const isInstructor = true;
+  const isAdmin = true;
+  const isInstructor = false;
 
   // const handleLogOut = () => {
   //     logOut()
