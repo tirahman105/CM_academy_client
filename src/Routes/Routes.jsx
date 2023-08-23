@@ -20,6 +20,18 @@ import Dashboard from "../Layout/Dashboard";
 import AddNewBlog from "../Pages/Dashboard/Instructor/AddNewBlog/AddNewBlog";
 import AllBlog from "../Pages/Blogs/AllBlog";
 import BlogDetails from "../Pages/Blogs/BlogDetails";
+import EditProfile from "../Pages/Dashboard/Shared/EditProfile/EditProfile";
+import ManageStudents from "../Pages/Dashboard/Admin/ManageStudents/ManageStudents";
+import EnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
+import ManageInstructors from "../Pages/Dashboard/Admin/ManageInstructors/ManageInstructors";
+import ManageCourse from "../Pages/Dashboard/Admin/ManageCourse/ManageCourse";
+import WithdrawRequest from "../Pages/Dashboard/Admin/WithdarwRequest/WithdrawRequest";
+import AddCategory from "../Pages/Dashboard/Admin/AddCategory/AddCategory";
+import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
+import AllEnrolledStudent from "../Pages/Dashboard/Admin/AllEnrolledStudent/AllEnrolledStudent";
+import MyEnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
+import MyPayments from "../Pages/Dashboard/Instructor/MyPatments/MyPayments";
+import MyCourses from "../Pages/Dashboard/Instructor/MyCourse/MyCourses";
 
 const router = createBrowserRouter([
   {
@@ -95,16 +107,6 @@ const router = createBrowserRouter([
     ],
   },
 
-  {
-    path: "/addcourse",
-    element: <AddCourses></AddCourses>
-  }
-  ,
-
-  {
-    path: "/quiz",
-    element: <QuestionForm></QuestionForm>
-  },
   
       // {
       //   path:"/addcourse",
@@ -114,14 +116,72 @@ const router = createBrowserRouter([
         path: "dashboard",
         element:<Dashboard></Dashboard>,
         children: [
+
+          // --------------------------shared -------------------------------------------
           {
-            path:"addcourse",
-            element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
+            path: 'edit-profile',
+            element:<EditProfile></EditProfile>
           },
           {
-            path: 'addblog',
+            path: 'enrolled-students',
+            element:<EnrolledStudents></EnrolledStudents>
+          },
+
+          // --------------------------Admin ---------------------------------------
+          {
+            path: 'admin-dashboard',
+            element:<AdminDashboard></AdminDashboard>
+          },
+          {
+            path: 'manage-students',
+            element:<ManageStudents></ManageStudents>
+          },
+          {
+            path: 'All-enrolled-students',
+            element:<AllEnrolledStudent></AllEnrolledStudent>
+          },
+          {
+            path: 'manage-instructors',
+            element:<ManageInstructors></ManageInstructors>
+          },
+          {
+            path: 'manage-course',
+            element:<ManageCourse></ManageCourse>
+          },
+          {
+            path: 'withdraw-request',
+            element:<WithdrawRequest></WithdrawRequest>
+          },
+          {
+            path: 'add-category',
+            element:<AddCategory></AddCategory>
+          },
+          // --------------------------Instructor ---------------------------------------
+          {
+            path:"my-courses",
+            element: <MyCourses></MyCourses>
+          },
+          {
+            path:"my-enrolled-students",
+            element: <MyEnrolledStudents></MyEnrolledStudents>
+          },
+          {
+            path:"my-payments",
+            element: <MyPayments></MyPayments>
+          },
+          {
+            path:"add-course",
+            element: <AddCourses></AddCourses>
+          },
+          {
+            path: 'add-blog',
             element: <AddNewBlog></AddNewBlog>
-          }
+          },
+          {
+            path: "quiz",
+            element: <QuestionForm></QuestionForm>
+          },
+        
         ]
       }
 ]);
