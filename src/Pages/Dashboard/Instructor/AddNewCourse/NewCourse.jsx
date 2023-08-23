@@ -1,12 +1,34 @@
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-const TestAddCourse = () => {
+const NewCourse = () => {
+
 
     const [newQuizQuestion, setNewQuizQuestion] = useState('');
     const [quizOptions, setQuizOptions] = useState([]);
     const [newQuizCorrectOption, setNewQuizCorrectOption] = useState(0);
     const [newQuizExplanation, setNewQuizExplanation] = useState('');
     const [addingQuiz, setAddingQuiz] = useState(false);
+    const [quizzes, setQuizzes] = useState([]); // New state variable for holding multiple quizzes
+
+
+
+    const [selectedMilestone, setSelectedMilestone] = useState('');
+    const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(-1);
+
+
+
+
+
+    const [milestoneQuizzes, setMilestoneQuizzes] = useState([]);
+
+    const handleMilestoneSelection = (index) => {
+        setSelectedMilestoneIndex(index);
+    };
+
+
+
+
 
     const addQuizOption = () => {
         setQuizOptions([...quizOptions, '']);
@@ -17,7 +39,6 @@ const TestAddCourse = () => {
         updatedOptions.splice(index, 1);
         setQuizOptions(updatedOptions);
     };
-    const [quizzes, setQuizzes] = useState([]);
 
     const addNewQuiz = () => {
         if (newQuizQuestion && quizOptions.length >= 2 && newQuizCorrectOption >= 0 && newQuizCorrectOption < quizOptions.length && newQuizExplanation) {
@@ -27,27 +48,31 @@ const TestAddCourse = () => {
                 correctOption: newQuizCorrectOption,
                 explanation: newQuizExplanation
             };
-            setQuizzes([...quizzes, newQuiz]);
+
+            // Clone the array for the selected milestone and add the new quiz
+            const updatedMilestoneQuizzes = [...milestoneQuizzes];
+            updatedMilestoneQuizzes[selectedMilestoneIndex] = [...updatedMilestoneQuizzes[selectedMilestoneIndex], newQuiz];
+
+            // Update the milestoneQuizzes state
+            setMilestoneQuizzes(updatedMilestoneQuizzes);
+
+            // Clear the input fields
             setNewQuizQuestion('');
             setQuizOptions([]);
             setNewQuizCorrectOption(0);
             setNewQuizExplanation('');
             setAddingQuiz(false);
         }
-    };
+    }
 
-    const addMoreQuestion = () => {
+    // Function to add more quizzes
+    const addMoreQuiz = () => {
+        setAddingQuiz(true);
         setNewQuizQuestion('');
         setQuizOptions([]);
         setNewQuizCorrectOption(0);
         setNewQuizExplanation('');
-        setAddingQuiz(false);
     };
-
-
-
-
-
 
 
 
@@ -57,14 +82,6 @@ const TestAddCourse = () => {
         updatedOptions[index] = value;
         setQuizOptions(updatedOptions);
     };
-
-
-
-
-
-
-
-
 
 
     const [courseThumbnail, setCourseThumbnail] = useState('');
@@ -99,8 +116,6 @@ const TestAddCourse = () => {
         }
     };
 
-
-
     const [newMilestoneTitle, setNewMilestoneTitle] = useState('');
     const startAddingMilestone = () => {
         setNewMilestoneTitle('');
@@ -108,11 +123,8 @@ const TestAddCourse = () => {
         setAddingMilestone(true);
     };
 
-
     const [faq, setFaq] = useState([]);
     const [addingFaq, setAddingFaq] = useState(false);
-
-
     const startAddingFaq = () => {
         setNewFaqQuestion('');
         setNewFaqAnswer('');
@@ -126,9 +138,9 @@ const TestAddCourse = () => {
 
         const courseMilestones = courseOutline.map(milestone => ({
             milestone: milestone.milestone,
-            sessions: milestone.sessions
+            sessions: milestone.sessions,
+            quizzes: quizzes, // Include the quizzes data for each milestone
         }));
-
         const faqList = faq.map(faqItem => ({
             question: faqItem.question,
             answer: faqItem.answer
@@ -143,7 +155,6 @@ const TestAddCourse = () => {
             whoIsCourseFor: data.whoIsCourseFor,
             courseOutline: courseMilestones,
             faq: faqList,
-            quizzes: quizzes,
             coursePrice: parseInt(data.coursePrice),
             courseRequirements: courseRequirements,
             courseThumbnail: courseThumbnail,
@@ -336,9 +347,6 @@ const TestAddCourse = () => {
                                     {...register('whoIsCourseFor')}
                                 />
                             </div>
-
-
-
                             {/* faq section */}
 
                             <div className='form-control mb-3'>
@@ -492,15 +500,7 @@ const TestAddCourse = () => {
                                 </div>
                             </div>
                         </div>
-
-
                         <div className='flex items-center justify-center '>
-                            {/* <div className='flex justify-center mt-4'>
-                                <button type='button' className='btn btn-success' onClick={() => switchTab('basicInfo')}>
-                                    Back to Basic Info
-                                </button>
-                            </div> */}
-
                             <div className='flex justify-center mt-4'>
                                 <button type='button' className='btn btn-success  mb-5' onClick={() => switchTab('quiz')}>
                                     Next
@@ -513,17 +513,48 @@ const TestAddCourse = () => {
 
                 {activeTab === 'quiz' && (
                     <div>
+                        <select
+                            className="input input-bordered bg-gray-200 h-10"
+                            value={selectedMilestoneIndex}
+                            onChange={(e) => setSelectedMilestoneIndex(parseInt(e.target.value))}
+                        >
+                            <option value={-1}>Select a Milestone</option>
+                            {courseOutline.map((milestone, index) => (
+                                <option key={index} value={index}>
+                                    {milestone.milestone}
+                                </option>
+                            ))}
+                        </select>
+
+                        {/* Render quizzes based on the selected milestone */}
+                        {selectedMilestoneIndex >= 0 && milestoneQuizzes[selectedMilestoneIndex] && (
+                            <div>
+                                <h2 className="text-lg font-semibold mb-2">{`Quizzes for ${courseOutline[selectedMilestoneIndex].milestone}`}</h2>
+                                {milestoneQuizzes[selectedMilestoneIndex].map((quiz, index) => (
+                                    <div key={index} className="border p-4 mb-4 rounded-lg shadow-md">
+                                        <h4 className="text-sm font-bold mb-2">{`Question ${index + 1}: ${quiz.question}`}</h4>
+                                        <ul className="text-sm list-disc pl-6 mb-2">
+                                            {quiz.options.map((option, optionIndex) => (
+                                                <li key={optionIndex} className="mb-1">{option}</li>
+                                            ))}
+                                        </ul>
+                                        <p className="text-sm text-green-700">Correct Option: {quiz.options[quiz.correctOption]}</p>
+                                        <p className="text-sm text-green-900">Explanation: {quiz.explanation}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+
                         <button
                             type='button'
-                            className='btn btn-outline mr-3 btn-sm mt-2'
+                            className='btn btn-outline mr-3 btn-sm mt-2 m-3'
                             onClick={() => setAddingQuiz(true)}
                         >
                             Add Quiz
                         </button>
+
                         {addingQuiz && (
-
-
-
                             <div>
                                 <input
                                     type='text'
@@ -552,11 +583,7 @@ const TestAddCourse = () => {
                                         </button>
                                     </div>
                                 ))}
-                                <button
-                                    type='button'
-                                    className='btn btn-outline mr-3 btn-sm mt-2'
-                                    onClick={addQuizOption}
-                                >
+                                <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addQuizOption}>
                                     Add Option
                                 </button>
 
@@ -582,26 +609,17 @@ const TestAddCourse = () => {
                                     onChange={(e) => setNewQuizExplanation(e.target.value)}
                                 />
 
-                                <button
-                                    type='button'
-                                    className='btn btn-outline mr-3 btn-sm mt-2'
-                                    onClick={addNewQuiz}
-                                >
+                                <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addNewQuiz}>
                                     Save Quiz
                                 </button>
-                                {/* Button to add more questions to the quiz */}
-                                <button
-                                    type="button"
-                                    className="btn btn-success btn-sm mt-2"
-                                    onClick={addMoreQuestion}
-                                >
-                                    Add More Question
+
+                                {/* Add More Quiz Button */}
+                                <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addMoreQuiz}>
+                                    Add More Quiz
                                 </button>
-
-
                             </div>
-
                         )}
+
 
                         <div>
                             <div className='flex justify-center'>
@@ -609,14 +627,14 @@ const TestAddCourse = () => {
                                     Add Your Course
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 )}
+
 
             </form>
         </div>
     );
 };
 
-export default TestAddCourse;
+export default NewCourse;
