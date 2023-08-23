@@ -33,7 +33,13 @@ const NewCourse = () => {
 
             // Clone the array for the selected milestone and add the new quiz
             const updatedMilestoneQuizzes = [...milestoneQuizzes];
-            updatedMilestoneQuizzes[selectedMilestoneIndex] = [...updatedMilestoneQuizzes[selectedMilestoneIndex], newQuiz];
+
+            // Initialize the milestone's quiz array if it's undefined
+            if (!updatedMilestoneQuizzes[selectedMilestoneIndex]) {
+                updatedMilestoneQuizzes[selectedMilestoneIndex] = [];
+            }
+
+            updatedMilestoneQuizzes[selectedMilestoneIndex].push(newQuiz);
 
             // Update the milestoneQuizzes state
             setMilestoneQuizzes(updatedMilestoneQuizzes);
@@ -117,12 +123,12 @@ const NewCourse = () => {
     const [courseRequirements, setCourseRequirements] = useState([]);
 
     const onSubmit = (data) => {
-
         const courseMilestones = courseOutline.map(milestone => ({
             milestone: milestone.milestone,
             sessions: milestone.sessions,
-            quizzes: quizzes, // Include the quizzes data for each milestone
+            quizzes: milestoneQuizzes[courseOutline.indexOf(milestone)] || [], // Include the quizzes data for each milestone
         }));
+
         const faqList = faq.map(faqItem => ({
             question: faqItem.question,
             answer: faqItem.answer
@@ -143,9 +149,9 @@ const NewCourse = () => {
             courseIntroVideo: courseIntroVideo,
         };
 
-
         console.log(formData);
     };
+
 
     const [newMilestoneSessions, setNewMilestoneSessions] = useState([
         {
@@ -565,6 +571,8 @@ const NewCourse = () => {
                                         </button>
                                     </div>
                                 ))}
+
+
                                 <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addQuizOption}>
                                     Add Option
                                 </button>
@@ -594,6 +602,7 @@ const NewCourse = () => {
                                 <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addNewQuiz}>
                                     Save Quiz
                                 </button>
+
 
                                 {/* Add More Quiz Button */}
                                 <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={addMoreQuiz}>
