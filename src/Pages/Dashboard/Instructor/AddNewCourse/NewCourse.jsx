@@ -9,27 +9,9 @@ const NewCourse = () => {
     const [newQuizCorrectOption, setNewQuizCorrectOption] = useState(0);
     const [newQuizExplanation, setNewQuizExplanation] = useState('');
     const [addingQuiz, setAddingQuiz] = useState(false);
-    const [quizzes, setQuizzes] = useState([]); // New state variable for holding multiple quizzes
-
-
-
-    const [selectedMilestone, setSelectedMilestone] = useState('');
+    const [quizzes, setQuizzes] = useState([]); // New state variable for holding multiple quizze
     const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(-1);
-
-
-
-
-
     const [milestoneQuizzes, setMilestoneQuizzes] = useState([]);
-
-    const handleMilestoneSelection = (index) => {
-        setSelectedMilestoneIndex(index);
-    };
-
-
-
-
-
     const addQuizOption = () => {
         setQuizOptions([...quizOptions, '']);
     };

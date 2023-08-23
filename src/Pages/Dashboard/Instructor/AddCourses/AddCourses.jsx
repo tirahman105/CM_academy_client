@@ -9,11 +9,11 @@ import NewTest from '../AddNewCourse/NewTest';
 
 
 const AddCourses = () => {
-   
+
 
     return (
-        <div> 
-         <NewTest></NewTest>
+        <div>
+            <NewCourse></NewCourse>
         </div>
     );
 };
