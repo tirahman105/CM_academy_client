@@ -31,7 +31,9 @@ import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboa
 import AllEnrolledStudent from "../Pages/Dashboard/Admin/AllEnrolledStudent/AllEnrolledStudent";
 import MyEnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
 import MyPayments from "../Pages/Dashboard/Instructor/MyPatments/MyPayments";
-import MyCourses from "../Pages/Dashboard/Instructor/MyCourse/MyCourses";
+import MyCourses from "../Pages/Dashboard/Instructor/MyCourse/MyCourseInstructor";
+import MyBlogs from "../Pages/Dashboard/Instructor/MyBlogs/MyBlogs";
+import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourse/MyCourseInstructor";
 
 const router = createBrowserRouter([
   {
@@ -158,8 +160,12 @@ const router = createBrowserRouter([
           },
           // --------------------------Instructor ---------------------------------------
           {
-            path:"my-courses",
-            element: <MyCourses></MyCourses>
+            path:"my-courses-instructor",
+            element: <MyCourseInstructor></MyCourseInstructor>
+          },
+          {
+            path:"my-blogs",
+            element: <MyBlogs></MyBlogs>
           },
           {
             path:"my-enrolled-students",
@@ -181,6 +187,13 @@ const router = createBrowserRouter([
             path: "quiz",
             element: <QuestionForm></QuestionForm>
           },
+
+          //  Student dashboard
+          {
+            path: "my-courses",
+            element: <MyCourses></MyCourses>
+          },
+
         
         ]
       }
