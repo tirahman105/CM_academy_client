@@ -35,7 +35,7 @@ function Categories() {
     console.log(matchingCourses);
   };
   const handleDetailsClick = (course) => {
-    navigate("/courseDetails", { state: { course } });
+    navigate("/courseDetailsDynamic", { state: { course } });
 
     console.log(course)
   };

@@ -35,6 +35,7 @@ import MyCourses from "../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourse
 import MyBlogs from "../Pages/Dashboard/Instructor/MyBlogs/MyBlogs";
 import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourseInstructor";
 import StudentPayment from "../Pages/Dashboard/Student/StudentPayment/StudentPayment";
+import CourseDetailsDynamic from "../Pages/CourseDetails/CourseDetailsDynamic";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/courseDetails", // Define the path with parameters
         element: <CourseDetails></CourseDetails>,
+      },
+      {
+        path: "/courseDetailsDynamic", // Define the path with parameters
+        element: <CourseDetailsDynamic></CourseDetailsDynamic>,
       },
       {
         path: "/courseCategories", // Define the path with parameters
@@ -182,19 +187,17 @@ const router = createBrowserRouter([
         element: <QuestionForm></QuestionForm>,
       },
 
-          //  Student dashboard
-          {
-            path: "my-courses",
-            element: <MyCourses></MyCourses>
-          },
-          {
-            path: "student-payment",
-            element: <StudentPayment></StudentPayment>
-          },
-
-        
-        ]
-      }
+      //  Student dashboard
+      {
+        path: "my-courses",
+        element: <MyCourses></MyCourses>,
+      },
+      {
+        path: "student-payment",
+        element: <StudentPayment></StudentPayment>,
+      },
+    ],
+  },
 ]);
 
 export default router;

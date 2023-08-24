@@ -15,7 +15,7 @@ const Home = () => {
         <div>
             <ChatBox></ChatBox>
             <Banner></Banner>
-            {/* <Categories></Categories> */}
+            <Categories></Categories>
             <Features></Features>
             <WhyUs></WhyUs>
             <StatSection></StatSection>
