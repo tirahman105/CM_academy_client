@@ -10,11 +10,16 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
 const CourseDetails = () => {
+
+  const location = useLocation();
+  const { course } = location.state;
+
+  console.log(course)
   const videoId = "-BDJUvaZb-A"; // Replace with your actual YouTube video ID
 
   const [isSticky, setIsSticky] = useState(false);

@@ -31,9 +31,9 @@ import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboa
 import AllEnrolledStudent from "../Pages/Dashboard/Admin/AllEnrolledStudent/AllEnrolledStudent";
 import MyEnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
 import MyPayments from "../Pages/Dashboard/Instructor/MyPatments/MyPayments";
-import MyCourses from "../Pages/Dashboard/Instructor/MyCourse/MyCourseInstructor";
 import MyBlogs from "../Pages/Dashboard/Instructor/MyBlogs/MyBlogs";
-import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourse/MyCourseInstructor";
+import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourseInstructor";
+import MyCourses from "../Pages/Dashboard/Student/MyCourses/MyCourses";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/courseDetails", // Define the path with parameters
-        element: <CourseDetails ></CourseDetails>,
+        element: <CourseDetails></CourseDetails>,
       },
       {
         path: "/courseCategories", // Define the path with parameters
@@ -54,152 +54,140 @@ const router = createBrowserRouter([
       },
       {
         path: "/instructor",
-        element: <Instructors></Instructors>
+        element: <Instructors></Instructors>,
       },
       {
         path: "login",
-        element: <SignIn></SignIn>
+        element: <SignIn></SignIn>,
       },
       {
         path: "signup",
-        element: <SignUp></SignUp>
+        element: <SignUp></SignUp>,
       },
       {
         path: "instructorSignUp",
-        element: <InstructorSignUp></InstructorSignUp>
+        element: <InstructorSignUp></InstructorSignUp>,
       },
       {
         path: "coursepage",
-        element: <CoursePage></CoursePage>
+        element: <CoursePage></CoursePage>,
       },
       {
         path: "/reset-password/:oobCode",
-        element: <ResetPassword></ResetPassword>
-
+        element: <ResetPassword></ResetPassword>,
       },
       {
         path: "/forgot-password",
-        element: <ForgotPassword></ForgotPassword>
-
+        element: <ForgotPassword></ForgotPassword>,
       },
       {
-        path: 'checkout',
-        element: <CheckOut></CheckOut>
+        path: "checkout",
+        element: <CheckOut></CheckOut>,
       },
       {
-        path: 'payment/success/:tranId',
-        element: <PaymentSuccess></PaymentSuccess>
+        path: "payment/success/:tranId",
+        element: <PaymentSuccess></PaymentSuccess>,
       },
       {
-        path: 'payment/fail/:tranId',
-        element: <PaymentFail></PaymentFail>
+        path: "payment/fail/:tranId",
+        element: <PaymentFail></PaymentFail>,
       },
       {
-        path: 'allblog',
-        element: <AllBlog></AllBlog>
+        path: "allblog",
+        element: <AllBlog></AllBlog>,
       },
       {
-        path: '/blog-details/:id',
-        element: <BlogDetails></BlogDetails>
+        path: "/blog-details/:id",
+        element: <BlogDetails></BlogDetails>,
       },
-      {path:'course-page',
-      element: <CoursePage></CoursePage>
-    }
-
+      { path: "course-page", element: <CoursePage></CoursePage> },
     ],
   },
 
-  
-      // {
-      //   path:"/addcourse",
-      //   element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
-      // }
+  // {
+  //   path:"/addcourse",
+  //   element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
+  // }
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      // --------------------------shared -------------------------------------------
       {
-        path: "dashboard",
-        element:<Dashboard></Dashboard>,
-        children: [
+        path: "edit-profile",
+        element: <EditProfile></EditProfile>,
+      },
+      {
+        path: "enrolled-students",
+        element: <EnrolledStudents></EnrolledStudents>,
+      },
 
-          // --------------------------shared -------------------------------------------
-          {
-            path: 'edit-profile',
-            element:<EditProfile></EditProfile>
-          },
-          {
-            path: 'enrolled-students',
-            element:<EnrolledStudents></EnrolledStudents>
-          },
+      // --------------------------Admin ---------------------------------------
+      {
+        path: "admin-dashboard",
+        element: <AdminDashboard></AdminDashboard>,
+      },
+      {
+        path: "manage-students",
+        element: <ManageStudents></ManageStudents>,
+      },
+      {
+        path: "All-enrolled-students",
+        element: <AllEnrolledStudent></AllEnrolledStudent>,
+      },
+      {
+        path: "manage-instructors",
+        element: <ManageInstructors></ManageInstructors>,
+      },
+      {
+        path: "manage-course",
+        element: <ManageCourse></ManageCourse>,
+      },
+      {
+        path: "withdraw-request",
+        element: <WithdrawRequest></WithdrawRequest>,
+      },
+      {
+        path: "add-category",
+        element: <AddCategory></AddCategory>,
+      },
+      // --------------------------Instructor ---------------------------------------
+      {
+        path: "my-courses-instructor",
+        element: <MyCourseInstructor></MyCourseInstructor>,
+      },
+      {
+        path: "my-blogs",
+        element: <MyBlogs></MyBlogs>,
+      },
+      {
+        path: "my-enrolled-students",
+        element: <MyEnrolledStudents></MyEnrolledStudents>,
+      },
+      {
+        path: "my-payments",
+        element: <MyPayments></MyPayments>,
+      },
+      {
+        path: "add-course",
+        element: <AddCourses></AddCourses>,
+      },
+      {
+        path: "add-blog",
+        element: <AddNewBlog></AddNewBlog>,
+      },
+      {
+        path: "quiz",
+        element: <QuestionForm></QuestionForm>,
+      },
 
-          // --------------------------Admin ---------------------------------------
-          {
-            path: 'admin-dashboard',
-            element:<AdminDashboard></AdminDashboard>
-          },
-          {
-            path: 'manage-students',
-            element:<ManageStudents></ManageStudents>
-          },
-          {
-            path: 'All-enrolled-students',
-            element:<AllEnrolledStudent></AllEnrolledStudent>
-          },
-          {
-            path: 'manage-instructors',
-            element:<ManageInstructors></ManageInstructors>
-          },
-          {
-            path: 'manage-course',
-            element:<ManageCourse></ManageCourse>
-          },
-          {
-            path: 'withdraw-request',
-            element:<WithdrawRequest></WithdrawRequest>
-          },
-          {
-            path: 'add-category',
-            element:<AddCategory></AddCategory>
-          },
-          // --------------------------Instructor ---------------------------------------
-          {
-            path:"my-courses-instructor",
-            element: <MyCourseInstructor></MyCourseInstructor>
-          },
-          {
-            path:"my-blogs",
-            element: <MyBlogs></MyBlogs>
-          },
-          {
-            path:"my-enrolled-students",
-            element: <MyEnrolledStudents></MyEnrolledStudents>
-          },
-          {
-            path:"my-payments",
-            element: <MyPayments></MyPayments>
-          },
-          {
-            path:"add-course",
-            element: <AddCourses></AddCourses>
-          },
-          {
-            path: 'add-blog',
-            element: <AddNewBlog></AddNewBlog>
-          },
-          {
-            path: "quiz",
-            element: <QuestionForm></QuestionForm>
-          },
-
-          //  Student dashboard
-          {
-            path: "my-courses",
-            element: <MyCourses></MyCourses>
-          },
-
-        
-        ]
-      }
+      //  Student dashboard
+      {
+        path: "my-courses",
+        element: <MyCourses></MyCourses>,
+      },
+    ],
+  },
 ]);
 
 export default router;
-
-
-
