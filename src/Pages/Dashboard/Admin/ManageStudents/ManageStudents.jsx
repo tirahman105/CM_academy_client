@@ -32,6 +32,7 @@ const ManageStudents = () => {
 
     return (
         <div className="p-4">
+             <h1 className='text-center text-3xl font-bold p-5 text-[#12C29F] bg-slate-600'>All Students</h1>
             {isSmallScreen ? (
                 // Card for small screens
                <div>
@@ -46,7 +47,7 @@ const ManageStudents = () => {
                     </div>
                     <div className='flex gap-2'>
                     <span><IoMdCall></IoMdCall></span> 
-                    <p className="text-gray-500 text-xl">{student?.phone}</p>
+                    <p className="text-[#12C29F] text-xl">{student?.phone}</p>
                     </div>
                    
                     
@@ -58,6 +59,7 @@ const ManageStudents = () => {
                 <table className="table-auto w-full shadow-md">
                     <thead>
                         <tr className='bg-gray-100 text-[#12C29F] font-bold divide-x-2'>
+                            <th className="px-4 py-2 ">SL</th>
                             <th className="px-4 py-2 ">Name</th>
                             <th className="px-4 py-2">Email</th>
                             <th className="px-4 py-2">Contact</th>
@@ -66,20 +68,15 @@ const ManageStudents = () => {
                     </thead>
                     <tbody>
                     {
-                      students.map(student=> <tr
+                      students.map((student, index)=> <tr
                       key={student._id}
                      >
+                        <td className="border px-4 py-2">{index+1}</td>
                         <td className="border px-4 py-2">{student.fullName}</td>
                             <td className="border px-4 py-2">{student.email}</td>
                             <td className="border px-4 py-2">{student.phone}</td>
                       </tr>)
                   }
-                        <tr>
-                            <td className="border px-4 py-2">tareq</td>
-                            <td className="border px-4 py-2">tirahman105@gmail.com</td>
-                            <td className="border px-4 py-2">01614048774</td>
-                          
-                        </tr>
                         {/* Add more rows as needed */}
                     </tbody>
                 </table>

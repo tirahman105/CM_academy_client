@@ -103,13 +103,13 @@ const Dashboard = () => {
           ></BsFillArrowLeftSquareFill>
           <div className="flex items-center ">
             <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
-            <h1 className={`text-white ${!open && "scale-0"}`}>CM Academy</h1>
+            <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>CM Academy</h1>
           </div>
 
           <div className= {` ${open?"block duration-500":"hidden"} `} >
             <div className="flex flex-col items-center mt-10 mb-6">
               <img className="rounded-xl flex h-24 w-24 mb-2 mt-2" src={user?.photoURL} alt="" />
-              <h1 className={`text-white font-semibold ${!open && "scale-0"}`}>{user?.displayName}</h1>
+              <h1 className={`text-[#195b4e] font-semibold ${!open && "scale-0"}`}>{user?.displayName}</h1>
             </div>
           </div>
 
@@ -119,7 +119,7 @@ const Dashboard = () => {
                 {AdminMenus.map((menu, index) => (
                   <li
                     key={index}
-                    className="text-white font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                    className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
                   >
                     <Link to={menu.src} className="flex my-2 ">
                       {" "}
@@ -141,7 +141,7 @@ const Dashboard = () => {
                 {InstructorMenus.map((menu, index) => (
                   <li
                     key={index}
-                    className="text-white font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                    className="text-[#195b4e]font-semibold flex items-center gap-2 cursor-pointer mx-2"
                   >
                     <Link to={menu.src} className="flex my-2 ">
                       {" "}
