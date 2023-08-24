@@ -104,6 +104,9 @@ const NewTest = () => {
     const [courseOutline, setCourseOutline] = useState([]);
     const [courseRequirements, setCourseRequirements] = useState([]);
 
+    const [whatYouWillLearn, setWhatYouWillLearn] = useState([]);
+
+
     const onSubmit = (data) => {
 
         const courseMilestones = courseOutline.map(milestone => ({
@@ -120,14 +123,13 @@ const NewTest = () => {
         const formData = {
             courseCategory: data.courseCategory,
             title: data.title,
-            instructor: data.instructor,
             courseDescription: data.courseDescription,
-            whatYouWillLearn: data.whatYouWillLearn,
             whoIsCourseFor: data.whoIsCourseFor,
             courseOutline: courseMilestones,
             faq: faqList,
             coursePrice: parseInt(data.coursePrice),
             courseRequirements: courseRequirements,
+            whatYouWillLearn: whatYouWillLearn,
             courseThumbnail: courseThumbnail,
             courseIntroVideo: courseIntroVideo,
         };
@@ -245,6 +247,21 @@ const NewTest = () => {
                                     {...register('courseDescription')}
                                 />
                             </div>
+                            <div className='form-control mb-3'>
+                                <label className='label'>
+                                    <span className='text-sm font-bold'>What You Will Learn</span>
+                                </label>
+                                <input
+                                    type='text'
+                                    name='whatYouWillLearn'
+                                    placeholder='What You Will Learn (comma-separated)'
+                                    className='input input-bordered bg-gray-200 h-10'
+                                    value={whatYouWillLearn.join(', ')} // Convert array to comma-separated string
+                                    onChange={(e) => setWhatYouWillLearn(e.target.value.split(',').map(item => item.trim()))} // Convert input to array
+                                />
+                            </div>
+
+
 
                             {/* Course Thumbnail */}
                             <div className='form-control mb-3'>
@@ -503,8 +520,8 @@ const NewTest = () => {
                                 </option>
                             ))}
                         </select>
-                        
-                        
+
+
 
 
                         {/* displaying the quiz in UI */}
