@@ -1,114 +1,53 @@
-{
-  "categories": [
-    {
-      "title": "Digital Marketing",
-      "subCategories": [
-        {
-          "title": "Social Media Marketing",
-          "instructor": "Jane Doe",
-          "rating": 4.7
-        },
-        {
-          "title": "Search Engine Optimization (SEO)",
-          "instructor": "John Smith",
-          "rating": 4.9
-        },
-        {
-          "title": "Email Marketing",
-          "instructor": "Emily Johnson",
-          "rating": 4.8
-        },
-        {
-          "title": "Pay-Per-Click (PPC) Advertising",
-          "instructor": "Michael Brown",
-          "rating": 4.6
-        },
-        {
-          "title": "Content Marketing",
-          "instructor": "Sophia Williams",
-          "rating": 4.5
-        }
-      ]
-    },
-    {
-      "title": "Web Development",
-      "subCategories": [
-        {
-          "title": "HTML and CSS Fundamentals",
-          "instructor": "Alex Turner",
-          "rating": 4.6
-        },
-        {
-          "title": "JavaScript for Interactive Websites",
-          "instructor": "Emma Davis",
-          "rating": 4.9
-        },
-        {
-          "title": "Responsive Web Design",
-          "instructor": "Daniel Lee",
-          "rating": 4.7
-        },
-        {
-          "title": "Backend Development with Node.js",
-          "instructor": "Olivia Parker",
-          "rating": 4.8
-        }
-      ]
-    },
-    {
-      "title": "Photography",
-      "subCategories": [
-        {
-          "title": "Understanding Camera Settings",
-          "instructor": "Emma White",
-          "rating": 4.8
-        },
-        {
-          "title": "Composition and Framing Techniques",
-          "instructor": "James Johnson",
-          "rating": 4.7
-        },
-        {
-          "title": "Lighting and Exposure Control",
-          "instructor": "Sophia Adams",
-          "rating": 4.9
-        },
-        {
-          "title": "Portrait Photography",
-          "instructor": "Michael Brown",
-          "rating": 4.6
-        }
-      ]
-    },
-    {
-      "title": "Financial Planning",
-      "subCategories": [
-        {
-          "title": "Budgeting and Finance Management",
-          "instructor": "William Smith",
-          "rating": 4.7
-        },
-        {
-          "title": "Investing in Stocks and Bonds",
-          "instructor": "Emily Johnson",
-          "rating": 4.9
-        },
-        {
-          "title": "Retirement Planning",
-          "instructor": "John Smith",
-          "rating": 4.8
-        },
-        {
-          "title": "Debt Management",
-          "instructor": "Jane Doe",
-          "rating": 4.6
-        },
-        {
-          "title": "Tax Strategies",
-          "instructor": "David Wilson",
-          "rating": 4.5
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "_id": "64e736aa5644b0379493803c",
+    "courseCategory": "Digital Marketing",
+    "title": "fdgdg",
+    "courseDescription": "fgdf",
+    "whoIsCourseFor": "dfgsdfg",
+    "courseOutline": [
+      {
+        "milestone": "dgdfgdgsdg",
+        "sessions": [
+          {
+            "sessionTitle": "dfgdsfgdfhg",
+            "description": "dfhgdfhgdsfhg",
+            "videoLink": "dfhgdfhdsfh"
+          },
+          {
+            "sessionTitle": "dfhgdfhgsfd",
+            "description": "dfhgdfhfdh",
+            "videoLink": "dfhgdfhdfh"
+          },
+          {
+            "sessionTitle": "dfhgdfsh",
+            "description": "dfhdh",
+            "videoLink": "dfhfdhdfh"
+          }
+        ],
+        "quizzes": [
+          {
+            "question": "fgdsgdfsg",
+            "options": ["fgdsfgdsfg", "fdgdsfgdfsg", "fgdfg", "fgdfsgdsg"],
+            "correctOption": 2,
+            "explanation": "dfgdsfgdsgdsggd"
+          }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "question": "dfgdsfg",
+        "answer": "dsfgdfg"
+      },
+      {
+        "question": "fdgdsfg",
+        "answer": "dfgdfg"
+      }
+    ],
+    "coursePrice": 2020,
+    "courseRequirements": ["fgdfgdsfg"],
+    "courseThumbnail": "dfgdfg",
+    "courseIntroVideo": "dfgdg"
+  }
+]

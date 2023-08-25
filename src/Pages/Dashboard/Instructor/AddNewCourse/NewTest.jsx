@@ -4,7 +4,6 @@ import { AuthContext } from '../../../../providers/AuthProvider';
 
 const NewTest = () => {
     const { user } = useContext(AuthContext);
-    console.log(user.displayName);
     const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(-1);
     const [newQuizQuestion, setNewQuizQuestion] = useState('');
     const [quizOptions, setQuizOptions] = useState([]);
@@ -93,7 +92,7 @@ const NewTest = () => {
     const [courseOutline, setCourseOutline] = useState([]);
     const [courseRequirements, setCourseRequirements] = useState([]);
     const [whatYouWillLearn, setWhatYouWillLearn] = useState([]);
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
 
         const courseMilestones = courseOutline.map(milestone => ({
             milestone: milestone.milestone,
@@ -120,6 +119,26 @@ const NewTest = () => {
             courseIntroVideo: courseIntroVideo,
         };
         console.log(formData);
+
+        try {
+            const response = await fetch('https://cm-academy-test-server-production.up.railway.app/addCourse', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            
+            if (response.ok) {
+                alert('Form data sent successfully');
+                // Perform any necessary actions after successful data submission
+            } else {
+                alert('Failed to send form data');
+            }
+        } catch (error) {
+            alert('Error sending form data:', error);
+        }
+
     };
     const [newMilestoneSessions, setNewMilestoneSessions] = useState([
         {

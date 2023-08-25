@@ -14,7 +14,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
-const CourseDetails = () => {
+const CourseDetailsDynamic = () => {
 
   const location = useLocation();
   const { course } = location.state;
@@ -758,5 +758,5 @@ const CourseDetails = () => {
   );
 };
 
-export default CourseDetails;
+export default CourseDetailsDynamic;
  
