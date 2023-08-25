@@ -25,7 +25,7 @@ const ManageCourse = () => {
     };
   }, []);
 
-  const handleApprove = async (courseId) => {
+  const updateCourseStatus = async (courseId, newStatus) => {
     try {
       const response = await fetch(
         `http://localhost:5000/categories/${courseId}/approval`,
@@ -35,27 +35,23 @@ const ManageCourse = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            ApprovedStatus: "Approved",
+            ApprovedStatus: newStatus,
           }),
         }
       );
 
       if (response.ok) {
-        const updatedCourses = courses.map((course) => {
-          if (course._id === courseId) {
-            return {
-              ...course,
-              ApprovedStatus: "Approved",
-            };
-          }
-          return course;
-        });
+        const updatedCourses = courses.map((course) =>
+          course._id === courseId
+            ? { ...course, ApprovedStatus: newStatus }
+            : course
+        );
         setCourses(updatedCourses);
       } else {
-        console.error("Failed to update course approval status");
+        console.error(`Failed to update course ${newStatus} status`);
       }
     } catch (error) {
-      console.error("Error updating course approval:", error);
+      console.error(`Error updating course ${newStatus} status:`, error);
     }
   };
 
@@ -67,7 +63,10 @@ const ManageCourse = () => {
       {isSmallScreen ? (
         <div className="text-start rounded-md">
           {courses.map((course, index) => (
-            <div key={course._id} className="bg-white shadow-md rounded-lg p-1 m-2">
+            <div
+              key={course._id}
+              className="bg-white shadow-md rounded-lg p-1 m-2"
+            >
               <div className="flex gap-4 justify-start py-2 bg-cyan-400 bg-opacity-30 shadow-md rounded-sm relative">
                 <h2 className="text-lg font-semibold h-28 w-4 flex shadow-md items-center justify-center rounded-sm text-white bg-slate-400">
                   {index + 1}
@@ -76,19 +75,32 @@ const ManageCourse = () => {
                   <h2 className="text-sm font-semibold text-[#12C29F]">
                     Course Name: {course.title}
                   </h2>
-                  <p className="text-gray-500 text-sm">Category: {course.courseCategory}</p>
-                  <p className="text-gray-500 text-sm">{course.ApprovedStatus}</p>
+                  <p className="text-gray-500 text-sm">
+                    Category: {course.courseCategory}
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    {course.ApprovedStatus}
+                  </p>
                   <div className="flex gap-1 items-center justify-center text-white text-xs mb-1 absolute bottom-0 -z-10">
                     <button
-                      className="border px-4 py-1 rounded-2xl bg-green-600"
+                      className={`border px-4 py-1 rounded-2xl ${
+                        course.ApprovedStatus === "Approved"
+                          ? "bg-gray-400"
+                          : "bg-green-600"
+                      }`}
                       disabled={course.ApprovedStatus === "Approved"}
-                      onClick={() => handleApprove(course._id)}
+                      onClick={() => updateCourseStatus(course._id, "Approved")}
                     >
                       Approve
                     </button>
                     <button
-                      className="border px-4 py-1 rounded-2xl bg-red-400"
+                      className={`border px-4 py-1 rounded-2xl ${
+                        course.ApprovedStatus === "Deny"
+                          ? "bg-gray-400"
+                          : "bg-red-400"
+                      }`}
                       disabled={course.ApprovedStatus === "Deny"}
+                      onClick={() => updateCourseStatus(course._id, "Deny")}
                     >
                       Deny
                     </button>
@@ -118,21 +130,34 @@ const ManageCourse = () => {
               <tr key={course._id}>
                 <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2 text-center">{course.title}</td>
-                <td className="border px-4 py-2 text-center">{course.courseCategory}</td>
+                <td className="border px-4 py-2 text-center">
+                  {course.courseCategory}
+                </td>
                 <td className="border px-4 py-2 text-center">Instructor</td>
-                <td className="border px-4 py-2 text-center">{course.ApprovedStatus}</td>
+                <td className="border px-4 py-2 text-center">
+                  {course.ApprovedStatus}
+                </td>
                 <td className="border px-4 py-2 text-center">
                   <div className="-z-10 flex gap-3 items-center justify-center text-white text-sm">
                     <button
-                      className="border px-4 py-1 rounded-2xl bg-green-600"
+                      className={`border px-4 py-1 rounded-2xl ${
+                        course.ApprovedStatus === "Approved"
+                          ? "bg-gray-400"
+                          : "bg-green-600"
+                      }`}
                       disabled={course.ApprovedStatus === "Approved"}
-                      onClick={() => handleApprove(course._id)}
+                      onClick={() => updateCourseStatus(course._id, "Approved")}
                     >
                       Approve
                     </button>
                     <button
-                      className="border px-4 py-1 rounded-2xl bg-red-400"
+                      className={`border px-4 py-1 rounded-2xl ${
+                        course.ApprovedStatus === "Deny"
+                          ? "bg-gray-400"
+                          : "bg-red-400"
+                      }`}
                       disabled={course.ApprovedStatus === "Deny"}
+                      onClick={() => updateCourseStatus(course._id, "Deny")}
                     >
                       Deny
                     </button>

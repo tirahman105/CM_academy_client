@@ -4,7 +4,7 @@ import { AuthContext } from "../../../../providers/AuthProvider";
 
 const AddNewBlog = () => {
   const { user } = useContext(AuthContext);
-  console.log(user?.displayName)
+  // console.log(user?.displayName)
 
   const {
     register,
@@ -111,7 +111,7 @@ const AddNewBlog = () => {
           <input
             type="text"
             id="blogAuthor"
-            defaultValue={user.displayName}
+            defaultValue={user?.displayName}
             className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               errors.blogAuthor ? "border-red-500" : "border-gray-300"
             }`}
