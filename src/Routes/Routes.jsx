@@ -36,6 +36,7 @@ import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourseInstructor
 import StudentPayment from "../Pages/Dashboard/Student/StudentPayment/StudentPayment";
 import CourseDetailsDynamic from "../Pages/CourseDetails/CourseDetailsDynamic";
 import MyCourses from "../Pages/Dashboard/Student/MyCourses/MyCourses";
+import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/StudentDashboard";
 
 const router = createBrowserRouter([
   {
@@ -188,6 +189,10 @@ const router = createBrowserRouter([
       },
 
       //  Student dashboard
+      {
+        path: "student-dashboard",
+        element: <StudentDashboard></StudentDashboard>,
+      },
       {
         path: "my-courses",
         element: <MyCourses></MyCourses>,
