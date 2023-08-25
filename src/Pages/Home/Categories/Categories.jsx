@@ -37,7 +37,7 @@ function Categories() {
   const handleDetailsClick = (course) => {
     navigate("/courseDetailsDynamic", { state: { course } });
 
-    console.log(course)
+    console.log(course);
   };
 
   return (
@@ -64,31 +64,35 @@ function Categories() {
             </button>
           ))}
         </div>
-        <div className="mt-4 flex items-center justify-center bg-gradient px-4 md:px-10 py-6 rounded-xl">
-          {activeCourses.map((activeCourse, courseIndex) => (
-            <div key={courseIndex}>
-              <h2 className="text-2xl font-bold mt-4 mb-10 text-center text-white">
-                {activeCourse.title}
-              </h2>
-              {/* /////////////////// */}
-              <div className="grid md:grid-cols-4 gap-5 text-white ">
-                <div className="border p-2">
-                  <img
-                    className="bg-black h-32 w-52 "
-                    src={activeCourse.courseThumbnail}
-                    alt=""
-                  />
-                  <h1> {activeCourse.title}</h1>
-                  <p>Instructor name</p>
-                  <p>{activeCourse.coursePrice} Tk</p>
-                  <button onClick={() => handleDetailsClick(activeCourse)}>
-                    Details
-                  </button>{" "}
+
+        <div>
+        
+          <div className="mt-4 flex items-center justify-center bg-gradient px-4 md:px-10 py-6 rounded-xl">
+            {activeCourses.map((activeCourse, courseIndex) => (
+              <div key={courseIndex}>
+                <h2 className="text-2xl font-bold mt-4 mb-10 text-center text-white">
+                  {activeCourse.courseCategory}
+                </h2>
+                {/* /////////////////// */}
+                <div className="grid md:grid-cols-4 gap-5 text-white ">
+                  <div className="border p-2">
+                    <img
+                      className="bg-black h-32 w-52 "
+                      src={activeCourse.courseThumbnail}
+                      alt=""
+                    />
+                    <h1> {activeCourse.title}</h1>
+                    <p>Instructor name</p>
+                    <p>{activeCourse.coursePrice} Tk</p>
+                    <button onClick={() => handleDetailsClick(activeCourse)}>
+                      Details
+                    </button>{" "}
+                  </div>
                 </div>
+                {/* ///////////////////// */}
               </div>
-              {/* ///////////////////// */}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
