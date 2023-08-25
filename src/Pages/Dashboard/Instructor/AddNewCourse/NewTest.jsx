@@ -115,8 +115,8 @@ const NewTest = () => {
             courseRequirements: courseRequirements,
             whatYouWillLearn: whatYouWillLearn,
             courseThumbnail: courseThumbnail,
-            
             courseIntroVideo: courseIntroVideo,
+            
         };
         console.log(formData);
 
