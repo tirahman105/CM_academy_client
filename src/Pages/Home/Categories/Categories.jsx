@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Categories.css";
 import { useNavigate } from "react-router-dom";
+import { FiUsers } from "react-icons/fi";
+import { FaStar, FaBuromobelexperte } from "react-icons/fa";
 
 function Categories() {
   const [courses, setCourses] = useState([]);
@@ -66,20 +68,64 @@ function Categories() {
         </div>
 
         <div>
-          <div className="mt-4 grid grid-cols-4 gap-4  bg-gradient px-4 md:px-10 py-6 rounded-xl">
+          <div className="mt-4 grid md:grid-cols-4 gap-4  bg-gradient px-4 md:px-10 py-6 rounded-xl">
             {activeCourses.map((activeCourse, courseIndex) => (
-              <div className="border p-2 text-white" key={courseIndex}>
-                <img
-                  className="bg-black h-32 w-52 "
-                  src={activeCourse.courseThumbnail}
-                  alt=""
-                />
-                <h1> {activeCourse.title}</h1>
-                <p>Instructor name</p>
-                <p>{activeCourse.coursePrice} Tk</p>
-                <button onClick={() => handleDetailsClick(activeCourse)}>
-                  Details
-                </button>{" "}
+              <div
+                className=" rounded-lg bg-white backdrop-blur-md bg-opacity-10 text-white shadow-lg  "
+                key={courseIndex}
+              >
+                {/* ////image past start///// */}
+                <div className="relative">
+                  <img
+                    className="bg-black h-44 w-full rounded-lg  "
+                    src="https://media.discordapp.net/attachments/1137192144587739287/1144605595392036884/JavaScript-BCG-Banner-icons.png"
+                    alt=""
+                  />
+                  <div className="shadow-md text-xs w-56 bg-slate-800 bg-opacity-40 backdrop-blur-md flex items-center gap-2 absolute rounded-e-md px-4 py-[4px] bottom-3 z-10 text-white font-semibold font-mono ">
+                    <img
+                      src="https://media.discordapp.net/attachments/1137192144587739287/1144607311084654622/videos-teachers-768x432.jpg"
+                      className="h-6 bg-red-600 w-6 rounded-full"
+                      alt=""
+                    />
+                    <p>{activeCourse.instructor}</p>
+                  </div>
+                </div>
+                {/* /////image past end////// */}
+                <div className="px-5 h-14 ">
+                  <h1 className="font-bold">
+                    {" "}
+                    {activeCourse.title} Lorem ipsum dolor sit amet, consectetur{" "}
+                  </h1>
+                </div>
+
+                <div className=" font-mono h-14 flex justify-between px-4 items-center text-white">
+                  <div className="flex items-center justify-center gap-1">
+                    <FaBuromobelexperte></FaBuromobelexperte>
+                    <p className="font-semibold ">Advance</p>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-1">
+                    <FiUsers></FiUsers>
+                    <p className="font-semibold ">588</p>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-1">
+                    <FaStar className=""></FaStar>
+                    <p className="font-semibold ">588</p>
+                  </div>
+                </div>
+                <hr />
+                <div className="py-2 flex justify-between px-4">
+                  <p className="font-bold font-mono">
+                    {activeCourse.coursePrice}.00 Tk
+                  </p>
+                  <button
+                    className="bg-gray-700 text-white px-2 py-[2] rounded-md font-semibold font-mono"
+                    onClick={() => handleDetailsClick(activeCourse)}
+                  >
+                    Details
+                  </button>{" "}
+                </div>
               </div>
             ))}
           </div>
