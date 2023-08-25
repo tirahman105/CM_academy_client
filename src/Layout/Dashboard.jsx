@@ -13,7 +13,7 @@ const Dashboard = () => {
 
   console.log(user);
   const [open, setOpen] = useState(true);
-  const isAdmin = false;
+  const isAdmin = true;
   // const isInstructor = false;
 
   // const handleLogOut = () => {
@@ -89,11 +89,11 @@ const Dashboard = () => {
     <div className="">
       {/* left navbar  */}
 
-      <div className=" fixed h-full">
+      <div className=" fixed z-10 h-full">
         <div
           className={`${
             open ? "w-72 px-5" : "md:w-24 w-0"
-          }  pt-8 duration-500  bg-teal-600 h-full bg-opacity-30 backdrop-blur-lg`}
+          }  pt-8 duration-500  bg-teal-600 h-full bg-opacity-30 backdrop-blur-md`}
         >
           <BsFillArrowLeftSquareFill
             className={`text-2xl bg-teal-600  absolute cursor-pointer -right-6 md:-right-3  top-9 ${
