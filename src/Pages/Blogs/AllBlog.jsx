@@ -7,7 +7,7 @@ const AllBlog = () => {
 
   useEffect(() => {
     // Fetch the JSON data
-    fetch("http://localhost:5000/all-blog")
+    fetch("https://cm-academy-test-server-production.up.railway.app/all-blog")
       .then((response) => response.json())
       .then((data) => setBlogs(data))
       .catch((error) => console.error("Error fetching blogs:", error));
