@@ -1,19 +1,13 @@
 
-import AddNewCourse from '../AddNewCourse/AddNewCourse';
-import AddNewCourseUpdated from '../AddNewCourse/AddNewCourseUpdated';
-import NewCourse from '../AddNewCourse/NewCourse';
-import NewTest from '../AddNewCourse/NewTest';
-
-
-
+import Final from '../AddNewCourse/Final';
 
 
 const AddCourses = () => {
-   
+
 
     return (
-        <div> 
-         <NewTest></NewTest>
+        <div>
+            <Final></Final>
         </div>
     );
 };

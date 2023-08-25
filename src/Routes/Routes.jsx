@@ -14,7 +14,6 @@ import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
 import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
 import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
 import CoursePage from "../Pages/CoursePage/CoursePage";
-import QuestionForm from "../Pages/Dashboard/Instructor/AddNewCourse/QuestionForm";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import AddNewBlog from "../Pages/Dashboard/Instructor/AddNewBlog/AddNewBlog";
@@ -182,11 +181,7 @@ const router = createBrowserRouter([
         path: "add-blog",
         element: <AddNewBlog></AddNewBlog>,
       },
-      {
-        path: "quiz",
-        element: <QuestionForm></QuestionForm>,
-      },
-
+      
       //  Student dashboard
       {
         path: "my-courses",

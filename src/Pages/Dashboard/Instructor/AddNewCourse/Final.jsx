@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-const TestAddCourse = () => {
+import { AuthContext } from '../../../../providers/AuthProvider';
 
-    const [newQuizQuestion, setNewQuizQuestion] = useState('');
+const Final = () => {
+
+
+
+
+    const [newQuizQuestion, setNewQuizQuestion] = useState("");
     const [quizOptions, setQuizOptions] = useState([]);
     const [newQuizCorrectOption, setNewQuizCorrectOption] = useState(0);
-    const [newQuizExplanation, setNewQuizExplanation] = useState('');
+    const [newQuizExplanation, setNewQuizExplanation] = useState("");
     const [addingQuiz, setAddingQuiz] = useState(false);
-
+    const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(-1);
+    const [milestoneQuizzes, setMilestoneQuizzes] = useState([]);
     const addQuizOption = () => {
-        setQuizOptions([...quizOptions, '']);
+        setQuizOptions([...quizOptions, ""]);
     };
 
     const removeQuizOption = (index) => {
@@ -17,39 +23,43 @@ const TestAddCourse = () => {
         updatedOptions.splice(index, 1);
         setQuizOptions(updatedOptions);
     };
-    const [quizzes, setQuizzes] = useState([]);
 
     const addNewQuiz = () => {
-        if (newQuizQuestion && quizOptions.length >= 2 && newQuizCorrectOption >= 0 && newQuizCorrectOption < quizOptions.length && newQuizExplanation) {
+        if (
+            newQuizQuestion &&
+            quizOptions.length >= 2 &&
+            newQuizCorrectOption >= 0 &&
+            newQuizCorrectOption < quizOptions.length &&
+            newQuizExplanation
+        ) {
             const newQuiz = {
                 question: newQuizQuestion,
                 options: quizOptions,
                 correctOption: newQuizCorrectOption,
-                explanation: newQuizExplanation
+                explanation: newQuizExplanation,
             };
-            setQuizzes([...quizzes, newQuiz]);
-            setNewQuizQuestion('');
+
+            // Clone the array for the selected milestone and add the new quiz
+            const updatedMilestoneQuizzes = [...milestoneQuizzes];
+
+            // Initialize the milestone's quiz array if it's undefined
+            if (!updatedMilestoneQuizzes[selectedMilestoneIndex]) {
+                updatedMilestoneQuizzes[selectedMilestoneIndex] = [];
+            }
+
+            updatedMilestoneQuizzes[selectedMilestoneIndex].push(newQuiz);
+
+            // Update the milestoneQuizzes state
+            setMilestoneQuizzes(updatedMilestoneQuizzes);
+
+            // Clear the input fields
+            setNewQuizQuestion("");
             setQuizOptions([]);
             setNewQuizCorrectOption(0);
-            setNewQuizExplanation('');
+            setNewQuizExplanation("");
             setAddingQuiz(false);
         }
     };
-
-    const addMoreQuestion = () => {
-        setNewQuizQuestion('');
-        setQuizOptions([]);
-        setNewQuizCorrectOption(0);
-        setNewQuizExplanation('');
-        setAddingQuiz(false);
-    };
-
-
-
-
-
-
-
 
 
     const handleQuizOptionChange = (index, value) => {
@@ -63,7 +73,7 @@ const TestAddCourse = () => {
 
 
 
-
+    const { user } = useContext(AuthContext);
 
 
 
@@ -99,20 +109,14 @@ const TestAddCourse = () => {
         }
     };
 
-
-
     const [newMilestoneTitle, setNewMilestoneTitle] = useState('');
     const startAddingMilestone = () => {
         setNewMilestoneTitle('');
         setNewMilestoneSessions([]);
         setAddingMilestone(true);
     };
-
-
     const [faq, setFaq] = useState([]);
     const [addingFaq, setAddingFaq] = useState(false);
-
-
     const startAddingFaq = () => {
         setNewFaqQuestion('');
         setNewFaqAnswer('');
@@ -121,39 +125,59 @@ const TestAddCourse = () => {
     const { register, handleSubmit } = useForm();
     const [courseOutline, setCourseOutline] = useState([]);
     const [courseRequirements, setCourseRequirements] = useState([]);
+    const [whatYouWillLearn, setWhatYouWillLearn] = useState([]);
+    const onSubmit = async (data) => {
 
-    const onSubmit = (data) => {
-
-        const courseMilestones = courseOutline.map(milestone => ({
+        const courseMilestones = courseOutline.map((milestone) => ({
             milestone: milestone.milestone,
-            sessions: milestone.sessions
+            sessions: milestone.sessions,
+            quizzes: milestoneQuizzes[courseOutline.indexOf(milestone)] || [], // Include the quizzes data for each milestone
         }));
 
         const faqList = faq.map(faqItem => ({
             question: faqItem.question,
             answer: faqItem.answer
         }));
-
         const formData = {
+            instructor: user.displayName,
+            instructorEmail: user.email,
             courseCategory: data.courseCategory,
             title: data.title,
-            instructor: data.instructor,
             courseDescription: data.courseDescription,
-            whatYouWillLearn: data.whatYouWillLearn,
             whoIsCourseFor: data.whoIsCourseFor,
             courseOutline: courseMilestones,
             faq: faqList,
-            quizzes: quizzes,
             coursePrice: parseInt(data.coursePrice),
             courseRequirements: courseRequirements,
+            whatYouWillLearn: whatYouWillLearn,
             courseThumbnail: courseThumbnail,
+
             courseIntroVideo: courseIntroVideo,
+            ApprovedStatus: "Deny",
+            enrollCount: 0,
         };
-
-
         console.log(formData);
-    };
 
+        try {
+            const response = await fetch('https://cm-academy-test-server-production.up.railway.app/addCourse', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                alert('Form data sent successfully');
+                // Perform any necessary actions after successful data submission
+            } else {
+                alert('Failed to send form data');
+            }
+        } catch (error) {
+            alert('Error sending form data:', error);
+        }
+
+    };
     const [newMilestoneSessions, setNewMilestoneSessions] = useState([
         {
             sessionTitle: '',
@@ -161,25 +185,17 @@ const TestAddCourse = () => {
             videoLink: ''
         }
     ]);
-
     const [addingMilestone, setAddingMilestone] = useState(false);
-
-
-
     const addNewSession = () => {
         if (newMilestoneSessions.length < 10) {
             setNewMilestoneSessions([...newMilestoneSessions, '']);
         }
     };
-
-
     const handleSessionChange = (index, updatedSession) => {
         const updatedSessions = [...newMilestoneSessions];
         updatedSessions[index] = updatedSession;
         setNewMilestoneSessions(updatedSessions);
     };
-
-
     const saveMilestone = () => {
         if (newMilestoneTitle && newMilestoneSessions.length > 0) {
             const newMilestone = {
@@ -190,8 +206,6 @@ const TestAddCourse = () => {
             setAddingMilestone(false);
         }
     };
-
-
     return (
         <div>
             <h1 className='text-5xl font-extrabold text-[#0AAE8D] text-center mb-10'>Add New Course</h1>
@@ -236,7 +250,6 @@ const TestAddCourse = () => {
                                     <option value='Communication Skills'>Communication Skills</option>
                                 </select>
                             </div>
-
                             <div className='form-control mb-3'>
                                 <label className='label'>
                                     <span className='text-sm font-bold'>Course Title</span>
@@ -249,8 +262,6 @@ const TestAddCourse = () => {
                                     {...register('title')}
                                 />
                             </div>
-
-
                             {/* Course Description */}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -263,7 +274,19 @@ const TestAddCourse = () => {
                                     {...register('courseDescription')}
                                 />
                             </div>
-
+                            <div className='form-control mb-3'>
+                                <label className='label'>
+                                    <span className='text-sm font-bold'>What You Will Learn</span>
+                                </label>
+                                <input
+                                    type='text'
+                                    name='whatYouWillLearn'
+                                    placeholder='What You Will Learn (comma-separated)'
+                                    className='input input-bordered bg-gray-200 h-10'
+                                    value={whatYouWillLearn.join(', ')} // Convert array to comma-separated string
+                                    onChange={(e) => setWhatYouWillLearn(e.target.value.split(',').map(item => item.trim()))} // Convert input to array
+                                />
+                            </div>
                             {/* Course Thumbnail */}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -278,8 +301,6 @@ const TestAddCourse = () => {
                                     onChange={(e) => setCourseThumbnail(e.target.value)}
                                 />
                             </div>
-
-
                             {/* course intro video */}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -294,7 +315,6 @@ const TestAddCourse = () => {
                                     onChange={(e) => setCourseIntroVideo(e.target.value)}
                                 />
                             </div>
-
                             <div className='form-control mb-3'>
                                 <label className='label'>
                                     <span className='text-sm font-bold'>Course Price</span>
@@ -305,10 +325,8 @@ const TestAddCourse = () => {
                                     placeholder='Course Price'
                                     className='input input-bordered bg-gray-200 h-20'
                                     {...register('coursePrice')}
-
                                 />
                             </div>
-
                             {/* Course Requirements */}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -323,7 +341,6 @@ const TestAddCourse = () => {
                                     onChange={(e) => setCourseRequirements(e.target.value.split(',').map(item => item.trim()))} // Convert input to array
                                 />
                             </div>
-
                             {/* Who is Course For*/}
                             <div className='form-control mb-3'>
                                 <label className='label'>
@@ -336,11 +353,7 @@ const TestAddCourse = () => {
                                     {...register('whoIsCourseFor')}
                                 />
                             </div>
-
-
-
                             {/* faq section */}
-
                             <div className='form-control mb-3'>
                                 <div className='form-control mb-3'>
                                     <label className='label'>
@@ -398,7 +411,6 @@ const TestAddCourse = () => {
                         </div>
                     </div>
                 )}
-
                 {/* Render Course Curriculum form fields */}
                 {activeTab === 'courseCurriculum' && (
                     <div>
@@ -410,14 +422,26 @@ const TestAddCourse = () => {
                                 <div className='space-y-4'>
                                     <div className='space-y-4'>
                                         {courseOutline.map((milestone, milestoneIndex) => (
-                                            <div key={milestoneIndex}>
-                                                <h4 className='font-semibold'>{milestone.milestone}</h4>
+                                            <div key={milestoneIndex} className='bg-white rounded-lg shadow-md p-6'>
+                                                <h4 className='font-semibold text-lg mb-2'>Milestone :  {milestone.milestone}</h4>
                                                 <ul className='list-disc pl-6 space-y-2'>
                                                     {milestone.sessions.map((session, sessionIndex) => (
                                                         <li key={sessionIndex}>
-                                                            <strong>{session.sessionTitle}</strong>
-                                                            <p>{session.description}</p>
-                                                            <a href={session.videoLink} target='_blank' rel='noopener noreferrer'>
+                                                            <strong className='text-blue-600'>Sessions:
+
+                                                                <p>{session.sessionTitle}</p>
+
+                                                            </strong>
+                                                            <p className='text-gray-600'>Session Description:
+
+                                                                <p className='text-black'>{session.description}</p>
+                                                            </p>
+                                                            <a
+                                                                href={`${session.videoLink}`}
+                                                                target='_blank'
+                                                                rel='noopener noreferrer'
+                                                                className='text-blue-500 hover:underline'
+                                                            >
                                                                 Watch Video
                                                             </a>
                                                         </li>
@@ -426,7 +450,6 @@ const TestAddCourse = () => {
                                             </div>
                                         ))}
                                     </div>
-
                                     {!addingMilestone && (
                                         <button
                                             type='button'
@@ -485,22 +508,12 @@ const TestAddCourse = () => {
                                             <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={saveMilestone}>
                                                 Save Milestone
                                             </button>
-
-
                                         </div>
                                     )}
                                 </div>
                             </div>
                         </div>
-
-
                         <div className='flex items-center justify-center '>
-                            {/* <div className='flex justify-center mt-4'>
-                                <button type='button' className='btn btn-success' onClick={() => switchTab('basicInfo')}>
-                                    Back to Basic Info
-                                </button>
-                            </div> */}
-
                             <div className='flex justify-center mt-4'>
                                 <button type='button' className='btn btn-success  mb-5' onClick={() => switchTab('quiz')}>
                                     Next
@@ -508,27 +521,70 @@ const TestAddCourse = () => {
                             </div>
                         </div>
                     </div>
-
                 )}
-
-                {activeTab === 'quiz' && (
+                {activeTab === "quiz" && (
                     <div>
+                        <select
+                            className="input input-bordered bg-gray-200 h-10"
+                            value={selectedMilestoneIndex}
+                            onChange={(e) =>
+                                setSelectedMilestoneIndex(parseInt(e.target.value))
+                            }
+                        >
+                            <option value={-1}>Select a Milestone</option>
+                            {courseOutline.map((milestone, index) => (
+                                <option key={index} value={index}>
+                                    {milestone.milestone}
+                                </option>
+                            ))}
+                        </select>
+
+                        {/* Render quizzes based on the selected milestone */}
+                        {selectedMilestoneIndex >= 0 &&
+                            milestoneQuizzes[selectedMilestoneIndex] && (
+                                <div>
+                                    <h2 className="text-lg font-semibold mb-2">{`Quizzes for ${courseOutline[selectedMilestoneIndex].milestone}`}</h2>
+                                    {milestoneQuizzes[selectedMilestoneIndex].map(
+                                        (quiz, index) => (
+                                            <div
+                                                key={index}
+                                                className="border p-4 mb-4 rounded-lg shadow-md"
+                                            >
+                                                <h4 className="text-sm font-bold mb-2">{`Question ${index + 1
+                                                    }: ${quiz.question}`}</h4>
+                                                <ul className="text-sm list-disc pl-6 mb-2">
+                                                    {quiz.options.map((option, optionIndex) => (
+                                                        <li key={optionIndex} className="mb-1">
+                                                            {option}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <p className="text-sm text-green-700">
+                                                    Correct Option: {quiz.options[quiz.correctOption]}
+                                                </p>
+                                                <p className="text-sm text-green-900">
+                                                    Explanation: {quiz.explanation}
+                                                </p>
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            )}
+
                         <button
-                            type='button'
-                            className='btn btn-outline mr-3 btn-sm mt-2'
+                            type="button"
+                            className="btn btn-outline mr-3 btn-sm mt-2 m-3"
                             onClick={() => setAddingQuiz(true)}
                         >
                             Add Quiz
                         </button>
+
                         {addingQuiz && (
-
-
-
                             <div>
                                 <input
-                                    type='text'
-                                    className='input input-bordered bg-gray-200 h-100 m-3 ml-0 w-full'
-                                    placeholder='Question'
+                                    type="text"
+                                    className="input input-bordered bg-gray-200 h-100 m-3 ml-0 w-full"
+                                    placeholder="Question"
                                     value={newQuizQuestion}
                                     onChange={(e) => setNewQuizQuestion(e.target.value)}
                                 />
@@ -537,86 +593,81 @@ const TestAddCourse = () => {
                                 {quizOptions.map((option, index) => (
                                     <div key={index}>
                                         <input
-                                            type='text'
-                                            className='input input-bordered bg-gray-200 h-100 m-3 w-full'
+                                            type="text"
+                                            className="input input-bordered bg-gray-200 h-100 m-3 w-full"
                                             placeholder={`Option ${index + 1}`}
                                             value={option}
-                                            onChange={(e) => handleQuizOptionChange(index, e.target.value)}
+                                            onChange={(e) =>
+                                                handleQuizOptionChange(index, e.target.value)
+                                            }
                                         />
                                         <button
-                                            type='button'
-                                            className='btn btn-danger btn-sm mt-2'
+                                            type="button"
+                                            className="btn btn-danger btn-sm mt-2"
                                             onClick={() => removeQuizOption(index)}
                                         >
                                             Remove Option
                                         </button>
                                     </div>
                                 ))}
+
                                 <button
-                                    type='button'
-                                    className='btn btn-outline mr-3 btn-sm mt-2'
+                                    type="button"
+                                    className="btn btn-outline mr-3 btn-sm mt-2"
                                     onClick={addQuizOption}
                                 >
                                     Add Option
                                 </button>
 
                                 <div>
-                                    <label className='label'>
-                                        <span className='text-sm font-bold'>Correct Option</span>
+                                    <label className="label">
+                                        <span className="text-sm font-bold">Correct Option</span>
                                     </label>
                                     <select
-                                        className='input input-bordered bg-gray-200 h-10'
+                                        className="input input-bordered bg-gray-200 h-10"
                                         value={newQuizCorrectOption}
-                                        onChange={(e) => setNewQuizCorrectOption(parseInt(e.target.value))}
+                                        onChange={(e) =>
+                                            setNewQuizCorrectOption(parseInt(e.target.value))
+                                        }
                                     >
                                         {quizOptions.map((_, index) => (
-                                            <option key={index} value={index}>{`Option ${index + 1}`}</option>
+                                            <option key={index} value={index}>{`Option ${index + 1
+                                                }`}</option>
                                         ))}
                                     </select>
                                 </div>
 
                                 <textarea
-                                    className='input input-bordered bg-gray-200 h-20 m-3 w-full'
-                                    placeholder='Explanation'
+                                    className="input input-bordered bg-gray-200 h-20 m-3 w-full"
+                                    placeholder="Explanation"
                                     value={newQuizExplanation}
                                     onChange={(e) => setNewQuizExplanation(e.target.value)}
                                 />
 
                                 <button
-                                    type='button'
-                                    className='btn btn-outline mr-3 btn-sm mt-2'
+                                    type="button"
+                                    className="btn btn-outline mr-3 btn-sm mt-2"
                                     onClick={addNewQuiz}
                                 >
                                     Save Quiz
                                 </button>
-                                {/* Button to add more questions to the quiz */}
-                                <button
-                                    type="button"
-                                    className="btn btn-success btn-sm mt-2"
-                                    onClick={addMoreQuestion}
-                                >
-                                    Add More Question
-                                </button>
 
 
                             </div>
-
                         )}
 
                         <div>
-                            <div className='flex justify-center'>
-                                <button type='submit' className='btn btn-success mt-4 mb-5'>
+                            <div className="flex justify-center">
+                                <button type="submit" className="btn btn-success mt-4 mb-5">
                                     Add Your Course
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 )}
-
             </form>
         </div>
     );
 };
 
-export default TestAddCourse;
+export default Final;

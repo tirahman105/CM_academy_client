@@ -56,14 +56,6 @@ const NewCourse = () => {
     }
   };
 
-  // Function to add more quizzes
-  const addMoreQuiz = () => {
-    setAddingQuiz(true);
-    setNewQuizQuestion("");
-    setQuizOptions([]);
-    setNewQuizCorrectOption(0);
-    setNewQuizExplanation("");
-  };
 
   const handleQuizOptionChange = (index, value) => {
     const updatedOptions = [...quizOptions];
@@ -146,10 +138,11 @@ const NewCourse = () => {
       courseRequirements: courseRequirements,
       courseThumbnail: courseThumbnail,
       courseIntroVideo: courseIntroVideo,
+      ApprovedStatus: "Deny",
     };
     console.log(formData);
     try {
-      const response = await fetch("http://localhost:5000/addCourse", {
+      const response = await fetch("'https://cm-academy-test-server-production.up.railway.app/addCourse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -209,31 +202,28 @@ const NewCourse = () => {
       <form className="w-3/5 mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4 flex justify-center rounded-md">
           <div
-            className={`cursor-pointer p-2 border ${
-              activeTab === "basicInfo"
+            className={`cursor-pointer p-2 border ${activeTab === "basicInfo"
                 ? "border-[#0AAE8D] bg-[#0AAE8D] text-white"
                 : ""
-            }`}
+              }`}
             onClick={() => switchTab("basicInfo")}
           >
             Basic Info
           </div>
           <div
-            className={`cursor-pointer p-2 border ${
-              activeTab === "courseCurriculum"
+            className={`cursor-pointer p-2 border ${activeTab === "courseCurriculum"
                 ? "border-[#0AAE8D] bg-[#0AAE8D] text-white"
                 : ""
-            }`}
+              }`}
             onClick={() => switchTab("courseCurriculum")}
           >
             Course Curriculum
           </div>
           <div
-            className={`cursor-pointer p-2 border ${
-              activeTab === "quiz"
+            className={`cursor-pointer p-2 border ${activeTab === "quiz"
                 ? "border-[#0AAE8D] bg-[#0AAE8D] text-white"
                 : ""
-            }`}
+              }`}
             onClick={() => switchTab("quiz")}
           >
             Quiz
@@ -490,9 +480,8 @@ const NewCourse = () => {
                               <input
                                 type="text"
                                 className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Title`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Title`}
                                 value={session.sessionTitle}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -504,9 +493,8 @@ const NewCourse = () => {
                               {/* Add textarea for session description */}
                               <textarea
                                 className="input input-bordered bg-gray-200 h-20 m-3 w-full"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Description`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Description`}
                                 value={session.description}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -518,9 +506,8 @@ const NewCourse = () => {
                               <input
                                 type="text"
                                 className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Video Link`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Video Link`}
                                 value={session.videoLink}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -596,9 +583,8 @@ const NewCourse = () => {
                         key={index}
                         className="border p-4 mb-4 rounded-lg shadow-md"
                       >
-                        <h4 className="text-sm font-bold mb-2">{`Question ${
-                          index + 1
-                        }: ${quiz.question}`}</h4>
+                        <h4 className="text-sm font-bold mb-2">{`Question ${index + 1
+                          }: ${quiz.question}`}</h4>
                         <ul className="text-sm list-disc pl-6 mb-2">
                           {quiz.options.map((option, optionIndex) => (
                             <li key={optionIndex} className="mb-1">
@@ -678,9 +664,8 @@ const NewCourse = () => {
                     }
                   >
                     {quizOptions.map((_, index) => (
-                      <option key={index} value={index}>{`Option ${
-                        index + 1
-                      }`}</option>
+                      <option key={index} value={index}>{`Option ${index + 1
+                        }`}</option>
                     ))}
                   </select>
                 </div>
@@ -700,14 +685,7 @@ const NewCourse = () => {
                   Save Quiz
                 </button>
 
-                {/* Add More Quiz Button */}
-                <button
-                  type="button"
-                  className="btn btn-outline mr-3 btn-sm mt-2"
-                  onClick={addMoreQuiz}
-                >
-                  Add More Quiz
-                </button>
+
               </div>
             )}
 
