@@ -76,11 +76,11 @@ const isStudent = false
 
   // ---------------------------------instructor menu----------------------
   const InstructorMenus = [
-    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard" },
+    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard/instructor-dashboard" },
     {
       title: "My Courses",
       icon: <BiSolidDashboard />,
-      src: "/dashboard/my-courses",
+      src: "/dashboard/my-courses-instructor",
     },
     {
       title: "My Enrolled Students",
