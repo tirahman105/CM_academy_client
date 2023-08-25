@@ -9,55 +9,55 @@ const BlogDetails = () => {
 
 
 
-  const relatedArticles = blogs
-    .filter(article => article.id !== blogs.id && article.category === blog?.category)
+    const relatedArticles = blogs
+    .filter(article => article._id !== blogs._id && article.category === blog?.category)
     .slice(0, 3);
 
-  useEffect(() => {
-    // Fetch the blogs data
-    fetch('../../public/blog.json')
-      .then(response => response.json())
-      .then(data => setBlogs(data.blogs))
-      .catch(error => console.error('Error fetching blogs:', error));
+    useEffect(() => {
+        // Fetch the blogs data
+        fetch('http://localhost:5000/all-blog')
+            .then(response => response.json())
+            .then(data => setBlogs(data))
+            .catch(error => console.error('Error fetching blogs:', error));
+        
+        // Fetch the blog data based on the ID
+        const selectedBlog = blogs.find(blog => blog._id ==id);
+        if (selectedBlog) {
+            setBlog(selectedBlog);
+        } else {
+            console.error('Blog not found');
+        }
+    }, [id, blogs]);
 
-    // Fetch the blog data based on the ID
-    const selectedBlog = blogs.find(blog => blog.id === parseInt(id));
-    if (selectedBlog) {
-      setBlog(selectedBlog);
-    } else {
-      console.error('Blog not found');
-    }
-  }, [id, blogs]);
+    console.log(blog);
 
-  console.log(blog);
-
-  return (
-    <div className="bg-gray-100">
-      <div className="container mx-auto p-6">
-        <div className="py-4">
-          <p className="text-gray-500">
-            <span className="text-blue-500 cursor-pointer hover:underline">Blog</span> &gt;&gt; Blog Details
-          </p>
-          <h1 className="text-3xl font-bold mt-2 mb-4">{blog?.blog_title}</h1>
-        </div>
-
-        <div className="flex space-x-8">
-          <div className="flex-shrink-0 w-2/3">
-            <img src={blog?.blog_image} alt={blog?.blog_title} className="rounded-lg mb-4 w-full h-96 object-cover" />
-            <p className="text-gray-600 mb-2">{blog?.blog_date} | By {blog?.blog_author}</p>
-            <div className="text-gray-800">{blog?.blog_details}</div>
+    return (
+        <div className="bg-gray-100">
+        <div className="container mx-auto p-6">
+          <div className="py-4">
+            <p className="text-gray-500">
+              <span className="text-blue-500 cursor-pointer hover:underline">Blog</span> &gt;&gt; Blog Details
+            </p>
+            <h1 className="text-3xl font-bold mt-2 mb-4">{blog?.blogTitle}</h1>
           </div>
-          <div className="w-1/3">
+  
+          <div className="flex space-x-8">
+            <div className="flex-shrink-0 w-2/3">
+              <img src={blog?.blogImage} alt={blog?.blogTitle} className="rounded-lg mb-4 w-full h-96 object-cover" />
+              <p className="text-gray-600 mb-2">{blog?.blogDate} | By {blog?.blogAuthor}</p>
+              <div className="text-gray-800">{blog?.blogDetails}</div>
+            </div>
+            <div className="w-1/3">
             <h2 className="text-xl font-semibold mb-4">Related Articles</h2>
             <ul className="space-y-4">
               {relatedArticles?.map(article => (
                 <li
-                  key={article.id}
+                  key={article._id}
                   className="flex space-x-4 items-center bg-white rounded-lg p-2 transform transition duration-300 hover:shadow-md hover:scale-105"
                 >
                   <img
-                    src={article.blog_image}
-                    alt={article.blog_title}
+                    src={article.blogImage}
+                    alt={article.blogTitle}
                     className="w-16 h-16 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
                   />
                   <div>

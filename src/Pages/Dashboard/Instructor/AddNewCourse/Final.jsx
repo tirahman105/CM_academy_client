@@ -2,47 +2,81 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../../providers/AuthProvider';
 
-const NewTest = () => {
-    const { user } = useContext(AuthContext);
-    const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(-1);
-    const [newQuizQuestion, setNewQuizQuestion] = useState('');
+const Final = () => {
+
+
+
+
+    const [newQuizQuestion, setNewQuizQuestion] = useState("");
     const [quizOptions, setQuizOptions] = useState([]);
     const [newQuizCorrectOption, setNewQuizCorrectOption] = useState(0);
-    const [newQuizExplanation, setNewQuizExplanation] = useState('');
+    const [newQuizExplanation, setNewQuizExplanation] = useState("");
     const [addingQuiz, setAddingQuiz] = useState(false);
+    const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(-1);
+    const [milestoneQuizzes, setMilestoneQuizzes] = useState([]);
     const addQuizOption = () => {
-        setQuizOptions([...quizOptions, '']);
+        setQuizOptions([...quizOptions, ""]);
     };
+
     const removeQuizOption = (index) => {
         const updatedOptions = [...quizOptions];
         updatedOptions.splice(index, 1);
         setQuizOptions(updatedOptions);
     };
-    const [quizzes, setQuizzes] = useState([]);
+
     const addNewQuiz = () => {
-        if (selectedMilestoneIndex !== -1 && newQuizQuestion && quizOptions.length >= 2 && newQuizCorrectOption >= 0 && newQuizCorrectOption < quizOptions.length && newQuizExplanation) {
+        if (
+            newQuizQuestion &&
+            quizOptions.length >= 2 &&
+            newQuizCorrectOption >= 0 &&
+            newQuizCorrectOption < quizOptions.length &&
+            newQuizExplanation
+        ) {
             const newQuiz = {
                 question: newQuizQuestion,
                 options: quizOptions,
                 correctOption: newQuizCorrectOption,
-                explanation: newQuizExplanation
+                explanation: newQuizExplanation,
             };
-            const updatedCourseOutline = [...courseOutline];
-            updatedCourseOutline[selectedMilestoneIndex].quiz = newQuiz; // Add the new quiz to the selected milestone
-            setCourseOutline(updatedCourseOutline); // Update the state with the new course outline
-            setNewQuizQuestion('');
+
+            // Clone the array for the selected milestone and add the new quiz
+            const updatedMilestoneQuizzes = [...milestoneQuizzes];
+
+            // Initialize the milestone's quiz array if it's undefined
+            if (!updatedMilestoneQuizzes[selectedMilestoneIndex]) {
+                updatedMilestoneQuizzes[selectedMilestoneIndex] = [];
+            }
+
+            updatedMilestoneQuizzes[selectedMilestoneIndex].push(newQuiz);
+
+            // Update the milestoneQuizzes state
+            setMilestoneQuizzes(updatedMilestoneQuizzes);
+
+            // Clear the input fields
+            setNewQuizQuestion("");
             setQuizOptions([]);
             setNewQuizCorrectOption(0);
-            setNewQuizExplanation('');
+            setNewQuizExplanation("");
             setAddingQuiz(false);
-            setSelectedMilestoneIndex(-1); // Reset selected milestone
         }
     };
+
+
     const handleQuizOptionChange = (index, value) => {
         const updatedOptions = [...quizOptions];
         updatedOptions[index] = value;
         setQuizOptions(updatedOptions);
     };
+
+
+
+
+
+
+    const { user } = useContext(AuthContext);
+
+
+
     const [courseThumbnail, setCourseThumbnail] = useState('');
     const [courseIntroVideo, setCourseIntroVideo] = useState('');
 
@@ -94,17 +128,19 @@ const NewTest = () => {
     const [whatYouWillLearn, setWhatYouWillLearn] = useState([]);
     const onSubmit = async (data) => {
 
-        const courseMilestones = courseOutline.map(milestone => ({
+        const courseMilestones = courseOutline.map((milestone) => ({
             milestone: milestone.milestone,
             sessions: milestone.sessions,
-            quiz: milestone.quiz // Include the quiz data for each milestone
+            quizzes: milestoneQuizzes[courseOutline.indexOf(milestone)] || [], // Include the quizzes data for each milestone
         }));
+
         const faqList = faq.map(faqItem => ({
             question: faqItem.question,
             answer: faqItem.answer
         }));
         const formData = {
             instructor: user.displayName,
+            instructorEmail: user.email,
             courseCategory: data.courseCategory,
             title: data.title,
             courseDescription: data.courseDescription,
@@ -115,8 +151,10 @@ const NewTest = () => {
             courseRequirements: courseRequirements,
             whatYouWillLearn: whatYouWillLearn,
             courseThumbnail: courseThumbnail,
+
             courseIntroVideo: courseIntroVideo,
-            
+            ApprovedStatus: "Deny",
+            enrollCount: 0,
         };
         console.log(formData);
 
@@ -128,7 +166,7 @@ const NewTest = () => {
                 },
                 body: JSON.stringify(formData),
             });
-            
+
             if (response.ok) {
                 alert('Form data sent successfully');
                 // Perform any necessary actions after successful data submission
@@ -385,7 +423,7 @@ const NewTest = () => {
                                     <div className='space-y-4'>
                                         {courseOutline.map((milestone, milestoneIndex) => (
                                             <div key={milestoneIndex} className='bg-white rounded-lg shadow-md p-6'>
-                                                <h4 className='font-semibold text-lg mb-2'>Milestone : 1 {milestone.milestone}</h4>
+                                                <h4 className='font-semibold text-lg mb-2'>Milestone :  {milestone.milestone}</h4>
                                                 <ul className='list-disc pl-6 space-y-2'>
                                                     {milestone.sessions.map((session, sessionIndex) => (
                                                         <li key={sessionIndex}>
@@ -399,7 +437,7 @@ const NewTest = () => {
                                                                 <p className='text-black'>{session.description}</p>
                                                             </p>
                                                             <a
-                                                                href={`http://${session.videoLink}`}
+                                                                href={`${session.videoLink}`}
                                                                 target='_blank'
                                                                 rel='noopener noreferrer'
                                                                 className='text-blue-500 hover:underline'
@@ -484,85 +522,88 @@ const NewTest = () => {
                         </div>
                     </div>
                 )}
-                {activeTab === 'quiz' && (
+                {activeTab === "quiz" && (
                     <div>
-                        <div className="flex items-center">
-                            <div className="flex-grow pr-2">
-                                <select
-                                    className="input input-bordered bg-gray-200 h-10 w-full"
-                                    value={selectedMilestoneIndex}
-                                    onChange={(e) => setSelectedMilestoneIndex(parseInt(e.target.value))}
-                                >
-                                    <option value={-1}>Select a Milestone</option>
-                                    {courseOutline.map((milestone, index) => (
-                                        <option key={index} value={index}>
-                                            {milestone.milestone}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <button
-                                type='button'
-                                className='btn btn-outline btn-sm '
-                                onClick={() => setAddingQuiz(true)}
-                            >
-                                Add Quiz
-                            </button>
-                        </div>
+                        <select
+                            className="input input-bordered bg-gray-200 h-10"
+                            value={selectedMilestoneIndex}
+                            onChange={(e) =>
+                                setSelectedMilestoneIndex(parseInt(e.target.value))
+                            }
+                        >
+                            <option value={-1}>Select a Milestone</option>
+                            {courseOutline.map((milestone, index) => (
+                                <option key={index} value={index}>
+                                    {milestone.milestone}
+                                </option>
+                            ))}
+                        </select>
 
+                        {/* Render quizzes based on the selected milestone */}
+                        {selectedMilestoneIndex >= 0 &&
+                            milestoneQuizzes[selectedMilestoneIndex] && (
+                                <div>
+                                    <h2 className="text-lg font-semibold mb-2">{`Quizzes for ${courseOutline[selectedMilestoneIndex].milestone}`}</h2>
+                                    {milestoneQuizzes[selectedMilestoneIndex].map(
+                                        (quiz, index) => (
+                                            <div
+                                                key={index}
+                                                className="border p-4 mb-4 rounded-lg shadow-md"
+                                            >
+                                                <h4 className="text-sm font-bold mb-2">{`Question ${index + 1
+                                                    }: ${quiz.question}`}</h4>
+                                                <ul className="text-sm list-disc pl-6 mb-2">
+                                                    {quiz.options.map((option, optionIndex) => (
+                                                        <li key={optionIndex} className="mb-1">
+                                                            {option}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <p className="text-sm text-green-700">
+                                                    Correct Option: {quiz.options[quiz.correctOption]}
+                                                </p>
+                                                <p className="text-sm text-green-900">
+                                                    Explanation: {quiz.explanation}
+                                                </p>
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            )}
 
-
-
-
-
-                        {/* displaying the quiz in UI */}
-                        {quizzes.map((quiz, index) => (
-                            <div key={index} className="border p-4 mb-4 rounded-lg shadow-md">
-                                <h4 className=" text-sm font-bold mb-2">{`Question ${index + 1}: ${quiz.question}`}</h4>
-                                <ul className=" text-sm list-disc pl-6 mb-2">
-                                    {quiz.options.map((option, optionIndex) => (
-                                        <li key={optionIndex} className="mb-1">{option}</li>
-                                    ))}
-                                </ul>
-                                <p className="text-sm text-green-700">Correct Option: {quiz.options[quiz.correctOption]}</p>
-                                <p className="text-sm text-green-900">Explanation: {quiz.explanation}</p>
-                            </div>
-                        ))}
+                        <button
+                            type="button"
+                            className="btn btn-outline mr-3 btn-sm mt-2 m-3"
+                            onClick={() => setAddingQuiz(true)}
+                        >
+                            Add Quiz
+                        </button>
 
                         {addingQuiz && (
                             <div>
-                                <div className="flex items-center">
-                                    <div className="flex-grow pr-2">
-                                        <input
-                                            type='text'
-                                            className='input input-bordered bg-gray-200 h-10 m-3 ml-0 w-full'
-                                            placeholder='Question'
-                                            value={newQuizQuestion}
-                                            onChange={(e) => setNewQuizQuestion(e.target.value)}
-                                        />
-                                    </div>
-                                    <button
-                                        type='button'
-                                        className='btn btn-outline btn-sm '
-                                        onClick={addQuizOption}
-                                    >
-                                        Add Option
-                                    </button>
-                                </div>
+                                <input
+                                    type="text"
+                                    className="input input-bordered bg-gray-200 h-100 m-3 ml-0 w-full"
+                                    placeholder="Question"
+                                    value={newQuizQuestion}
+                                    onChange={(e) => setNewQuizQuestion(e.target.value)}
+                                />
 
                                 {/* Render dynamic input fields for options */}
                                 {quizOptions.map((option, index) => (
                                     <div key={index}>
                                         <input
-                                            type='text'
-                                            className='input input-bordered bg-gray-200 h-100 m-3 w-full'
+                                            type="text"
+                                            className="input input-bordered bg-gray-200 h-100 m-3 w-full"
                                             placeholder={`Option ${index + 1}`}
                                             value={option}
-                                            onChange={(e) => handleQuizOptionChange(index, e.target.value)}
+                                            onChange={(e) =>
+                                                handleQuizOptionChange(index, e.target.value)
+                                            }
                                         />
                                         <button
-                                            type='button'
-                                            className='btn btn-danger btn-sm mt-2'
+                                            type="button"
+                                            className="btn btn-danger btn-sm mt-2"
                                             onClick={() => removeQuizOption(index)}
                                         >
                                             Remove Option
@@ -570,38 +611,54 @@ const NewTest = () => {
                                     </div>
                                 ))}
 
+                                <button
+                                    type="button"
+                                    className="btn btn-outline mr-3 btn-sm mt-2"
+                                    onClick={addQuizOption}
+                                >
+                                    Add Option
+                                </button>
+
                                 <div>
-                                    <label className='label'>
-                                        <span className='text-sm font-bold'>Select Correct Option</span>
+                                    <label className="label">
+                                        <span className="text-sm font-bold">Correct Option</span>
                                     </label>
                                     <select
-                                        className='input input-bordered bg-gray-200 h-10'
+                                        className="input input-bordered bg-gray-200 h-10"
                                         value={newQuizCorrectOption}
-                                        onChange={(e) => setNewQuizCorrectOption(parseInt(e.target.value))}
+                                        onChange={(e) =>
+                                            setNewQuizCorrectOption(parseInt(e.target.value))
+                                        }
                                     >
                                         {quizOptions.map((_, index) => (
-                                            <option key={index} value={index}>{`Option ${index + 1}`}</option>
+                                            <option key={index} value={index}>{`Option ${index + 1
+                                                }`}</option>
                                         ))}
                                     </select>
                                 </div>
+
                                 <textarea
-                                    className='input input-bordered bg-gray-200 h-20 m-3 w-full'
-                                    placeholder='Explanation'
+                                    className="input input-bordered bg-gray-200 h-20 m-3 w-full"
+                                    placeholder="Explanation"
                                     value={newQuizExplanation}
                                     onChange={(e) => setNewQuizExplanation(e.target.value)}
                                 />
+
                                 <button
-                                    type='button'
-                                    className='btn btn-outline mr-3 btn-sm mt-2'
+                                    type="button"
+                                    className="btn btn-outline mr-3 btn-sm mt-2"
                                     onClick={addNewQuiz}
                                 >
                                     Save Quiz
                                 </button>
+
+
                             </div>
                         )}
+
                         <div>
-                            <div className='flex justify-center'>
-                                <button type='submit' className='btn btn-success mt-4 mb-5'>
+                            <div className="flex justify-center">
+                                <button type="submit" className="btn btn-success mt-4 mb-5">
                                     Add Your Course
                                 </button>
                             </div>
@@ -613,4 +670,4 @@ const NewTest = () => {
     );
 };
 
-export default NewTest;
+export default Final;

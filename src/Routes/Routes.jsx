@@ -31,11 +31,12 @@ import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboa
 import AllEnrolledStudent from "../Pages/Dashboard/Admin/AllEnrolledStudent/AllEnrolledStudent";
 import MyEnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
 import MyPayments from "../Pages/Dashboard/Instructor/MyPatments/MyPayments";
-import MyCourses from "../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourseInstructor";
 import MyBlogs from "../Pages/Dashboard/Instructor/MyBlogs/MyBlogs";
 import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourseInstructor";
 import StudentPayment from "../Pages/Dashboard/Student/StudentPayment/StudentPayment";
 import CourseDetailsDynamic from "../Pages/CourseDetails/CourseDetailsDynamic";
+import MyCourses from "../Pages/Dashboard/Student/MyCourses/MyCourses";
+import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/StudentDashboard";
 
 const router = createBrowserRouter([
   {
@@ -188,6 +189,10 @@ const router = createBrowserRouter([
       },
 
       //  Student dashboard
+      {
+        path: "student-dashboard",
+        element: <StudentDashboard></StudentDashboard>,
+      },
       {
         path: "my-courses",
         element: <MyCourses></MyCourses>,
