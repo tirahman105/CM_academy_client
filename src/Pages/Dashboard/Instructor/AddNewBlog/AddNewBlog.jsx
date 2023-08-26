@@ -18,7 +18,7 @@ const AddNewBlog = () => {
     console.log(data);
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/blog",
+        "https://cm-academy-test-server-production.up.railway.app/blog",
         {
           method: "POST",
           headers: {

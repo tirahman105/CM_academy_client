@@ -51,7 +51,7 @@ function Categories() {
         <p className="text-center font-semibold mb-10">
           Choose your desired course and start learning online!
         </p>
-        <div className="flex items-center justify-center overflow-x-auto gap-2 mb-10 sticky top-[0px] z-50 bg-opacity-50 backdrop-blur-lg bg-[#bbbaba] border-slate-300">
+        <div className="flex items-center justify-center overflow-x-auto gap-2 mb-10 sticky top-[0px] z-50 bg-opacity-50 backdrop-blur-lg bg-[#bbbaba] border-slate-300 shadow-sm rounded-sm">
           {Categories.map((category, index) => (
             <button
               key={index}
@@ -68,17 +68,17 @@ function Categories() {
         </div>
 
         <div>
-          <div className="mt-4 grid md:grid-cols-4 gap-4  bg-gradient px-4 md:px-10 py-6 rounded-xl">
+          <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4  bg-gradient px-4 md:px-10 py-6 rounded-xl">
             {activeCourses.map((activeCourse, courseIndex) => (
               <div
-                className=" rounded-lg bg-white backdrop-blur-md bg-opacity-10 text-white shadow-lg  "
+                className=" rounded-lg bg-white backdrop-blur-md bg-opacity-25 text-white shadow-lg  "
                 key={courseIndex}
               >
                 {/* ////image past start///// */}
                 <div className="relative">
                   <img
-                    className="bg-black h-44 w-full rounded-lg  "
-                    src="https://media.discordapp.net/attachments/1137192144587739287/1144605595392036884/JavaScript-BCG-Banner-icons.png"
+                    className=" h-44 w-full rounded-lg  "
+                    src={activeCourse.courseThumbnail}
                     alt=""
                   />
                   <div className="shadow-md text-xs w-56 bg-slate-800 bg-opacity-40 backdrop-blur-md flex items-center gap-2 absolute rounded-e-md px-4 py-[4px] bottom-3 z-10 text-white font-semibold font-mono ">
@@ -93,8 +93,8 @@ function Categories() {
                 {/* /////image past end////// */}
                 <div className="px-5 h-14 ">
                   <h1 className="font-bold">
-                    {" "}
-                    {activeCourse.title} Lorem ipsum dolor sit amet, consectetur{" "}
+                   
+                    {activeCourse.title} 
                   </h1>
                 </div>
 
