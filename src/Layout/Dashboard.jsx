@@ -9,12 +9,12 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [isInstructor] = useInstructor();
+  // const [isInstructor] = useInstructor();
 
   
   console.log(user);
   const [open, setOpen] = useState(true);
-  const isAdmin = false;
+  const isAdmin = true;
   // const isInstructor = false;
 const isStudent = false
   // const handleLogOut = () => {
@@ -62,43 +62,43 @@ const isStudent = false
       icon: <BiListPlus />,
       src: "/dashboard/manage-course",
     },
-    {
-      title: "Withdraw Request",
-      icon: <BiListPlus />,
-      src: "/dashboard/withdraw-request",
-    },
-    {
-      title: "Add New Category",
-      icon: <BiListPlus />,
-      src: "/dashboard/Add-category",
-    },
+    // {
+    //   title: "Withdraw Request",
+    //   icon: <BiListPlus />,
+    //   src: "/dashboard/withdraw-request",
+    // },
+    // {
+    //   title: "Add New Category",
+    //   icon: <BiListPlus />,
+    //   src: "/dashboard/Add-category",
+    // },
   ];
 
   // ---------------------------------instructor menu----------------------
-  const InstructorMenus = [
-    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard/instructor-dashboard" },
-    {
-      title: "My Courses",
-      icon: <BiSolidDashboard />,
-      src: "/dashboard/my-courses-instructor",
-    },
-    {
-      title: "My Enrolled Students",
-      icon: <BiListPlus />,
-      src: "/dashboard/my-enrolled-students",
-    },
-    {
-      title: "Add New Course",
-      icon: <BiListPlus />,
-      src: "/dashboard/add-course",
-    },
-    { title: "Add New Blog", icon: <BiListPlus />, src: "/dashboard/add-blog" },
-    {
-      title: "Payment History",
-      icon: <BiListPlus />,
-      src: "/dashboard/my-payments",
-    },
-  ];
+  // const InstructorMenus = [
+  //   { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard/instructor-dashboard" },
+  //   {
+  //     title: "My Courses",
+  //     icon: <BiSolidDashboard />,
+  //     src: "/dashboard/my-courses-instructor",
+  //   },
+  //   {
+  //     title: "My Enrolled Students",
+  //     icon: <BiListPlus />,
+  //     src: "/dashboard/my-enrolled-students",
+  //   },
+  //   {
+  //     title: "Add New Course",
+  //     icon: <BiListPlus />,
+  //     src: "/dashboard/add-course",
+  //   },
+  //   { title: "Add New Blog", icon: <BiListPlus />, src: "/dashboard/add-blog" },
+  //   {
+  //     title: "Payment History",
+  //     icon: <BiListPlus />,
+  //     src: "/dashboard/my-payments",
+  //   },
+  // ];
   return (
     <div className="">
       {/* left navbar  */}
@@ -184,7 +184,7 @@ const isStudent = false
             )}
 
 
-            {isInstructor && (
+            {/* {isInstructor && (
               <>
                 {InstructorMenus.map((menu, index) => (
                   <li
@@ -205,7 +205,7 @@ const isStudent = false
                   </li>
                 ))}
               </>
-            )}
+            )} */}
           </ul>
         </div>
       </div>
