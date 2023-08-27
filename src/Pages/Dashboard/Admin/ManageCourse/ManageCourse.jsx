@@ -28,7 +28,7 @@ const ManageCourse = () => {
   const updateCourseStatus = async (courseId, newStatus) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/categories/${courseId}/approval`,
+        `https://cm-academy-test-server-production.up.railway.app/categories/${courseId}/approval`,
         {
           method: "PUT",
           headers: {
