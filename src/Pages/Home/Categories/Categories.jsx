@@ -78,7 +78,7 @@ function Categories() {
                 <div className="relative">
                   <img
                     className="bg-black h-44 w-full rounded-lg  "
-                    src="https://media.discordapp.net/attachments/1137192144587739287/1144605595392036884/JavaScript-BCG-Banner-icons.png"
+                    src={activeCourse.courseThumbnail}
                     alt=""
                   />
                   <div className="shadow-md text-xs w-56 bg-slate-800 bg-opacity-40 backdrop-blur-md flex items-center gap-2 absolute rounded-e-md px-4 py-[4px] bottom-3 z-10 text-white font-semibold font-mono ">
