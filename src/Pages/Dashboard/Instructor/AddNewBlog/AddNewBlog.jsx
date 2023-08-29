@@ -10,6 +10,7 @@ const AddNewBlog = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const categories = ["Technology", "programming", "writing"];
@@ -30,7 +31,8 @@ const AddNewBlog = () => {
 
       if (response.ok) {
         alert("Form data sent successfully");
-        // Perform any necessary actions after successful data submission
+        reset();
+              // Perform any necessary actions after successful data submission
       } else {
         alert("Failed to send form data");
       }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CourseVideo from './CourseOutline/CourseVideo';
 import CourseOutline from './CourseOutline/CourseOutline';
+import Certificate from './Certificate/Certificate';
 
 const CoursePage = () => {
   
@@ -65,6 +66,8 @@ const CoursePage = () => {
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedModule, setSelectedModule] = useState(0);
 
+  const [showCertificateModal, setShowCertificateModal] = useState(false);
+
   const handleModuleSelect = (moduleIndex, videoUrl) => {
     setSelectedModule(moduleIndex);
   };
@@ -86,7 +89,16 @@ const CoursePage = () => {
     }
   };
 
+  const handleOpenCertificateModal = () => {
+    setShowCertificateModal(true);
+  };
+
+  const handleCloseCertificateModal = () => {
+    setShowCertificateModal(false);
+  };
+
   return (
+    <div>
     <div className="lg:flex">
       <div className="lg:w-3/4 p-4">
         <CourseVideo  videoList={milestoneList[selectedMilestone]?.modules || []}
@@ -103,7 +115,33 @@ const CoursePage = () => {
           onSelectMilestone={handleMilestoneSelect}
           onSelectModule={handleModuleSelect}
         />
+    {/* <button className="btn btn-primary" onClick={handleOpenCertificateModal}>
+            Get Certificate
+          </button>
+          {showCertificateModal && (
+            <Certificate onClose={handleCloseCertificateModal} />
+          )} */}
+
+
+
+<div className='flex justify-center'><button className="btn btn-primary" onClick={()=>window.my_modal_1.showModal()}>Get Certificate</button></div>
+
+{/* Modal content below */}
+
+
+<dialog id="my_modal_1" className="modal">
+  <form method="dialog" className="modal-box">
+   <Certificate></Certificate>
+    <div className="modal-action">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn">Close</button>
+    </div>
+  </form>
+</dialog>
       </div>
+      
+    </div>
+  
     </div>
   );
 };
