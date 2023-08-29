@@ -89,7 +89,7 @@ const router = createBrowserRouter([
         element: <ForgotPassword></ForgotPassword>,
       },
       {
-        path: "checkout",
+        path: "/checkout/:id",
         element: <CheckOut></CheckOut>,
       },
       {

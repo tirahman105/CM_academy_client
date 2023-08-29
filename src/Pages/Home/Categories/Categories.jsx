@@ -11,6 +11,8 @@ function Categories() {
 
   const navigate = useNavigate();
 
+  console.log(courses);
+
   useEffect(() => {
     fetch("https://cm-academy-test-server-production.up.railway.app/categories")
       .then((response) => response.json())

@@ -6,31 +6,37 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null);
   const [blogs, setBlogs] = useState([]);
 
-  const relatedArticles = blogs
-    .filter(
-      (article) =>
-        article._id !== blogs._id && article.category === blog?.category
-    )
-    .slice(0, 3);
 
   useEffect(() => {
     // Fetch the blogs data
     fetch("https://cm-academy-test-server-production.up.railway.app/all-blog")
       .then((response) => response.json())
-      .then((data) => setBlogs(data))
+      .then((data) => {
+        setBlogs(data);
+
+        // Fetch the blog data based on the ID from the fetched blogs
+        const selectedBlog = data.find((blog) => blog._id === id);
+        if (selectedBlog) {
+          setBlog(selectedBlog);
+        } else {
+          console.error("Blog not found");
+        }
+      })
       .catch((error) => console.error("Error fetching blogs:", error));
+  }, [id]);
 
-    // Fetch the blog data based on the ID
-    const selectedBlog = blogs.find((blog) => blog._id == id);
-    if (selectedBlog) {
-      setBlog(selectedBlog);
-    } else {
-      console.error("Blog not found");
-    }
-  }, [id, blogs]);
+  // relatedArticles 
+  const relatedArticles = blogs
+    .filter(
+      (article) =>
+        article._id !== id && article.category === blog?.category
+    )
+    .slice(0, 3);
+
+  console.log(id);
 
 
-  
+
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto p-6">
@@ -43,6 +49,7 @@ const BlogDetails = () => {
           </p>
           <h1 className="text-3xl font-bold mt-2 mb-4">{blog?.blogTitle}</h1>
         </div>
+
 
         <div className="flex space-x-8">
           <div className="flex-shrink-0 w-2/3">
