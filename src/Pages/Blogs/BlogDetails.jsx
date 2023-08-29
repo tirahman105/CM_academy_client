@@ -6,6 +6,7 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null);
   const [blogs, setBlogs] = useState([]);
 
+
   useEffect(() => {
     // Fetch the blogs data
     fetch("https://cm-academy-test-server-production.up.railway.app/all-blog")
@@ -48,6 +49,7 @@ const BlogDetails = () => {
           </p>
           <h1 className="text-3xl font-bold mt-2 mb-4">{blog?.blogTitle}</h1>
         </div>
+
 
         <div className="flex space-x-8">
           <div className="flex-shrink-0 w-2/3">

@@ -15,8 +15,11 @@ const Dashboard = () => {
   console.log(user);
   const [open, setOpen] = useState(true);
   const isAdmin = false;
+
   const isInstructor = false;
 const isStudent = true;
+
+
   // const handleLogOut = () => {
   //     logOut()
   //       .then(() => {})
@@ -76,11 +79,11 @@ const isStudent = true;
 
   // ---------------------------------instructor menu----------------------
   const InstructorMenus = [
-    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard" },
+    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard/instructor-dashboard" },
     {
       title: "My Courses",
       icon: <BiSolidDashboard />,
-      src: "/dashboard/my-courses",
+      src: "/dashboard/my-courses-instructor",
     },
     {
       title: "My Enrolled Students",
