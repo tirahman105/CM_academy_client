@@ -9,14 +9,14 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [isInstructor] = useInstructor();
+  // const [isInstructor] = useInstructor();
 
   
   console.log(user);
   const [open, setOpen] = useState(true);
   const isAdmin = false;
-  // const isInstructor = false;
-const isStudent = true
+  const isInstructor = false;
+const isStudent = true;
   // const handleLogOut = () => {
   //     logOut()
   //       .then(() => {})

@@ -632,7 +632,7 @@ const CourseDetails = () => {
             <div className="mt-5">
               <div className="flex gap-4  ">
                 <BsPeople className="text-2xl"></BsPeople>
-                <p>147102 people are doing the course</p>
+                <p>6 people are doing the course</p>
               </div>
 
               <div className="flex gap-4  mt-3">
@@ -642,7 +642,7 @@ const CourseDetails = () => {
 
               <div className="flex gap-4  mt-3">
                 <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                <p>31 videos</p>
+                <p>10 videos</p>
               </div>
 
               <div className="flex gap-4  mt-3">

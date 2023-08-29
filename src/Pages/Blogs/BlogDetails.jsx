@@ -6,28 +6,35 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null);
   const [blogs, setBlogs] = useState([]);
 
-  const relatedArticles = blogs
-    .filter(
-      (article) =>
-        article._id !== blogs._id && article.category === blog?.category
-    )
-    .slice(0, 3);
-
   useEffect(() => {
     // Fetch the blogs data
     fetch("https://cm-academy-test-server-production.up.railway.app/all-blog")
       .then((response) => response.json())
-      .then((data) => setBlogs(data))
-      .catch((error) => console.error("Error fetching blogs:", error));
+      .then((data) => {
+        setBlogs(data);
 
-    // Fetch the blog data based on the ID
-    const selectedBlog = blogs.find((blog) => blog._id == id);
-    if (selectedBlog) {
-      setBlog(selectedBlog);
-    } else {
-      console.error("Blog not found");
-    }
-  }, [id, blogs]);
+        // Fetch the blog data based on the ID from the fetched blogs
+        const selectedBlog = data.find((blog) => blog._id === id);
+        if (selectedBlog) {
+          setBlog(selectedBlog);
+        } else {
+          console.error("Blog not found");
+        }
+      })
+      .catch((error) => console.error("Error fetching blogs:", error));
+  }, [id]);
+
+  // relatedArticles 
+  const relatedArticles = blogs
+    .filter(
+      (article) =>
+        article._id !== id && article.category === blog?.category
+    )
+    .slice(0, 3);
+
+  console.log(id);
+
+
 
   return (
     <div className="bg-gray-100">

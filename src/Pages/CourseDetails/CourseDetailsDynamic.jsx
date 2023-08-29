@@ -1,17 +1,16 @@
 import { GrNext } from "react-icons/gr";
-import { PiArrowElbowUpRightFill } from "react-icons/pi";
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import { MdOutlineQuiz } from "react-icons/md";
-import { BsArrowRightShort, BsPeople } from "react-icons/bs";
-import { BsStopwatch } from "react-icons/bs";
-import { AiFillCheckCircle, AiFillFacebook, AiFillInstagram, AiFillLinkedin, AiFillTwitterSquare, AiOutlineQuestionCircle, AiOutlineUsergroupDelete } from "react-icons/ai";
+import { BsPeople } from "react-icons/bs";
+import { BsStopwatch, BsCheckCircle } from "react-icons/bs";
+import { AiFillFacebook, AiFillInstagram, AiFillLinkedin, AiFillTwitterSquare, AiOutlineQuestionCircle } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FaCheck } from "react-icons/fa";
 
 
 const CourseDetailsDynamic = () => {
@@ -19,9 +18,12 @@ const CourseDetailsDynamic = () => {
   const location = useLocation();
   const { course } = location.state;
 
+  const { subCourse } = location.state || {};
+  const navigate = useNavigate()
 
 
-  console.log(course)
+
+  console.log(course._id)
 
   // Function to extract video ID from YouTube URL
   const extractVideoId = (url) => {
@@ -61,6 +63,12 @@ const CourseDetailsDynamic = () => {
     }
   };
 
+  const handleCheckout = (subCourse) => {
+    navigate("/checkout", { state: { subCourse } });
+    console.log(subCourse);
+  }
+
+
 
   return (
     <div className="relative">
@@ -72,7 +80,7 @@ const CourseDetailsDynamic = () => {
             {course.title}
           </h2>
           <p className=" mt-1 text-white  md:w-2/4">
-            {course.courseDescription}
+          {course.courseDescription.split(' ').slice(0, 50).join(' ')}.
           </p>
           <div className="flex gap-3 items-center">
 
@@ -86,7 +94,7 @@ const CourseDetailsDynamic = () => {
 
 
           <div className="overflow-x-hidden">
-            <nav className="bg-gray-300 fixed top-[210px] md:top-[239px] lg:top-[200px] xl:top-[220px] w-[1000px] hover-scroll">
+            <nav className="bg-gray-300 fixed top-[280px] w-full md:top-[395px] md:w-[70%] lg:top-[268px] lg:w-[60%] xl:top-[268px] xl:w-[50%] hover-scroll rounded-md">
               <ul className="flex gap-6 md:gap-12 text-blue-500 p-2">
                 <li
                   onClick={() => handleNavClick('learn')}
@@ -115,15 +123,6 @@ const CourseDetailsDynamic = () => {
                     }`}
                 >
                   Payment
-                </li>
-                <li
-                  onClick={() => handleNavClick('certificate')}
-                  className={`cursor-pointer text-xl font-bold ${activeSection === 'certificate'
-                    ? 'text-black font-bold text-xl'
-                    : ''
-                    }`}
-                >
-                  Certificate
                 </li>
                 <li
                   onClick={() => handleNavClick('faq')}
@@ -168,9 +167,9 @@ const CourseDetailsDynamic = () => {
             <div className=" lg:hidden gap-3 ">
 
               <div>
-                <button className="mt-5 bg-blue-500 text-white p-2 md:w-32 font-bold rounded-md">
-                  Enroll Course
-                </button>
+              <Link to={`/checkout/${course._id}`} className="mt-5 bg-blue-500 text-white p-3 w-full font-bold rounded-md">
+                  Enroll Now
+                </Link>
               </div>
 
               <div className=" flex xl:hidden  text-white  gap-2 items-center  mt-3">
@@ -193,24 +192,15 @@ const CourseDetailsDynamic = () => {
 
                 <li onClick={() => handleNavClick('learn')} className={`cursor-pointer text-xl font-bold ${activeSection === 'learn' ? 'text-black font-bold text-xl' : ''}`}>Learn</li>
                 <li onClick={() => handleNavClick('details')} className={`cursor-pointer text-xl font-bold ${activeSection === 'details' ? 'text-black font-bold text-xl' : ''}`}>Details</li>
-                <li onClick={() => handleNavClick('content')} className={`cursor-pointer text-xl font-bold ${activeSection === 'content' ? 'text-black font-bold text-xl' : ''}`}>Contner</li>
+                <li onClick={() => handleNavClick('content')} className={`cursor-pointer text-xl font-bold ${activeSection === 'content' ? 'text-black font-bold text-xl' : ''}`}>Content</li>
                 <li onClick={() => handleNavClick('payment')} className={`cursor-pointer text-xl font-bold ${activeSection === 'payment' ? 'text-black font-bold text-xl' : ''}`}>Payment</li>
-                <li onClick={() => handleNavClick('certificate')} className={`cursor-pointer text-xl font-bold ${activeSection === 'certificate' ? 'text-black font-bold text-xl' : ''}`}>Certificate</li>
+               
                 <li onClick={() => handleNavClick('faq')} className={`cursor-pointer text-xl font-bold ${activeSection === 'faq' ? 'text-black font-bold text-xl' : ''}`}>FAQ</li>
               </ul>
             </nav>
-
-
-
           </div>
 
-
-
         )}
-
-
-
-
 
       </section>
 
@@ -249,102 +239,84 @@ const CourseDetailsDynamic = () => {
           {/*outcome  section */}
           <section id="learn" className="mt-10">
             <h2 className="text-2xl font-bold">What will you learn from this course?</h2>
-            <div className="border rounded-md p-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-5">
+            <div className="border rounded-md p-5 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start mt-5">
               {course.whatYouWillLearn.map((learnItem, index) => (
-                <div key={index} className="flex gap-4">
-                  <BsArrowRightShort className="text-5xl text-blue-500" />
-                  <p className="mt-2">{learnItem}</p>
+                <div key={index} className="flex gap-4 items-center">
+                  <BsCheckCircle className="text-2xl text-green-500" />
+                  <p className="text-sm md:text-base">{learnItem}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* Details course section */}
-          <section id='details' className="mt-10  ">
-            <h2 className="text-2xl font-bold">কোর্স সম্পর্কে বিস্তারিত</h2>
-            <div className="border rounded-md p-10 flex gap-10 items-center mt-5">
-              <div className="join join-vertical w-full">
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Presentation & Public Speaking কোর্সটি জন্য
-                  </div>
-                  <div className="collapse-content">
-                    <ol className="list-disc pl-6">
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-                <div className="collapse collapse-arrow join-item border-b border-base-300">
-                  <input type="radio" name="my-accordion-4" />
-                  <div className="collapse-title text-xl font-medium">
-                    Presentation & Public Speaking কোর্সটি জন্য
-                  </div>
-                  <div className="collapse-content">
-                    <ol className="list-disc pl-6">
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-                <div className="collapse collapse-arrow join-item border-b border-base-300">
-                  <input type="radio" name="my-accordion-4" />
-                  <div className="collapse-title text-xl font-medium">
-                    Presentation & Public Speaking কোর্সটি জন্য
-                  </div>
-                  <div className="collapse-content">
-                    <ol className="list-disc pl-6">
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                      <li>
-                        যারা প্রেজেন্টেশন এবং পাবলিক স্পিকিং সেশনের জন্য নিজের
-                        মধ্যে আত্মবিশ্বাস তৈরি করতে চান, তাদের জন্য কোর্সটি
-                        সহায়ক ভূমিকা পালন করবে।
-                      </li>
-                    </ol>
-                  </div>
-                </div>
+
+
+          {/* Who it the course for */}
+
+
+          <section id="whoIsCourseFor" className="mt-10">
+            <h2 className="text-2xl font-bold mb-4">Who is this course for?</h2>
+
+            <div className="bg-blue-100 p-6 rounded-md">
+              <div className="flex items-center gap-4">
+                <p className="text-lg text-gray-800">
+                  <span className="font-semibold">This course is designed for:</span> {course.whoIsCourseFor}
+                </p>
               </div>
             </div>
           </section>
 
+
+
+
+
+          {/* Nedd to join class section */}
+
+
+          <section id="need" className="mt-10">
+            <h2 className="text-2xl font-bold mb-4">Everything you need to do the course</h2>
+            <div className="border rounded-md p-6 space-y-4 mt-5">
+              {course.courseRequirements.map((requirement, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-500 text-white">
+                    <FaCheck className="text-lg" />
+                  </div>
+                  <p className="text-sm">{requirement}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+
+          {/* Details course section */}
+          <section id="content" className="mt-10">
+            <h2 className="text-2xl font-bold">Course Contents</h2>
+            <div className="border rounded-md p-10 grid grid-cols-1 gap-6 items-center mt-5">
+              <div className="join join-vertical w-full">
+                {course.courseOutline.map((outlineItem, index) => (
+                  <div key={index}>
+                    {outlineItem.sessions.map((session, sessionIndex) => (
+                      <div key={sessionIndex} className="collapse collapse-arrow join-item border-b border-b-base-300">
+                        <input type="radio" name={`my-accordion-${index}`} checked={sessionIndex === 0} />
+                        <div className="collapse-title text-xl font-medium">
+                          {session.sessionTitle}
+                        </div>
+                        <div className="collapse-content">
+                          <p>{session.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+
+
+
           {/*  Preview course section */}
-          <section id="content" className="mt-10   ">
+          {/* <section id="content" className="mt-10   ">
             <h2 className="text-2xl font-bold">কন্টেন্ট প্রিভিউ</h2>
             <div className="border rounded-md p-10 flex gap-10 items-center mt-5">
               <div className="join join-vertical w-full">
@@ -418,29 +390,10 @@ const CourseDetailsDynamic = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
 
-          <section id="whoIsCourseFor" className="mt-10">
-            <h2 className="text-2xl font-bold">Who Is This Course For?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
-              <div className="flex items-center gap-3">
-                <AiOutlineUsergroupDelete className="text-4xl text-blue-500" />
-                <p className="text-lg">
-                  Perfect for aspiring <span className="font-bold">professionals</span> looking to enhance their skills.
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <AiFillCheckCircle className="text-4xl text-green-500" />
-                <p className="text-lg">
-                  Also suitable for <span className="font-bold">students</span> seeking to excel in their studies.
-                </p>
-              </div>
-            </div>
-            <p className="mt-4">
-              Whether you're a <span className="font-bold">beginner</span> or an <span className="font-bold">advanced learner</span>, this course offers valuable insights for your journey.
-            </p>
-          </section>
+
 
 
           {/*   Payment section */}
@@ -478,18 +431,7 @@ const CourseDetailsDynamic = () => {
             </div>
           </section> */}
 
-          {/* Nedd to join class section */}
-          <section id="need" className="mt-10">
-            <h2 className="text-2xl font-bold">Everything you need to do the class</h2>
-            <div className="border rounded-md p-10 grid grid-cols-1 gap-10 items-center mt-5">
-              {course.courseRequirements.map((requirement, index) => (
-                <div key={index} className="flex gap-4">
-                  <BsArrowRightShort className="text-5xl text-blue-500" />
-                  <p className="mt-2">{requirement}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+
 
           {/*  Ask Question  section */}
 
@@ -613,7 +555,9 @@ const CourseDetailsDynamic = () => {
                 <span className="font-bold">৳0 </span> <s>৳2500</s>{" "}
               </h2>
               <button className="mt-5 bg-blue-500 text-white p-3 md:w-40 font-bold rounded-md">
-                Enroll Course
+              <Link to={`/checkout/${course._id}`}>
+                  Enroll Now
+                </Link>
               </button>
             </div>
             {/*    Second information  section */}
@@ -621,7 +565,7 @@ const CourseDetailsDynamic = () => {
             <div className="mt-5">
               <div className="flex gap-4  ">
                 <BsPeople className="text-2xl"></BsPeople>
-                <p>147102 people are doing the course</p>
+                <p>6 people are doing the course</p>
               </div>
 
               <div className="flex gap-4  mt-3">
@@ -631,7 +575,7 @@ const CourseDetailsDynamic = () => {
 
               <div className="flex gap-4  mt-3">
                 <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                <p>31 videos</p>
+                <p>10 videos</p>
               </div>
 
               <div className="flex gap-4  mt-3">
