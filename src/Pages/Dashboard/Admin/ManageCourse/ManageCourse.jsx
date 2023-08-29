@@ -5,6 +5,7 @@ const ManageCourse = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [courses, setCourses] = useState([]);
 
+  console.log(courses)
   useEffect(() => {
     fetch("https://cm-academy-test-server-production.up.railway.app/categories")
       .then((response) => response.json())

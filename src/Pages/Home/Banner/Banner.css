@@ -1,0 +1,189 @@
+.css-selector {
+  opacity: 1;
+
+  /* background-color: #ffd3cf;
+  background-image: linear-gradient(105deg, #ffd3cf 0%, #d3ffec 30%, #fdecd6 59%, #d3ffec 100%); */
+
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% );
+  /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% ); */
+
+  /* background-size: 400% 400%; */
+  /* backdrop-filter: blur(1000px); */
+
+  /* background-color: #D9AFD9;
+  background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%),
+    radial-gradient(at 49% 32%, rgb(194, 65, 12) 0, transparent 83%),
+    radial-gradient(at 20% 62%, rgb(64, 64, 64) 0, transparent 49%),
+    radial-gradient(at 34% 51%, rgb(163, 230, 53) 0, transparent 42%),
+    radial-gradient(at 67% 33%, rgb(74, 222, 128) 0, transparent 68%),
+    radial-gradient(at 8% 26%, rgb(243, 244, 246) 0, transparent 30%); */
+
+  -webkit-animation: AnimationName 21s ease infinite;
+  -moz-animation: AnimationName 21s ease infinite;
+  animation: AnimationName 21s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 61% 0%;
+  }
+  50% {
+    background-position: 40% 100%;
+  }
+  100% {
+    background-position: 61% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 61% 0%;
+  }
+  50% {
+    background-position: 40% 100%;
+  }
+  100% {
+    background-position: 61% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 61% 0%;
+  }
+  50% {
+    background-position: 40% 100%;
+  }
+  100% {
+    background-position: 61% 0%;
+  }
+}
+
+/* .mainBg {
+  background-color: #e5e5f7;
+  opacity: 0.1;
+  background-image: linear-gradient(
+      #ffffff 1.9000000000000001px,
+      transparent 1.9000000000000001px
+    ),
+    linear-gradient(
+      to right,
+      #ffffff 1.9000000000000001px,
+      #e5e5f7 1.9000000000000001px
+    );
+  background-size: 30px 30px;
+} */
+
+
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: #1bbf7242;
+  animation: animate 20s linear infinite;
+  bottom: -150px;
+
+}
+
+.circles li:nth-child(1) {
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 20s;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 5s;
+  animation-duration: 25s;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 70s;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 10%;
+  }
+
+  100% {
+    transform: translateY(-400px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+
+/* //////////////////////////// */
+/* /////////////////////////////
+////////////////////////////////////////////// */
