@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMail } from "react-icons/ai";
 import { IoMdCall } from "react-icons/io";
+import DashboardTopNav from '../../Shared/DashboardTopNav/DashboardTopNav';
 
 const ManageInstructors = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -32,7 +33,17 @@ const ManageInstructors = () => {
 
     return (
         <div className="">
-            <h1 className='text-center text-3xl font-bold p-5 text-[#12C29F] bg-slate-600'>All instructors</h1>
+             <DashboardTopNav></DashboardTopNav>
+      {/* instructor table  */}
+
+      <div className="border p-4">
+      <div className="my-5 mt-4">
+       <h1 className=" text-lg">
+        Instructor Details 
+      </h1>
+      <p className="text-base mb-4">Manage courses posted by Instructors</p>
+      <hr />
+     </div>
             {isSmallScreen ? (
                 // Card for small screens
                <div className='text-start'>
@@ -61,9 +72,9 @@ const ManageInstructors = () => {
                 </div>
             ) : (
                 // Table for large screens
-                <table className="table-auto w-full shadow-md">
+                <table className="table-auto w-full shadow-md text-base text-start">
                     <thead>
-                        <tr className='bg-gray-100 text-[#12C29F] font-bold divide-x-2'>
+                        <tr className='bg-gray-200 text-[#12C29F] text-left  font-bold divide-x-2'>
                             <th className="px-4 py-2 ">SL</th>
                             <th className="px-4 py-2 ">Name</th>
                             <th className="px-4 py-2">Email</th>
@@ -74,7 +85,7 @@ const ManageInstructors = () => {
                     <tbody>
                     {
                       instructors.map((instructor, index)=> <tr
-                      key={instructor._id}
+                      key={instructor._id} className='hover:bg-slate-100 duration-150'
                      >
                         <td className="border px-4 py-2">{index+1}</td>
                         <td className="border px-4 py-2">{instructor.fullName}</td>
@@ -87,6 +98,7 @@ const ManageInstructors = () => {
                     </tbody>
                 </table>
             )}
+      </div>
         </div>
     );
 };
