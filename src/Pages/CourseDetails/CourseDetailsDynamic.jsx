@@ -777,7 +777,7 @@ import { FaCheck } from "react-icons/fa";
 
 
 const CourseDetailsDynamic = () => {
-
+  window.scrollTo(0,0);
   const location = useLocation();
   const { course } = location.state;
 
