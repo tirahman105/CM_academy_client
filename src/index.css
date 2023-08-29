@@ -1,18 +1,147 @@
+/* Google_Font */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Black+Ops+One&family=Bruno+Ace+SC&family=Bungee&family=EB+Garamond:wght@400;500;600;700;800&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Monoton&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=PT+Sans:wght@400;700&family=Pacifico&family=Poppins:wght@200;300;400;500;600;700;800&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Righteous&family=Titillium+Web:wght@200;400;600;700;900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Jost:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-.bg-gradient {
-    background-image: linear-gradient(
-      to bottom,
-      #0488b4,
-    #66e3e8
-    ); /* Change colors as needed */
-  }
-  
-
-.home-container{
-   @apply  max-w-screen-xl mx-auto;
+body {
+  -webkit-font-smoothing: antialiased;
 }
 
+.bg-gradient {
+  background-image: linear-gradient(to bottom, #0488b4, #66e3e8);
+  /* Change colors as needed */
+}
+
+.home-container {
+  @apply max-w-screen-xl mx-auto;
+}
+
+.bgGradient {
+  background-color: #ffdee9;
+  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+}
+
+/* .bgGradient {
+  background-color: #ffdee9;
+  background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+} */
+
+.gradient-custom {
+  background: #97add8;
+  background-image: radial-gradient(
+      at 96% 42%,
+      hsl(219, 73%, 86%) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 95% 40%, hsl(90, 95%, 53%) 0px, transparent 50%),
+    radial-gradient(at 7% 63%, hsl(141, 63%, 56%) 0px, transparent 50%),
+    radial-gradient(at 11% 44%, hsl(215, 20%, 71%) 0px, transparent 50%),
+    radial-gradient(at 44% 18%, hsl(156, 82%, 40%) 0px, transparent 50%);
+}
+.gradient-custom {
+  background-image: linear-gradient(
+    94.3deg,
+    rgba(26, 33, 64, 1) 10.9%,
+    rgba(81, 84, 115, 1) 87.1%
+  );
+}
+
+.g1 {
+  background: #003972;
+  background: -moz-linear-gradient(top, #003972 0%, #001322 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #003972),
+    color-stop(100%, #001322)
+  );
+  background: -webkit-linear-gradient(top, #003972 0%, #001322 100%);
+  background: -o-linear-gradient(top, #003972 0%, #001322 100%);
+  background: -ms-linear-gradient(top, #003972 0%, #001322 100%);
+  background: linear-gradient(to bottom, #003972 0%, #001322 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003972', endColorstr='#001322',GradientType=0 );
+}
+
+
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ;
+}
+
+/* Apply animation to open answers */
+.answer.open {
+  max-height: 1000px; /* Adjust as needed */
+   transition: max-height 0.3s ease-in-out;
+
+}
+
+
+
+
+
+/* default banner */
+.css-selector {
+  opacity: 1;
+
+  /* background-color: #ffd3cf;
+  background-image: linear-gradient(105deg, #ffd3cf 0%, #d3ffec 30%, #fdecd6 59%, #d3ffec 100%); */
+
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% );
+  /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% ); */
+
+  /* background-size: 400% 400%; */
+  /* backdrop-filter: blur(1000px); */
+
+  /* background-color: #D9AFD9;
+  background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%),
+    radial-gradient(at 49% 32%, rgb(194, 65, 12) 0, transparent 83%),
+    radial-gradient(at 20% 62%, rgb(64, 64, 64) 0, transparent 49%),
+    radial-gradient(at 34% 51%, rgb(163, 230, 53) 0, transparent 42%),
+    radial-gradient(at 67% 33%, rgb(74, 222, 128) 0, transparent 68%),
+    radial-gradient(at 8% 26%, rgb(243, 244, 246) 0, transparent 30%); */
+
+  -webkit-animation: AnimationName 21s ease infinite;
+  -moz-animation: AnimationName 21s ease infinite;
+  animation: AnimationName 21s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 61% 0%;
+  }
+  50% {
+    background-position: 40% 100%;
+  }
+  100% {
+    background-position: 61% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 61% 0%;
+  }
+  50% {
+    background-position: 40% 100%;
+  }
+  100% {
+    background-position: 61% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 61% 0%;
+  }
+  50% {
+    background-position: 40% 100%;
+  }
+  100% {
+    background-position: 61% 0%;
+  }
+}

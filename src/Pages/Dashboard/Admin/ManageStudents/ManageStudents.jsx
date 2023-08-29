@@ -69,7 +69,7 @@ const ManageStudents = () => {
                     <tbody>
                     {
                       students.map((student, index)=> <tr
-                      key={student._id}
+                      key={student._id} className='hover:bg-slate-100 duration-150s'
                      >
                         <td className="border px-4 py-2">{index+1}</td>
                         <td className="border px-4 py-2">{student.fullName}</td>

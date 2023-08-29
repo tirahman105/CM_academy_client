@@ -15,7 +15,7 @@ const Main = () => {
 
 
     return (
-        <div>
+        <div className=''>
             {/* Adjust z-index for Navbar */}
 
             {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import InstructorDashBoardHeader from "../InstructorDashboard/InstructorDashBoardHeader";
 
 const MyCourseInstructor = () => {
   const { user } = useContext(AuthContext);
@@ -33,10 +32,7 @@ const MyCourseInstructor = () => {
   console.log(instructorCourses);
   return (
     <div>
-      <InstructorDashBoardHeader></InstructorDashBoardHeader>
-        <h1 className="text-center text-3xl font-bold p-5 text-[#12C29F] bg-slate-600 rounded-md mb-4">
-        My courses
-      </h1>
+      <h2>My Courses</h2>
       <div className="grid grid-cols-3">
         {instructorCourses.map((category) => (
           <div

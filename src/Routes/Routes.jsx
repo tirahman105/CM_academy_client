@@ -38,11 +38,14 @@ import CourseDetailsDynamic from "../Pages/CourseDetails/CourseDetailsDynamic";
 import MyCourses from "../Pages/Dashboard/Student/MyCourses/MyCourses";
 import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/StudentDashboard";
 import InstructorDAshboard from "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard";
+import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
+import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -63,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "/instructor",
         element: <Instructors></Instructors>,
+      },
+      {
+        path: "/instructorProfile",
+        element: <InstructorPublicProfile></InstructorPublicProfile>,
       },
       {
         path: "login",
@@ -89,7 +96,7 @@ const router = createBrowserRouter([
         element: <ForgotPassword></ForgotPassword>,
       },
       {
-        path: "checkout",
+        path: "/checkout/:id",
         element: <CheckOut></CheckOut>,
       },
       {

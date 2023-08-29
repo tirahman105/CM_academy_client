@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import DashboardTopNav from "../../Shared/DashboardTopNav/DashboardTopNav";
 
 const ManageCourse = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [courses, setCourses] = useState([]);
 
+  console.log(courses)
   useEffect(() => {
     fetch("https://cm-academy-test-server-production.up.railway.app/categories")
       .then((response) => response.json())
@@ -28,7 +30,7 @@ const ManageCourse = () => {
   const updateCourseStatus = async (courseId, newStatus) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/categories/${courseId}/approval`,
+        `https://cm-academy-test-server-production.up.railway.app/categories/${courseId}/approval`,
         {
           method: "PUT",
           headers: {
@@ -56,10 +58,19 @@ const ManageCourse = () => {
   };
 
   return (
-    <div className="">
-      <h1 className="text-center text-3xl font-bold p-5 text-[#12C29F] bg-slate-600 rounded-md">
+    <div className=" ">
+      <DashboardTopNav></DashboardTopNav>
+
+      {/* course table  */}
+
+      <div className="border p-4">
+      <div className="my-5 mt-4">
+       <h1 className=" text-lg">
         Manage Courses
       </h1>
+      <p className="text-base mb-4">Manage courses posted by Instructors</p>
+      <hr />
+     </div>
       {isSmallScreen ? (
         <div className="text-start rounded-md">
           {courses.map((course, index) => (
@@ -68,11 +79,11 @@ const ManageCourse = () => {
               className="bg-white shadow-md rounded-lg p-1 m-2"
             >
               <div className="flex gap-4 justify-start py-2 bg-cyan-400 bg-opacity-30 shadow-md rounded-sm relative">
-                <h2 className="text-lg font-semibold h-28 w-4 flex shadow-md items-center justify-center rounded-sm text-white bg-slate-400">
+                <h2 className="h-28 w-4 flex shadow-md items-center justify-center rounded-sm text-white bg-slate-400">
                   {index + 1}
                 </h2>
                 <div>
-                  <h2 className="text-sm font-semibold text-[#12C29F]">
+                  <h2 className="text-sm  text-[#12C29F]">
                     Course Name: {course.title}
                   </h2>
                   <p className="text-gray-500 text-sm">
@@ -114,9 +125,9 @@ const ManageCourse = () => {
           ))}
         </div>
       ) : (
-        <table className="table-auto w-full shadow-md rounded-md">
+        <table className="table-auto w-full shadow-md rounded-md text-base ">
           <thead>
-            <tr className="bg-gray-100 text-[#12C29F] font-bold divide-x-2">
+            <tr className="bg-gray-200 text-[#12C29F] text-left  divide-x-2">
               <th className="px-4 py-2">SL</th>
               <th className="px-4 py-2">Course Name</th>
               <th className="px-4 py-2">Course Category</th>
@@ -127,17 +138,17 @@ const ManageCourse = () => {
           </thead>
           <tbody>
             {courses.map((course, index) => (
-              <tr key={course._id}>
-                <td className="border px-4 py-2 text-center">{index + 1}</td>
-                <td className="border px-4 py-2 text-center">{course.title}</td>
-                <td className="border px-4 py-2 text-center">
+              <tr className="text-left hover:bg-slate-100 duration-150" key={course._id}>
+                <td className="border px-4 py-2 ">{index + 1}</td>
+                <td className="border px-4 py-2">{course.title}</td>
+                <td className="border px-4 py-2">
                   {course.courseCategory}
                 </td>
-                <td className="border px-4 py-2 text-center">Instructor</td>
-                <td className="border px-4 py-2 text-center">
-                  {course.ApprovedStatus}
-                </td>
-                <td className="border px-4 py-2 text-center">
+                <td className="border px-4 py-2">{course.instructor}</td>
+                <td className={`border px-4 py-2 ${course.ApprovedStatus === "Approved" ? "text-green-600" : "text-red-600"}`}>
+  {course.ApprovedStatus}
+</td>
+                <td className="border px-4 py-2">
                   <div className="-z-10 flex gap-3 items-center justify-center text-white text-sm">
                     <button
                       className={`border px-4 py-1 rounded-2xl ${
@@ -171,6 +182,7 @@ const ManageCourse = () => {
           </tbody>
         </table>
       )}
+      </div>
     </div>
   );
 };
