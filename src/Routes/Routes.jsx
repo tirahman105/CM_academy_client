@@ -38,11 +38,13 @@ import CourseDetailsDynamic from "../Pages/CourseDetails/CourseDetailsDynamic";
 import MyCourses from "../Pages/Dashboard/Student/MyCourses/MyCourses";
 import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/StudentDashboard";
 import InstructorDAshboard from "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard";
+import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

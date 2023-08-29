@@ -57,12 +57,18 @@ const ManageCourse = () => {
   };
 
   return (
-    <div className="">
+    <div className=" ">
       <DashboardTopNav></DashboardTopNav>
-     <div>
-       <h1 className=" text-lg  p-5 ">
+
+      {/* course table  */}
+
+      <div className="border p-4">
+      <div className="my-5 mt-4">
+       <h1 className=" text-lg">
         Manage Courses
       </h1>
+      <p className="text-base mb-4">Manage courses posted by Instructors</p>
+      <hr />
      </div>
       {isSmallScreen ? (
         <div className="text-start rounded-md">
@@ -131,16 +137,16 @@ const ManageCourse = () => {
           </thead>
           <tbody>
             {courses.map((course, index) => (
-              <tr className="text-left" key={course._id}>
+              <tr className="text-left hover:bg-slate-100 duration-150" key={course._id}>
                 <td className="border px-4 py-2 ">{index + 1}</td>
                 <td className="border px-4 py-2">{course.title}</td>
                 <td className="border px-4 py-2">
                   {course.courseCategory}
                 </td>
-                <td className="border px-4 py-2">Instructor</td>
-                <td className="border px-4 py-2">
-                  {course.ApprovedStatus}
-                </td>
+                <td className="border px-4 py-2">{course.instructor}</td>
+                <td className={`border px-4 py-2 ${course.ApprovedStatus === "Approved" ? "text-green-600" : "text-red-600"}`}>
+  {course.ApprovedStatus}
+</td>
                 <td className="border px-4 py-2">
                   <div className="-z-10 flex gap-3 items-center justify-center text-white text-sm">
                     <button
@@ -175,6 +181,7 @@ const ManageCourse = () => {
           </tbody>
         </table>
       )}
+      </div>
     </div>
   );
 };
