@@ -65,7 +65,7 @@ const KeySponsor = () => {
                             rel="noopener noreferrer"
                             className="inline-block p-4"
                         >
-                            <img src={sponsor.logo} alt={`${sponsor.name} Logo`} className="w-40 h-40" />
+                            <img src={sponsor.logo} alt={`${sponsor.name} Logo`} className="w-40 h-32" />
                         </a>
                     ))}
                 </Marquee>
