@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import faqAnimation from "../../../assets/faqAnimation.json"
+// import faqAnimation from "../../../assets/faqAnimation.json"
+
+import FAQAnimation from "../../../assets/FAQ.json"
 import Lottie from "lottie-react";
 import { HiMinus, HiPlus } from 'react-icons/hi';
 
@@ -36,11 +38,13 @@ const FAQ = () => {
     };
 
     return (
-        <div className='pt-12 lg:pb-1 home-container'>
-            <h1 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">Frequently Asked Questions</h1>
-            <p className='text-center font-semibold mb-20'>
-                Common questions asked by students and instructors
-            </p>
+        <div className='pt-12 px-2 lg:pb-1 home-container'>
+                        <h1 className="text-4xl font-bold mb-5  font-Poppins">
+            Frequently Asked Questions
+        </h1>
+        <p className=" font-semibold mb-10">
+        Common questions asked by students and instructors
+        </p>
 
             <div className='flex flex-col md:flex-row gap-5'>
                 <div className='w-full mx-auto px-6'>
@@ -51,8 +55,8 @@ const FAQ = () => {
                                 {faqs.map((faq, index) => (
                                     <div
                                         key={index}
-                                        className=" border-b-4  border-b-[#62D4D8] p-4 rounded-md cursor-pointer
-                                         hover:bg-gray-300"
+                                        className=" border-b-4  border-b-[#1bbf723b] p-4 rounded-md cursor-pointer
+                                         hover:bg-[#1bbf723b]"
                                         onClick={() => toggleFAQ(index)}
                                     >
                                         <div className="flex justify-between items-center">
@@ -61,7 +65,7 @@ const FAQ = () => {
                                                 <HiMinus size={25} /> : <HiPlus size={25} />}</span>
 
                                         </div>
-                                        {activeIndex === index && <p className="mt-2 ">{faq.answer}</p>}
+                                        {activeIndex === index && <p className=" ">{faq.answer}</p>}
                                     </div>
                                 ))}
                             </div>
@@ -69,7 +73,7 @@ const FAQ = () => {
                     </div>
                 </div>
                 <div className='w-full h-96  mx-auto lg:px-6'>
-                    <Lottie animationData={faqAnimation} loop={true} />
+                    <Lottie animationData={FAQAnimation} loop={true} />
                 </div>
             </div>
         </div>
