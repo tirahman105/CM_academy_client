@@ -16,6 +16,8 @@ const CourseDetailsDynamic = () => {
   const location = useLocation();
   const { course } = location.state;
 
+  window.scrollTo(0, 0);
+
   const [activeMilestones, setActiveMilestones] = useState(
     course.courseOutline.map(() => false)
   );
