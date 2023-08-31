@@ -6,19 +6,24 @@ import { Link, Outlet } from "react-router-dom";
 import useInstructor from "../Hooks/useInstructor";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import useStudent from "../Hooks/useStudent";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
-  // const [isInstructor] = useInstructor();
+  const [isInstructor] = useInstructor();
+  const [isStudent] = useStudent();
+  const [isAdmin] = useAdmin();
 
-  
-  console.log(user);
+  console.log(
+    "instructor",
+    isInstructor,
+    "student",
+    isStudent,
+    "admin",
+    isAdmin
+  );
   const [open, setOpen] = useState(true);
-  const isAdmin = false;
-
-  const isInstructor = true;
-const isStudent = false;
-
 
   // const handleLogOut = () => {
   //     logOut()
@@ -79,7 +84,11 @@ const isStudent = false;
 
   // ---------------------------------instructor menu----------------------
   const InstructorMenus = [
-    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard/instructor-dashboard" },
+    {
+      title: "Dashboard",
+      icon: <BiSolidDashboard />,
+      src: "/dashboard/instructor-dashboard",
+    },
     {
       title: "My Courses",
       icon: <BiSolidDashboard />,
@@ -185,7 +194,6 @@ const isStudent = false;
                 ))}
               </>
             )}
-
 
             {isInstructor && (
               <>
