@@ -5,10 +5,10 @@ import Lottie from "lottie-react";
 import "./Banner.css";
 const Banner = () => {
   return (
-    <div className="css-selector   relative pt-24">
+    <div className="css-selector   relative pt-24    ">
 
       <div>
-        <div className="area">
+        <div className="area ">
           <ul className="circles">
             <li></li>
             <li></li>
@@ -26,7 +26,6 @@ const Banner = () => {
 
       <div
 
-      //   style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="hero-overlay bg-opacity-50 "></div>
 

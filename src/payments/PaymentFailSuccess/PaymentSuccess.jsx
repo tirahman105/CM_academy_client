@@ -10,7 +10,7 @@ const PaymentSuccess = () => {
     console.log(orders);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://cm-academy-test-server-production.up.railway.app/orders')
             .then(response => response.json())
             .then(data => setOrders(data))
             .catch(error => console.error('Error fetching data:', error));

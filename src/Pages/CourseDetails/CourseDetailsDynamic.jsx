@@ -1,692 +1,291 @@
-import { GrNext } from "react-icons/gr";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
-import { BsPeople } from "react-icons/bs";
-import { BsStopwatch, BsCheckCircle } from "react-icons/bs";
-import { AiFillFacebook, AiFillInstagram, AiFillLinkedin, AiFillTwitterSquare, AiOutlineQuestionCircle } from "react-icons/ai";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { Rating, ThinStar } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
-import { Rating } from '@smastrom/react-rating';
-import '@smastrom/react-rating/style.css';
-
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FaCheck } from "react-icons/fa";
-
+import React, { useState } from "react";
+import { MdCheckCircle, MdLibraryBooks, MdQuiz } from "react-icons/md";
+import { useLocation } from "react-router";
+import "./CourseDetails.css";
+import { HiCurrencyBangladeshi } from "react-icons/hi";
+import { FaPlayCircle } from "react-icons/fa";
+import { PiCertificateFill, PiInfinityDuotone } from "react-icons/pi";
+import MilestoneAccordion from "./MilestoneAccordion";
+import FaqAccordion from "./FaqAccordion";
+import { Link } from "react-router-dom";
 
 const CourseDetailsDynamic = () => {
-
   const location = useLocation();
   const { course } = location.state;
 
-  const { subCourse } = location.state || {};
-  const navigate = useNavigate()
+  const [activeMilestones, setActiveMilestones] = useState(
+    course.courseOutline.map(() => false)
+  );
 
+  const [activeFaq, setActiveFaq] = useState(-1);
 
-
-  console.log(course._id)
-
-  // Function to extract video ID from YouTube URL
-  const extractVideoId = (url) => {
-    const videoIdPattern = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com|\.be)\/(?:watch\?v=|embed\/|v\/)?([^&?/]+)/i;
-    const match = url.match(videoIdPattern);
-    return match && match[1];
+  const myStyles = {
+    itemShapes: ThinStar,
+    activeFillColor: "#ffb700",
+    inactiveFillColor: "#fbf1a9",
   };
 
-  const videoId = extractVideoId(course.courseIntroVideo);
-
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const [activeSection, setActiveSection] = useState('presentation');
-
-
-  const handleNavClick = (section) => {
-    setActiveSection(section);
-    const sectionElement = document.getElementById(section);
-    if (sectionElement) {
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleToggleFaq = (index) => {
+    setActiveFaq((prevActiveFaq) => (prevActiveFaq === index ? -1 : index));
   };
 
-  const handleCheckout = (subCourse) => {
-    navigate("/checkout", { state: { subCourse } });
-    console.log(subCourse);
-  }
-
-
+  const handleToggleMilestone = (index) => {
+    setActiveMilestones((prevActiveMilestones) => {
+      const newActiveMilestones = prevActiveMilestones.map((isActive, i) =>
+        i === index ? !isActive : false
+      );
+      return newActiveMilestones;
+    });
+  };
+  console.log(course);
 
   return (
-    <div className="relative">
+    <div className=" ">
+      {/* Banner section start */}
+      <div className="pt-[74px]   ">
+        <div className=" items-center      flex   css-selector  ">
+          <div className="flex items-center px-4 sm:px-6 py-5 gap-6  max-w-7xl mx-auto ">
+            <div className="sm:w-2/4">
+              <h1 className="text-4xl font-bold font-Lexend leading-10 mb-4 text-gray-700 ">
+                {course.title}
+              </h1>
+              <p className="text-gray-700 font-semibold  font-TitilliumWeb   tracking-wider leading-8">
+                {course.courseDescription}
+              </p>
 
-      {/*Banner section */}
-      <section className={`bg-[#007096] rounded-md ${isSticky ? 'sticky top-0 z-10' : ''}`}>
-        <div className={`py-3 px-4 md:p-6 ${isSticky ? 'hidden' : 'block'}`}>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-            {course.title}
-          </h2>
-          <p className=" mt-1 text-white  md:w-2/4">
-          {course.courseDescription.split(' ').slice(0, 50).join(' ')}.
-          </p>
-          <div className="flex gap-3 items-center">
-
-            <p className="mt-2 flex items-center gap-2 md:gap-3">
-              <span className="text-white text-base md:text-xl">5</span>
-              <Rating className="" style={{ maxWidth: 120 }} value={5} readOnly />
-            </p>
-            <p className="text-lg md:text-xl text-white mt-2 text-semibold sm:w-[100px]">৳ <span className="ml-2">{course.coursePrice}</span></p>
-
-          </div>
-
-
-          <div className="overflow-x-hidden">
-            <nav className="bg-gray-300 fixed top-[280px] w-full md:top-[395px] md:w-[70%] lg:top-[268px] lg:w-[60%] xl:top-[268px] xl:w-[50%] hover-scroll rounded-md">
-              <ul className="flex gap-6 md:gap-12 text-blue-500 p-2">
-                <li
-                  onClick={() => handleNavClick('learn')}
-                  className={`cursor-pointer text-xl font-bold ${activeSection === 'learn' ? 'text-black font-bold text-xl' : ''
-                    }`}
-                >
-                  Learn
-                </li>
-                <li
-                  onClick={() => handleNavClick('details')}
-                  className={`cursor-pointer text-xl font-bold ${activeSection === 'details' ? 'text-black font-bold text-xl' : ''
-                    }`}
-                >
-                  Details
-                </li>
-                <li
-                  onClick={() => handleNavClick('content')}
-                  className={`cursor-pointer text-xl font-bold ${activeSection === 'content' ? 'text-black font-bold text-xl' : ''
-                    }`}
-                >
-                  Content
-                </li>
-                <li
-                  onClick={() => handleNavClick('payment')}
-                  className={`cursor-pointer text-xl font-bold ${activeSection === 'payment' ? 'text-black font-bold text-xl' : ''
-                    }`}
-                >
-                  Payment
-                </li>
-                <li
-                  onClick={() => handleNavClick('faq')}
-                  className={`cursor-pointer text-xl font-bold ${activeSection === 'faq' ? 'text-black font-bold text-xl' : ''
-                    }`}
-                >
-                  FAQ
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-        </div>
-        {isSticky && (
-          <div className="py-2 px-4 md:p-6">
-            <h2 className=" md:text-xl lg:2xl font-bold text-white">
-              {course.title}
-            </h2>
-
-
-
-            <div className="md:flex items-center gap-4">
-
-              <div>
-                <p className="mt-2 flex items-center gap-2 md:gap-3">
-
-                  <Rating className="" style={{ maxWidth: 100 }} value={5} readOnly />
-                </p>
-              </div>
-              <div className="">
-                <p className="text-white mt-2  font-semibold ">৳ <span className="ml-2">{course.coursePrice}</span></p>
-              </div>
-
-              <div className="text-white mt-2  font-semibold ">
-                <p className="flex gap-1 items-center">
-                  <BsPeople></BsPeople>
-                  Enrolled: <span>10 Students</span> </p>
-              </div>
-
-            </div>
-
-            <div className=" lg:hidden gap-3 ">
-
-              <div>
-              <Link to={`/checkout/${course._id}`} className="mt-5 bg-blue-500 text-white p-3 w-full font-bold rounded-md">
-                  Enroll Now
-                </Link>
-              </div>
-
-              <div className=" flex xl:hidden  text-white  gap-2 items-center  mt-3">
-                <p className="font-semibold  md:w-[200px]">Share this Course: </p>
-                <div className="flex sm:w-3/4 md:mx-auto md:1/5  gap-1">
-                  <AiFillFacebook className="text-2xl  "></AiFillFacebook>
-                  <AiFillInstagram className="text-2xl"></AiFillInstagram>
-                  <AiFillLinkedin className="text-2xl"></AiFillLinkedin>
-                  <AiFillTwitterSquare className="text-2xl"></AiFillTwitterSquare>
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-            <nav className="bg-gray-300 fixed top-[228px] md:top-[204px] lg:top-[108px]  w-[1000px]">
-              <ul className="flex gap-6 md:gap-12   text-blue-500 p-2">
-
-                <li onClick={() => handleNavClick('learn')} className={`cursor-pointer text-xl font-bold ${activeSection === 'learn' ? 'text-black font-bold text-xl' : ''}`}>Learn</li>
-                <li onClick={() => handleNavClick('details')} className={`cursor-pointer text-xl font-bold ${activeSection === 'details' ? 'text-black font-bold text-xl' : ''}`}>Details</li>
-                <li onClick={() => handleNavClick('content')} className={`cursor-pointer text-xl font-bold ${activeSection === 'content' ? 'text-black font-bold text-xl' : ''}`}>Content</li>
-                <li onClick={() => handleNavClick('payment')} className={`cursor-pointer text-xl font-bold ${activeSection === 'payment' ? 'text-black font-bold text-xl' : ''}`}>Payment</li>
-               
-                <li onClick={() => handleNavClick('faq')} className={`cursor-pointer text-xl font-bold ${activeSection === 'faq' ? 'text-black font-bold text-xl' : ''}`}>FAQ</li>
-              </ul>
-            </nav>
-          </div>
-
-        )}
-
-      </section>
-
-
-
-      <div className=" flex flex-col-reverse md:flex-row gap-4 md:gap-10 xl:gap-16 pr-4 pl-4 md:pr-10 md:pl-10 mt-10">
-        <div className="w-full md:w-3/5 lg:w-3/5 overflow-y-auto">
-
-
-          {/*instructor section */}
-          <section id="instructor" className="mt-10   ">
-            <h2 className="text-2xl font-bold">Course Instructor</h2>
-            <div className="border rounded-md p-10 flex gap-10 items-center mt-5">
-              <div>
-                <img
-                  className="w-20 h-20 rounded-full"
-                  src="https://cdn.discordapp.com/attachments/1139410376035930184/1139410449444642996/186503160_10219069026867086_5494482271146422387_n-removebg-preview.png"
-                  alt=""
+              <div className="flex items-center gap-2 font-bold">
+                <Rating
+                  className=""
+                  style={{ maxWidth: 100 }}
+                  value={4.5}
+                  readOnly
                 />
+                <p className="text-[#13ac64]">4.5 (15)</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Banner section end */}
+
+      {/* Instructor section start */}
+      <div className="max-w-7xl mx-auto px-4  ">
+        <div className="">
+          <div className=" mt-12  ">
+            <div className="sm:flex  items-center px-6 py-5 gap-6 sm:w-[55%] border-2 relative rounded-lg ">
+              <div className="bg-[#1bbf7259] absolute backdrop-blur-md top-0 left-0 px-4 shadow-sm rounded-r-md shadow-[#1bbf7283]  ">
+                <h1 className="font-bold text-gray-700 ">Course Instructor</h1>{" "}
+              </div>
+              <img
+                className="h-28 sm:w-28 "
+                src="https://cdn.discordapp.com/attachments/1139410376035930184/1139410449444642996/186503160_10219069026867086_5494482271146422387_n-removebg-preview.png"
+                alt=""
+              />
+
               <div>
-                <h4 className="flex items-center gap-2">
+                <h1 className="text-2xl font-bold font-Lexend leading-10 ">
                   {course.instructor}
-                  <Link to="/">
-                    <GrNext></GrNext>
-                  </Link>{" "}
-                </h4>
-                <p>Forbes 30 Under 30;</p>
-                <p>Founder & CEO, CM Academy</p>
-                <p>Young Leader;</p>
-                <p>Doctor</p>
-              </div>
-            </div>
-          </section>
-
-          {/*outcome  section */}
-          <section id="learn" className="mt-10">
-            <h2 className="text-2xl font-bold">What will you learn from this course?</h2>
-            <div className="border rounded-md p-5 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-start mt-5">
-              {course.whatYouWillLearn.map((learnItem, index) => (
-                <div key={index} className="flex gap-4 items-center">
-                  <BsCheckCircle className="text-2xl text-green-500" />
-                  <p className="text-sm md:text-base">{learnItem}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-
-
-          {/* Who it the course for */}
-
-
-          <section id="whoIsCourseFor" className="mt-10">
-            <h2 className="text-2xl font-bold mb-4">Who is this course for?</h2>
-
-            <div className="bg-blue-100 p-6 rounded-md">
-              <div className="flex items-center gap-4">
-                <p className="text-lg text-gray-800">
-                  <span className="font-semibold">This course is designed for:</span> {course.whoIsCourseFor}
+                </h1>
+                <p className="text-gray-600 font-Lexend font-semibold text-sm">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Corrupti expedita nostrum exercitationem quibusdam adipisci,
+                  harum minus quo impedit consectetur doloribus?
                 </p>
               </div>
             </div>
-          </section>
+          </div>
+          {/* Instructor section end */}
 
+          {/* What u will learn session start */}
 
-
-
-
-          {/* Nedd to join class section */}
-
-
-          <section id="need" className="mt-10">
-            <h2 className="text-2xl font-bold mb-4">Everything you need to do the course</h2>
-            <div className="border rounded-md p-6 space-y-4 mt-5">
-              {course.courseRequirements.map((requirement, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-500 text-white">
-                    <FaCheck className="text-lg" />
+          <div className="max-w-7xl mx-auto mt-12  mb-16  ">
+            <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">
+              What You Will Learn
+            </h1>
+            <div className=" px-6 py-5  sm:w-[55%] border-2 rounded-lg ">
+              <div className="grid  gap-4 ">
+                {course.whatYouWillLearn.map((learn, index) => (
+                  <div className="flex items-center gap-3" key={index}>
+                    <MdCheckCircle className=" text-[#1bbf72f3] "></MdCheckCircle>
+                    <p className="text-sm text-gray-700 font-semibold ">
+                      {learn}
+                    </p>
                   </div>
-                  <p className="text-sm">{requirement}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* What u will learn session end */}
+        </div>
+        {/* course Card start */}
+
+        <div className="hidden md:block sticky   inset-0 -mt-96  mr-6   float-right backdrop-blur-lg">
+          <div className="max-w-7xl  mb-48 h-[600px] border w-[334px] boxShadow rounded-lg  ">
+            <img
+              className="w-[334px] rounded-lg mb-4"
+              src={course.courseThumbnail}
+              alt=""
+            />
+
+            <div className="px-4">
+              <div className="flex items-center  gap-1 ">
+                <HiCurrencyBangladeshi className="text-[#1bbf72fa] text-3xl"></HiCurrencyBangladeshi>
+                <p className="font-bold font-Lexend leading-10  text-gray-700 text-2xl ">
+                  {course.coursePrice} Tk
+                </p>
+              </div>
+              <div className=" mt-7 w-full">
+                <Link to={`/checkout/${course._id}`}>
+                  <button
+                    className=" w-full bg-[#258d5c11] font-Lexend text-lg border-2 font-bold py-[9px]  rounded-md px-4  hover:css-selector  hover:border-[#1bbf7246] duration-500 
+                  text-gray-700 boxShadowBtn "
+                  >
+                    {" "}
+                    Enroll Now
+                  </button>
+                </Link>
+                <p className="text-center font-Lexend text-gray-500 text-[12px] mt-2">
+                  30-Day Money-Back Guarantee
+                </p>
+              </div>{" "}
+              {/* ///////// */}
+              <div className="mt-3">
+                <div className="flex items-center  gap-1 ">
+                  <FaPlayCircle className="text-[#1bbf72fa] "></FaPlayCircle>
+                  <p className="font-bold font-Lexend leading-10  text-gray-700 ">
+                    7 Hours Video
+                  </p>
+                </div>
+                <div className="flex items-center  gap-1 ">
+                  <MdQuiz className=" text-[#1bbf72fa]"></MdQuiz>
+                  <p className="font-bold font-Lexend leading-10  text-gray-700 ">
+                    10 Quiz
+                  </p>
+                </div>
+                <div className="flex items-center  gap-1 ">
+                  <MdLibraryBooks className="text-[#1bbf72fa] "></MdLibraryBooks>
+                  <p className="font-bold font-Lexend leading-10  text-gray-700 ">
+                    7 Lecture
+                  </p>
+                </div>
+                <div className="flex items-center  gap-1 ">
+                  <PiCertificateFill className=" text-[#1bbf72fa]"></PiCertificateFill>
+                  <p className="font-bold font-Lexend leading-10  text-gray-700 ">
+                    Certification of Completion
+                  </p>
+                </div>
+                <div className="flex items-center  gap-1 ">
+                  <PiInfinityDuotone className=" text-[#1bbf72fa]"></PiInfinityDuotone>
+                  <p className="font-bold font-Lexend leading-10  text-gray-700 ">
+                    Full lifetime access
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* course Card End */}
+
+        {/* MilestoneAccordion start */}
+        <MilestoneAccordion
+          courseOutline={course.courseOutline}
+          activeMilestones={activeMilestones}
+          handleToggleMilestone={handleToggleMilestone}
+        />
+        {/* MilestoneAccordion End */}
+
+        {/* Course Requirement start */}
+
+        <div className="max-w-7xl mx-auto mt-12  mb-16  ">
+          <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">
+            Course Requirement
+          </h1>
+          <div className=" px-6 py-5  sm:w-[55%] border-2 rounded-lg ">
+            <div className="grid  gap-4 ">
+              {course.courseRequirements.map((learn, index) => (
+                <div className="flex items-center gap-3" key={index}>
+                  <MdCheckCircle className=" text-[#1bbf72f3] "></MdCheckCircle>
+                  <p className="text-sm text-gray-700  font-semibold">
+                    {learn}
+                  </p>
                 </div>
               ))}
             </div>
-          </section>
-
-
-          {/* Details course section */}
-          <section id="content" className="mt-10">
-            <h2 className="text-2xl font-bold">Course Contents</h2>
-            <div className="border rounded-md p-10 grid grid-cols-1 gap-6 items-center mt-5">
-              <div className="join join-vertical w-full">
-                {course.courseOutline.map((outlineItem, index) => (
-                  <div key={index}>
-                    {outlineItem.sessions.map((session, sessionIndex) => (
-                      <div key={sessionIndex} className="collapse collapse-arrow join-item border-b border-b-base-300">
-                        <input type="radio" name={`my-accordion-${index}`} checked={sessionIndex === 0} />
-                        <div className="collapse-title text-xl font-medium">
-                          {session.sessionTitle}
-                        </div>
-                        <div className="collapse-content">
-                          <p>{session.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-
-
-
-          {/*  Preview course section */}
-          {/* <section id="content" className="mt-10   ">
-            <h2 className="text-2xl font-bold">কন্টেন্ট প্রিভিউ</h2>
-            <div className="border rounded-md p-10 flex gap-10 items-center mt-5">
-              <div className="join join-vertical w-full">
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Chapter 01 - How to Start A Presentation
-                  </div>
-                  <div className="collapse-content">
-                    <div className="flex gap-2 items-center">
-                      <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                      <p className="">Video: </p>
-                      <p>How to start A presentation </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Chapter 02 - How to End A Presentation
-                  </div>
-                  <div className="collapse-content">
-                    <div className="flex gap-2 items-center">
-                      <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                      <p className="">Video: </p>
-                      <p>How to End A presentation </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Quiz 01
-                  </div>
-                  <div className="collapse-content">
-                    <div className="flex gap-2 items-center">
-                      <MdOutlineQuiz className="text-2xl"></MdOutlineQuiz>
-                      <p className="">Quiz 01</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Chapter 03 - Transition in A presentation
-                  </div>
-                  <div className="collapse-content">
-                    <div className="flex gap-2 items-center">
-                      <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                      <p className="">Video: </p>
-                      <p>Transition in A presentation</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Chapter 04 - Eye Contact in presentation
-                  </div>
-                  <div className="collapse-content">
-                    <div className="flex gap-2 items-center">
-                      <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                      <p className="">Video: </p>
-                      <p> Eye Contact in presentation</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> */}
-
-
-
-
-
-          {/*   Payment section */}
-          <section id='payment' className="mt-10   ">
-            <h2 className="text-2xl font-bold">How to enroll for course?</h2>
-            <div className="border rounded-md p-10   mt-5">
-              <p>
-                Watch{" "}
-                <a className="underline text-blue-500" href="VIDEO_URL_HERE">
-                  this video
-                </a>{" "}
-                for details on how to pay.
-              </p>
-
-
-            </div>
-          </section>
-
-          {/*   Certificate section */}
-          {/* <section id='certificate' className="mt-10   ">
-            <h2 className="text-2xl font-bold">Course Certificate</h2>
-            <div className="border rounded-md p-10 grid grid-cols-1  gap-10 items-center mt-5">
-              <p>
-
-                When you complete the course successfully, you will receive a certificate.
-              </p>
-
-
-              <div className="border rounded-md">
-                <img
-                  src="https://cdn.discordapp.com/attachments/1135483790559543406/1141262574592217178/wepik-black-white-and-gray-modern-certificate-202308151757271rCP.jpeg"
-                  alt=""
-                />
-              </div>
-            </div>
-          </section> */}
-
-
-
-          {/*  Ask Question  section */}
-
-          <section id='faq' className="mt-10   ">
-            <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-            <div className="border rounded-md p-10 flex gap-10 items-center mt-5">
-              <div className="join join-vertical w-full">
-                {course.faq.map((faqItem, index) => (
-                  <div key={index} className="collapse collapse-arrow join-item border-b border-b-base-300">
-                    <input type="radio" name={`my-accordion-${index}`} checked={index === 0} />
-                    <div className="collapse-title text-xl font-medium">
-                      {faqItem.question}
-                    </div>
-                    <div className="collapse-content">
-                      <p>{faqItem.answer}</p>
-                    </div>
-                  </div>
-                ))}
-
-                {/* <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Will the certificate expire?
-                  </div>
-                  <div className="collapse-content">
-                    <p>
-                      Your certificate never expires, you can use the
-                      certificate whenever you want at your convenience.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    How do i report a technical issue?
-                  </div>
-                  <div className="collapse-content">
-                    <p>
-                      In case of any problem, call: 16910 Email:
-                      support@cmacademy.com or fill this form:
-                      https://forms.gle/buwAfFXP8V6c7gbY7
-                    </p>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    Forgot password/how to change password?
-                  </div>
-
-                  <div className="collapse-content">
-                    <p>
-                      - If you forget your password, click Forgot Password below
-                      when logging in. Click on the option
-                    </p>
-                    <p>
-                      {" "}
-                      Enter the 4 digit OTP code received on your phone number
-                      or email and click on the Submit button
-                    </p>
-                    <p>
-                      Now enter your new password and click on the Submit
-                      button. If you want to change your password in the future,
-                      you can set a new password from the Change Password option
-                      in your profile.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    How can I contact you?
-                  </div>
-                  <div className="collapse-content">
-                    <p>
-                      Call 16910 for any query or problem. Our student advisors
-                      will help you with any need.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="collapse collapse-arrow join-item border-b border-b-base-300">
-                  <input type="radio" name="my-accordion-4" checked="checked" />
-                  <div className="collapse-title text-xl font-medium">
-                    How long is the duration of the course?
-                  </div>
-                  <div className="collapse-content">
-                    <p>
-                      Any ten minute school skills free and paid course duration
-                      is 6 months. After 6 months you will be unenrolled from
-                      the course. After the expiry of the period you can extend
-                      the period maximum once, after the extension period the
-                      course access will be lost.
-                    </p>
-                  </div>
-                </div> */}
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
 
-        {/*   Video add  section */}
-        <div className="md:w-[270px] lg:w-[330px] xl:w-[400px]   md:fixed top-20 right-5   lg:right-10 xl:right:20 h-full overflow-y-auto md:z-10">
-          <div className="aspect-[16/9] ">
-            <iframe
-              className="w-full h-full rounded-t-md"
-              src={`https://www.youtube.com/embed/${videoId}`}
-              title="YouTube Video"
-              allowFullScreen
-            ></iframe>
-          </div>
-          {/*   information  section */}
-          <div className="md:border border-gray-300 md:p-10    ">
-            {/*   First information  section */}
-            <div>
-              <h2 className=" mt-4 text-3xl">
-                {" "}
-                <span className="font-bold">৳0 </span> <s>৳2500</s>{" "}
-              </h2>
-              <button className="mt-5 bg-blue-500 text-white p-3 md:w-40 font-bold rounded-md">
-              <Link to={`/checkout/${course._id}`}>
-                  Enroll Now
-                </Link>
-              </button>
-            </div>
-            {/*    Second information  section */}
+        {/* Course Requirement end */}
 
-            <div className="mt-5">
-              <div className="flex gap-4  ">
-                <BsPeople className="text-2xl"></BsPeople>
-                <p>6 people are doing the course</p>
-              </div>
+        {/* Who are suitable for this course start */}
 
-              <div className="flex gap-4  mt-3">
-                <BsStopwatch className="text-2xl"></BsStopwatch>
-                <p>It will take 2 hours</p>
+        <div className="max-w-7xl mx-auto mt-12  mb-16  ">
+          <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">
+            Who Are Suitable For This Course
+          </h1>
+          <div className=" px-2 py-2  sm:w-[55%] border-2 rounded-lg ">
+            <div className="grid  gap-4 ">
+              <div className="flex items-center gap-3">
+                <p className="text-sm text-gray-600 font-semibold  bg-[#1bbf721c] px-5 py-2 rounded-md ">
+                  {course.whoIsCourseFor}
+                </p>
               </div>
-
-              <div className="flex gap-4  mt-3">
-                <MdOutlineSlowMotionVideo className="text-2xl"></MdOutlineSlowMotionVideo>
-                <p>10 videos</p>
-              </div>
-
-              <div className="flex gap-4  mt-3">
-                <AiOutlineQuestionCircle className="text-2xl"></AiOutlineQuestionCircle>
-                <p>16 sets of quizzes</p>
-              </div>
-            </div>
-            <div className="hidden  md:block md:mx-auto   xl:mx-0 xl:flex mt-3 w-[700px] xl:w-full ">
-              <p className="font-bold  w-3/5">Share this Course: </p>
-              <div className="flex w-3/5    gap-1">
-                <AiFillFacebook className="text-2xl"></AiFillFacebook>
-                <AiFillInstagram className="text-2xl"></AiFillInstagram>
-                <AiFillLinkedin className="text-2xl"></AiFillLinkedin>
-                <AiFillTwitterSquare className="text-2xl"></AiFillTwitterSquare>
-              </div>
-
             </div>
           </div>
+        </div>
 
-          {/*   Third information  section */}
+        {/* Who are suitable for this course end */}
 
-          <div className="mt-5 flex justify-between">
-            <p>For details about the course</p>
-            <p className="flex gap-3 text-xl items-center text-blue-500">
-              <BsFillTelephoneFill></BsFillTelephoneFill>
-              <a className="underline text-blue-500" href="">
-                {" "}
-                Call(16910)
-              </a>
-            </p>
+        {/* FaqAccordion start */}
+        <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">FAQ</h1>
+        <FaqAccordion
+          faqData={course.faq}
+          activeFaq={activeFaq}
+          handleToggleFaq={handleToggleFaq}
+        />
+        {/* FaqAccordion start */}
+      </div>
+      {/* /////////////////content end */}
+
+      {/* ///////bottom badge bar start */}
+      <div className="bg-[#242527] h-16 sm:h-auto w-full fixed sm:static bottom-0 z-[1000] sm:block ">
+        <div className="sm:max-w-7xl  mx-auto px-4 sm:py-2 flex justify-between items-center">
+          <div className="">
+            <h1 className="sm:text-3xl font-bold font-Lexend sm:leading-10 sm:mb-4 text-white ">
+              {course.title}
+            </h1>
+            <div className="flex items-center gap-1 font-bold">
+              <Rating
+                className=""
+                style={{ maxWidth: 70 }}
+                value={4.5}
+                readOnly
+                itemStyles={myStyles}
+              />
+              <p className="text-[#13ac64]">4.5 (137)</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex items-center  gap-1 ">
+              <HiCurrencyBangladeshi className="text-white sm:text-3xl"></HiCurrencyBangladeshi>
+              <p className="font-bold font-Lexend sm:leading-10  text-white sm:text-2xl ">
+                {course.coursePrice} Tk
+              </p>
+            </div>
+            <button
+              className=" css-selector font-Lexend text-sm sm:text-lg border-2 font-bold py-[4px]  rounded-md sm:px-5 px-2  hover:css-selector  hover:border-[#1bbf7246] duration-500 
+                text-gray-700 boxShadowBtn "
+            >
+              {" "}
+              Enroll Now
+            </button>
           </div>
         </div>
       </div>
-
-      {/* releted course section */}
-      <div>
-
-        <div className="grid grid-cols-1    lg:grid-cols-2   w-3/5 md:w-3/5 lg:w-3/5   p-4 lg:gap-10">
-
-
-          <div className="md:flex justify-center items-center lg:block w-80 md:w-auto     lg:card   xl:w-96 bg-base-100 shadow-xl mt-10 px-10">
-            <div className="md:flex lg:block lg:card   justify-center items-center">
-              <figure>
-                <img className=" rounded-t-xl md:w-auto"
-                  src="https://10minuteschool.com/_next/image/?url=https%3A%2F%2Fcdn.10minuteschool.com%2Fmd%2Fimages%2Fthumbnails%2Fskills%2Ffacebook-marketing-course-thumbnail-by-ayman-sadiq-sadman-sadik-16x9.jpg&w=384&q=75"
-                  alt="Shoes"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="text-xl font-bold">Facebook Marketinng</h2>
-                <p>Raqibur Rahman Roni , Samsul Alom Asif</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold  ml-8 md:ml-0 lg:ml-8  mb-3 md:mb-0 lg:mb-3">৳ 1250</p>
-
-          </div>
-          <div className="md:flex justify-center items-center lg:block w-80 md:w-auto     lg:card   xl:w-96 bg-base-100 shadow-xl mt-10 px-10">
-            <div className="md:flex lg:block lg:card   justify-center items-center">
-              <figure>
-                <img className=" rounded-t-xl md:w-auto"
-                  src="https://10minuteschool.com/_next/image/?url=https%3A%2F%2Fcdn.10minuteschool.com%2Fmd%2Fimages%2Fthumbnails%2Fskills%2Ffacebook-marketing-course-thumbnail-by-ayman-sadiq-sadman-sadik-16x9.jpg&w=384&q=75"
-                  alt="Shoes"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="text-xl font-bold">Facebook Marketinng</h2>
-                <p>Raqibur Rahman Roni , Samsul Alom Asif</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold  ml-8 md:ml-0 lg:ml-8  mb-3 md:mb-0 lg:mb-3">৳ 1250</p>
-
-          </div>
-
-          <div className="md:flex justify-center items-center lg:block w-80 md:w-auto     lg:card   xl:w-96 bg-base-100 shadow-xl mt-10 px-10">
-            <div className="md:flex lg:block lg:card   justify-center items-center">
-              <figure>
-                <img className=" rounded-t-xl md:w-auto"
-                  src="https://10minuteschool.com/_next/image/?url=https%3A%2F%2Fcdn.10minuteschool.com%2Fmd%2Fimages%2Fthumbnails%2Fskills%2Ffacebook-marketing-course-thumbnail-by-ayman-sadiq-sadman-sadik-16x9.jpg&w=384&q=75"
-                  alt="Shoes"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="text-xl font-bold">Facebook Marketinng</h2>
-                <p>Raqibur Rahman Roni , Samsul Alom Asif</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold  ml-8 md:ml-0 lg:ml-8  mb-3 md:mb-0 lg:mb-3">৳ 1250</p>
-
-          </div>
-
-          <div className="md:flex justify-center items-center lg:block w-80 md:w-auto     lg:card   xl:w-96 bg-base-100 shadow-xl mt-10 px-10">
-            <div className="md:flex lg:block lg:card   justify-center items-center">
-              <figure>
-                <img className=" rounded-t-xl md:w-auto"
-                  src="https://10minuteschool.com/_next/image/?url=https%3A%2F%2Fcdn.10minuteschool.com%2Fmd%2Fimages%2Fthumbnails%2Fskills%2Ffacebook-marketing-course-thumbnail-by-ayman-sadiq-sadman-sadik-16x9.jpg&w=384&q=75"
-                  alt="Shoes"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="text-xl font-bold">Facebook Marketinng</h2>
-                <p>Raqibur Rahman Roni , Samsul Alom Asif</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold  ml-8 md:ml-0 lg:ml-8  mb-3 md:mb-0 lg:mb-3">৳ 1250</p>
-
-          </div>
-
-        </div>
-
-
-      </div>
+      {/* ///////bottom badge bar end */}
     </div>
   );
 };
