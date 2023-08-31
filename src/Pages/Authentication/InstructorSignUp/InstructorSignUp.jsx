@@ -90,7 +90,7 @@ const InstructorSignUp = () => {
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         {/* Form on the right side */}
-        <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-[#1bbf721e] border-2 border-[#1bbf726c]">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -172,7 +172,7 @@ const InstructorSignUp = () => {
 
             <div className="form-control mt-6">
               <input
-                className="btn btn-success"
+                className="bg-[#1BBF72] py-2 rounded-md shadow-md text-lg font-bold border-2 text-white font-Poppins"
                 type="submit"
                 value="Sign up "
               />
@@ -189,10 +189,14 @@ const InstructorSignUp = () => {
 
         {/* Login text on the left side */}
         <div className="text-center md:w-1/2 lg:text-center">
-          <h1 className="text-5xl font-bold">Come teach with us!</h1>
+          {/* <h1 className="text-5xl font-bold">Come teach with us!</h1> */}
+          <h1 className="text-3xl lg:text-6xl  font-bold text-[#191a19] font-LeagueSpartan">
+              Come <span className="text-[#1BBF72]">Teach</span>{" "}
+              with Us
+            </h1>
 
          <div className="px-24">
-         <img src="https://i.ibb.co/685K12g/job-hiring-concept-illustration-251005-489-removebg-preview.png" alt="" />
+         <img className="h-[400px] w-[700px]" src="https://i.ibb.co/685K12g/job-hiring-concept-illustration-251005-489-removebg-preview.png" alt="" />
          </div>
         </div>
       </div>
