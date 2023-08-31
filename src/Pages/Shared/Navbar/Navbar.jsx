@@ -14,6 +14,8 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
 
+  console.log(user)
+
   return (
     // bg-opacity-70 backdrop-blur-lg  fixed left-0 right-0  px-4 mx-auto rounded-md   bg-gray-100 shadow-sm
     // bg-opacity-100 backdrop-blur-lg  fixed left-0 right-0 max-w-[1300px] px-4 mx-auto rounded-md border-2 border-[#1bbf7218] bg-[#1bbf7218] shadow-md

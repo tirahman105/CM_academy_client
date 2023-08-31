@@ -1,9 +1,13 @@
- 
+import Lottie from "lottie-react";
+import supportAnimation from "../../../assets/CallCenter.json"
 const Support = () => {
   return (
     <div className="mt-5 md:mt-10 lg:mt-20 grid grid-cols-1 md:grid-cols-2 items-center gap-5 md:gap-10">
     <div className="mx-auto">
-        <img src="https://www.localexposure.co.uk/wp-content/uploads/2020/05/website-support-nottingham.png" alt="" className="w-full" />
+        {/* <img src="https://www.localexposure.co.uk/wp-content/uploads/2020/05/website-support-nottingham.png" alt="" className="w-full" /> */}
+
+        <Lottie animationData={supportAnimation} loop={true} />
+
     </div>
     <div className="w-full mx-auto text-center px-4 lg:px-8">
         <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">You won’t have to do it alone</h2>
