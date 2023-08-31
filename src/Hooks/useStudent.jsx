@@ -15,13 +15,16 @@ const useStudent = () => {
       }
 
       try {
-        const response = await fetch(`https://cm-academy-test-server-production.up.railway.app/users/student/${user.email}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // Include any necessary authentication headers here
-          },
-        });
+        const response = await fetch(
+          `https://cm-academy-test-server-production.up.railway.app/users/student/${user.email}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              // Include any necessary authentication headers here
+            },
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();

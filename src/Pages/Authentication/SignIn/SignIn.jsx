@@ -46,10 +46,10 @@ const SignIn = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         {/* Form on the right side */}
-        <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-[#1bbf721e] border-2 border-[#1bbf726c]">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -92,7 +92,7 @@ const SignIn = () => {
               <p className="text-xs px-1 font-semibold text-red-600">{error}</p>
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-success" type="submit" value="Login" />
+              <input className="bg-[#1BBF72] py-2 rounded-md shadow-md text-lg font-bold border-2 text-white font-Poppins" type="submit" value="Login" />
             </div>
             <GoogleSignin></GoogleSignin>
             <FacebookSignIn></FacebookSignIn>
@@ -107,9 +107,9 @@ const SignIn = () => {
         </div>
 
         {/* Login text on the left side */}
-        <div className="text-center md:w-1/2 lg:text-center bg-[#A5CAD3] m-5 p-24">
+        <div className="text-center md:w-1/2 lg:text-center  m-5 p-24">
           <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
+          <p className="py-6 font-Poppins">
             Step into a realm of seamless access and personalized experiences.
             Your journey awaits—login now to embark on an adventure of discovery
             and connection. Embrace the power of Provident, where your desires

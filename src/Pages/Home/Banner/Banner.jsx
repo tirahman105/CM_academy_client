@@ -1,13 +1,14 @@
 import { Typewriter, Cursor } from "react-simple-typewriter";
-import BannerLottie from "../../../assets/Banner.json";
+// import BannerLottie from "../../../assets/Banner.json";
+import AnimationBanner from '../../../assets/cm_banner.json'
 import Lottie from "lottie-react";
 import "./Banner.css";
 const Banner = () => {
   return (
-    <div className="css-selector   relative pt-24">
+    <div className="css-selector   relative pt-24    ">
 
       <div>
-        <div className="area">
+        <div className="area ">
           <ul className="circles">
             <li></li>
             <li></li>
@@ -25,7 +26,6 @@ const Banner = () => {
 
       <div
 
-      //   style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="hero-overlay bg-opacity-50 "></div>
 
@@ -65,7 +65,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="  w-52   lg:w-1/2 mx-auto lg:px-6  animate-pulse">
-            <Lottie animationData={BannerLottie} loop={true} />
+            <Lottie animationData={AnimationBanner} loop={true} />
           </div>
         </div>
       </div>

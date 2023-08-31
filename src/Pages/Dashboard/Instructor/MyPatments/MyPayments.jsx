@@ -16,11 +16,11 @@ const MyPayments = () => {
     useEffect(() => {
         const fetchPaymentHistory = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/orders`);
+                const response = await fetch(`https://cm-academy-test-server-production.up.railway.app/orders`);
                 const data = await response.json();
 
                 // Filter payment history based on user's email
-                const instructorPaymentHis = data.filter(order => order?.course?.instructorEmail === user?.email);
+                const instructorPaymentHis = data.filter(order => order?.course?.instructorEmail == user?.email);
                 setInstructorPayment(instructorPaymentHis);
             } catch (error) {
                 console.error('Error fetching payment history:', error);
@@ -28,6 +28,9 @@ const MyPayments = () => {
         };
         fetchPaymentHistory();
     }, [user]);
+
+
+    console.log(instructorPayment)
 
 
 

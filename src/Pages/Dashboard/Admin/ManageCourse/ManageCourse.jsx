@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import DashboardTopNav from "../../Shared/DashboardTopNav/DashboardTopNav";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 
 const ManageCourse = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [courses, setCourses] = useState([]);
+  const itemsPerPage = isSmallScreen ? 3 : 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPageCount = Math.ceil(courses.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage - 1; // Calculate the last index of the displayed range
+  const visibleCourses = courses.slice(startIndex, endIndex + 1); // Adjust the visibleCourses range
 
-  console.log(courses)
+
   useEffect(() => {
     fetch("https://cm-academy-test-server-production.up.railway.app/categories")
       .then((response) => response.json())
@@ -57,6 +64,10 @@ const ManageCourse = () => {
     }
   };
 
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <div className=" ">
       <DashboardTopNav></DashboardTopNav>
@@ -73,14 +84,14 @@ const ManageCourse = () => {
      </div>
       {isSmallScreen ? (
         <div className="text-start rounded-md">
-          {courses.map((course, index) => (
+          {visibleCourses.map((course, index) => (
             <div
               key={course._id}
               className="bg-white shadow-md rounded-lg p-1 m-2"
             >
               <div className="flex gap-4 justify-start py-2 bg-cyan-400 bg-opacity-30 shadow-md rounded-sm relative">
                 <h2 className="h-28 w-4 flex shadow-md items-center justify-center rounded-sm text-white bg-slate-400">
-                  {index + 1}
+                {startIndex + index + 1}
                 </h2>
                 <div>
                   <h2 className="text-sm  text-[#12C29F]">
@@ -137,9 +148,9 @@ const ManageCourse = () => {
             </tr>
           </thead>
           <tbody>
-            {courses.map((course, index) => (
+            {visibleCourses .map((course, index) => (
               <tr className="text-left hover:bg-slate-100 duration-150" key={course._id}>
-                <td className="border px-4 py-2 ">{index + 1}</td>
+                <td className="border px-4 py-2 ">{startIndex + index + 1}</td>
                 <td className="border px-4 py-2">{course.title}</td>
                 <td className="border px-4 py-2">
                   {course.courseCategory}
@@ -182,6 +193,39 @@ const ManageCourse = () => {
           </tbody>
         </table>
       )}
+
+        {/* Pagination controls */}
+        <div className="flex justify-center mt-4">
+  <button
+    onClick={() => handlePageChange(currentPage - 1)}
+    disabled={currentPage === 1}
+    className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
+  >
+   <GrFormPrevious></GrFormPrevious>
+  </button>
+  {Array.from({ length: totalPageCount }, (_, index) => (
+    <button
+      key={index}
+      onClick={() => handlePageChange(index + 1)}
+      className={`mx-1 px-3 py-1 text-sm ${
+        currentPage === index + 1
+          ? "bg-green-600 text-white"
+          : "bg-gray-200"
+      } rounded-md`}
+    >
+      {index + 1}
+    </button>
+  ))}
+  <button
+    onClick={() => handlePageChange(currentPage + 1)}
+    disabled={currentPage === totalPageCount}
+    className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
+  >
+   <p className="text-green-600">
+              <GrFormNext />
+            </p>
+  </button>
+</div>
       </div>
     </div>
   );
