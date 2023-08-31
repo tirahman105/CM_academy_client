@@ -100,7 +100,7 @@ const router = createBrowserRouter([
         element: <CheckOut></CheckOut>,
       },
       {
-        path: "payment/success/:tranId",
+        path: "payment/success",
         element: <PaymentSuccess></PaymentSuccess>,
       },
       {

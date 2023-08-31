@@ -60,9 +60,9 @@ function Categories() {
               <button
                 key={index}
                 onClick={() => handleCategoryClick(index)}
-                className={`md:h-[50px] px-4 py-4 cursor-pointer rounded-md font-bold text-[10px] md:text-sm transition-all duration-300  ${
+                className={`md:h-[50px] px-4 py-4 cursor-pointer rounded-md font-bold text-[10px] md:text-sm transition-all duration-300   ${
                   activeButtonIndex === index
-                    ? "text-[#1BBF72]  "
+                    ? "text-[#1BBF72] ] "
                     : "text-gray-800"
                 }`}
               >

@@ -16,7 +16,7 @@ const StudentPayment = () => {
     useEffect(() => {
         const fetchPaymentHistory = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/orders`);
+                const response = await fetch(`https://cm-academy-test-server-production.up.railway.app/orders`);
                 const data = await response.json();
 
                 // Filter payment history based on user's email

@@ -16,8 +16,8 @@ const Dashboard = () => {
   const [open, setOpen] = useState(true);
   const isAdmin = false;
 
-  const isInstructor = false;
-const isStudent = true;
+  const isInstructor = true;
+const isStudent = false;
 
 
   // const handleLogOut = () => {

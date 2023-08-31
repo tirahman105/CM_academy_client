@@ -14,7 +14,7 @@ const Checkout = () => {
     console.log(course);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/course/${id}`)
+        fetch(`https://cm-academy-test-server-production.up.railway.app/categories/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch course data');

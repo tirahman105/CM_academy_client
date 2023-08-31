@@ -93,7 +93,10 @@ body {
   /* background-color: #ffd3cf;
   background-image: linear-gradient(105deg, #ffd3cf 0%, #d3ffec 30%, #fdecd6 59%, #d3ffec 100%); */
 
-  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% );
+  background-image: linear-gradient(-20deg, #e5d4fe 0%, #fdfed5 100% );
+
+
+  /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% ); */
   /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% ); */
 
   /* background-size: 400% 400%; */
