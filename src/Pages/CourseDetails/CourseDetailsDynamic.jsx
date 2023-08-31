@@ -1,4 +1,4 @@
-import { Rating ,ThinStar  } from "@smastrom/react-rating";
+import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 import React, { useState } from "react";
@@ -10,6 +10,7 @@ import { FaPlayCircle } from "react-icons/fa";
 import { PiCertificateFill, PiInfinityDuotone } from "react-icons/pi";
 import MilestoneAccordion from "./MilestoneAccordion";
 import FaqAccordion from "./FaqAccordion";
+import { Link } from "react-router-dom";
 
 const CourseDetailsDynamic = () => {
   const location = useLocation();
@@ -23,10 +24,9 @@ const CourseDetailsDynamic = () => {
 
   const myStyles = {
     itemShapes: ThinStar,
-    activeFillColor: '#ffb700',
-    inactiveFillColor: '#fbf1a9'
-  }
-
+    activeFillColor: "#ffb700",
+    inactiveFillColor: "#fbf1a9",
+  };
 
   const handleToggleFaq = (index) => {
     setActiveFaq((prevActiveFaq) => (prevActiveFaq === index ? -1 : index));
@@ -139,13 +139,15 @@ const CourseDetailsDynamic = () => {
                 </p>
               </div>
               <div className=" mt-7 w-full">
-                <button
-                  className=" w-full bg-[#258d5c11] font-Lexend text-lg border-2 font-bold py-[9px]  rounded-md px-4  hover:css-selector  hover:border-[#1bbf7246] duration-500 
-                text-gray-700 boxShadowBtn "
-                >
-                  {" "}
-                  Enroll Now
-                </button>
+                <Link to={`/checkout/${course._id}`}>
+                  <button
+                    className=" w-full bg-[#258d5c11] font-Lexend text-lg border-2 font-bold py-[9px]  rounded-md px-4  hover:css-selector  hover:border-[#1bbf7246] duration-500 
+                  text-gray-700 boxShadowBtn "
+                  >
+                    {" "}
+                    Enroll Now
+                  </button>
+                </Link>
                 <p className="text-center font-Lexend text-gray-500 text-[12px] mt-2">
                   30-Day Money-Back Guarantee
                 </p>
@@ -258,12 +260,10 @@ const CourseDetailsDynamic = () => {
             <div className="flex items-center gap-1 font-bold">
               <Rating
                 className=""
-               
                 style={{ maxWidth: 70 }}
                 value={4.5}
                 readOnly
                 itemStyles={myStyles}
-                
               />
               <p className="text-[#13ac64]">4.5 (137)</p>
             </div>

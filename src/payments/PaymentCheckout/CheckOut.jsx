@@ -42,7 +42,7 @@ const Checkout = () => {
         data.studentEmail = user?.email;
         data.studentName = user?.displayName;
         data.courseId = id;
-        fetch('http://localhost:5000/order', {
+        fetch('https://cm-academy-test-server-production.up.railway.app/order', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)

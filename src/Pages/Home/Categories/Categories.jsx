@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Categories.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiUsers } from "react-icons/fi";
 import { FaStar, FaBuromobelexperte, FaCartPlus } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
@@ -100,15 +100,13 @@ function Categories() {
                   <h1 className="font-bold font-Lexend">
                     {activeCourse.title}
                   </h1>
-
-                  
                 </div>
                 <div className="flex items-center  gap-1 px-4">
-                    <HiCurrencyBangladeshi className="text-[#1bbf72fa] text-lg"></HiCurrencyBangladeshi>
-                    <p className="font-bold font-mono text-sm">
-                      {activeCourse.coursePrice}.00
-                    </p>
-                  </div>
+                  <HiCurrencyBangladeshi className="text-[#1bbf72fa] text-lg"></HiCurrencyBangladeshi>
+                  <p className="font-bold font-mono text-sm">
+                    {activeCourse.coursePrice}.00
+                  </p>
+                </div>
 
                 <div className=" font-mono h-14 flex justify-between px-4 items-center ">
                   <div className="flex items-center justify-center gap-1">
@@ -131,9 +129,9 @@ function Categories() {
                   <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border  border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]">
                     <FaCartPlus className="text-[#1bbf72fb]"></FaCartPlus>
 
-                    <p className="font-bold font-mono ">
-                      Enroll Now
-                    </p>
+                    <Link to={`/checkout/${activeCourse._id}`}>
+                      <p className="font-bold font-mono ">Enroll Now</p>
+                    </Link>
                   </button>
                   <button
                     className="text-gray-700 font-Raleway border-2 font-bold text-xs rounded-md px-4 css-selector   hover:border-[#1bbf7246] duration-500 
