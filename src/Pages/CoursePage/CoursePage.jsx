@@ -98,7 +98,7 @@ const CoursePage = () => {
   };
 
   return (
-    <div>
+    <div className='pt-32'>
     <div className="lg:flex">
       <div className="lg:w-3/4 p-4">
         <CourseVideo  videoList={milestoneList[selectedMilestone]?.modules || []}

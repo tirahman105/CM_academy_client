@@ -37,7 +37,7 @@ const MyCourses = () => {
 
 
   const handleDetailsClick = (course) => {
-    navigate("/coursepageUpdate", { state: { course } });
+    navigate("/coursepage", { state: { course } });
 
     console.log(course);
   };
