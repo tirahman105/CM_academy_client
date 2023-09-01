@@ -1,12 +1,20 @@
 import { useState, useEffect, useContext } from 'react';
 import { SlCalender } from 'react-icons/sl';
 import { AuthContext } from '../../../../providers/AuthProvider';
+import DashboardTopNav from '../../Shared/DashboardTopNav/DashboardTopNav';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 
 const StudentPayment = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const { user } = useContext(AuthContext)
     const [paymentHistory, setPaymentHistory] = useState([]);
+    const itemsPerPage = isSmallScreen ? 3 : 5;
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPageCount = Math.ceil(paymentHistory.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage - 1; // Calculate the last index of the displayed range
+    const visiblePaymentHistory = paymentHistory.slice(startIndex, endIndex + 1); // Adjust the visibleCourses range
 
     console.log(paymentHistory);
 
@@ -48,13 +56,27 @@ const StudentPayment = () => {
     }, []);
     
 
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+      };
+
     return (
         <div className="p-4">
-            {isSmallScreen ? (
+            <DashboardTopNav></DashboardTopNav>
+        <div className='border p-4'>
+        <div className="my-5 mt-4">
+       <h1 className=" text-lg">
+        Payment History
+      </h1>
+      <p className="text-base mb-4">Payment histories of student</p>
+      <hr />
+     </div>
+        {isSmallScreen ? (
                 // Card for small screens
-                paymentHistory.map(payment => (
+                visiblePaymentHistory.map((payment, index) => (
                     <div key={payment._id} className="bg-white shadow-md rounded-lg p-4 mb-4">
-                        <h2 className="text-2xl font-bold mb-3">{payment.course.title}</h2>
+                        <h2  className="text-2xl font-bold mb-3">{startIndex + index + 1}</h2>
+                        <h2  className="text-2xl font-bold mb-3">{payment.course.title}</h2>
                         <div className="flex justify-start items-center gap-3 text-gray-500">
                             <SlCalender />
                             <p>{payment.order.date}</p>
@@ -72,9 +94,10 @@ const StudentPayment = () => {
                 ))
             ) : (
                 // Table for large screens
-                <table className="table-auto w-full">
+                <table className="table-auto w-full text-base">
                     <thead>
-                        <tr className='bg-gray-100 text-[#12C29F] font-bold divide-x-2'>
+                        <tr className='bg-gray-200 text-[#12C29F] text-left font-bold divide-x-2'>
+                        <th className="px-4 py-2">SL</th>
                             <th className="px-4 py-2">Course</th>
                             <th className="px-4 py-2">Date</th>
                             <th className="px-4 py-2">Payment Method</th>
@@ -85,9 +108,10 @@ const StudentPayment = () => {
                     </thead>
                     <tbody>
 
-                        {paymentHistory.map(payment => (
+                        {visiblePaymentHistory.map((payment, index) => (
                             <tr key={payment._id}
-                                className="text-center font-semibold">
+                                className="text-left hover:bg-slate-100 duration-150">
+                                    <td className="border px-4 py-2 ">{startIndex + index + 1}</td>
                                 <td className="border px-4 py-2">{payment.course.title} </td>
                                 <td className="border px-4 py-2"> {payment.order.date}</td>
                                 <td className="border px-4 py-2">Bkash</td>
@@ -108,6 +132,40 @@ const StudentPayment = () => {
                 </table>
             )
             }
+
+             {/* Pagination controls */}
+        <div className="flex justify-center mt-4">
+  <button
+    onClick={() => handlePageChange(currentPage - 1)}
+    disabled={currentPage === 1}
+    className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
+  >
+   <GrFormPrevious></GrFormPrevious>
+  </button>
+  {Array.from({ length: totalPageCount }, (_, index) => (
+    <button
+      key={index}
+      onClick={() => handlePageChange(index + 1)}
+      className={`mx-1 px-3 py-1 text-sm ${
+        currentPage === index + 1
+          ? "bg-green-600 text-white"
+          : "bg-gray-200"
+      } rounded-md`}
+    >
+      {index + 1}
+    </button>
+  ))}
+  <button
+    onClick={() => handlePageChange(currentPage + 1)}
+    disabled={currentPage === totalPageCount}
+    className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
+  >
+   <p className="text-green-600">
+              <GrFormNext />
+            </p>
+  </button>
+</div>
+        </div>
         </div >
     );
 };
