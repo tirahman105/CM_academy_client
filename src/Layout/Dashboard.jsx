@@ -12,10 +12,11 @@ import useAdmin from "../Hooks/useAdmin";
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
-  // const [isStudent] = useStudent();
+  const [isStudent] = useStudent();
   const [isAdmin] = useAdmin();
 
-  const isStudent =true;
+  // const isAdmin =false;
+  // const isStudent =false;
   console.log(
     "instructor",
     isInstructor,
