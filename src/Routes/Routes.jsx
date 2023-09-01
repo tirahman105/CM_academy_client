@@ -40,6 +40,7 @@ import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/Studen
 import InstructorDAshboard from "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
+import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
       {
         path: "coursepage",
         element: <CoursePage></CoursePage>,
+      },
+      {
+        path: "coursepageUpdate",
+        element: <CoursePageUpdate></CoursePageUpdate>,
       },
       {
         path: "/reset-password/:oobCode",
