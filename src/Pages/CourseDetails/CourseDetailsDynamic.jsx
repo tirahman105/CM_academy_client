@@ -1,7 +1,7 @@
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdCheckCircle, MdLibraryBooks, MdQuiz } from "react-icons/md";
 import { useLocation } from "react-router";
 import "./CourseDetails.css";
@@ -16,7 +16,9 @@ const CourseDetailsDynamic = () => {
   const location = useLocation();
   const { course } = location.state;
 
-  // window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [activeMilestones, setActiveMilestones] = useState(
     course.courseOutline.map(() => false)
@@ -253,10 +255,10 @@ const CourseDetailsDynamic = () => {
       {/* /////////////////content end */}
 
       {/* ///////bottom badge bar start */}
-      <div className="bg-[#242527] h-16 sm:h-auto w-full fixed sm:static bottom-0 z-[1000] sm:block ">
+      <div className="bg-[#242527]  sm:h-auto w-full fixed sm:static bottom-0 z-[1000] sm:block  py-2">
         <div className="sm:max-w-7xl  mx-auto px-4 sm:py-2 flex justify-between items-center">
           <div className="">
-            <h1 className="sm:text-3xl font-bold font-Lexend sm:leading-10 sm:mb-4 text-white ">
+            <h1 className="sm:text-3xl text-sm font-bold font-Lexend sm:leading-10 sm:mb-4 text-white ">
               {course.title}
             </h1>
             <div className="flex items-center gap-1 font-bold">
@@ -267,23 +269,26 @@ const CourseDetailsDynamic = () => {
                 readOnly
                 itemStyles={myStyles}
               />
-              <p className="text-[#13ac64]">4.5 (137)</p>
+              <p className="text-[#13ac64] text-[10px] sm:text-lg">4.5 (137)</p>
             </div>
           </div>
           <div className="flex flex-col items-center justify-center">
             <div className="flex items-center  gap-1 ">
               <HiCurrencyBangladeshi className="text-white sm:text-3xl"></HiCurrencyBangladeshi>
-              <p className="font-bold font-Lexend sm:leading-10  text-white sm:text-2xl ">
+              <p className="font-bold text-[10px]  font-Lexend sm:leading-10  text-white sm:text-2xl ">
                 {course.coursePrice} Tk
               </p>
             </div>
-            <button
-              className=" css-selector font-Lexend text-sm sm:text-lg border-2 font-bold py-[4px]  rounded-md sm:px-5 px-2  hover:css-selector  hover:border-[#1bbf7246] duration-500 
-                text-gray-700 boxShadowBtn "
-            >
-              {" "}
-              Enroll Now
-            </button>
+            <Link to={`/checkout/${course._id}`}>
+              <button
+                className=" css-selector font-Lexend  sm:text-lg text-[10px] border-2 font-bold sm:py-[4px]  rounded-md sm:px-5 px-1 
+              w-[80px] sm:w-auto  hover:css-selector  hover:border-[#1bbf7246] duration-500 
+              text-gray-700 boxShadowBtn "
+              >
+                {" "}
+                Enroll Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

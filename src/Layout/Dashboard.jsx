@@ -130,7 +130,8 @@ const Dashboard = () => {
             onClick={() => setOpen(!open)}
           ></BsFillArrowLeftSquareFill>
           <div className="flex items-center ">
-            <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
+            <img 
+            src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
             <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
               CM Academy
             </h1>
