@@ -54,7 +54,7 @@ const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange, onNextModu
 
   return (
     <div className="p-4 rounded-lg">
-      <div className="aspect-w-16 aspect-h-9 lg:aspect-h-12">
+      {/* <div className="aspect-w-16 aspect-h-24 ">
         <iframe
           title="Course Video"
           className="w-full h-full"
@@ -62,7 +62,16 @@ const CourseVideo = ({ videoList, currentModuleIndex, onModuleChange, onNextModu
           frameBorder="0"
           allowFullScreen
         ></iframe>
-      </div>
+      </div> */}
+      <div className="aspect-w-16 aspect-h-32">
+  <iframe
+    title="Course Video"
+    className="w-full h-[450px]"
+    src={`https://www.youtube.com/embed/${currentVideo.videoUrl}`}
+    frameBorder="0"
+    allowFullScreen
+  ></iframe>
+</div>
       <div className="bg-gray-500 flex flex-col md:flex-row p-4 mt-4 justify-between text-white">
       
       <div className="flex items-center gap-3">
