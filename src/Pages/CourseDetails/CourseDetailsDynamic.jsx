@@ -11,6 +11,7 @@ import { PiCertificateFill, PiInfinityDuotone } from "react-icons/pi";
 import MilestoneAccordion from "./MilestoneAccordion";
 import FaqAccordion from "./FaqAccordion";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const CourseDetailsDynamic = () => {
   const location = useLocation();
@@ -47,20 +48,43 @@ const CourseDetailsDynamic = () => {
   console.log(course);
 
   return (
-    <div className=" ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 1.5 } }}
+      exit={{ opacity: 0, transition: { duration: 1.5 } }}
+      className=" "
+    >
       {/* Banner section start */}
       <div className="pt-[74px]   ">
         <div className=" items-center      flex   css-selector  ">
           <div className="flex items-center px-4 sm:px-6 py-5 gap-6  max-w-7xl mx-auto ">
             <div className="sm:w-2/4">
-              <h1 className="text-4xl font-bold font-Lexend leading-10 mb-4 text-gray-700 ">
+              <motion.h1
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl font-bold font-Lexend leading-10 mb-4 text-gray-700 "
+              >
                 {course.title}
-              </h1>
-              <p className="text-gray-700 font-semibold  font-TitilliumWeb   tracking-wider leading-8">
+              </motion.h1>
+              <motion.p
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-gray-700 font-semibold  font-TitilliumWeb   tracking-wider leading-8"
+              >
                 {course.courseDescription}
-              </p>
+              </motion.p>
 
-              <div className="flex items-center gap-2 font-bold">
+              <motion.div
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex items-center gap-2 font-bold"
+              >
                 <Rating
                   className=""
                   style={{ maxWidth: 100 }}
@@ -68,7 +92,7 @@ const CourseDetailsDynamic = () => {
                   readOnly
                 />
                 <p className="text-[#13ac64]">4.5 (15)</p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -81,7 +105,15 @@ const CourseDetailsDynamic = () => {
           <div className=" mt-12  ">
             <div className="sm:flex  items-center px-6 py-5 gap-6 sm:w-[55%] border-2 relative rounded-lg ">
               <div className="bg-[#1bbf7259] absolute backdrop-blur-md top-0 left-0 px-4 shadow-sm rounded-r-md shadow-[#1bbf7283]  ">
-                <h1 className="font-bold text-gray-700 ">Course Instructor</h1>{" "}
+                <motion.h1
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="font-bold text-gray-700 "
+                >
+                  Course Instructor
+                </motion.h1>{" "}
               </div>
               <img
                 className="h-28 sm:w-28 "
@@ -90,14 +122,26 @@ const CourseDetailsDynamic = () => {
               />
 
               <div>
-                <h1 className="text-2xl font-bold font-Lexend leading-10 ">
+                <motion.h1
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -10, opacity: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-2xl font-bold font-Lexend leading-10 "
+                >
                   {course.instructor}
-                </h1>
-                <p className="text-gray-600 font-Lexend font-semibold text-sm">
+                </motion.h1>
+                <motion.p
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -10, opacity: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="text-gray-600 font-Lexend font-semibold text-sm"
+                >
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Corrupti expedita nostrum exercitationem quibusdam adipisci,
                   harum minus quo impedit consectetur doloribus?
-                </p>
+                </motion.p>
               </div>
             </div>
           </div>
@@ -106,9 +150,15 @@ const CourseDetailsDynamic = () => {
           {/* What u will learn session start */}
 
           <div className="max-w-7xl mx-auto mt-12  mb-16  ">
-            <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">
+            <motion.h1
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-xl font-bold font-Lexend leading-10 mb-4"
+            >
               What You Will Learn
-            </h1>
+            </motion.h1>
             <div className=" px-6 py-5  sm:w-[55%] border-2 rounded-lg ">
               <div className="grid  gap-4 ">
                 {course.whatYouWillLearn.map((learn, index) => (
@@ -130,7 +180,7 @@ const CourseDetailsDynamic = () => {
         <div className="hidden md:block sticky   inset-0 -mt-96  mr-6   float-right backdrop-blur-lg">
           <div className="max-w-7xl  mb-48 h-[600px] border w-[334px] boxShadow rounded-lg  ">
             <img
-              className="w-[334px] rounded-lg mb-4"
+              className="w-[334px] h-[200px] rounded-lg mb-4"
               src={course.courseThumbnail}
               alt=""
             />
@@ -205,9 +255,15 @@ const CourseDetailsDynamic = () => {
         {/* Course Requirement start */}
 
         <div className="max-w-7xl mx-auto mt-12  mb-16  ">
-          <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">
+          <motion.h1
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-xl font-bold font-Lexend leading-10 mb-4"
+          >
             Course Requirement
-          </h1>
+          </motion.h1>
           <div className=" px-6 py-5  sm:w-[55%] border-2 rounded-lg ">
             <div className="grid  gap-4 ">
               {course.courseRequirements.map((learn, index) => (
@@ -227,9 +283,15 @@ const CourseDetailsDynamic = () => {
         {/* Who are suitable for this course start */}
 
         <div className="max-w-7xl mx-auto mt-12  mb-16  ">
-          <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">
+          <motion.h1
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-xl font-bold font-Lexend leading-10 mb-4"
+          >
             Who Are Suitable For This Course
-          </h1>
+          </motion.h1>
           <div className=" px-2 py-2  sm:w-[55%] border-2 rounded-lg ">
             <div className="grid  gap-4 ">
               <div className="flex items-center gap-3">
@@ -244,7 +306,15 @@ const CourseDetailsDynamic = () => {
         {/* Who are suitable for this course end */}
 
         {/* FaqAccordion start */}
-        <h1 className="text-xl font-bold font-Lexend leading-10 mb-4">FAQ</h1>
+        <motion.h1
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-xl font-bold font-Lexend leading-10 mb-4"
+        >
+          FAQ
+        </motion.h1>
         <FaqAccordion
           faqData={course.faq}
           activeFaq={activeFaq}
@@ -258,10 +328,22 @@ const CourseDetailsDynamic = () => {
       <div className="bg-[#242527]  sm:h-auto w-full fixed sm:static bottom-0 z-[1000] sm:block  py-2">
         <div className="sm:max-w-7xl  mx-auto px-4 sm:py-2 flex justify-between items-center">
           <div className="">
-            <h1 className="sm:text-3xl text-sm font-bold font-Lexend sm:leading-10 sm:mb-4 text-white ">
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="sm:text-3xl text-sm font-bold font-Lexend sm:leading-10 sm:mb-4 text-white "
+            >
               {course.title}
-            </h1>
-            <div className="flex items-center gap-1 font-bold">
+            </motion.h1>
+            <motion.div
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center gap-1 font-bold"
+            >
               <Rating
                 className=""
                 style={{ maxWidth: 70 }}
@@ -270,30 +352,40 @@ const CourseDetailsDynamic = () => {
                 itemStyles={myStyles}
               />
               <p className="text-[#13ac64] text-[10px] sm:text-lg">4.5 (137)</p>
-            </div>
+            </motion.div>
           </div>
           <div className="flex flex-col items-center justify-center">
-            <div className="flex items-center  gap-1 ">
+            <motion.div
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex items-center  gap-1 "
+            >
               <HiCurrencyBangladeshi className="text-white sm:text-3xl"></HiCurrencyBangladeshi>
               <p className="font-bold text-[10px]  font-Lexend sm:leading-10  text-white sm:text-2xl ">
                 {course.coursePrice} Tk
               </p>
-            </div>
+            </motion.div>
             <Link to={`/checkout/${course._id}`}>
-              <button
+              <motion.button
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 className=" css-selector font-Lexend  sm:text-lg text-[10px] border-2 font-bold sm:py-[4px]  rounded-md sm:px-5 px-1 
               w-[80px] sm:w-auto  hover:css-selector  hover:border-[#1bbf7246] duration-500 
               text-gray-700 boxShadowBtn "
               >
                 {" "}
                 Enroll Now
-              </button>
+              </motion.button>
             </Link>
           </div>
         </div>
       </div>
       {/* ///////bottom badge bar end */}
-    </div>
+    </motion.div>
   );
 };
 

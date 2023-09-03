@@ -19,7 +19,7 @@ const CoursePageUpdate = () => {
   };
   console.log(course);
   return (
-    <div className="pt-24">
+    <div className="pt-32 max-w-7xl mx-auto ">
       This is course page after enrollment.
       <div>
         <h1 className="text-6xl">{course.title}</h1>
