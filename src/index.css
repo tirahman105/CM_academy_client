@@ -110,12 +110,12 @@ body {
     radial-gradient(at 67% 33%, rgb(74, 222, 128) 0, transparent 68%),
     radial-gradient(at 8% 26%, rgb(243, 244, 246) 0, transparent 30%); */
 
-  -webkit-animation: AnimationName 21s ease infinite;
+  /* -webkit-animation: AnimationName 21s ease infinite;
   -moz-animation: AnimationName 21s ease infinite;
-  animation: AnimationName 21s ease infinite;
+  animation: AnimationName 21s ease infinite; */
 }
 
-@-webkit-keyframes AnimationName {
+/* @-webkit-keyframes AnimationName {
   0% {
     background-position: 61% 0%;
   }
@@ -147,4 +147,38 @@ body {
   100% {
     background-position: 61% 0%;
   }
+} */
+
+
+/* .mainBg {
+  background-color: #101034;
+
+  background-image: linear-gradient(
+      #ffffff 0.2px,
+      transparent 0.6px
+    ),
+    linear-gradient(
+      to right,
+      #ffffff 0.2px,
+      #e5e5f7 0.6px
+    );
+  background-size: 30px 30px;
+} */
+
+
+.bgCoursePage{
+  opacity: 1;
+
+  /* background-color: #ffd3cf;
+  background-image: linear-gradient(105deg, #ffd3cf 0%, #d3ffec 30%, #fdecd6 59%, #d3ffec 100%); */
+
+  background-image: linear-gradient(-20deg, #e5d4fe 0%, #f4f5b5 100% );
+
+
+}
+
+
+
+.boxShadowCourse {
+  box-shadow: 1px 1px 15px 1px #8d8d8dce;
 }

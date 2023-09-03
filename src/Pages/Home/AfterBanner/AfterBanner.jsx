@@ -1,8 +1,12 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 const AfterBanner = () => {
   return (
-    <div className="max-w-7xl px-2 mx-auto  mt-16   ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="max-w-7xl px-2 mx-auto  mt-16   "
+    >
       <div className="grid gap-4 md:grid-cols-3  ">
         {/* ///////////////// */}
         <div className=" items-center gap-6 shadow-lg backdrop-blur-sm  rounded-md flex hover:scale-105 duration-500 px-6 py-5 md:w-96 bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
@@ -44,9 +48,8 @@ const AfterBanner = () => {
         </div>
         {/* ////////////// */}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export default AfterBanner;
-

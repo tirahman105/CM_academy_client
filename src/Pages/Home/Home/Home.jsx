@@ -9,10 +9,14 @@ import KeySponsor from "../KeySponsor/KeySponsor";
 import ChatBox from "../ChatBox/ChatBox";
 import HomeBlog from "../HomeBlog/HomeBlog";
 import AfterBanner from "../AfterBanner/AfterBanner";
-
+import { motion } from "framer-motion";
 const Home = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 1.5 } }}
+      exit={{ opacity: 0, transition: { duration: 1.5 } }}
+    >
       <ChatBox></ChatBox>
       <Banner></Banner>
       <AfterBanner></AfterBanner>
@@ -23,7 +27,7 @@ const Home = () => {
       <FAQ></FAQ>
       <HomeBlog></HomeBlog>
       <KeySponsor></KeySponsor>
-    </div>
+    </motion.div>
   );
 };
 
