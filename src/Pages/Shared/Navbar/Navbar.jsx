@@ -135,6 +135,17 @@ const Navbar = () => {
                   </Link>
                 </li>
               )}
+              {user && (
+                <li>
+                  <Link
+                    to="/dashboard"
+                    className="ml-auto text-[#1BBF72] font-Raleway font-bold"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+              
             </ul>
           </div>
           <div className="navbar-end  hidden sm:block ">

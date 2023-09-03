@@ -41,6 +41,7 @@ import InstructorDAshboard from "../Pages/Dashboard/Instructor/InstructorDashboa
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
 import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
+import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
 
 const router = createBrowserRouter([
   {
@@ -191,6 +192,10 @@ const router = createBrowserRouter([
       {
         path: "my-payments",
         element: <MyPayments></MyPayments>,
+      },
+      {
+        path: "acc-setup",
+        element: <BankAccountSetup></BankAccountSetup>,
       },
       {
         path: "add-course",
