@@ -70,9 +70,7 @@ const ManageCourse = () => {
 
   return (
     <div className=" ">
-      <DashboardTopNav></DashboardTopNav>
-
-      {/* course table  */}
+         {/* course table  */}
 
       <div className="border p-4">
       <div className="my-5 mt-4">

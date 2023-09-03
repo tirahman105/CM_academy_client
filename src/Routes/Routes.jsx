@@ -42,6 +42,7 @@ import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
 import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
 import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
+import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
 
 const router = createBrowserRouter([
   {
@@ -222,6 +223,10 @@ const router = createBrowserRouter([
       {
         path: "student-payment",
         element: <StudentPayment></StudentPayment>,
+      },
+      {
+        path: "student-profile",
+        element: <StudentProfile></StudentProfile>,
       },
     ],
   },

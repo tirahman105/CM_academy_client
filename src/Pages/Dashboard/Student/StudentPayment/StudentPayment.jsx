@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { SlCalender } from 'react-icons/sl';
 import { AuthContext } from '../../../../providers/AuthProvider';
-import DashboardTopNav from '../../Shared/DashboardTopNav/DashboardTopNav';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 
@@ -62,7 +61,7 @@ const StudentPayment = () => {
 
     return (
         <div className="p-4">
-            <DashboardTopNav></DashboardTopNav>
+           
         <div className='border p-4'>
         <div className="my-5 mt-4">
        <h1 className=" text-lg">

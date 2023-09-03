@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { IoMdCall } from "react-icons/io";
-import DashboardTopNav from "../../Shared/DashboardTopNav/DashboardTopNav";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const ManageInstructors = () => {
@@ -46,7 +45,7 @@ const ManageInstructors = () => {
 
   return (
     <div className="">
-      <DashboardTopNav></DashboardTopNav>
+    
       {/* instructor table  */}
 
       <div className="border p-4">
