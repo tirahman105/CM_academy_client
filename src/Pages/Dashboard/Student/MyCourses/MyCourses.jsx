@@ -36,10 +36,10 @@ const MyCourses = () => {
   }, [user]);
 
 
-  const handleDetailsClick = (course) => {
-    navigate("/coursepageUpdate", { state: { course } });
+  const handleDetailsClick = (courseOutline) => {
+    navigate("/coursepage", { state: { courseOutline } });
 
-    console.log(course);
+    console.log(courseOutline);
   };
   return (
     <div>
@@ -84,7 +84,7 @@ const MyCourses = () => {
 
                     
                       <p 
-                      onClick={()=>handleDetailsClick(course.course)}
+                      onClick={()=>handleDetailsClick(course.course.courseOutline)}
                       className="font-bold font-mono ">Start Your Course</p>
                     
                   </button>
