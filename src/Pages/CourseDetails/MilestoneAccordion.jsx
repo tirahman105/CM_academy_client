@@ -35,15 +35,15 @@ const MilestoneAccordion = ({ courseOutline, activeMilestones, handleToggleMiles
             </div>
           </div>
           <div
-            className={`overflow-hidden duration-700 max-h-0 bg-[#258d5c28] shadow-sm  rounded-md flex items-center ${
-              activeMilestones[index] ? "max-h-[50px] md:max-h-[30px]  py-2 pr-2 md:pr-6 pl-2 md:pl-8 mt-4" : ""
+            className={`overflow-hidden duration-700 max-h-0   flex flex-col gap-2 ${
+              activeMilestones[index] ? "max-h-[200px] md:max-h-[500px]  py-2 pr-2 md:pr-6 pl-2 md:pl-8 mt-4" : ""
             }`}
           >
             {/* Display sessionTitle */}
             {milestone.sessions.map((session, sessionIndex) => (
               <div
                 key={sessionIndex}
-                className="flex items-center justify-between  w-full"
+                className="flex items-center justify-between  w-full bg-[#258d5c28] shadow-sm  py-2 pr-2 md:pr-6 pl-2 md:pl rounded-md hover:shadow-md duration-500"
               >
                 <div className="flex items-center gap-2 md:gap-6 font-Poppins text-[10px] md:text-[13px] font-bold text-gray-500">
                   <p className="text-green-600 ">Session-{sessionIndex + 1} </p>

@@ -108,6 +108,11 @@ const Dashboard = () => {
     },
     { title: "Add New Blog", icon: <BiListPlus />, src: "/dashboard/add-blog" },
     {
+      title: "Payment Account Setup",
+      icon: <BiListPlus />,
+      src: "/dashboard/acc-setup",
+    },
+    {
       title: "Payment History",
       icon: <BiListPlus />,
       src: "/dashboard/my-payments",
@@ -130,10 +135,11 @@ const Dashboard = () => {
             onClick={() => setOpen(!open)}
           ></BsFillArrowLeftSquareFill>
           <div className="flex items-center ">
-            <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
-            <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
+            <img 
+            src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
+           <Link to="/"> <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
               CM Academy
-            </h1>
+            </h1></Link>
           </div>
 
           <div className={` ${open ? "block duration-500" : "hidden"} `}>
