@@ -1,0 +1,9 @@
+.gradient-border {
+ 
+    border-width: 2px; /* Adjust the border width as needed */
+  
+    border-image: linear-gradient(to right, #10A8E9, #36CCD3); /* Define your gradient here */
+    border-image-slice: 1;
+    border-radius: 100px;
+  }
+  
