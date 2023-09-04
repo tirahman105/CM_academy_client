@@ -30,11 +30,10 @@ const CourseVideo = ({
     } else {
       onNextSession();
     }
-    // Set playing to true to auto-play the next video
-    setVideoUrl(sessionList[currentSessionIndex + 1].videoLink);
+    setVideoUrl(sessionList[currentSessionIndex].videoLink);
   };
 
-  const [likeStatus, setLikeStatus] = useState("none"); // 'none', 'liked', 'disliked'
+  const [likeStatus, setLikeStatus] = useState("none");
   const [bookmarked, setBookmarked] = useState(false);
 
   const handleLike = () => {
@@ -42,7 +41,7 @@ const CourseVideo = ({
       setLikeStatus("none");
     } else {
       setLikeStatus("liked");
-      setBookmarked(false); // Reset bookmarked state
+      setBookmarked(false);
     }
   };
 
@@ -51,7 +50,7 @@ const CourseVideo = ({
       setLikeStatus("none");
     } else {
       setLikeStatus("disliked");
-      setBookmarked(false); // Reset bookmarked state
+      setBookmarked(false);
     }
   };
 
@@ -62,30 +61,23 @@ const CourseVideo = ({
   return (
     <div className="p-4 rounded-lg">
       <div className="aspect-w-16 aspect-h-9 lg:aspect-h-[500px] boxShadowCourse">
-        {/* Use the ReactPlayer component with the video URL */}
         <ReactPlayer
           url={videoUrl}
           controls
           width="100%"
           height="609px"
           key={videoUrl}
-          onEnded={handleNext}
         />
       </div>
       <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex flex-col md:flex-row px-4 py-2 bg-gray-700 mt-4 justify-between  font-Lexend">
         <div className="flex items-center gap-3">
           <p className="text-xl font-bold">Feedback</p>
           {likeStatus === "liked" ? (
-            <BiCheck
-              className={`text-3xl cursor-pointer`}
-              onClick={handleLike}
-            />
+            <BiCheck className={`text-3xl cursor-pointer`} onClick={handleLike} />
           ) : (
             <BiLike
               className={`text-3xl ${
-                likeStatus === "disliked"
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
+                likeStatus === "disliked" ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={likeStatus === "disliked" ? null : handleLike}
             />
