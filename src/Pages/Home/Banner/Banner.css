@@ -1,13 +1,13 @@
 .css-selector {
   opacity: 1;
-
-  /* background-color: #ffd3cf;
-  background-image: linear-gradient(105deg, #ffd3cf 0%, #d3ffec 30%, #fdecd6 59%, #d3ffec 100%); */
-
-  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% );
+/* 
+  background-color: #ffd3cf;
+  background-image: linear-gradient(200deg, #ffd3cf 0%, #d3ffec 30%, #fdecd6 59%, #d3ffec 100%); */
+  /* background-image: linear-gradient(-20deg, #e5d4fe 0%, #fdfed5 100% ); */
+  /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% ); */
   /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100% ); */
 
-  /* background-size: 400% 400%; */
+  /* background-size: 40% 10%; */
   /* backdrop-filter: blur(1000px); */
 
   /* background-color: #D9AFD9;
@@ -18,12 +18,12 @@
     radial-gradient(at 67% 33%, rgb(74, 222, 128) 0, transparent 68%),
     radial-gradient(at 8% 26%, rgb(243, 244, 246) 0, transparent 30%); */
 
-  -webkit-animation: AnimationName 21s ease infinite;
+  /* -webkit-animation: AnimationName 21s ease infinite;
   -moz-animation: AnimationName 21s ease infinite;
-  animation: AnimationName 21s ease infinite;
+  animation: AnimationName 21s ease infinite; */
 }
 
-@-webkit-keyframes AnimationName {
+/* @-webkit-keyframes AnimationName {
   0% {
     background-position: 61% 0%;
   }
@@ -55,22 +55,8 @@
   100% {
     background-position: 61% 0%;
   }
-}
-
-/* .mainBg {
-  background-color: #e5e5f7;
-  opacity: 0.1;
-  background-image: linear-gradient(
-      #ffffff 1.9000000000000001px,
-      transparent 1.9000000000000001px
-    ),
-    linear-gradient(
-      to right,
-      #ffffff 1.9000000000000001px,
-      #e5e5f7 1.9000000000000001px
-    );
-  background-size: 30px 30px;
 } */
+
 
 
 
@@ -93,6 +79,7 @@
   animation: animate 20s linear infinite;
   bottom: -150px;
 
+
 }
 
 .circles li:nth-child(1) {
@@ -100,6 +87,10 @@
   width: 80px;
   height: 80px;
   animation-delay: 0s;
+  border-radius: 10%;
+    animation-duration: 20s;
+
+
 }
 
 .circles li:nth-child(2) {
@@ -108,6 +99,7 @@
   height: 20px;
   animation-delay: 2s;
   animation-duration: 20s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(3) {
@@ -115,6 +107,9 @@
   width: 20px;
   height: 20px;
   animation-delay: 4s;
+  animation-duration: 20s;
+
+  border-radius: 10%;
 }
 
 .circles li:nth-child(4) {
@@ -123,6 +118,7 @@
   height: 60px;
   animation-delay: 0s;
   animation-duration: 18s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(5) {
@@ -130,6 +126,7 @@
   width: 20px;
   height: 20px;
   animation-delay: 0s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(6) {
@@ -137,13 +134,15 @@
   width: 110px;
   height: 110px;
   animation-delay: 3s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(7) {
   left: 35%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 7s;
+  width: 130px;
+  height: 130px;
+  animation-delay: 0s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(8) {
@@ -152,6 +151,7 @@
   height: 25px;
   animation-delay: 5s;
   animation-duration: 25s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(9) {
@@ -160,6 +160,7 @@
   height: 15px;
   animation-delay: 2s;
   animation-duration: 35s;
+  border-radius: 10%;
 }
 
 .circles li:nth-child(10) {
@@ -168,6 +169,7 @@
   height: 150px;
   animation-delay: 0s;
   animation-duration: 70s;
+  border-radius: 10%;
 }
 
 @keyframes animate {

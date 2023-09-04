@@ -40,6 +40,9 @@ import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/Studen
 import InstructorDAshboard from "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
+import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
+import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
+import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +91,10 @@ const router = createBrowserRouter([
         element: <CoursePage></CoursePage>,
       },
       {
+        path: "coursepageUpdate",
+        element: <CoursePageUpdate></CoursePageUpdate>,
+      },
+      {
         path: "/reset-password/:oobCode",
         element: <ResetPassword></ResetPassword>,
       },
@@ -100,11 +107,11 @@ const router = createBrowserRouter([
         element: <CheckOut></CheckOut>,
       },
       {
-        path: "payment/success/:tranId",
+        path: "/payment/success/:tranId",
         element: <PaymentSuccess></PaymentSuccess>,
       },
       {
-        path: "payment/fail/:tranId",
+        path: "/payment/fail/:tranId",
         element: <PaymentFail></PaymentFail>,
       },
       {
@@ -188,6 +195,10 @@ const router = createBrowserRouter([
         element: <MyPayments></MyPayments>,
       },
       {
+        path: "acc-setup",
+        element: <BankAccountSetup></BankAccountSetup>,
+      },
+      {
         path: "add-course",
         element: <AddCourses></AddCourses>,
       },
@@ -212,6 +223,10 @@ const router = createBrowserRouter([
       {
         path: "student-payment",
         element: <StudentPayment></StudentPayment>,
+      },
+      {
+        path: "student-profile",
+        element: <StudentProfile></StudentProfile>,
       },
     ],
   },

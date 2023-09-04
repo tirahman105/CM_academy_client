@@ -14,12 +14,14 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
 
+  console.log(user)
+
   return (
     // bg-opacity-70 backdrop-blur-lg  fixed left-0 right-0  px-4 mx-auto rounded-md   bg-gray-100 shadow-sm
     // bg-opacity-100 backdrop-blur-lg  fixed left-0 right-0 max-w-[1300px] px-4 mx-auto rounded-md border-2 border-[#1bbf7218] bg-[#1bbf7218] shadow-md
     <>
       <div className="    fixed left-0 right-0  px-4 mx-auto   bg-white shadow-sm bg-opacity-70 backdrop-blur-lg">
-        <div className="navbar home-container mx-auto px-4 ">
+        <div className="navbar max-w-7xl mx-auto px-4 ">
           <div className="navbar-start">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -133,6 +135,17 @@ const Navbar = () => {
                   </Link>
                 </li>
               )}
+              {user && (
+                <li>
+                  <Link
+                    to="/dashboard"
+                    className="ml-auto text-[#1BBF72] font-Raleway font-bold"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+              
             </ul>
           </div>
           <div className="navbar-end  hidden sm:block ">
@@ -150,17 +163,22 @@ const Navbar = () => {
                 </div>
                 <button
                   onClick={handleLogOut}
-                  className="text-gray-700 font-Raleway border-2 font-bold  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
+                  className="text-gray-700 font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
                 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   Logout
                 </button>
               </div>
             ) : (
-              <Link to="/login" className="text-gray-700 font-Raleway border-2 font-bold  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
-              hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md ">
-                Login
-              </Link>
+              <div className="flex justify-end">
+                <Link
+                  to="/login"
+                  className="text-gray-700 font-Raleway border-2 font-bold py-[9px]  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
+              hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                >
+                  Login
+                </Link>
+              </div>
             )}
           </div>
         </div>

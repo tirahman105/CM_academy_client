@@ -7,13 +7,18 @@ const WhyUs = () => {
 
 
     return (
-        <div className="pt-12 md:pt-20 home-container">
+        <div className="pt-12 px-2 md:pt-20 home-container">
             <div className="container mx-auto px-4">
-                <h1 className='text-4xl font-bold mb-5 text-center text-[#12C29F]'>Why Choose us?</h1>
-                <p className="text-center font-semibold mb-20">
-                    Empowering Futures, One Click at a Time. <br />
+            <h1 className="text-4xl font-bold mb-5  font-Poppins">
+            Why Choose us?
+        </h1>
+        <p className=" font-semibold mb-10">
+        Empowering Futures, One Click at a Time. <br />
                     Discover Excellence with Personalized Learning, Expert Educators, and
-                    Seamless Technology. Join us in Redefining Education.</p>
+                    Seamless Technology. Join us in Redefining Education.
+        </p>
+
+               
                 <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
                     <div className="md:w-1/2 mb-6 md:mb-0">
                         <Lottie animationData={animationData} height={300} width={300} />

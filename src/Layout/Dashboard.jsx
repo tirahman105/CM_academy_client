@@ -1,41 +1,60 @@
 import React from "react";
 import { useState } from "react";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
-import { BiSolidDashboard, BiListPlus } from "react-icons/bi";
+import { BiSolidDashboard, BiListPlus, BiLogOut, BiMoneyWithdraw } from "react-icons/bi";
 import { Link, Outlet } from "react-router-dom";
 import useInstructor from "../Hooks/useInstructor";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import useStudent from "../Hooks/useStudent";
+import useAdmin from "../Hooks/useAdmin";
+import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
+import { RiContactsFill } from "react-icons/ri";
+import { MdOutlinePayments ,MdManageAccounts, MdAccountBalance, MdOutlinePostAdd, MdOutlineGroup} from "react-icons/md";
+import { PiFileVideo, PiStudentBold } from "react-icons/pi";
+import { LuFileCog } from "react-icons/lu";
+import { GrChapterAdd } from "react-icons/gr";
+import { CgNotes } from "react-icons/cg";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
-  // const [isInstructor] = useInstructor();
+  const [isInstructor] = useInstructor();
+  const [isStudent] = useStudent();
+  const [isAdmin] = useAdmin();
 
-  
-  console.log(user);
+  // const isAdmin =false;
+  // const isStudent =false;
+  console.log(
+    "instructor",
+    isInstructor,
+    "student",
+    isStudent,
+    "admin",
+    isAdmin
+  );
   const [open, setOpen] = useState(true);
-  const isAdmin = false;
 
-  const isInstructor = false;
-const isStudent = true;
-
-
-  // const handleLogOut = () => {
-  //     logOut()
-  //       .then(() => {})
-  //       .catch((error) => console.log(error));
-  //   };
+  const handleLogOut = () => {
+      logOut()
+        .then(() => {})
+        .catch((error) => console.log(error));
+    };
 
   const StudentMenus = [
     {
       title: "My Courses",
-      icon: <BiSolidDashboard />,
+      icon: <PiFileVideo />,
       src: "/dashboard/my-courses",
     },
     {
       title: "My Payments",
-      icon: <BiListPlus />,
+      icon: <MdOutlinePayments />,
       src: "/dashboard/student-payment",
+    },
+    {
+      title: "My Profile",
+      icon: <RiContactsFill />,
+      src: "/dashboard/student-profile",
     },
   ];
 
@@ -47,27 +66,27 @@ const isStudent = true;
     },
     {
       title: "Manage Students",
-      icon: <BiListPlus />,
+      icon: <MdManageAccounts />,
       src: "/dashboard/manage-students",
     },
     {
       title: "All Enrolled Student",
-      icon: <BiListPlus />,
+      icon: <PiStudentBold />,
       src: "/dashboard/All-enrolled-students",
     },
     {
       title: "Manage instructors",
-      icon: <BiListPlus />,
+      icon: <MdManageAccounts />,
       src: "/dashboard/manage-instructors",
     },
     {
       title: "Manage Course",
-      icon: <BiListPlus />,
+      icon: <LuFileCog />,
       src: "/dashboard/manage-course",
     },
     {
       title: "Withdraw Request",
-      icon: <BiListPlus />,
+      icon: <BiMoneyWithdraw />,
       src: "/dashboard/withdraw-request",
     },
     {
@@ -79,26 +98,35 @@ const isStudent = true;
 
   // ---------------------------------instructor menu----------------------
   const InstructorMenus = [
-    { title: "Dashboard", icon: <BiSolidDashboard />, src: "/dashboard/instructor-dashboard" },
+    {
+      title: "Dashboard",
+      icon: <BiSolidDashboard />,
+      src: "/dashboard/instructor-dashboard",
+    },
     {
       title: "My Courses",
-      icon: <BiSolidDashboard />,
+      icon: <CgNotes />,
       src: "/dashboard/my-courses-instructor",
     },
     {
       title: "My Enrolled Students",
-      icon: <BiListPlus />,
+      icon: <MdOutlineGroup />,
       src: "/dashboard/my-enrolled-students",
     },
     {
       title: "Add New Course",
-      icon: <BiListPlus />,
+      icon: <GrChapterAdd />,
       src: "/dashboard/add-course",
     },
-    { title: "Add New Blog", icon: <BiListPlus />, src: "/dashboard/add-blog" },
+    { title: "Add New Blog", icon: <MdOutlinePostAdd />, src: "/dashboard/add-blog" },
+    {
+      title: "Payment Account Setup",
+      icon: <MdAccountBalance />,
+      src: "/dashboard/acc-setup",
+    },
     {
       title: "Payment History",
-      icon: <BiListPlus />,
+      icon: <MdOutlinePayments />,
       src: "/dashboard/my-payments",
     },
   ];
@@ -119,10 +147,11 @@ const isStudent = true;
             onClick={() => setOpen(!open)}
           ></BsFillArrowLeftSquareFill>
           <div className="flex items-center ">
-            <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
-            <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
+            <img 
+            src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
+           <Link to="/"> <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
               CM Academy
-            </h1>
+            </h1></Link>
           </div>
 
           <div className={` ${open ? "block duration-500" : "hidden"} `}>
@@ -161,6 +190,18 @@ const isStudent = true;
                     </Link>
                   </li>
                 ))}
+                <hr className="my-10" />
+                <button
+                  onClick={handleLogOut}
+                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
+                hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                >
+                  <BiLogOut className="text-3xl"></BiLogOut>
+                  <span    className={`${
+                          !open ? "hidden" : ""
+                        } origin-left duration-200 `}
+                      >Logout</span>
+                </button>
               </>
             )}
             {isAdmin && (
@@ -183,9 +224,20 @@ const isStudent = true;
                     </Link>
                   </li>
                 ))}
+                <hr className="my-10" />
+                <button
+                  onClick={handleLogOut}
+                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
+                hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                >
+                  <BiLogOut className="text-3xl"></BiLogOut>
+                  <span    className={`${
+                          !open ? "hidden" : ""
+                        } origin-left duration-200 `}
+                      >Logout</span>
+                </button>
               </>
             )}
-
 
             {isInstructor && (
               <>
@@ -207,6 +259,18 @@ const isStudent = true;
                     </Link>
                   </li>
                 ))}
+                <hr className="my-10" />
+                <button
+                  onClick={handleLogOut}
+                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
+                hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                >
+                  <BiLogOut className="text-3xl"></BiLogOut>
+                  <span    className={`${
+                          !open ? "hidden" : ""
+                        } origin-left duration-200 `}
+                      >Logout</span>
+                </button>
               </>
             )}
           </ul>
@@ -218,6 +282,7 @@ const isStudent = true;
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
+          <DashboardTopNav></DashboardTopNav>
           <Outlet></Outlet>
         </div>
       </div>

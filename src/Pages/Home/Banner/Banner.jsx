@@ -1,13 +1,20 @@
 import { Typewriter, Cursor } from "react-simple-typewriter";
-import BannerLottie from "../../../assets/Banner.json";
+// import BannerLottie from "../../../assets/Banner.json";
+import AnimationBanner from "../../../assets/cm_banner.json";
 import Lottie from "lottie-react";
 import "./Banner.css";
+import { motion } from "framer-motion";
+
 const Banner = () => {
   return (
-    <div className="css-selector   relative pt-24">
-
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit={{ opacity: 0, transition: { duration: 0.5 } }}
+      className="css-selector duration-500  relative  pt-24   "
+    >
       <div>
-        <div className="area">
+        <div className="area ">
           <ul className="circles">
             <li></li>
             <li></li>
@@ -23,10 +30,7 @@ const Banner = () => {
         </div>
       </div>
 
-      <div
-
-      //   style={{ backgroundImage: `url(${banner})` }}
-      >
+      <div>
         <div className="hero-overlay bg-opacity-50 "></div>
 
         <div className="flex flex-col-reverse lg:flex-row  max-w-7xl mx-auto ">
@@ -50,9 +54,7 @@ const Banner = () => {
             </p>
 
             <div className="lg:mt-10 flex gap-5  mb-14  relative ">
-              <button
-                className=" text-white border-2 font-bold border-white rounded-xl px-4 bg-[#1BBF72] text-[12px] md:text-sm font-Raleway cursor-pointer  py-2"
-              >
+              <button className=" text-white border-2 font-bold border-white rounded-xl px-4 bg-[#1BBF72] text-[12px] md:text-sm font-Raleway cursor-pointer  py-2">
                 Get Stared
               </button>
 
@@ -65,11 +67,11 @@ const Banner = () => {
             </div>
           </div>
           <div className="  w-52   lg:w-1/2 mx-auto lg:px-6  animate-pulse">
-            <Lottie animationData={BannerLottie} loop={true} />
+            <Lottie animationData={AnimationBanner} loop={true} />
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

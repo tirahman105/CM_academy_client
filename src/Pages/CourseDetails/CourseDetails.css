@@ -1,1 +1,23 @@
 /* Define the transition for max-height during expansion */
+.boxShadow {
+  box-shadow: 6px 12px 5px -2px #1bbf72ce;
+}
+
+.boxShadowBtn {
+  box-shadow: none; /* or any other initial box shadow */
+  transition: box-shadow 0.3s ease; /* Add a transition for smooth animation */
+}
+
+/* Apply shadow on hover */
+.boxShadowBtn:hover {
+  box-shadow: 0px 0px 8px -2px #1bbf72ce;
+}
+
+.boxShadowMilestone {
+  box-shadow: 6px 12px 5px -2px #1bbf72ce;
+}
+
+.react-rating .rating-symbol {
+  width: 16px; /* Adjust this value to decrease the width of the icons */
+  height: 16px; /* Adjust this value to decrease the height of the icons */
+}
