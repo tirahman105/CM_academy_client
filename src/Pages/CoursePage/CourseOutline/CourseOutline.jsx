@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CourseOutline = ({
   milestoneList,
   selectedMilestone,
-  unlockedSessions, // Receive unlocked sessions state
   onSelectMilestone,
   onSelectSession,
-  onSessionComplete, // Function to notify when a session is completed
+  activeSessionIndex,
 }) => {
-  const [expandedMilestone, setExpandedMilestone] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedMilestone, setExpandedMilestone] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
+
+  useEffect(() => {
+    setExpandedMilestone(selectedMilestone);
+  }, [selectedMilestone]);
 
   const toggleMilestone = (milestoneIndex) => {
     if (expandedMilestone === milestoneIndex) {
       setExpandedMilestone(null);
     } else {
       setExpandedMilestone(milestoneIndex);
+      console.log("toggleMilestone", milestoneIndex);
     }
   };
 
@@ -48,24 +52,27 @@ const CourseOutline = ({
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               handleSearch(searchQuery);
             }
           }}
         />
       </div>
-      <ul className="p-5 mt-5">
+      <ul className="p-5 mt-5 ">
         {filteredMilestones.map((milestone, milestoneIndex) => (
           <motion.li
-            key={milestoneIndex}
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`w-full px-5 py-5 mb-4 h-0 border-2 border-gray-300 shadow-md text-xl md:text-2xl rounded-lg`}
+            className="w-full px-5 py-5 mb-4 h-0 border-2 border-gray-300 shadow-md text-xl md:text-2xl rounded-lg "
+            key={milestoneIndex}
           >
+            
             <span
-              className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold`}
+              className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold ${
+                milestoneIndex === selectedMilestone ? "text-blue-500" : ""
+              }`}
               onClick={() => toggleMilestone(milestoneIndex)}
             >
               {milestone.milestone}
@@ -74,49 +81,32 @@ const CourseOutline = ({
               {expandedMilestone === milestoneIndex && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
+                  animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                   className="text-black w-full"
                 >
                   {milestone.sessions.map((session, sessionIndex) => (
                     <motion.button
-                      key={sessionIndex}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ delay: 0.2 }}
-                      className={`px-3 py-1 mt-5 w-full text-left duration-700 text-[14px] md:text-lg text-gray-700 font-bold font-TitilliumWeb border-l-8 border-r-8 border-gray-100 shadow-md bg-[#1bbf7215] rounded-lg ${
-                        sessionIndex <= unlockedSessions[milestoneIndex]
-                          ? 'unlocked'
-                          : 'locked'
-                      } ${
-                        sessionIndex === selectedMilestone &&
-                        unlockedSessions[milestoneIndex] >= sessionIndex
-                          ? 'selected'
-                          : ''
-                      } ${
-                        sessionIndex > unlockedSessions[milestoneIndex]
-                          ? 'pointer-events-none'
-                          : ''
+                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[14px] md:text-lg text-gray-700 font-bold font-TitilliumWeb border-l-8 border-r-8 border-gray-100 shadow-md bg-[#1bbf7215] rounded-lg ${
+                        milestoneIndex === selectedMilestone &&
+                        sessionIndex === activeSessionIndex
+                          ? "bg-blue-500 text-white"
+                          : ""
                       }`}
-                      onClick={() => {
-                        if (
-                          sessionIndex <= unlockedSessions[milestoneIndex] &&
-                          unlockedSessions[milestoneIndex] >= sessionIndex
-                        ) {
-                          onSelectMilestone(milestoneIndex);
-                          onSelectSession(sessionIndex, session.videoLink);
-                          onSessionComplete(milestoneIndex, sessionIndex);
-                        }
-                      }}
+                      key={sessionIndex}
+                      id={`sessionButton-${milestoneIndex}-${sessionIndex}`}
                     >
                       <span
-                        className={`cursor-pointer px-3 rounded-md ${
-                          sessionIndex <= unlockedSessions[milestoneIndex]
-                            ? 'unlocked'
-                            : 'locked'
-                        }`}
+                        className="cursor-pointer px-3 rounded-md"
+                        onClick={() => {
+                          onSelectMilestone(milestoneIndex);
+                          onSelectSession(sessionIndex, session.videoLink);
+                        }}
                       >
                         {session.sessionTitle}
                       </span>
@@ -132,20 +122,7 @@ const CourseOutline = ({
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className={`text-gray-700 font-Raleway border-2 font-bold py-4 text-lg rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 ${
-            unlockedSessions[selectedMilestone] >=
-            milestoneList[selectedMilestone].sessions.length - 1
-              ? 'disabled'
-              : ''
-          }`}
-          onClick={() => {
-            if (
-              unlockedSessions[selectedMilestone] >=
-              milestoneList[selectedMilestone].sessions.length - 1
-            ) {
-              onSelectMilestone(selectedMilestone + 1);
-            }
-          }}
+          className="text-gray-700 font-Raleway border-2 font-bold py-4 text-lg rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md w-full"
         >
           Course Summary
         </motion.button>

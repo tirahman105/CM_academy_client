@@ -43,6 +43,9 @@ function Categories() {
     console.log(course);
   };
 
+
+  
+
   return (
     <div  className="max-w-7xl mx-auto px-2 mt-28 ">
       <div className="">
