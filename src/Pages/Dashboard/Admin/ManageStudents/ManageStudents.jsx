@@ -43,8 +43,14 @@ const ManageStudents = () => {
     
 
     return (
-        <div className="p-4">
-             <h1 className='text-center text-3xl font-bold p-5 text-[#12C29F] bg-slate-600'>All Students</h1>
+        <div className="border p-4">
+            <div className="my-5 mt-4">
+       <h1 className=" text-lg font-bold">
+     Students List
+      </h1>
+      <p className="text-base mb-4">All registered students list below</p>
+      <hr />
+     </div>
             {isSmallScreen ? (
                 // Card for small screens
                <div>
