@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
-import { BiSolidDashboard, BiListPlus, BiLogOut, BiMoneyWithdraw } from "react-icons/bi";
+import {
+  BiSolidDashboard,
+  BiListPlus,
+  BiLogOut,
+  BiMoneyWithdraw,
+} from "react-icons/bi";
 import { Link, Outlet } from "react-router-dom";
 import useInstructor from "../Hooks/useInstructor";
 import { useContext } from "react";
@@ -10,7 +15,13 @@ import useStudent from "../Hooks/useStudent";
 import useAdmin from "../Hooks/useAdmin";
 import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 import { RiContactsFill } from "react-icons/ri";
-import { MdOutlinePayments ,MdManageAccounts, MdAccountBalance, MdOutlinePostAdd, MdOutlineGroup} from "react-icons/md";
+import {
+  MdOutlinePayments,
+  MdManageAccounts,
+  MdAccountBalance,
+  MdOutlinePostAdd,
+  MdOutlineGroup,
+} from "react-icons/md";
 import { PiFileVideo, PiStudentBold } from "react-icons/pi";
 import { LuFileCog } from "react-icons/lu";
 import { GrChapterAdd } from "react-icons/gr";
@@ -35,10 +46,10 @@ const Dashboard = () => {
   const [open, setOpen] = useState(true);
 
   const handleLogOut = () => {
-      logOut()
-        .then(() => {})
-        .catch((error) => console.log(error));
-    };
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const StudentMenus = [
     {
@@ -118,7 +129,16 @@ const Dashboard = () => {
       icon: <GrChapterAdd />,
       src: "/dashboard/add-course",
     },
-    { title: "Add New Blog", icon: <MdOutlinePostAdd />, src: "/dashboard/add-blog" },
+    {
+      title: "My Blogs",
+      icon: <CgNotes />,
+      src: "/dashboard/my-blogs",
+    },
+    {
+      title: "Add New Blog",
+      icon: <MdOutlinePostAdd />,
+      src: "/dashboard/add-blog",
+    },
     {
       title: "Payment Account Setup",
       icon: <MdAccountBalance />,
@@ -147,11 +167,13 @@ const Dashboard = () => {
             onClick={() => setOpen(!open)}
           ></BsFillArrowLeftSquareFill>
           <div className="flex items-center ">
-            <img 
-            src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
-           <Link to="/"> <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
-              CM Academy
-            </h1></Link>
+            <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
+            <Link to="/">
+              {" "}
+              <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
+                CM Academy
+              </h1>
+            </Link>
           </div>
 
           <div className={` ${open ? "block duration-500" : "hidden"} `}>
@@ -197,10 +219,13 @@ const Dashboard = () => {
                 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   <BiLogOut className="text-3xl"></BiLogOut>
-                  <span    className={`${
-                          !open ? "hidden" : ""
-                        } origin-left duration-200 `}
-                      >Logout</span>
+                  <span
+                    className={`${
+                      !open ? "hidden" : ""
+                    } origin-left duration-200 `}
+                  >
+                    Logout
+                  </span>
                 </button>
               </>
             )}
@@ -231,10 +256,13 @@ const Dashboard = () => {
                 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   <BiLogOut className="text-3xl"></BiLogOut>
-                  <span    className={`${
-                          !open ? "hidden" : ""
-                        } origin-left duration-200 `}
-                      >Logout</span>
+                  <span
+                    className={`${
+                      !open ? "hidden" : ""
+                    } origin-left duration-200 `}
+                  >
+                    Logout
+                  </span>
                 </button>
               </>
             )}
@@ -266,10 +294,13 @@ const Dashboard = () => {
                 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   <BiLogOut className="text-3xl"></BiLogOut>
-                  <span    className={`${
-                          !open ? "hidden" : ""
-                        } origin-left duration-200 `}
-                      >Logout</span>
+                  <span
+                    className={`${
+                      !open ? "hidden" : ""
+                    } origin-left duration-200 `}
+                  >
+                    Logout
+                  </span>
                 </button>
               </>
             )}

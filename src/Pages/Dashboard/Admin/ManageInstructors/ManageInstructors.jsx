@@ -98,6 +98,7 @@ const ManageInstructors = () => {
             <thead>
               <tr className="bg-gray-200 text-[#12C29F] text-left  font-bold divide-x-2">
                 <th className="px-4 py-2 ">SL</th>
+                <th className=" py-2 ">Image</th>
                 <th className="px-4 py-2 ">Name</th>
                 <th className="px-4 py-2">Email</th>
                 <th className="px-4 py-2">Contact</th>
@@ -110,6 +111,7 @@ const ManageInstructors = () => {
                   className="hover:bg-slate-100 duration-150"
                 >
                   <td className="border px-4 py-2">{startIndex + index + 1}</td>
+                  <td className="border px-auto py-2"><img src={instructor.userImage} className='w-12 avatar rounded-full' alt="" /></td>
                   <td className="border px-4 py-2">{instructor.fullName}</td>
                   <td className="border px-4 py-2">{instructor.email}</td>
                   <td className="border px-4 py-2">{instructor.phone}</td>
