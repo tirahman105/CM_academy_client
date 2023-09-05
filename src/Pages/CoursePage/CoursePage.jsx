@@ -4,6 +4,7 @@ import CourseOutline from './CourseOutline/CourseOutline';
 import Certificate from './Certificate/Certificate';
 import { useLocation } from 'react-router-dom';
 
+import ".././CoursePage/CourseOutline/Course.css"
 const CoursePage = () => {
   const location = useLocation();
   const { courseOutline } = location.state;
@@ -34,6 +35,8 @@ const CoursePage = () => {
     }
   };
 
+  console.log("selectedSession", selectedSession)
+
   const handlePreviousSession = () => {
     if (selectedSession > 0) {
       setSelectedSession(selectedSession - 1);
@@ -56,7 +59,7 @@ const CoursePage = () => {
 
   return (
     <div>
-      <div className="lg:flex pt-36 bgCoursePage">
+      <div className="lg:flex pt-36 cb pb-32">
         <div className="lg:w-3/4 p-4">
           <CourseVideo
             sessionList={courseOutline[selectedMilestone]?.sessions || []}
@@ -75,7 +78,7 @@ const CoursePage = () => {
             activeSessionIndex={selectedSession}
           />
           <div className='flex justify-center'>
-            <button className="font-bold text-gray-700 px-4 py-2 shadow-md rounded-xl border-2" onClick={handleOpenCertificateModal}>Get Certificate</button>
+            <button className="font-bold text-white px-4 py-2 shadow-md rounded-xl border-[#36cbd3dc] border-2" onClick={handleOpenCertificateModal}>Get Certificate</button>
           </div>
           <dialog id="my_modal_1" className={`modal ${showCertificateModal ? 'open' : ''}`}>
             <form method="dialog" className="modal-box">

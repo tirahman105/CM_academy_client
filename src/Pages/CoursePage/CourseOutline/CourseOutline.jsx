@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CourseOutline = ({
@@ -11,6 +11,7 @@ const CourseOutline = ({
   const [expandedMilestone, setExpandedMilestone] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
+
 
   useEffect(() => {
     setExpandedMilestone(selectedMilestone);
@@ -33,22 +34,23 @@ const CourseOutline = ({
   };
 
   return (
-    <div className="p-4 mb-6 rounded-lg backdrop-blur-md bg-slate-200 boxShadowCourse bg-opacity-30">
+    <div className="p-4 mb-6 border rounded-lg border-[#36cbd330] text-white  backdrop-blur-md bg-[#1a2c49] shadow-md   bg-opacity-50">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <h2 className="text-[18px] md:text-xl w-full md:w-3/5 md:mb-3 mt-3 font-bold">
-          Course Outline
+        <h2 className="text-[18px] md:text-xl w-full md:w-3/5 md:mb-3 mt-3 font-bold ">
+          Course Content
         </h2>
-        <progress
+        {/* <progress
           className="progress progress-info w-full md:w-1/3 lg:w-1/4 xl:w-1/3 h-4"
           value="70"
           max="100"
-        ></progress>
+        ></progress> */}
       </div>
       <div className="w-full mt-4 md:mt-0">
         <input
           type="text"
+          style={{ outline: 'none' }} 
           placeholder="Search Lesson"
-          className="input input-success w-full"
+          className="input input-success border-2 border-[#36cbd330] w-full"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={(e) => {
@@ -58,21 +60,21 @@ const CourseOutline = ({
           }}
         />
       </div>
-      <ul className="p-5 mt-5 ">
+      <div className="p-5 mt-5 ">
         {filteredMilestones.map((milestone, milestoneIndex) => (
-          <motion.li
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="w-full px-5 py-5 mb-4 h-0 border-2 border-gray-300 shadow-md text-xl md:text-2xl rounded-lg "
+            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${
+              milestoneIndex === selectedMilestone ? " " : ""
+            }` }
             key={milestoneIndex}
           >
             
             <span
-              className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold ${
-                milestoneIndex === selectedMilestone ? "text-blue-500" : ""
-              }`}
+              className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
             >
               {milestone.milestone}
@@ -92,10 +94,10 @@ const CourseOutline = ({
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ delay: 0.2 }}
-                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[14px] md:text-lg text-gray-700 font-bold font-TitilliumWeb border-l-8 border-r-8 border-gray-100 shadow-md bg-[#1bbf7215] rounded-lg ${
+                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[14px] md:text-lg  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${
                         milestoneIndex === selectedMilestone &&
                         sessionIndex === activeSessionIndex
-                          ? "bg-blue-500 text-white"
+                          ? "grBg "
                           : ""
                       }`}
                       key={sessionIndex}
@@ -115,14 +117,14 @@ const CourseOutline = ({
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.li>
+          </motion.div>
         ))}
-      </ul>
+      </div>
       <div className="mt-4">
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="text-gray-700 font-Raleway border-2 font-bold py-4 text-lg rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md w-full"
+          className="text-white font-Raleway duration-500 grBg font-bold py-2 text-lg rounded-xl px-4  shadow-md w-full"
         >
           Course Summary
         </motion.button>

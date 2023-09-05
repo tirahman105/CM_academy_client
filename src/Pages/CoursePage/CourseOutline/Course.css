@@ -1,9 +1,42 @@
 .gradient-border {
- 
-    border-width: 2px; /* Adjust the border width as needed */
-  
-    border-image: linear-gradient(to right, #10A8E9, #36CCD3); /* Define your gradient here */
-    border-image-slice: 1;
-    border-radius: 100px;
-  }
-  
+  border-width: 1px; /* Adjust the border width as needed */
+  border-radius: 100px;
+  border-image: radial-gradient(
+    at 70% 44%,
+    #10a8e9,
+    #36ccd3
+  ); /* Define your gradient here */
+  border-image-slice: 1;
+}
+
+/* .cb {
+  background-color:hsla(222,47%,11%,1);
+  background-image:
+  radial-gradient(at 86% 44%, hsla(189,100%,56%,0.9) 1px, transparent 1%);
+}
+ */
+
+.cb {
+  background-color: hsla(222, 47%, 11%, 1);
+  background-image: radial-gradient(
+    circle at 70% 44%,
+    hsla(189, 100%, 56%, 0.3) 10px,
+    transparent 30%
+  );
+  background-attachment: fixed; /* Add this line */
+}
+
+.boxShadowCourse {
+  box-shadow: 1px 1px 10px 1px #36cbd368;
+}
+
+.grBg {
+  background: #0fa6e9;
+  background: linear-gradient(to right, #0fa6e9 5%, #38cfd2 68%);
+}
+
+.textGr {
+  background: -webkit-linear-gradient(198deg, #38cfd2 3%, #0fa6e9 82%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
