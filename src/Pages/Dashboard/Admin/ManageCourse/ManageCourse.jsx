@@ -5,7 +5,7 @@ import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 const ManageCourse = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [courses, setCourses] = useState([]);
-  const itemsPerPage = isSmallScreen ? 3 : 5;
+  const itemsPerPage = isSmallScreen ? 5 : 10;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPageCount = Math.ceil(courses.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -70,9 +70,7 @@ const ManageCourse = () => {
 
   return (
     <div className=" ">
-      <DashboardTopNav></DashboardTopNav>
-
-      {/* course table  */}
+         {/* course table  */}
 
       <div className="border p-4">
       <div className="my-5 mt-4">
