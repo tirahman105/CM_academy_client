@@ -284,7 +284,7 @@ const MyPayments = () => {
       )}
 
       {isModalOpen && (
-        <ModalComponent onClose={closeModal} totalAmount={totalAmount} />
+        <ModalComponent onClose={closeModal} totalAmount={totalAmount} email={user?.email}  />
       )}
     </div>
   );
