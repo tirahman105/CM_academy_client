@@ -101,14 +101,18 @@ const ManageCourse = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your Course has been deleted.',
-                            'success'
-                        )
-                    }
+                  const remainingCourses = courses.filter(
+                    (course) => course._id !== courseId
+                  );
+                  setCourses(remainingCourses);
+      
+                  Swal.fire("Deleted!", "Your Course has been deleted.", "success");
                 })
+                .catch((error) => {
+                  console.error("Error deleting course:", error);
+                  Swal.fire("Error", "An error occurred while deleting the course.", "error");
+                })
+                
         }
     })
   };
