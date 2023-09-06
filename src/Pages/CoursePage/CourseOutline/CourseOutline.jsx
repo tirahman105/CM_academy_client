@@ -34,7 +34,7 @@ const CourseOutline = ({
   };
 
   return (
-    <div className="p-4 mb-6 border rounded-lg border-[#36cbd330] text-white  backdrop-blur-md bg-[#1a2c49] shadow-md   bg-opacity-50">
+    <div className="p-4 mb-6 border rounded-lg border-[#36cbd330] text-white  backdrop-blur-md bg-[#1a2c49] shadow-md   bg-opacity-60">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <h2 className="text-[18px] md:text-xl w-full md:w-3/5 md:mb-3 mt-3 font-bold ">
           Course Content

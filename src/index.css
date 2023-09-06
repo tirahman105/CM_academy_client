@@ -179,6 +179,18 @@ body {
 
 
 
+/* .testBgForMyCourse {
+  background-color: hsla(222, 47%, 11%, 1);
+  background-image: radial-gradient(
+    circle at 70% 44%,
+    hsla(189, 100%, 56%, 0.3) 100px,
+    transparent 40%
+  );
+  background-attachment: fixed; 
+
+} */
+
+
 .testBgForMyCourse {
   background-color: hsla(222, 47%, 11%, 1);
   background-image: radial-gradient(
