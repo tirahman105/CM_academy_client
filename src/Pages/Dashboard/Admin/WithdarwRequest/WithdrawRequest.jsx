@@ -5,11 +5,15 @@ const WithdrawRequest = () => {
   const [showModal, setShowModal] = useState(false);
   const [withdrawalRequests, setWithdrawalRequests] = useState([]);
 
+  const [bankDetails, setBankDetails] = useState({});
+
   useEffect(() => {
     // Fetch withdrawal request data from the API
     const fetchWithdrawalRequests = async () => {
       try {
-        const response = await fetch("https://cm-academy-test-server-production.up.railway.app/getWithdrawRequests"); // Update the API endpoint as needed
+        const response = await fetch(
+          "https://cm-academy-test-server-production.up.railway.app/getWithdrawRequests"
+        ); // Update the API endpoint as needed
         if (response.ok) {
           const data = await response.json();
           setWithdrawalRequests(data);
@@ -24,14 +28,23 @@ const WithdrawRequest = () => {
     fetchWithdrawalRequests();
   }, []); // Empty dependency array to run this effect only once on component mount
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (InstructorEmail) => {
+    // https://cm-academy-test-server-production.up.railway.app/bank-account-setup/instructorEmail
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/bank-account-setup/${InstructorEmail}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setBankDetails(data);
+        console.log("data", data);
+      });
+
     setShowModal(true);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
   return (
     <div>
       <h1 className="text-2xl">Withdraw request by instructors to admin</h1>
@@ -58,7 +71,7 @@ const WithdrawRequest = () => {
               <td className="border px-4 py-2">{request.email}</td>
               <td className="border px-4 py-2">{request.phoneNumber}</td>
               <td className="border px-4 py-2 ">
-                <button onClick={handleOpenModal}>
+                <button onClick={() => handleOpenModal(request.email)}>
                   <CiViewList className="text-5xl" />
                 </button>
               </td>
@@ -82,11 +95,11 @@ const WithdrawRequest = () => {
           <div className="modal modal-bottom sm:modal-middle" open>
             <div method="dialog" className="modal-box bg-slate-200">
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Account holder Name</h1>
+                <h1 className="w-1/2">Account holder Name </h1>
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="Md. Tareq Ibna Rahman"
+                  defaultValue={bankDetails[0]?.accountHolderName || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
@@ -95,7 +108,7 @@ const WithdrawRequest = () => {
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="02678358929001"
+                  defaultValue={bankDetails[0]?.accountNo || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
@@ -104,7 +117,7 @@ const WithdrawRequest = () => {
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="6394790"
+                  defaultValue={bankDetails[0]?.routingNumber || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
@@ -113,7 +126,7 @@ const WithdrawRequest = () => {
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="Exim Bank"
+                  defaultValue={bankDetails[0]?.bankName || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
@@ -122,7 +135,7 @@ const WithdrawRequest = () => {
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="Bashundhara Branch"
+                  defaultValue={bankDetails[0]?.bankBranchName || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
@@ -131,7 +144,7 @@ const WithdrawRequest = () => {
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="01614048774"
+                  defaultValue={bankDetails[0]?.phoneNumber || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
