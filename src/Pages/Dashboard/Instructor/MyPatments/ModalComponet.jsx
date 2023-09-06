@@ -1,6 +1,6 @@
 import React from "react";
 
-const ModalComponent = ({ onClose, totalAmount, email }) => {
+const ModalComponent = ({ onClose, totalAmount, email, name }) => {
   console.log("email", email);
   // Function to handle closing the modal
   const handleClose = () => {
@@ -11,6 +11,7 @@ const ModalComponent = ({ onClose, totalAmount, email }) => {
     try {
       // Add the withdrawStatus field
       const dataToSend = {
+        name,
         totalAmount,
         email,
         withdrawStatus: false,
