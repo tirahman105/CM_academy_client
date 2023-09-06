@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
+import { useLocation, useNavigate } from "react-router";
 
 const GoogleSignin = () => {
   const { googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     console.log("clicked");
@@ -31,6 +35,7 @@ const GoogleSignin = () => {
           } else {
             console.error("Failed to save user data:", response.statusText);
           }
+          navigate(from, { replace: true });
         })
         .catch((error) => {
           console.error("Error saving user data:", error);
