@@ -267,13 +267,6 @@ const Final = () => {
                       {category.name}
                     </option>
                   ))}
-
-                  {/* <option value="Digital Marketing">Digital Marketing</option>
-                  <option value="Web Development">Web Development</option>
-                  <option value="Photography">Photography</option>
-                  <option value="Communication Skills">
-                    Communication Skills
-                  </option> */}
                 </select>
               </div>
               <div className="form-control mb-3">
