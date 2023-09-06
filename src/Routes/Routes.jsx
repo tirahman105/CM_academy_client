@@ -45,6 +45,7 @@ import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/Ban
 import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
 import Quiz from "../Pages/CoursePage/Quiz/Quiz";
 import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
+import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
 
 const router = createBrowserRouter([
   {
@@ -243,7 +244,7 @@ const router = createBrowserRouter([
       },
       {
         path: "student-profile",
-        element: <StudentProfile></StudentProfile>,
+        element: <StudentProfileUpdated></StudentProfileUpdated>,
       },
     ],
   },
