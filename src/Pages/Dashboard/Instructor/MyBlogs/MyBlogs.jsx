@@ -35,9 +35,9 @@ const MyBlogs = () => {
                         </div>
                         <div>
                             <h2 className="text-2xl font-semibold mb-2">{blog.blogTitle}</h2>
-                            <p className="text-gray-600 mb-4">
-                                {blog.blogDetails.slice(0, 150)}...
-                                <span className="text-blue-600 font-bold ml-2">Read More</span>
+                            <p className="text-gray-600 mb-4 text-lg">
+                                {blog.blogDetails.slice(0, 130)}...
+                                <span className="text-blue-600 font-bold ml-2 text-lg">Read More</span>
                             </p>
                             <div className="flex justify-between items-center text-gray-400 text-sm">
                                 <p>{new Date(blog.blogDate).toLocaleDateString()}</p>
