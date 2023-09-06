@@ -25,7 +25,7 @@ function CategoryManagement() {
     }
 
     // Send a POST request to add the new category
-    fetch("http://localhost:5000/categoriesName", {
+    fetch("https://cm-academy-test-server-production.up.railway.app/categoriesName", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,11 +50,11 @@ function CategoryManagement() {
       <h1>Category Management</h1>
       <div>
         <h2>Recent Categories</h2>
-        <ul>
+        <div className="grid grid-cols-4 gap-4">
           {categories.map((category) => (
-            <li key={category._id}>{category.name}</li>
+            <div className="bg-blue-500 p-4 rounded-md gap-4"  key={category._id}>{category.name}</div>
           ))}
-        </ul>
+        </div>
       </div>
       <div>
         <h2>Add New Category</h2>
