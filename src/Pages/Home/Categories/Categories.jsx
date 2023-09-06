@@ -7,7 +7,7 @@ function Categories() {
   const [courses, setCourses] = useState([]);
   const [activeCourses, setActiveCourses] = useState([]);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-
+  const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   console.log(courses);
@@ -21,33 +21,46 @@ function Categories() {
       });
   }, []);
 
-  const Categories = [
-    "Digital Marketing",
-    "Web Development",
-    "Communication Skills",
-  ];
+  // this all categories route  https://cm-academy-test-server-production.up.railway.app/categoriesName
+
+  // get categories name from this route
+
+  useEffect(() => {
+    fetch(
+      "https://cm-academy-test-server-production.up.railway.app/categoriesName"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
+  console.log(Categories);
+
+  // const Categories = [
+  //   "Digital Marketing",
+  //   "Web Development",
+  //   "Communication Skills",
+  // ];
 
   const handleCategoryClick = (index) => {
     setActiveButtonIndex(index);
-    const category = Categories[index];
+    const selectedCategory = Categories[index]?.name; // Access the name property of the selected category
     const matchingCourses = courses.filter(
-      (course) => course.courseCategory === category
+      (course) => course.courseCategory === selectedCategory
     );
     setActiveCourses(matchingCourses);
 
     console.log(matchingCourses);
   };
+
   const handleDetailsClick = (course) => {
     navigate("/courseDetailsDynamic", { state: { course } });
 
     console.log(course);
   };
 
-
-  
-
   return (
-    <div  className="max-w-7xl mx-auto px-2 mt-28 ">
+    <div className="max-w-7xl mx-auto px-2 mt-28 ">
       <div className="">
         <h1 className="text-4xl font-bold mb-5  font-Poppins">
           Explore Top Courses
@@ -67,17 +80,16 @@ function Categories() {
                     : "text-gray-800"
                 }`}
               >
-                {category}
+                {category.name} {/* Use 'category.name' here */}
               </button>
             ))}
           </div>
         </div>
 
         {/* Course card */}
-        <motion.div  className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
+        <motion.div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
           {activeCourses.map((activeCourse, courseIndex) => (
             <CourseCard
-              
               key={courseIndex}
               course={activeCourse}
               handleDetailsClick={handleDetailsClick}
