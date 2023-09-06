@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 import {
   BiSolidDashboard,
@@ -7,13 +7,6 @@ import {
   BiLogOut,
   BiMoneyWithdraw,
 } from "react-icons/bi";
-import { Link, Outlet } from "react-router-dom";
-import useInstructor from "../Hooks/useInstructor";
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import useStudent from "../Hooks/useStudent";
-import useAdmin from "../Hooks/useAdmin";
-import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 import { RiContactsFill } from "react-icons/ri";
 import {
   MdOutlinePayments,
@@ -25,25 +18,28 @@ import {
 import { PiFileVideo, PiStudentBold } from "react-icons/pi";
 import { LuFileCog } from "react-icons/lu";
 import { GrChapterAdd } from "react-icons/gr";
-import { CgNotes } from "react-icons/cg";
+import { CgNotes, CgProfile } from "react-icons/cg";
+import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
+import useInstructor from "../Hooks/useInstructor";
+import useStudent from "../Hooks/useStudent";
+import useAdmin from "../Hooks/useAdmin";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
   const [isStudent] = useStudent();
   const [isAdmin] = useAdmin();
-
-  // const isAdmin =false;
-  // const isStudent =false;
-  console.log(
-    "instructor",
-    isInstructor,
-    "student",
-    isStudent,
-    "admin",
-    isAdmin
-  );
   const [open, setOpen] = useState(true);
+
+  console.log(
+    "isAdmin",
+    isAdmin,
+    "isInstructor",
+    isInstructor,
+    "isStudent",
+    isStudent
+  );
 
   const handleLogOut = () => {
     logOut()
@@ -107,12 +103,16 @@ const Dashboard = () => {
     },
   ];
 
-  // ---------------------------------instructor menu----------------------
   const InstructorMenus = [
     {
       title: "Dashboard",
       icon: <BiSolidDashboard />,
       src: "/dashboard/instructor-dashboard",
+    },
+    {
+      title: "My Profile",
+      icon: <CgProfile />,
+      src: "/dashboard/instructor-profile",
     },
     {
       title: "My Courses",
@@ -150,19 +150,22 @@ const Dashboard = () => {
       src: "/dashboard/my-payments",
     },
   ];
+
   return (
     <div className="">
-      {/* left navbar  */}
-
-      <div className=" fixed z-10 h-full">
+      <div
+        className={`fixed z-10 h-0 py-4 duration-500 ${
+          open ? "translate-x-0 h-full" : "-translate-x-full "
+        }`}
+      >
         <div
           className={`${
             open ? "w-72 px-5" : "md:w-24 w-0"
-          }  pt-8 duration-500  bg-teal-600 h-full bg-opacity-30 backdrop-blur-md`}
+          } pt-8 duration-500  bg-teal-600 shadow-lg rounded-xl ml-4 h-full bg-opacity-30 backdrop-blur-md transform translate-x-0 md:translate-x-0 `}
         >
           <BsFillArrowLeftSquareFill
-            className={`text-2xl bg-teal-600  absolute cursor-pointer -right-6 md:-right-3  top-9 ${
-              !open && "rotate-180 "
+            className={`text-2xl absolute cursor-pointer -right-6 md:-right-3 top-9 ${
+              !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
           ></BsFillArrowLeftSquareFill>
@@ -215,8 +218,7 @@ const Dashboard = () => {
                 <hr className="my-10" />
                 <button
                   onClick={handleLogOut}
-                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
-                hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   <BiLogOut className="text-3xl"></BiLogOut>
                   <span
@@ -252,8 +254,7 @@ const Dashboard = () => {
                 <hr className="my-10" />
                 <button
                   onClick={handleLogOut}
-                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
-                hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   <BiLogOut className="text-3xl"></BiLogOut>
                   <span
@@ -290,8 +291,7 @@ const Dashboard = () => {
                 <hr className="my-10" />
                 <button
                   onClick={handleLogOut}
-                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
-                hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
                 >
                   <BiLogOut className="text-3xl"></BiLogOut>
                   <span
@@ -309,7 +309,7 @@ const Dashboard = () => {
       </div>
       <div className="h-screen ">
         <div
-          className={`p-7 text-2xl font-semibold flex-1    ${
+          className={`p-7 text-2xl font-semibold flex-1 ${
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
