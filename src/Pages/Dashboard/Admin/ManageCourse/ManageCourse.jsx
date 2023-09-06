@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardTopNav from "../../Shared/DashboardTopNav/DashboardTopNav";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 const ManageCourse = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -63,23 +64,56 @@ const ManageCourse = () => {
     }
   };
 
+  // const handleDelete = (courseId) => {
+    
+  //   // console.log(courseId);
+  //   fetch(`https://cm-academy-test-server-production.up.railway.app/categories/${courseId}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       const remainingCourses = courses.filter(
+  //         (course) => course._id !== courseId
+  //       );
+  //       setCourses(remainingCourses);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error deleting course:", error);
+  //     });
+  // };
+
+
+
   const handleDelete = (courseId) => {
-    // console.log(courseId);
-    fetch(`https://cm-academy-test-server-production.up.railway.app/categories/${courseId}`, {
-      method: "DELETE",
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`https://cm-academy-test-server-production.up.railway.app/categories/${courseId}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your Course has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+        }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        const remainingCourses = courses.filter(
-          (course) => course._id !== courseId
-        );
-        setCourses(remainingCourses);
-      })
-      .catch((error) => {
-        console.error("Error deleting course:", error);
-      });
   };
+
+
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
