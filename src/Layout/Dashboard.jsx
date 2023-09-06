@@ -18,7 +18,7 @@ import {
 import { PiFileVideo, PiStudentBold } from "react-icons/pi";
 import { LuFileCog } from "react-icons/lu";
 import { GrChapterAdd } from "react-icons/gr";
-import { CgNotes } from "react-icons/cg";
+import { CgNotes, CgProfile } from "react-icons/cg";
 import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 import useInstructor from "../Hooks/useInstructor";
 import useStudent from "../Hooks/useStudent";
@@ -108,6 +108,11 @@ const Dashboard = () => {
       title: "Dashboard",
       icon: <BiSolidDashboard />,
       src: "/dashboard/instructor-dashboard",
+    },
+    {
+      title: "My Profile",
+      icon: <CgProfile />,
+      src: "/dashboard/instructor-profile",
     },
     {
       title: "My Courses",

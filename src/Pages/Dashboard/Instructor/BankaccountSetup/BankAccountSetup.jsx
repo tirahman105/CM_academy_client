@@ -51,7 +51,7 @@ const BankAccountSetup = () => {
   };
     return (
         <div>
-            <DashboardTopNav></DashboardTopNav>
+           
             <div className='w-2/4 mx-auto pt-10'>
                 <h1 className='text-center text-2xl bg-gray-200 my-2 mb-5'>Bank Account Setup</h1>
                 <form onSubmit={handleSubmit}>

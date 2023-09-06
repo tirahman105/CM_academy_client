@@ -44,6 +44,7 @@ import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
 import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
 import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
 import Quiz from "../Pages/CoursePage/Quiz/Quiz";
+import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
 
 const router = createBrowserRouter([
   {
@@ -189,6 +190,10 @@ const router = createBrowserRouter([
       {
         path: "instructor-dashboard",
         element: <InstructorDAshboard></InstructorDAshboard>,
+      },
+      {
+        path: "instructor-profile",
+        element: <InstructorProfile></InstructorProfile>,
       },
       {
         path: "my-courses-instructor",
