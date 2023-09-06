@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const CourseOutline = ({
   milestoneList,
@@ -11,8 +12,12 @@ const CourseOutline = ({
   const [expandedMilestone, setExpandedMilestone] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
+  const navigate = useNavigate();
 
-
+  const handleQuizButton = (milestone) => {
+    navigate(`/quiz`, { state: { milestone } });
+    console.log("handleQuizButton", milestone);
+  };
   useEffect(() => {
     setExpandedMilestone(selectedMilestone);
   }, [selectedMilestone]);
@@ -48,7 +53,7 @@ const CourseOutline = ({
       <div className="w-full mt-4 md:mt-0">
         <input
           type="text"
-          style={{ outline: 'none' }} 
+          style={{ outline: "none" }}
           placeholder="Search Lesson"
           className="input input-success border-2 border-[#36cbd330] w-full"
           value={searchQuery}
@@ -69,10 +74,9 @@ const CourseOutline = ({
             transition={{ duration: 0.3 }}
             className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${
               milestoneIndex === selectedMilestone ? " " : ""
-            }` }
+            }`}
             key={milestoneIndex}
           >
-            
             <span
               className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
@@ -93,7 +97,7 @@ const CourseOutline = ({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ delay: 0.2 }}
+                      transition={{ delay: 0.4 }}
                       className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[14px] md:text-lg  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${
                         milestoneIndex === selectedMilestone &&
                         sessionIndex === activeSessionIndex
@@ -114,6 +118,21 @@ const CourseOutline = ({
                       </span>
                     </motion.button>
                   ))}
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className={`px-3 py-1  text-left mt-5 duration-700 text-[14px] md:text-lg  text-white font-bold font-TitilliumWeb  shadow-md bg-[#1a2c49] border border-[#36cbd330] rounded-lg`}
+                    id={``}
+                  >
+                    <span
+                      className="cursor-pointer px-3 rounded-md"
+                      onClick={() => handleQuizButton(milestone)}
+                    >
+                      Quizzes of {milestone.milestone} Milestone
+                    </span>
+                  </motion.button>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -43,6 +43,7 @@ import InstructorPublicProfile from "../Pages/instructorPublicProfile/Instructor
 import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
 import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
 import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
+import Quiz from "../Pages/CoursePage/Quiz/Quiz";
 
 const router = createBrowserRouter([
   {
@@ -115,14 +116,21 @@ const router = createBrowserRouter([
         element: <PaymentFail></PaymentFail>,
       },
       {
-        path: "allblog",
+        path: "/allblog",
         element: <AllBlog></AllBlog>,
       },
       {
         path: "/blog-details/:id",
         element: <BlogDetails></BlogDetails>,
       },
-      { path: "course-page", element: <CoursePage></CoursePage> },
+      {
+        path: "/course-page",
+        element: <CoursePage></CoursePage>,
+      },
+      {
+        path: "/quiz",
+        element: <Quiz></Quiz>,
+      },
     ],
   },
 
@@ -132,7 +140,11 @@ const router = createBrowserRouter([
   // }
   {
     path: "dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       // --------------------------shared -------------------------------------------
       {

@@ -26,7 +26,7 @@ const WithdrawRequest = () => {
     };
 
     fetchWithdrawalRequests();
-  }, [bankDetails]); // Empty dependency array to run this effect only once on component mount
+  }, []); // Empty dependency array to run this effect only once on component mount
 
   const handleOpenModal = (InstructorEmail) => {
     // https://cm-academy-test-server-production.up.railway.app/bank-account-setup/instructorEmail
@@ -45,7 +45,6 @@ const WithdrawRequest = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  console.log("bankDetails", bankDetails);
   return (
     <div>
       <h1 className="text-2xl">Withdraw request by instructors to admin</h1>
@@ -96,57 +95,56 @@ const WithdrawRequest = () => {
           <div className="modal modal-bottom sm:modal-middle" open>
             <div method="dialog" className="modal-box bg-slate-200">
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Account holder Name</h1>
+                <h1 className="w-1/2">Account holder Name </h1>
                 <input
                   type="text"
                   placeholder=""
-                  value={bankDetails.accountHolderName} // Populate value from state
-                  onChange={(e) => {
-                    setBankDetails({
-                      ...bankDetails,
-                      accountHolderName: e.target.value,
-                    });
-                  }}
+                  defaultValue={bankDetails[0]?.accountHolderName || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">{bankDetails?.accountNo}</h1>
+                <h1 className="w-1/2">Account No.</h1>
                 <input
                   type="text"
                   placeholder=""
+                  defaultValue={bankDetails[0]?.accountNo || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">{bankDetails?.routingNumber}</h1>
+                <h1 className="w-1/2">Routing Number</h1>
                 <input
                   type="text"
                   placeholder=""
+                  defaultValue={bankDetails[0]?.routingNumber || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">{bankDetails.bankName}</h1>
+                <h1 className="w-1/2">Bank Name</h1>
                 <input
                   type="text"
                   placeholder=""
+                  defaultValue={bankDetails[0]?.bankName || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">{bankDetails.bankBranchName}</h1>
+                <h1 className="w-1/2">Bank Branch Name</h1>
                 <input
                   type="text"
                   placeholder=""
+                  defaultValue={bankDetails[0]?.bankBranchName || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">{bankDetails.phoneNumber}</h1>
+                <h1 className="w-1/2">Phone Number</h1>
                 <input
                   type="text"
                   placeholder=""
+                  defaultValue={bankDetails[0]?.phoneNumber || ""}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
