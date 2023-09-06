@@ -5,11 +5,15 @@ const WithdrawRequest = () => {
   const [showModal, setShowModal] = useState(false);
   const [withdrawalRequests, setWithdrawalRequests] = useState([]);
 
+  const [bankDetails, setBankDetails] = useState({});
+
   useEffect(() => {
     // Fetch withdrawal request data from the API
     const fetchWithdrawalRequests = async () => {
       try {
-        const response = await fetch("https://cm-academy-test-server-production.up.railway.app/getWithdrawRequests"); // Update the API endpoint as needed
+        const response = await fetch(
+          "https://cm-academy-test-server-production.up.railway.app/getWithdrawRequests"
+        ); // Update the API endpoint as needed
         if (response.ok) {
           const data = await response.json();
           setWithdrawalRequests(data);
@@ -22,16 +26,26 @@ const WithdrawRequest = () => {
     };
 
     fetchWithdrawalRequests();
-  }, []); // Empty dependency array to run this effect only once on component mount
+  }, [bankDetails]); // Empty dependency array to run this effect only once on component mount
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (InstructorEmail) => {
+    // https://cm-academy-test-server-production.up.railway.app/bank-account-setup/instructorEmail
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/bank-account-setup/${InstructorEmail}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setBankDetails(data);
+        console.log("data", data);
+      });
+
     setShowModal(true);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
+  console.log("bankDetails", bankDetails);
   return (
     <div>
       <h1 className="text-2xl">Withdraw request by instructors to admin</h1>
@@ -58,7 +72,7 @@ const WithdrawRequest = () => {
               <td className="border px-4 py-2">{request.email}</td>
               <td className="border px-4 py-2">{request.phoneNumber}</td>
               <td className="border px-4 py-2 ">
-                <button onClick={handleOpenModal}>
+                <button onClick={() => handleOpenModal(request.email)}>
                   <CiViewList className="text-5xl" />
                 </button>
               </td>
@@ -86,52 +100,53 @@ const WithdrawRequest = () => {
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="Md. Tareq Ibna Rahman"
+                  value={bankDetails.accountHolderName} // Populate value from state
+                  onChange={(e) => {
+                    setBankDetails({
+                      ...bankDetails,
+                      accountHolderName: e.target.value,
+                    });
+                  }}
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Account No.</h1>
+                <h1 className="w-1/2">{bankDetails?.accountNo}</h1>
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="02678358929001"
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Routing Number</h1>
+                <h1 className="w-1/2">{bankDetails?.routingNumber}</h1>
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="6394790"
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Bank Name</h1>
+                <h1 className="w-1/2">{bankDetails.bankName}</h1>
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="Exim Bank"
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Bank Branch Name</h1>
+                <h1 className="w-1/2">{bankDetails.bankBranchName}</h1>
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="Bashundhara Branch"
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
               <div className="flex gap-3 items-center mx-auto mb-2">
-                <h1 className="w-1/2">Phone Number</h1>
+                <h1 className="w-1/2">{bankDetails.phoneNumber}</h1>
                 <input
                   type="text"
                   placeholder=""
-                  defaultValue="01614048774"
                   className="w-1/2 input input-bordered h-8"
                 />
               </div>
