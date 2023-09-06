@@ -4,6 +4,7 @@ import { AuthContext } from "../../../../providers/AuthProvider";
 
 const BankAccountSetup = () => {
   const { user } = useContext(AuthContext);
+  const [bankDetails, setBankDetails] = useState({});
 
   const initialFormData = {
     InstructorEmail: user?.email,
@@ -49,6 +50,15 @@ const BankAccountSetup = () => {
       // Handle errors as needed
     }
   };
+
+  fetch(
+    `https://cm-academy-test-server-production.up.railway.app/bank-account-setup/${user?.email}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      setBankDetails(data);
+      console.log("data", data);
+    });
     return (
         <div>
            
