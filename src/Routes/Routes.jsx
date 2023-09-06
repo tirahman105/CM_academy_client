@@ -46,6 +46,7 @@ import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentPro
 import Quiz from "../Pages/CoursePage/Quiz/Quiz";
 import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
 import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
+import WithdrawHistory from "../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory";
 
 const router = createBrowserRouter([
   {
@@ -211,6 +212,10 @@ const router = createBrowserRouter([
       {
         path: "my-payments",
         element: <MyPayments></MyPayments>,
+      },
+      {
+        path: "withdraw-history",
+        element: <WithdrawHistory></WithdrawHistory>,
       },
       {
         path: "acc-setup",
