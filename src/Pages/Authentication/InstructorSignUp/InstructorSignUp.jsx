@@ -42,6 +42,14 @@ const InstructorSignUp = () => {
          
           email: data.email,
           role: "instructor",
+          aboutMe: "",
+          userImage: "",
+          designation: "",
+          ratings: "",
+          contactNumber: "",
+          topBadge: "",
+          follow: "follow",
+          address: ""
         };
 
         fetch("https://cm-academy-test-server-production.up.railway.app/users", {
