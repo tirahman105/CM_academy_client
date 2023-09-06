@@ -61,7 +61,7 @@ const AllEnrolledStudent = () => {
                     <h2 className="text-lg font-semibold">{student.fullName}</h2>
                     <div className='flex gap-2'>
                     <span><AiOutlineMail></AiOutlineMail></span> 
-                         <p className="text-gray-500 text-sm"> {student.email}</p>
+                         <p className="text-gray-500 text-sm"> {student?.email}</p>
                     </div>
                     <div className='flex gap-2'>
                     <span><IoMdCall></IoMdCall></span> 
