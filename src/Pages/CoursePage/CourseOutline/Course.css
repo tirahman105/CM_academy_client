@@ -21,7 +21,7 @@
   background-image: radial-gradient(
     circle at 70% 44%,
     hsla(189, 100%, 56%, 0.3) 10px,
-    transparent 30%
+    transparent 20%
   );
   background-attachment: fixed; /* Add this line */
 }

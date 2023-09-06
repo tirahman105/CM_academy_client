@@ -151,7 +151,7 @@ const ManageInstructors = () => {
             className="ml-2 px-3 py-1 bg-green-300 rounded-md"
           >
             <p className="text-green-600">
-              <GrFormNext />
+              <GrFormPrevious />
             </p>
           </button>
         </div>
