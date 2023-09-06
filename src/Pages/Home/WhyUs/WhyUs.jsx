@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaLightbulb, FaChalkboardTeacher, FaChartLine } from 'react-icons/fa';
 import Lottie from 'lottie-react';
-import animationData from '../../../../src/assets/animation_ll3r94gu.json';
+import animationData from '../../../../src/assets/Why.json';
 
 const WhyUs = () => {
 
@@ -25,25 +25,37 @@ const WhyUs = () => {
                     </div>
                     <div className="md:w-1/2 text-gray-800">
                         <div className="mb-8">
-                            <FaLightbulb className="text-4xl text-indigo-600 mb-2" />
+                           <div className='flex gap-4 items-center justify-center'> 
+                           <FaLightbulb className="text-7xl text-[#25C278] mb-2" />
+                            <div>
                             <h2 className="text-3xl font-semibold mb-2">Inspire Curiosity</h2>
                             <p className="text-gray-600">
                                 Discover our platform that encourages curiosity and enhances your learning experience. Our courses are designed to foster critical thinking and creativity.
                             </p>
+                            </div>
+                            </div>
                         </div>
                         <div className="mb-8">
-                            <FaChalkboardTeacher className="text-4xl text-green-600 mb-2" />
+                           <div className='flex gap-4 items-center justify-center'>
+                           <FaChalkboardTeacher className="text-8xl text-[#25C278] mb-2" />
+                            <div>
                             <h2 className="text-3xl font-semibold mb-2">Learn from Experts</h2>
                             <p className="text-gray-600">
                                 Gain insights from experienced educators who are experts in their fields. Engage in interactive lessons, real-world projects, and peer collaboration.
                             </p>
+                            </div>
+                           </div>
                         </div>
                         <div>
-                            <FaChartLine className="text-4xl text-purple-600 mb-2" />
-                            <h2 className="text-3xl font-semibold mb-2">Shape Your Future</h2>
+                           <div className='flex gap-4 items-center justify-center'>
+                           <FaChartLine className="text-8xl text-[#25C278] mb-2" />
+                           <div>
+                           <h2 className="text-3xl font-semibold mb-2">Shape Your Future</h2>
                             <p className="text-gray-600">
                                 Explore a vast array of subjects and courses, from technology and business to arts and sciences. Uncover your passion and shape your future.
                             </p>
+                           </div>
+                           </div>
                         </div>
                     </div>
                 </div>
