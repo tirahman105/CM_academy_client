@@ -13,7 +13,7 @@ function Categories() {
   console.log(courses);
 
   useEffect(() => {
-    fetch("https://cm-academy-test-server-production.up.railway.app/categories")
+    fetch("https://cm-academy-test-server-production.up.railway.app/categories/approved")
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);
@@ -23,7 +23,7 @@ function Categories() {
 
   // this all categories route  https://cm-academy-test-server-production.up.railway.app/categoriesName
 
-  // get categories name from this route
+  
 
   useEffect(() => {
     fetch(
