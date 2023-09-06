@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import AnimationBanner from "../../../assets/teach.json";
+import Lottie from "lottie-react";
 
 const Banner = () => {
   return (
@@ -18,12 +20,13 @@ const Banner = () => {
           </button>
         </Link>
       </div>
-      <div className="md:w-1/2">
-        <img
+      <div className="md:w-1/4 mx-auto">
+        {/* <img
           className="w-2/3"
           src="https://i.ibb.co/BKqkFv0/Teach-with-us2.png"
           alt=""
-        />
+        /> */}
+         <Lottie animationData={AnimationBanner} loop={true} />
       </div>
     </div>
   );

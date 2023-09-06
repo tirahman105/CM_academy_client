@@ -8,16 +8,16 @@ const MyCourseInstructor = () => {
 
   const [instructorCourses, setInstructorCourses] = useState([]);
 
+  console.log(user?.email);
   useEffect(() => {
-    fetch(`https://cm-academy-test-server-production.up.railway.app/categories`)
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/categories/instructor/${user?.email} `
+    )
       .then((response) => response.json())
-      .then((categories) => {
-        // Filter courses based on instructor's email
-        const instructorCourses = categories.filter((category) =>
-          category.instructorEmail.includes(user?.email)
-        );
-        setInstructorCourses(instructorCourses);
+      .then((data) => {
+        setInstructorCourses(data);
       })
+
       .catch((error) => {
         console.error("Error fetching instructor courses:", error);
       });
