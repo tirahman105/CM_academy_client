@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { IoMdCall } from "react-icons/io";
-import DashboardTopNav from "../../Shared/DashboardTopNav/DashboardTopNav";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const ManageInstructors = () => {
@@ -46,7 +45,7 @@ const ManageInstructors = () => {
 
   return (
     <div className="">
-      <DashboardTopNav></DashboardTopNav>
+    
       {/* instructor table  */}
 
       <div className="border p-4">
@@ -99,6 +98,7 @@ const ManageInstructors = () => {
             <thead>
               <tr className="bg-gray-200 text-[#12C29F] text-left  font-bold divide-x-2">
                 <th className="px-4 py-2 ">SL</th>
+                <th className=" py-2 ">Image</th>
                 <th className="px-4 py-2 ">Name</th>
                 <th className="px-4 py-2">Email</th>
                 <th className="px-4 py-2">Contact</th>
@@ -111,6 +111,7 @@ const ManageInstructors = () => {
                   className="hover:bg-slate-100 duration-150"
                 >
                   <td className="border px-4 py-2">{startIndex + index + 1}</td>
+                  <td className="border px-auto py-2"><img src={instructor.userImage} className='w-12 avatar rounded-full' alt="" /></td>
                   <td className="border px-4 py-2">{instructor.fullName}</td>
                   <td className="border px-4 py-2">{instructor.email}</td>
                   <td className="border px-4 py-2">{instructor.phone}</td>
@@ -150,7 +151,7 @@ const ManageInstructors = () => {
             className="ml-2 px-3 py-1 bg-green-300 rounded-md"
           >
             <p className="text-green-600">
-              <GrFormNext />
+              <GrFormPrevious />
             </p>
           </button>
         </div>

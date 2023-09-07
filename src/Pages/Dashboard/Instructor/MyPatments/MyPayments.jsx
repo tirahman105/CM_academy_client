@@ -150,6 +150,7 @@ const MyPayments = () => {
   const [instructorPayment, setInstructorPayment] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
+  console.log(user);
 
   useEffect(() => {
     const fetchPaymentHistory = async () => {
@@ -284,7 +285,7 @@ const MyPayments = () => {
       )}
 
       {isModalOpen && (
-        <ModalComponent onClose={closeModal} totalAmount={totalAmount} />
+        <ModalComponent onClose={closeModal} totalAmount={totalAmount} email={user?.email} name={user?.displayName}  />
       )}
     </div>
   );

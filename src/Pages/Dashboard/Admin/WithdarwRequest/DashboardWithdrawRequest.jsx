@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CiViewList } from "react-icons/ci";
 
-const WithdrawRequest = () => {
+const DashboardWithdrawRequest = () => {
   const [showModal, setShowModal] = useState(false);
   const [withdrawalRequests, setWithdrawalRequests] = useState([]);
 
@@ -67,8 +67,8 @@ const WithdrawRequest = () => {
               className="text-center font-semibold text-sm font-Lexend"
             >
               <td className="border px-4 py-2">{index + 1}</td>
+              <td className="border px-4 py-2">{request.totalAmount}</td>
               <td className="border px-4 py-2">{request.name}</td>
-              <td className="border px-4 py-2">{request.email}</td>
               <td className="border px-4 py-2">{request.phoneNumber}</td>
               <td className="border px-4 py-2 ">
                 <button onClick={() => handleOpenModal(request.email)}>
@@ -165,4 +165,4 @@ const WithdrawRequest = () => {
   );
 };
 
-export default WithdrawRequest;
+export default DashboardWithdrawRequest;

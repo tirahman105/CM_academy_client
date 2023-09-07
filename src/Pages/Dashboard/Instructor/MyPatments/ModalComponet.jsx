@@ -1,9 +1,44 @@
 import React from "react";
 
-const ModalComponent = ({ onClose, totalAmount }) => {
+const ModalComponent = ({ onClose, totalAmount, email, name }) => {
+  console.log("email", email);
   // Function to handle closing the modal
   const handleClose = () => {
     onClose();
+  };
+
+  const handleConfirm = async () => {
+    try {
+      // Add the withdrawStatus field
+      const dataToSend = {
+        name,
+        totalAmount,
+        email,
+        withdrawStatus: false,
+      };
+
+      // Send a POST request to your backend API endpoint
+      const response = await fetch("https://cm-academy-test-server-production.up.railway.app/storeWData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      if (response.ok) {
+        // Data stored successfully, close the modal or perform other actions
+
+        onClose();
+        alert("Withdrawal request submitted successfully")
+      } else {
+        console.error("Error confirming withdrawal");
+        // Handle errors as needed
+      }
+    } catch (error) {
+      console.error("Error confirming withdrawal:", error);
+      // Handle errors as needed
+    }
   };
 
   return (
@@ -41,6 +76,7 @@ const ModalComponent = ({ onClose, totalAmount }) => {
               </button>
               <button
                 className="bg-[#1bbf723b] text-gray-600 font-semibold font-Poppins px-2 py-1.5 rounded-md hover:scale-105 transition-all"
+                onClick={handleConfirm}
               >
                 Confirm
               </button>

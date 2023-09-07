@@ -6,6 +6,7 @@ import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { motion } from "framer-motion";
 
 const CourseCard = ({ course, handleDetailsClick }) => {
+  
   return (
     <motion.div
     

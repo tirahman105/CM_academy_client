@@ -42,6 +42,11 @@ import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
 import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
 import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
+import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
+import Quiz from "../Pages/CoursePage/Quiz/Quiz";
+import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
+import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
+import WithdrawHistory from "../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory";
 
 const router = createBrowserRouter([
   {
@@ -114,14 +119,21 @@ const router = createBrowserRouter([
         element: <PaymentFail></PaymentFail>,
       },
       {
-        path: "allblog",
+        path: "/allblog",
         element: <AllBlog></AllBlog>,
       },
       {
         path: "/blog-details/:id",
         element: <BlogDetails></BlogDetails>,
       },
-      { path: "course-page", element: <CoursePage></CoursePage> },
+      {
+        path: "/course-page",
+        element: <CoursePage></CoursePage>,
+      },
+      {
+        path: "/quiz",
+        element: <Quiz></Quiz>,
+      },
     ],
   },
 
@@ -131,7 +143,11 @@ const router = createBrowserRouter([
   // }
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       // --------------------------shared -------------------------------------------
       {
@@ -178,6 +194,10 @@ const router = createBrowserRouter([
         element: <InstructorDAshboard></InstructorDAshboard>,
       },
       {
+        path: "instructor-profile",
+        element: <InstructorProfile></InstructorProfile>,
+      },
+      {
         path: "my-courses-instructor",
         element: <MyCourseInstructor></MyCourseInstructor>,
       },
@@ -192,6 +212,10 @@ const router = createBrowserRouter([
       {
         path: "my-payments",
         element: <MyPayments></MyPayments>,
+      },
+      {
+        path: "withdraw-history",
+        element: <WithdrawHistory></WithdrawHistory>,
       },
       {
         path: "acc-setup",
@@ -222,6 +246,10 @@ const router = createBrowserRouter([
       {
         path: "student-payment",
         element: <StudentPayment></StudentPayment>,
+      },
+      {
+        path: "student-profile",
+        element: <StudentProfileUpdated></StudentProfileUpdated>,
       },
     ],
   },

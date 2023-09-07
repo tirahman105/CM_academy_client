@@ -30,11 +30,10 @@ const CourseVideo = ({
     } else {
       onNextSession();
     }
-    // Set playing to true to auto-play the next video
-    setVideoUrl(sessionList[currentSessionIndex + 1].videoLink);
+    setVideoUrl(sessionList[currentSessionIndex].videoLink);
   };
 
-  const [likeStatus, setLikeStatus] = useState("none"); // 'none', 'liked', 'disliked'
+  const [likeStatus, setLikeStatus] = useState("none");
   const [bookmarked, setBookmarked] = useState(false);
 
   const handleLike = () => {
@@ -42,7 +41,7 @@ const CourseVideo = ({
       setLikeStatus("none");
     } else {
       setLikeStatus("liked");
-      setBookmarked(false); // Reset bookmarked state
+      setBookmarked(false);
     }
   };
 
@@ -51,7 +50,7 @@ const CourseVideo = ({
       setLikeStatus("none");
     } else {
       setLikeStatus("disliked");
-      setBookmarked(false); // Reset bookmarked state
+      setBookmarked(false);
     }
   };
 
@@ -60,44 +59,37 @@ const CourseVideo = ({
   };
 
   return (
-    <div className="p-4 rounded-lg">
-      <div className="aspect-w-16 aspect-h-9 lg:aspect-h-[500px] boxShadowCourse">
-        {/* Use the ReactPlayer component with the video URL */}
+    <div className="p-4 rounded-lg backdrop-blur-md border bg-[#1a2c49] text-white shadow-lg border-[#36cbd330]">
+      <div className="aspect-w-16 aspect-h-9 lg:aspect-h-[500px] ">
         <ReactPlayer
           url={videoUrl}
           controls
           width="100%"
           height="609px"
           key={videoUrl}
-          onEnded={handleNext}
         />
       </div>
-      <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex flex-col md:flex-row px-4 py-2 bg-gray-700 mt-4 justify-between  font-Lexend">
+      <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex flex-col md:flex-row px-4 py-2 border-[#36cbd330] border mt-4 justify-between  font-Lexend">
         <div className="flex items-center gap-3">
           <p className="text-xl font-bold">Feedback</p>
           {likeStatus === "liked" ? (
-            <BiCheck
-              className={`text-3xl cursor-pointer`}
-              onClick={handleLike}
-            />
+            <BiCheck className={`text-3xl cursor-pointer text-[#36cbd3e6]`} onClick={handleLike} />
           ) : (
             <BiLike
-              className={`text-3xl ${
-                likeStatus === "disliked"
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer"
+              className={`text-3xl text-[#36cbd3e6] ${
+                likeStatus === "disliked" ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={likeStatus === "disliked" ? null : handleLike}
             />
           )}
           {likeStatus === "disliked" ? (
             <BiCheck
-              className={`text-3xl mt-2 cursor-pointer`}
+              className={`text-3xl mt-2 cursor-pointer text-[#36cbd3e6]`}
               onClick={handleDislike}
             />
           ) : (
             <BiDislike
-              className={`text-3xl mt-2 ${
+              className={`text-3xl mt-2 text-[#36cbd3e6] ${
                 likeStatus === "liked" ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={likeStatus === "liked" ? null : handleDislike}
@@ -108,12 +100,12 @@ const CourseVideo = ({
           <p className="text-xl font-bold">Bookmark</p>
           {bookmarked ? (
             <BiCheck
-              className={`text-3xl cursor-pointer`}
+              className={`text-3xl cursor-pointer text-[#36cbd3e6] `}
               onClick={handleBookmark}
             />
           ) : (
             <BiBookmark
-              className={`text-3xl cursor-pointer`}
+              className={`text-3xl cursor-pointer text-[#36cbd3e6]`}
               onClick={handleBookmark}
             />
           )}
@@ -125,15 +117,15 @@ const CourseVideo = ({
             {currentSession.sessionTitle}
           </h3>
         </div>
-        <div className="mt-3 w-full md:w-2/5 flex flex-col md:flex-row gap-2">
+        <div className="mt-3 w-full md:w-2/5 flex flex-col justify-end md:flex-row gap-2">
           <button
-            className="bg-[#1bbf722c] font-Lexend font-bold text-black  border-2 border-[#1bbf72e4] hover:border-white duration-300 rounded-md py-2 md:py-3 px-4 md:w-1/2"
+            className=" font-Lexend font-bold grBg   border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3"
             onClick={handlePrevious}
           >
             Previous
           </button>
           <button
-            className="bg-[#1bbf72e4] font-Lexend font-bold hover:border-white border-2  text-white rounded-md py-2 md:py-3 px-4 md:w-1/2"
+            className=" font-Lexend font-bold grBg  border-[#36cbd3e6] border text-white rounded-md py-1 md:py-1 px-2 md:w-1/3"
             onClick={handleNext}
           >
             Next

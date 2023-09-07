@@ -1,9 +1,12 @@
-import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../providers/AuthProvider';
 
+
 const DashboardTopNav = () => {
     const {user} =useContext(AuthContext);
+
+
+    
     return (
         <div>
                 <div className='p-5 bg-gray-100 rounded-md lg:px-32 lg:h-40 flex flex-col
@@ -30,3 +33,4 @@ const DashboardTopNav = () => {
 };
 
 export default DashboardTopNav;
+

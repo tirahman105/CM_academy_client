@@ -43,6 +43,8 @@ const SignUp = () => {
          
           email: data.email,
           role: "student",
+          userImage: "",
+          contactNumber: ""
         };
 
         fetch("https://cm-academy-test-server-production.up.railway.app/users", {
