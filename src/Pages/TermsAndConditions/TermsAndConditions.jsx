@@ -2,7 +2,7 @@
  
  const TermsAndConditions = () => {
     return (
-        <div className=" px-10 md:px-48 mt-10">
+        <div className=" px-10 md:px-48 pt-24 pb-10">
         <h2 className="text-4xl font-bold">TERMS AND CONDITIONS</h2> 
             <div>
             <p className="mt-10">These Terms & Conditions (“ <b>Terms</b> ”) of (a) use of our websitewww.10minuteschool.com  (“ <b>Website</b> ”), our applications (“Application”) or any products or services in connection with the Application/, Website/products (“ <b>Services</b>”)  or (b) any modes of registrations or usage of products, including through SD cards, tablets or other storage/transmitting device  are between 10MS Limited (“ <b>Company/We/Us/Our</b>”) and its users (“ <b>User/You/Your</b>”).

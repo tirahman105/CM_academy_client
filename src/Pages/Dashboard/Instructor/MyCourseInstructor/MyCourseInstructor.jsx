@@ -8,16 +8,16 @@ const MyCourseInstructor = () => {
 
   const [instructorCourses, setInstructorCourses] = useState([]);
 
+  console.log(user?.email);
   useEffect(() => {
-    fetch(`https://cm-academy-test-server-production.up.railway.app/categories`)
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/categories/instructor/${user?.email} `
+    )
       .then((response) => response.json())
-      .then((categories) => {
-        // Filter courses based on instructor's email
-        const instructorCourses = categories.filter((category) =>
-          category.instructorEmail.includes(user?.email)
-        );
-        setInstructorCourses(instructorCourses);
+      .then((data) => {
+        setInstructorCourses(data);
       })
+
       .catch((error) => {
         console.error("Error fetching instructor courses:", error);
       });
@@ -31,9 +31,13 @@ const MyCourseInstructor = () => {
 
   console.log(instructorCourses);
   return (
-    <div>
-      <h2>My Courses</h2>
-      <div className="grid grid-cols-3">
+    <div className="border p-4">
+       <div className=" my-4 mt-4">
+        <h1 className=" text-lg font-bold">My Courses</h1>
+        <p className="text-base mb-4">All my courses</p>
+        <hr />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
         {instructorCourses.map((category) => (
           <div
             key={category._id}

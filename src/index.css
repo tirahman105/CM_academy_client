@@ -194,15 +194,38 @@ body {
 .testBgForMyCourse {
   background-color: hsla(222, 47%, 11%, 1);
   background-image: radial-gradient(
-    circle at 70% 44%,
+   circle  at 50% 190%,
     hsla(189, 100%, 56%, 0.3) 100px,
-    transparent 40%
+    transparent 70%
   );
-  background-attachment: fixed; /* Add this line */
+  background-attachment: fixed; 
 
 }
 
 .grBg {
   background: #0fa6e9;
   background: linear-gradient(to right, #0fa6e9 5%, #38cfd2 68%);
+}
+
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track (the area where the scrollbar is) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+  border-radius: 3px; /* Rounded corners for the track */
+}
+
+/* Handle (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the handle */
+  border-radius: 3px; /* Rounded corners for the handle */
+}
+
+/* On hover, style the handle */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the handle on hover */
 }

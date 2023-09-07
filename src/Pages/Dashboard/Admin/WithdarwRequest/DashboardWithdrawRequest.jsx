@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CiViewList } from "react-icons/ci";
 
-const WithdrawRequest = () => {
+const DashboardWithdrawRequest = () => {
   const [showModal, setShowModal] = useState(false);
   const [withdrawalRequests, setWithdrawalRequests] = useState([]);
 
@@ -55,9 +55,9 @@ const WithdrawRequest = () => {
             <th className="px-4 py-2">Instructor name</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2">Contact</th>
-            <th className="px-4 py-2">Bank details</th>
+            {/* <th className="px-4 py-2">Bank details</th> */}
             <th className="px-4 py-2">Withdraw amount</th>
-            <th className="px-4 py-2">Status</th>
+            {/* <th className="px-4 py-2">Status</th> */}
           </tr>
         </thead>
         <tbody>
@@ -67,23 +67,23 @@ const WithdrawRequest = () => {
               className="text-center font-semibold text-sm font-Lexend"
             >
               <td className="border px-4 py-2">{index + 1}</td>
+              <td className="border px-4 py-2">{request.totalAmount}</td>
               <td className="border px-4 py-2">{request.name}</td>
-              <td className="border px-4 py-2">{request.email}</td>
               <td className="border px-4 py-2">{request.phoneNumber}</td>
-              <td className="border px-4 py-2 ">
+              {/* <td className="border px-4 py-2 ">
                 <button onClick={() => handleOpenModal(request.email)}>
                   <CiViewList className="text-5xl" />
                 </button>
-              </td>
+              </td> */}
               <td className="border px-6 py-2">{request.totalAmount} tk</td>
-              <td className="border px-6 py-2">
+              {/* <td className="border px-6 py-2">
                 <select className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                   <option className="p-2" value="pending">
                     Pending
                   </option>
                   <option value="complete">Complete</option>
                 </select>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
@@ -165,4 +165,4 @@ const WithdrawRequest = () => {
   );
 };
 
-export default WithdrawRequest;
+export default DashboardWithdrawRequest;
