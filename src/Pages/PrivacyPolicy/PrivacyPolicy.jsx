@@ -2,7 +2,7 @@ import { PiArrowElbowUpRightFill } from "react-icons/pi";
 
 const PrivacyPolicy = () => {
     return (
-        <div className=" px-10 md:px-48 mt-10">
+        <div className=" px-10 md:px-48 pt-24 pb-10">
           <h2 className="text-4xl font-bold">Privacy Policy</h2> 
           
           <section className="mt-10">

@@ -7,17 +7,17 @@ const Footer = () => {
         <footer className="footer p-10  text-white ">
           <div>
             <span className="footer-title">Services</span>
-            <a className="link link-hover">Branding</a>
-            <a className="link link-hover">Design</a>
-            <a className="link link-hover">Marketing</a>
-            <a className="link link-hover">Advertisement</a>
+            <Link to="/courseCategories?category=All" className="link link-hover">All Courses</Link>
+            <Link to="/allBlog" className="link link-hover">All Blogs</Link>
+        
           </div>
           <div>
             <span className="footer-title">Company</span>
-            <a className="link link-hover">About us</a>
-            <a className="link link-hover">Contact</a>
-            <a className="link link-hover">Jobs</a>
-            <a className="link link-hover">Press kit</a>
+           
+            <Link to="/about" className="link link-hover">About Us</Link>
+            <Link to="/contact" className="link link-hover">Contact Us</Link>
+           
+          
           </div>
           <div>
             <span className="footer-title">Legal</span>
@@ -27,7 +27,7 @@ const Footer = () => {
             <Link to="/policy" className="link link-hover">
               Privacy policy
             </Link>
-            <a className="link link-hover">Cookie policy</a>
+           
           </div>
         </footer>
         <footer
