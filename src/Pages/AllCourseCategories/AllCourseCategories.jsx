@@ -1,215 +1,130 @@
 import React, { useState, useEffect } from "react";
 import "./AllCourseCategories.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import CourseCard from "../Home/Categories/CourseCard";
+import { motion } from "framer-motion";
 
 function AllCourseCategories() {
   const [courses, setCourses] = useState([]);
-  const [activeCourse, setActiveCourse] = useState(null);
-  const [activeButtonPosition, setActiveButtonPosition] = useState(null);
-  const [underlineWidth, setUnderlineWidth] = useState(0);
-  const [showAllCourses, setShowAllCourses] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [forceRerender, setForceRerender] = useState(false);
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const selectedCategory = queryParams.get("category");
-
-  // console.log(selectedCategory);
+  const [activeCourses, setActiveCourses] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("All"); // Initialize as "All"
+  const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    fetch("https://cm-academy-test-server-production.up.railway.app/categories")
+    // Fetch category names from the API
+    fetch(
+      "https://cm-academy-test-server-production.up.railway.app/categoriesName"
+    )
       .then((response) => response.json())
       .then((data) => {
-        setCourses(data[0].categories);
-
-        // Find the index of the selected category in the courses array
-        const selectedCategoryIndex = data[0].categories.findIndex(
-          (category) => category.title == selectedCategory
-        );
-
-        if (selectedCategoryIndex !== -1) {
-          setActiveCourse(data[0].categories[selectedCategoryIndex]);
-          setActiveButtonPosition(selectedCategoryIndex);
-          setShowAllCourses(false);
-        } else if (!activeCourse) {
-          setActiveCourse(data[0].categories[0]);
-        }
+        setCategories(data);
       });
-  }, [ selectedCategory,showAllCourses]);
-  
 
-  const handleCourseClick = (course, index) => {
-    setActiveCourse(course);
-    setActiveButtonPosition(index === -1 ? -1 : index);
-    setShowAllCourses(index === -1);
-    setForceRerender(prevState => !prevState);
-
-  };
-
-  const handleSearch = () => {
-    if (searchQuery.trim() !== "") {
+    // Fetch all courses initially or based on the query parameter
+    const selectedCategory = new URLSearchParams(location.search).get(
+      "category"
+    );
+    if ( selectedCategory && selectedCategory !== "All" ) {
+      console.log(selectedCategory)
+      setActiveCategory(selectedCategory);
       fetch(
-        `https://cm-academy-test-server-production.up.railway.app/search?q=${searchQuery}`
+        `https://cm-academy-test-server-production.up.railway.app/categories/${selectedCategory}`
       )
         .then((response) => response.json())
         .then((data) => {
           setCourses(data);
-          setActiveCourse(data[0]?.categories[0]);
-        })
-        .catch((error) => {
-          console.error(error);
+          setActiveCourses(data);
+        });
+    } else {
+      fetch(
+        "https://cm-academy-test-server-production.up.railway.app/categories/approved"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setCourses(data);
+          setActiveCourses(data);
         });
     }
-  };
+  }, [location.search]);
 
-  const handleSubCourseClick = (subCourse) => {
-    console.log(subCourse);
-    navigate("/courseDetails", { state: { subCourse } });
+
+  const handleCategoryClick = (categoryName) => {
+  console.log("Clicked category:", categoryName);
+
+  // Set the active category
+  setActiveCategory(categoryName);
+
+  if (categoryName === "All") {
+    console.log("Fetching all courses...");
+    // If "All" is clicked, show all courses
+    setActiveCourses(courses);
+  } else {
+    console.log("Fetching courses for:", categoryName);
+    // Fetch courses based on the selected category
+    fetch(`https://cm-academy-test-server-production.up.railway.app/categories/${categoryName}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Fetched courses:", data);
+        setActiveCourses(data);
+      });
+  }
+
+  // Update the URL with the selected category as a query parameter
+  navigate(`/courseCategories?category=${encodeURIComponent(categoryName)}`);
+};
+
+  const handleDetailsClick = (course) => {
+    navigate("/courseDetailsDynamic", { state: { course } });
   };
 
   return (
-    <div className="py-4 bg-[#EBEBEB]">
-      <div className="px-4 w-10/12 mx-auto">
-        <div className="bg-gradient rounded-xl flex items-center justify-center overflow-x-auto gap-2 mb-10 sticky top-[0px] z-50 bg-opacity-50 backdrop-blur-lg bg-[#EBEBEB] border-slate-300">
-          {!selectedCategory && (
+    <div className="max-w-7xl mx-auto px-2 pt-28">
+      <div className="">
+        <h1 className="text-4xl font-bold mb-5 font-Poppins">
+          Explore Top Courses
+        </h1>
+        <p className="font-semibold mb-10">
+          Choose your desired course and start learning online!
+        </p>
+        <div className="sticky top-[64px] md:top-[72px] z-[1]">
+          <div className="rounded-md h-14 md:h-auto flex bg-white shadow-md shadow-[#1bbf7260] bg-opacity-70 backdrop-blur-lg justify-center gap-2 mb-10 overflow-x-auto">
             <button
-              onClick={() => {
-                setSearchQuery("");
-                handleCourseClick(null, -1);
-              }}
-              className={`md:h-[70px] px-4 py-2 rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative ${
-                showAllCourses ? "text-[#12C29F] rounded-lg" : "text-white"
+              onClick={() => handleCategoryClick("All")} // Pass "All" as the category name
+              className={`md:h-[50px] px-4 py-4 cursor-pointer rounded-md font-bold text-[10px] md:text-sm transition-all duration-300   ${
+                activeCategory === "All" ? "text-[#1BBF72] ] " : "text-gray-800"
               }`}
             >
               All
-              {showAllCourses && (
-                <div
-                  className="absolute w-[100%] h-1 bg-white left-0 bottom-2 transform scale-x-0 origin-left transition-transform duration-300"
-                  style={{
-                    transform: `scaleX(${showAllCourses ? 1 : 0})`,
-                  }}
-                ></div>
-              )}
             </button>
-          )}
-
-          {courses.slice(0, 5).map((course, index) => (
-            <button
-              key={course.id}
-              onClick={() => handleCourseClick(course, index)}
-              onMouseEnter={() => setUnderlineWidth(index)}
-              onMouseLeave={() => {
-                if (!showAllCourses) {
-                  setUnderlineWidth(activeButtonPosition);
-                }
-              }}
-              className={`md:h-[70px] px-4 py-2 rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative ${
-                !showAllCourses && activeButtonPosition === index
-                  ? "text-[#12C29F] rounded-lg"
-                  : "text-white "
-              }`}
-            >
-              {course.title}
-              {index === activeButtonPosition && (
-                <div
-                  className="absolute w-[100%] h-1 bg-white left-0 -bottom-[1px] md:bottom-2 transform scale-x-0 origin-left transition-transform duration-300"
-                  style={{
-                    transform: `scaleX(${underlineWidth === index ? 1 : 0})`,
-                  }}
-                ></div>
-              )}
-            </button>
-          ))}
-
-          <div className="hidden md:flex items-center gap-2 sm:block">
-            <input
-              type="text"
-              placeholder="Search courses..."
-              className=" px-4 py-2 rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative text-gray-500"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ outline: "none" }}
-            />
-            {searchQuery && (
+            {Categories.map((category, index) => (
               <button
-                onClick={handleSearch}
-                className={` px-4 py-2 bg-white  rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative ${
-                  searchQuery ? "text-[#12C29F] rounded-lg" : "text-gray-700"
+                key={index}
+                onClick={() => handleCategoryClick(category.name)}
+                className={`md:h-[50px] px-4 py-4 cursor-pointer rounded-md font-bold text-[10px] md:text-sm transition-all duration-300   ${
+                  activeCategory === category.name
+                    ? "text-[#1BBF72] ] "
+                    : "text-gray-800"
                 }`}
               >
-                Search
+                {category.name}
               </button>
-            )}
+            ))}
           </div>
         </div>
 
-        {/* sm device search */}
-        <div className="sm:hidden flex items-center gap-2 justify-center sticky top-[64px] z-50">
-          <input
-            type="text"
-            placeholder="Search courses..."
-            className=" px-4 py-2 rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative text-gray-500"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ outline: "none" }}
-          />
-          {searchQuery && (
-            <button
-              onClick={handleSearch}
-              className={` px-4 py-2 bg-white  rounded-md font-semibold tracking-wider text-sm transition-all duration-300 relative ${
-                searchQuery ? "text-[#12C29F] rounded-lg" : "text-gray-700"
-              }`}
-            >
-              Search
-            </button>
-          )}
-        </div>
-
-        <div className="  flex items-center justify-center bg-gradient-to-b  px-4 md:px-10 py-6 rounded-xl">
-          {activeCourse && (
-            <div className=" grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {(showAllCourses
-                ? courses.flatMap((course) => course.subCategories)
-                : activeCourse.subCategories
-              )
-                .filter((subCourse) =>
-                  subCourse.title
-                    .toLowerCase()
-                    .includes(searchQuery.toLowerCase())
-                )
-                .map((subCourse, index) => (
-                  <div
-                    key={subCourse.title}
-                    className="mt-2 border p-4 bg-slate-100 rounded-lg shadow-md"
-                  >
-                    <div className="h-[200px] bg-[#123140] rounded-lg shadow-md mb-4"></div>
-                    <strong className="text-gray-800 text-xl">
-                      {subCourse.title}
-                    </strong>
-                    <div className="text-gray-600">
-                      Instructor: {subCourse.instructor}
-                    </div>
-                    <div className="text-gray-600">
-                      Duration: {subCourse.duration}
-                    </div>
-                    <div className="text-gray-600">
-                      Rating: {subCourse.rating}
-                    </div>
-                    <div className="w-full bg-[#0AAE8D] px-1 rounded-md text-center py-2 mt-3">
-                      <button
-                        className="font-bold text-lg text-white"
-                        onClick={() => handleSubCourseClick(subCourse, index)}
-                      >
-                        Details
-                      </button>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          )}
-        </div>
+        {/* Course card */}
+        <motion.div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
+          {activeCourses.map((activeCourse, courseIndex) => (
+            <CourseCard
+              key={courseIndex}
+              course={activeCourse}
+              handleDetailsClick={handleDetailsClick}
+              index={courseIndex}
+            />
+          ))}
+        </motion.div>
       </div>
     </div>
   );

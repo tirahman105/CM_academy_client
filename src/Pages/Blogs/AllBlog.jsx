@@ -27,7 +27,7 @@ const AllBlog = () => {
     <div className="bg-gray-100">
       <div className="min-h-screen w-4/5 mx-auto">
         <div className="flex flex-col md:flex-row p-6 container mx-auto gap-10">
-          <div className="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-20">
             {filteredBlogs.map((blog, index) => (
               <Link to={`/blog-details/${blog._id}`} key={index}>
                 <div className="bg-white rounded-lg shadow-md p-4 transform transition duration-300 hover:shadow-lg">
@@ -56,7 +56,7 @@ const AllBlog = () => {
             ))}
           </div>
 
-          <div className="w-full md:w-1/4">
+          <div className="w-full md:w-1/4 mt-16">
             <div className="bg-gray-100 rounded-lg p-4 border-b-4 border-b-white">
               <h2 className="text-xl font-semibold mb-4">Categories</h2>
               <ul className="space-y-2">
@@ -92,9 +92,11 @@ const AllBlog = () => {
                       <p className="text-sm text-gray-600">
                         By {blog.blogAuthor}
                       </p>
+                      <Link to={`/blog-details/${blog._id}`}>
                       <p className="text-gray-900 hover:underline text-md">
                         {blog.blogTitle}
                       </p>
+                      </Link>
                     </div>
                   </li>
                 ))}
