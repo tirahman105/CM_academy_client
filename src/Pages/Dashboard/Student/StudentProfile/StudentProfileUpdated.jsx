@@ -34,7 +34,7 @@ const StudentProfileUpdated = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            fetch("http://localhost:5000/users/student")
+            fetch("https://cm-academy-test-server-production.up.railway.app/users/student")
                 .then(response => response.json())
                 .then(data => {
                     const filteredUserData = data.find(item => item.email === user.email);
@@ -85,7 +85,7 @@ const StudentProfileUpdated = () => {
 
         console.log(updatedUserData);
 
-        fetch(`http://localhost:5000/users/student/${userEmail}`, {
+        fetch(`https://cm-academy-test-server-production.up.railway.app/users/student/${userEmail}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
