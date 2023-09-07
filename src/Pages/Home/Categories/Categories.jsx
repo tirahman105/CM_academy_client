@@ -68,7 +68,7 @@ function Categories() {
         <p className=" font-semibold mb-10">
           Choose your desired course and start learning online!
         </p>
-        <div className="sticky top-[64px] md:top-[72px] z-50   ">
+        <div className="sticky top-[64px] md:top-[72px] z-[1]  ">
           <div className=" rounded-md  h-14 md:h-auto flex bg-white shadow-md shadow-[#1bbf7260] bg-opacity-70 backdrop-blur-lg justify-center  gap-2 mb-10  overflow-x-auto ">
             {Categories.map((category, index) => (
               <button
