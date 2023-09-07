@@ -159,13 +159,11 @@ const Dashboard = () => {
   return (
     <div className="">
       <div
-        className={`fixed z-10 h-0 py-4 duration-500 ${
-          open ? "translate-x-0 h-full" : "-translate-x-full "
-        }`}
+        className={`fixed z-10 h-full   py-4 duration-500  ${open ? " " : " "}`}
       >
         <div
           className={`${
-            open ? "w-72 px-5" : "md:w-24 w-0"
+            open ? "w-72 px-5" : "md:w-[80px] px-2 w-0"
           } pt-8 duration-500  bg-teal-600 shadow-lg rounded-xl ml-4 h-full bg-opacity-30 backdrop-blur-md transform translate-x-0 md:translate-x-0 `}
         >
           <BsFillArrowLeftSquareFill
@@ -176,140 +174,112 @@ const Dashboard = () => {
           ></BsFillArrowLeftSquareFill>
           <div className="flex items-center ">
             <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
-            <Link to="/">
-              {" "}
-              <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
-                CM Academy
-              </h1>
-            </Link>
+
+            <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
+              <Link to="/"> CM Academy</Link>
+            </h1>
           </div>
 
-          <div className={` ${open ? "block duration-500" : "hidden"} `}>
-            <div className="flex flex-col items-center mt-10 mb-6">
-              <img
-                className="rounded-xl flex h-24 w-24 mb-2 mt-2"
-                src={user?.photoURL}
-                alt=""
-              />
-              <h1
-                className={`text-[#195b4e] font-semibold ${!open && "scale-0"}`}
-              >
-                {user?.displayName}
-              </h1>
+          <div className=" h-full overflow-y-auto pb-20">
+            <div className={` ${open ? "block duration-500" : "hidden"} `}>
+              <div className="flex flex-col items-center mt-10 mb-6">
+                <img
+                  className="rounded-xl flex h-24 w-24 mb-2 mt-2"
+                  src={user?.photoURL}
+                  alt=""
+                />
+                <h1
+                  className={`text-[#195b4e] font-semibold ${
+                    !open && "scale-0"
+                  }`}
+                >
+                  {user?.displayName}
+                </h1>
+              </div>
             </div>
+
+            <div className="pt-6  ">
+              {isStudent && (
+                <>
+                  {StudentMenus.map((menu, index) => (
+                    <li
+                      key={index}
+                      className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                    >
+                      <Link to={menu.src} className="flex my-2 ">
+                        {" "}
+                        <span className="text-3xl">{menu.icon} </span>
+                        <span
+                          className={`${
+                            !open ? "hidden" : ""
+                          } origin-left duration-200 `}
+                        >
+                          {menu.title}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </>
+              )}
+              {isAdmin && (
+                <>
+                  {AdminMenus.map((menu, index) => (
+                    <li
+                      key={index}
+                      className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                    >
+                      <Link to={menu.src} className="flex my-2 ">
+                        {" "}
+                        <span className="text-3xl">{menu.icon} </span>
+                        <span
+                          className={`${
+                            !open ? "hidden" : ""
+                          } origin-left duration-200 `}
+                        >
+                          {menu.title}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </>
+              )}
+
+              {isInstructor && (
+                <>
+                  {InstructorMenus.map((menu, index) => (
+                    <li
+                      key={index}
+                      className="text-[#195b4e]font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                    >
+                      <Link to={menu.src} className="flex my-2 ">
+                        {" "}
+                        <span className="text-3xl">{menu.icon} </span>
+                        <span
+                          className={`${
+                            !open ? "hidden" : ""
+                          } origin-left duration-200`}
+                        >
+                          {menu.title}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </>
+              )}
+            </div>
+            <hr className=" my-6" />
+            <button
+              onClick={handleLogOut}
+              className=" text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+            >
+              <BiLogOut className="text-3xl"></BiLogOut>
+              <span
+                className={`${!open ? "hidden" : ""} origin-left duration-200 `}
+              >
+                Logout
+              </span>
+            </button>
           </div>
-
-          <ul className="pt-6">
-            {isStudent && (
-              <>
-                {StudentMenus.map((menu, index) => (
-                  <li
-                    key={index}
-                    className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
-                  >
-                    <Link to={menu.src} className="flex my-2 ">
-                      {" "}
-                      <span className="text-3xl">{menu.icon} </span>
-                      <span
-                        className={`${
-                          !open ? "hidden" : ""
-                        } origin-left duration-200 `}
-                      >
-                        {menu.title}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <hr className="my-10" />
-                <button
-                  onClick={handleLogOut}
-                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
-                >
-                  <BiLogOut className="text-3xl"></BiLogOut>
-                  <span
-                    className={`${
-                      !open ? "hidden" : ""
-                    } origin-left duration-200 `}
-                  >
-                    Logout
-                  </span>
-                </button>
-              </>
-            )}
-            {isAdmin && (
-              <>
-                {AdminMenus.map((menu, index) => (
-                  <li
-                    key={index}
-                    className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
-                  >
-                    <Link to={menu.src} className="flex my-2 ">
-                      {" "}
-                      <span className="text-3xl">{menu.icon} </span>
-                      <span
-                        className={`${
-                          !open ? "hidden" : ""
-                        } origin-left duration-200 `}
-                      >
-                        {menu.title}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <hr className="my-10" />
-                <button
-                  onClick={handleLogOut}
-                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
-                >
-                  <BiLogOut className="text-3xl"></BiLogOut>
-                  <span
-                    className={`${
-                      !open ? "hidden" : ""
-                    } origin-left duration-200 `}
-                  >
-                    Logout
-                  </span>
-                </button>
-              </>
-            )}
-
-            {isInstructor && (
-              <>
-                {InstructorMenus.map((menu, index) => (
-                  <li
-                    key={index}
-                    className="text-[#195b4e]font-semibold flex items-center gap-2 cursor-pointer mx-2"
-                  >
-                    <Link to={menu.src} className="flex my-2 ">
-                      {" "}
-                      <span className="text-3xl">{menu.icon} </span>
-                      <span
-                        className={`${
-                          !open ? "hidden" : ""
-                        } origin-left duration-200`}
-                      >
-                        {menu.title}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <hr className="my-10" />
-                <button
-                  onClick={handleLogOut}
-                  className="text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
-                >
-                  <BiLogOut className="text-3xl"></BiLogOut>
-                  <span
-                    className={`${
-                      !open ? "hidden" : ""
-                    } origin-left duration-200 `}
-                  >
-                    Logout
-                  </span>
-                </button>
-              </>
-            )}
-          </ul>
         </div>
       </div>
       <div className="h-screen ">
