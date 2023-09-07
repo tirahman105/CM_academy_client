@@ -47,6 +47,10 @@ import Quiz from "../Pages/CoursePage/Quiz/Quiz";
 import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
 import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
 import WithdrawHistory from "../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +137,22 @@ const router = createBrowserRouter([
       {
         path: "/quiz",
         element: <Quiz></Quiz>,
+      },
+      {
+        path: "/about",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/policy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions></TermsAndConditions>,
       },
     ],
   },
