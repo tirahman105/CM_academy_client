@@ -55,9 +55,9 @@ const DashboardWithdrawRequest = () => {
             <th className="px-4 py-2">Instructor name</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2">Contact</th>
-            <th className="px-4 py-2">Bank details</th>
+            {/* <th className="px-4 py-2">Bank details</th> */}
             <th className="px-4 py-2">Withdraw amount</th>
-            <th className="px-4 py-2">Status</th>
+            {/* <th className="px-4 py-2">Status</th> */}
           </tr>
         </thead>
         <tbody>
@@ -70,20 +70,20 @@ const DashboardWithdrawRequest = () => {
               <td className="border px-4 py-2">{request.totalAmount}</td>
               <td className="border px-4 py-2">{request.name}</td>
               <td className="border px-4 py-2">{request.phoneNumber}</td>
-              <td className="border px-4 py-2 ">
+              {/* <td className="border px-4 py-2 ">
                 <button onClick={() => handleOpenModal(request.email)}>
                   <CiViewList className="text-5xl" />
                 </button>
-              </td>
+              </td> */}
               <td className="border px-6 py-2">{request.totalAmount} tk</td>
-              <td className="border px-6 py-2">
+              {/* <td className="border px-6 py-2">
                 <select className="block w-full px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-opacity-50">
                   <option className="p-2" value="pending">
                     Pending
                   </option>
                   <option value="complete">Complete</option>
                 </select>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>

@@ -113,7 +113,7 @@ const AdminDashboard = () => {
        {/* --------------------------- */}
 
        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-3 ">
-           <div className="bg-[#B6DFDB] p-10 rounded-md flex gap-5">
+           <div className="border bg-slate-100 p-10 rounded-md flex gap-5">
           <DashboardWithdrawRequest></DashboardWithdrawRequest>
            </div>
            <div className="bg-[#B6DFDB] p-10 rounded-md flex gap-5">
