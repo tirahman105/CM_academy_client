@@ -4,6 +4,7 @@ import AnimationBanner from "../../../assets/cm_banner.json";
 import Lottie from "lottie-react";
 import "./Banner.css";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -54,16 +55,19 @@ const Banner = () => {
             </p>
 
             <div className="lg:mt-10 flex gap-5  mb-14  relative ">
-              <button className=" text-white border-2 font-bold border-white rounded-xl px-4 bg-[#1BBF72] text-[12px] md:text-sm font-Raleway cursor-pointer  py-2">
+             <Link to="/signup">
+             <button className=" text-white border-2 font-bold border-white rounded-xl px-4 bg-[#1BBF72] text-[12px] md:text-sm font-Raleway cursor-pointer  py-2">
                 Get Stared
               </button>
+             </Link>
 
-              <button
-                className=" text-[#1BBF72] border-2 font-bold  rounded-xl px-4 bg-white  font-Raleway text-[12px] md:text-sm  cursor-pointer border-[#1bbf729f] duration-500 
-                hover:bg-[#1bbf7249] hover:text-gray-600   "
+             <Link className=" justify-center items-center flex text-[#1BBF72] border-2 font-bold  rounded-xl px-4 bg-white  font-Raleway text-[12px] md:text-sm  cursor-pointer border-[#1bbf729f] duration-500 
+                hover:bg-[#1bbf7249] hover:text-gray-600   " to="/courseCategories?category=All">
+             <button
+               
               >
                 View Courses
-              </button>
+              </button></Link>
             </div>
           </div>
           <div className="  w-52   lg:w-1/2 mx-auto lg:px-6  animate-pulse">

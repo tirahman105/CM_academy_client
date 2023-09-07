@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CourseVideo from './CourseOutline/CourseVideo';
 import CourseOutline from './CourseOutline/CourseOutline';
 import Certificate from './Certificate/Certificate';
