@@ -47,6 +47,7 @@ import Quiz from "../Pages/CoursePage/Quiz/Quiz";
 import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
 import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
 import WithdrawHistory from "../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -134,6 +135,10 @@ const router = createBrowserRouter([
         path: "/quiz",
         element: <Quiz></Quiz>,
       },
+      {
+        path:'/about',
+        element:<AboutUs></AboutUs>
+      }
     ],
   },
 
