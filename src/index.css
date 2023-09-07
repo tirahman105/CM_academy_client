@@ -206,3 +206,26 @@ body {
   background: #0fa6e9;
   background: linear-gradient(to right, #0fa6e9 5%, #38cfd2 68%);
 }
+
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track (the area where the scrollbar is) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+  border-radius: 3px; /* Rounded corners for the track */
+}
+
+/* Handle (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the handle */
+  border-radius: 3px; /* Rounded corners for the handle */
+}
+
+/* On hover, style the handle */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the handle on hover */
+}

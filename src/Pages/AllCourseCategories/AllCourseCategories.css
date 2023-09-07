@@ -1,4 +1,4 @@
-/* Hide horizontal scrollbar */
+/* Hide horizontal scrollbar
 ::-webkit-scrollbar {
   width: 0.5em;
   height: 0.5em;
@@ -18,5 +18,5 @@
     to bottom,
     #0488b4,
     #66e3e8
-  ); /* Change colors as needed */
-}
+  ); 
+} */
