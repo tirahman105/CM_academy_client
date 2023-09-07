@@ -35,7 +35,7 @@ const MyBlogs = () => {
                         </div>
                         <div>
                             <h2 className="text-2xl font-semibold mb-2">{blog.blogTitle}</h2>
-                            <p className="text-gray-600 mb-4 text-lg">
+                            <p className="text-gray-600 mb-4 text-lg font-normal">
                                 {blog.blogDetails.slice(0, 130)}...
                                 <span className="text-blue-600 font-bold ml-2 text-lg">Read More</span>
                             </p>
