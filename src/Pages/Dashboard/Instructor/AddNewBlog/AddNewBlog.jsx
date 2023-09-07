@@ -4,7 +4,7 @@ import { AuthContext } from "../../../../providers/AuthProvider";
 
 const AddNewBlog = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user?.displayName)
+  console.log(user?.displayName)
 
   const {
     register,
@@ -16,7 +16,7 @@ const AddNewBlog = () => {
   const categories = ["Technology", "programming", "writing"];
 
   const onSubmit = async (data) => {
-    console.log(data);
+    data.email = user?.email;
     try {
       const response = await fetch(
         "https://cm-academy-test-server-production.up.railway.app/blog",
