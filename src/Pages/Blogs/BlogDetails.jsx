@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -40,11 +40,11 @@ const BlogDetails = () => {
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto p-6">
-        <div className="py-4">
+        <div className="py-4 mt-20">
           <p className="text-gray-500">
-            <span className="text-blue-500 cursor-pointer hover:underline">
-              Blog
-            </span>{" "}
+            <Link to='/allBlog' className="text-blue-500 cursor-pointer hover:underline">
+              Blogs
+            </Link>{" "}
             &gt;&gt; Blog Details
           </p>
           <h1 className="text-3xl font-bold mt-2 mb-4">{blog?.blogTitle}</h1>
@@ -63,6 +63,8 @@ const BlogDetails = () => {
             </p>
             <div className="text-gray-800">{blog?.blogDetails}</div>
           </div>
+
+
           <div className="w-1/3">
             <h2 className="text-xl font-semibold mb-4">Related Articles</h2>
             <ul className="space-y-4">
@@ -78,11 +80,13 @@ const BlogDetails = () => {
                   />
                   <div>
                     <p className="text-sm text-gray-600">
-                      By {article.blog_author}
+                      By {article.blogAuthor}
                     </p>
-                    <p className="text-gray-900 hover:underline text-md">
-                      {article.blog_title}
-                    </p>
+                    <Link to={`/blog-details/${article._id}`}>
+                      <p className="text-gray-900 hover:underline text-md cursor-pointer">
+                        {article.blogTitle}
+                      </p>
+                    </Link>
                   </div>
                 </li>
               ))}
