@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMail } from "react-icons/ai";
+import { CgNotes } from 'react-icons/cg';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { IoMdCall } from "react-icons/io";
 
@@ -17,7 +18,7 @@ const AllEnrolledStudent = () => {
 
  
     useEffect(() => {
-        fetch('https://cm-academy-test-server-production.up.railway.app/orders/EnrolledEmail')
+        fetch('https://cm-academy-test-server-production.up.railway.app/orders/studentEmail')
           .then((res) => res.json())
           .then((result) => {
             setStudents(result);
@@ -46,26 +47,30 @@ const AllEnrolledStudent = () => {
         <div className="border p-4">
             <div className="my-5 mt-4">
        <h1 className=" text-lg font-bold">
-     Students List
+     Enrolled Students List
       </h1>
-      <p className="text-base mb-4">All registered students list below</p>
+      <p className="text-base mb-4">All Enrolled students list below</p>
       <hr />
      </div>
             {isSmallScreen ? (
                 // Card for small screens
                <div>
                  {
-                    visibleStudents.map(student => <div className="bg-white shadow-md rounded-lg p-4"   key={student._id}>
+                    visibleStudents.map(student => <div className="bg-white m-4 border mt-3 mx-auto w-full shadow-md rounded-lg p-4"   key={student._id}>
                     
                     
-                    <h2 className="text-lg font-semibold">{student.fullName}</h2>
+                    <h2 className="text-lg font-semibold">{student.studentName}</h2>
                     <div className='flex gap-2'>
                     <span><AiOutlineMail></AiOutlineMail></span> 
                          <p className="text-gray-500 text-sm"> {student?.email}</p>
                     </div>
                     <div className='flex gap-2'>
                     <span><IoMdCall></IoMdCall></span> 
-                    <p className="text-[#12C29F] text-xl">{student?.phone}</p>
+                    <p className="text-[#12C29F] text-xl">{student?.mobile}</p>
+                    </div>
+                    <div className='flex gap-2'>
+                    <span><CgNotes></CgNotes></span> 
+                    <p className="text-[#12C29F] text-xl">{student?.totalEnrolledCourse}</p>
                     </div>
                    
                     
@@ -78,10 +83,10 @@ const AllEnrolledStudent = () => {
                     <thead>
                         <tr className='bg-gray-100 text-[#12C29F] text-left  divide-x-2'>
                             <th className="px-4 py-2 ">SL</th>
-                            <th className=" py-2 ">Image</th>
                             <th className="px-4 py-2 ">Name</th>
                             <th className="px-4 py-2">Email</th>
                             <th className="px-auto py-2">Contact</th>
+                            <th className="px-auto py-2">Enrolled course</th>
                             
                         </tr>
                     </thead>
@@ -91,10 +96,10 @@ const AllEnrolledStudent = () => {
                       key={student._id} className='hover:bg-slate-100 duration-150s'
                      >
                         <td className="border px-4 py-2">{index+1}</td>
-                        <td className="border px-auto py-2"><img src={student.userImage} className='w-12 avatar rounded-full' alt="" /></td>
-                        <td className="border px-4 py-2">{student.fullName}</td>
+                        <td className="border px-4 py-2">{student.studentName}</td>
                             <td className="border px-4 py-2">{student.email}</td>
-                            <td className="border px-4 py-2">{student.contactNumber}</td>
+                            <td className="border px-4 py-2">{student.mobile}</td>
+                            <td className="border px-4 py-2">{student.totalEnrolledCourse}</td>
                       </tr>)
                   }
                         {/* Add more rows as needed */}

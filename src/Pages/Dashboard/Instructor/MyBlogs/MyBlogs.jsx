@@ -9,7 +9,7 @@ const MyBlogs = () => {
 
     useEffect(() => {
         // Fetch all blogs from your server
-        fetch('http://localhost:5000/all-blog')
+        fetch('https://cm-academy-test-server-production.up.railway.app/all-blog')
             .then((response) => response.json())
             .then((data) => {
                 // Filter blogs based on the user's email
@@ -22,7 +22,15 @@ const MyBlogs = () => {
     }, [userEmail]);
 
     return (
-        <div className="w-4/5 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
+        <div className='border p-4'>
+                 <div className=" mt-4">
+       <h1 className=" text-lg font-bold">
+     My Blogs
+      </h1>
+      <p className="text-base mb-4">All my posted blogs</p>
+      <hr />
+     </div>
+            <div className="w-full border mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-6 ">
             {blogs.map((blog, index) => (
                 <Link to={`/blog-details/${blog._id}`} key={index}>
                     <div className="bg-white rounded-lg shadow-md p-4 transform transition duration-300 hover:shadow-lg">
@@ -35,8 +43,8 @@ const MyBlogs = () => {
                         </div>
                         <div>
                             <h2 className="text-2xl font-semibold mb-2">{blog.blogTitle}</h2>
-                            <p className="text-gray-600 mb-4">
-                                {blog.blogDetails.slice(0, 150)}...
+                            <p className="text-gray-600 mb-4 text-base">
+                                {blog.blogDetails.slice(0, 90)}...
                                 <span className="text-blue-600 font-bold ml-2">Read More</span>
                             </p>
                             <div className="flex justify-between items-center text-gray-400 text-sm">
@@ -47,6 +55,7 @@ const MyBlogs = () => {
                     </div>
                 </Link>
             ))}
+        </div>
         </div>
     );
 };
