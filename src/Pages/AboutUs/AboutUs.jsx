@@ -33,8 +33,7 @@ const AboutUs = () => {
                     We believe in breaking down barriers to education and fostering a
                     global community of curious minds.
                 </p>
-
-
+{/* changes by raqib */}
                 <div className="flex">
                     <Link to="/signup">
                         <button className=" mr-3 mt-6 bg-black w-full md:w-80 p-3 md:p-4 text-lg md:text-xl text-white font-bold">
@@ -42,7 +41,6 @@ const AboutUs = () => {
                             
                         </button>
                     </Link>
-
 
                     <Link to="/instructorSignUp">
                         <button className="mt-6 bg-black w-full md:w-80 p-3 md:p-4 text-lg md:text-xl text-white font-bold">
