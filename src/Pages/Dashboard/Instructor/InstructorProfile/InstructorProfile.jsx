@@ -72,7 +72,7 @@ const InstructorProfile = () => {
             updatedUserData.userImage = selectedImage;
         }
 
-        fetch(`http://localhost:5000/users/instructor/${userEmail}`, {
+        fetch(`https://cm-academy-test-server-production.up.railway.app/users/instructor/${userEmail}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
