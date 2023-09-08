@@ -177,7 +177,7 @@ const CourseDetailsDynamic = () => {
         </div>
         {/* course Card start */}
 
-        <div className="hidden md:block sticky   inset-0 -mt-96  mr-6   float-right backdrop-blur-lg">
+        <div className="hidden md:block sticky   inset-0 -mt-[200px]  mr-6   float-right backdrop-blur-lg">
           <div className="max-w-7xl  mb-48 h-[600px] border w-[334px] boxShadow rounded-lg  ">
             <img
               className="w-[334px] h-[200px] rounded-lg mb-4"

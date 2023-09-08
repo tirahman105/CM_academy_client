@@ -54,6 +54,7 @@ const InstructorProfile = () => {
         setEditedFields({
             fullName: userDataFromAPI?.fullName || '',
             contactNumber: userDataFromAPI?.contactNumber || '',
+            aboutMe: userDataFromAPI?.aboutMe || '',
         });
     };
 
@@ -239,7 +240,7 @@ const InstructorProfile = () => {
                     <p className="font-semibold text-lg">About Me:</p>
                     {isEditing ? (
                         <textarea
-                            className="border rounded-md px-2 py-1 w-full text-base"
+                            className="border rounded-md px-2 py-1 w-full text-base h-28"
                             value={editedFields.aboutMe}
                             onChange={(e) =>
                                 setEditedFields({ ...editedFields, aboutMe: e.target.value })

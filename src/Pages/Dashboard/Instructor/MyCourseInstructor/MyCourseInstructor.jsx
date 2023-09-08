@@ -37,7 +37,7 @@ const MyCourseInstructor = () => {
         <p className="text-base mb-4">All my courses</p>
         <hr />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4">
         {instructorCourses.map((category) => (
           <div
             key={category._id}
@@ -45,7 +45,7 @@ const MyCourseInstructor = () => {
           >
             <figure>
               <img
-                className="h-56 w-full"
+                className="h-48 w-full"
                 src={category.courseThumbnail}
                 alt=""
               />

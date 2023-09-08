@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import MyPayments from '../../Instructor/MyPatments/MyPayments';
 import WithdrawRequest from '../WithdarwRequest/WithdrawRequest';
 import DashboardWithdrawRequest from '../WithdarwRequest/DashboardWithdrawRequest';
+import DashboardChart from '../DashboardChart/DashboardChart';
 
 const AdminDashboard = () => {
         // data fetch from DB 
@@ -60,7 +61,7 @@ const AdminDashboard = () => {
             
             <div className="p-10 border">
        
-       <div className='grid grid-cols-4 gap-3'>
+       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3'>
      <Link to='/dashboard/manage-students'>
      <div className='bg-slate-300 rounded-md  p-10 flex gap-4 justify-start items-center cursor-pointer'>
           <div>
@@ -117,7 +118,7 @@ const AdminDashboard = () => {
           <DashboardWithdrawRequest></DashboardWithdrawRequest>
            </div>
            <div className="bg-[#B6DFDB] p-10 rounded-md flex gap-5">
-             
+             <DashboardChart></DashboardChart>
            </div>
        </div>
    </div>
