@@ -212,37 +212,36 @@ const Final = () => {
   ///////////////////////////////////////
   return (
     <div>
-      <h1 className="text-5xl font-extrabold text-[#0AAE8D] text-center mb-10">
-        Add New Course
-      </h1>
+      <div className=" my-4 mt-4">
+        <h1 className=" text-lg font-bold">Add New Course</h1>
+        <p className="text-base mb-4">Add the necessary details, course curriculum and also the quizzes here.</p>
+        <hr />
+      </div>
       <form className="w-3/5 mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4 flex justify-center rounded-md">
+        <div className="mb-4 text-base font-bold flex justify-center border rounded-md ">
           <div
-            className={`cursor-pointer p-2 border ${
-              activeTab === "basicInfo"
-                ? "border-[#0AAE8D] bg-[#0AAE8D] text-white"
-                : ""
-            }`}
+            className={`w-1/3 text-center cursor-pointer p-2  ${activeTab === "basicInfo"
+              ? "border-[#0AAE8D]  rounded-md bg-[#0AAE8D] text-white text-sm "
+              : ""
+              }`}
             onClick={() => switchTab("basicInfo")}
           >
             Basic Info
           </div>
           <div
-            className={`cursor-pointer p-2 border ${
-              activeTab === "courseCurriculum"
-                ? "border-[#0AAE8D] bg-[#0AAE8D] text-white"
-                : ""
-            }`}
+            className={`w-1/3 text-center  cursor-pointer p-2 ${activeTab === "courseCurriculum"
+              ? "border-[#0AAE8D] rounded-md bg-[#0AAE8D] text-white "
+              : ""
+              }`}
             onClick={() => switchTab("courseCurriculum")}
           >
             Course Curriculum
           </div>
           <div
-            className={`cursor-pointer p-2 border ${
-              activeTab === "quiz"
-                ? "border-[#0AAE8D] bg-[#0AAE8D] text-white"
-                : ""
-            }`}
+            className={` w-1/3 text-center  cursor-pointer p-2  ${activeTab === "quiz"
+              ? "border-[#0AAE8D]  rounded-md bg-[#0AAE8D] text-white"
+              : ""
+              }`}
             onClick={() => switchTab("quiz")}
           >
             Quiz
@@ -284,7 +283,7 @@ const Final = () => {
               {/* Course Description */}
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Description</span>
+                  <span className="text-base font-bold">Course Description</span>
                 </label>
                 <textarea
                   name="courseDescription"
@@ -381,51 +380,52 @@ const Final = () => {
                 />
               </div>
               {/* faq section */}
-              <div className="form-control mb-3">
-                <div className="form-control mb-3">
-                  <label className="label">
-                    <span className="text-xl font-bold">FAQ</span>
+              <div className='form-control mb-3'>
+                <div className='form-control mb-3'>
+                  <label className='label'>
+                    <span className='text-base font-bold'>FAQ</span>
                   </label>
-                  <div className="space-y-4">
+                  <div className='space-y-4'>
                     {faq.map((faqItem, faqIndex) => (
-                      <div key={faqIndex}>
-                        <h4 className="font-semibold">{faqItem.question}</h4>
-                        <p>{faqItem.answer}</p>
+                      <div key={faqIndex} className='bg-white rounded-lg shadow-md p-6'>
+                        <h4 className='font-semibold text-base mb-2 bg-red-300 text-black p-2 rounded-lg'>
+                          Question {faqIndex + 1}: {faqItem.question}
+                        </h4>
+                        <p className='text-gray-600'></p>
+                        <div className='bg-green-300 p-4 font-sans rounded-lg shadow-md'>
+                          <p className='text-black text-base'>{faqItem.answer}</p>
+                        </div>
                       </div>
                     ))}
                     {!addingFaq && (
                       <button
-                        type="button"
-                        className="btn btn-success mt-2"
+                        type='button'
+                        className='btn btn-success mt-2'
                         onClick={() => startAddingFaq()}
                       >
                         Add FAQ
                       </button>
                     )}
                     {addingFaq && (
-                      <div>
+                      <div className='bg-white rounded-lg shadow-md p-6'>
                         <div>
                           <input
-                            type="text"
-                            className="input input-bordered bg-gray-200 h-100 m-3 ml-0"
-                            placeholder="Question"
+                            type='text'
+                            className='input input-bordered bg-gray-200 h-12 m-3 ml-0 w-full'
+                            placeholder='Question'
                             value={newFaqQuestion}
                             onChange={handleFaqQuestionChange}
                           />
                         </div>
                         <div>
                           <textarea
-                            className="input input-bordered bg-gray-200 h-40 m-3"
-                            placeholder="Answer"
+                            className='input input-bordered bg-gray-200 h-40 m-3 w-full'
+                            placeholder='Answer'
                             value={newFaqAnswer}
                             onChange={handleFaqAnswerChange}
                           />
                         </div>
-                        <button
-                          type="button"
-                          className="btn btn-outline mr-3 btn-sm mt-2"
-                          onClick={saveFaq}
-                        >
+                        <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={saveFaq}>
                           Save FAQ
                         </button>
                       </div>
@@ -433,6 +433,8 @@ const Final = () => {
                   </div>
                 </div>
               </div>
+
+
             </div>
             <div className="flex justify-center mt-4">
               <button
@@ -454,42 +456,32 @@ const Final = () => {
                   <span className="text-xl font-bold">Course Outline</span>
                 </label>
                 <div className="space-y-4">
-                  <div className="space-y-4">
+                  <div className='space-y-4'>
                     {courseOutline.map((milestone, milestoneIndex) => (
-                      <div
-                        key={milestoneIndex}
-                        className="bg-white rounded-lg shadow-md p-6"
-                      >
-                        <h4 className="font-semibold text-lg mb-2">
-                          Milestone : {milestone.milestone}
+                      <div key={milestoneIndex} className='bg-white rounded-lg shadow-md p-6'>
+                        <h4 className='font-semibold text-lg mb-2'>
+                          Milestone {milestoneIndex + 1}: {milestone.milestone}
                         </h4>
-                        <ul className="list-disc pl-6 space-y-2">
+                        <div className='flex flex-wrap -m-3'>
                           {milestone.sessions.map((session, sessionIndex) => (
-                            <li key={sessionIndex}>
-                              <strong className="text-blue-600">
-                                Sessions:
-                                <p>{session.sessionTitle}</p>
-                              </strong>
-                              <p className="text-gray-600">
-                                Session Description:
-                                <p className="text-black">
-                                  {session.description}
-                                </p>
-                              </p>
+                            <div key={sessionIndex} className='bg-gray-100 p-4 rounded-lg shadow-md m-3'>
+                              <h5 className='text-blue-600 text-lg font-semibold'>Session {sessionIndex + 1}:  {session.sessionTitle}</h5>
+                              <p className='text-gray-600 text-sm'>{session.description}</p>
                               <a
                                 href={`${session.videoLink}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-500 hover:underline"
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='text-blue-500 text-sm hover:underline mt-1 block'
                               >
                                 Watch Video
                               </a>
-                            </li>
+                            </div>
                           ))}
-                        </ul>
+                        </div>
                       </div>
                     ))}
                   </div>
+
                   {!addingMilestone && (
                     <button
                       type="button"
@@ -519,9 +511,8 @@ const Final = () => {
                               <input
                                 type="text"
                                 className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Title`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Title`}
                                 value={session.sessionTitle}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -533,9 +524,8 @@ const Final = () => {
                               {/* Add textarea for session description */}
                               <textarea
                                 className="input input-bordered bg-gray-200 h-20 m-3 w-full"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Description`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Description`}
                                 value={session.description}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -547,9 +537,8 @@ const Final = () => {
                               <input
                                 type="text"
                                 className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Video Link`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Video Link`}
                                 value={session.videoLink}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -624,9 +613,8 @@ const Final = () => {
                         key={index}
                         className="border p-4 mb-4 rounded-lg shadow-md"
                       >
-                        <h4 className="text-sm font-bold mb-2">{`Question ${
-                          index + 1
-                        }: ${quiz.question}`}</h4>
+                        <h4 className="text-sm font-bold mb-2">{`Question ${index + 1
+                          }: ${quiz.question}`}</h4>
                         <ul className="text-sm list-disc pl-6 mb-2">
                           {quiz.options.map((option, optionIndex) => (
                             <li key={optionIndex} className="mb-1">
@@ -706,9 +694,8 @@ const Final = () => {
                     }
                   >
                     {quizOptions.map((_, index) => (
-                      <option key={index} value={index}>{`Option ${
-                        index + 1
-                      }`}</option>
+                      <option key={index} value={index}>{`Option ${index + 1
+                        }`}</option>
                     ))}
                   </select>
                 </div>
