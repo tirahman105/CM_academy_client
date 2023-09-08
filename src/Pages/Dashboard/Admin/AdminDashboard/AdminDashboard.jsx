@@ -60,7 +60,7 @@ const AdminDashboard = () => {
             
             <div className="p-10 border">
        
-       <div className='grid grid-cols-4 gap-3'>
+       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3'>
      <Link to='/dashboard/manage-students'>
      <div className='bg-slate-300 rounded-md  p-10 flex gap-4 justify-start items-center cursor-pointer'>
           <div>
