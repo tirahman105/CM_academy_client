@@ -185,7 +185,7 @@ const Dashboard = () => {
               <div className="flex flex-col items-center mt-10 mb-6">
                 <img
                   className="rounded-xl flex h-24 w-24 mb-2 mt-2"
-                  src={user?.photoURL}
+                  src={user?.userImage}
                   alt=""
                 />
                 <h1
@@ -193,7 +193,7 @@ const Dashboard = () => {
                     !open && "scale-0"
                   }`}
                 >
-                  {user?.displayName}
+                  {user?.fullName }
                 </h1>
               </div>
             </div>
