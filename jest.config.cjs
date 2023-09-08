@@ -1,4 +1,5 @@
 // jest.config.cjs
+// jest.config.cjs
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
@@ -7,6 +8,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    "\\.(css|less)$": "identity-obj-proxy", // Add this line for CSS mock
   },
   testMatch: ['**/*.test.(ts|tsx|js|jsx)'],
   collectCoverageFrom: [
@@ -16,9 +18,8 @@ module.exports = {
     '!src/**/index.ts',
     '!src/**/*.test.{ts,tsx,js,jsx}',
   ],
-
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'], 
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
 };
 
 

@@ -6,11 +6,8 @@ import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { motion } from "framer-motion";
 
 const CourseCard = ({ course, handleDetailsClick }) => {
-  
   return (
     <motion.div
-    
-    
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
@@ -26,7 +23,7 @@ const CourseCard = ({ course, handleDetailsClick }) => {
         <img
           className="h-44 w-full rounded-md"
           src={course.courseThumbnail}
-          alt=""
+          alt={`Thumbnail for ${course.title}`} // Add a meaningful alt text
         />
         <motion.div
           initial={{ opacity: 0 }}
