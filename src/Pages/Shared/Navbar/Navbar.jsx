@@ -11,8 +11,6 @@ const Navbar = () => {
   
   const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
-
- 
   console.log(user);
 
   const handleLogOut = () => {
