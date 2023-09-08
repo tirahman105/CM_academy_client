@@ -18,7 +18,7 @@ const Checkout = () => {
   }, []);
   useEffect(() => {
     fetch(
-      `https://cm-academy-test-server-production.up.railway.app/categories/${id}`
+      `https://cm-academy-test-server-production.up.railway.app/categories/byId/${id}`
     )
       .then((response) => {
         if (!response.ok) {
