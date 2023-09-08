@@ -13,7 +13,7 @@ const DashboardTopNav = () => {
              items-center  lg:flex-row gap-5'>
                 <div >
                     <h1 className='font-extrabold text-2xl lg:text-3xl font-serif 
-                        text-center mt-5 tracking-wider'>Hello ! {user?.displayName}</h1>
+                        text-center mt-5 tracking-wider'>Hello ! {user?.fullName}</h1>
                     <p className='lg:tracking-widest text-gray-700 text-center mt-4
                         text-sm font-semibold'>It is good to see you again.</p>
                 </div>
