@@ -4,9 +4,11 @@ import logo from "../../../../public/cm-logo-png.ico";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useInstructor from "../../../Hooks/useInstructor";
 
+
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
+  
   const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
@@ -146,7 +148,7 @@ const Navbar = () => {
               {user && (
                 <li>
                   <Link
-                    to="/dashboard/admin-dashboard"
+                    to="/dashboard"
                     className="ml-auto text-[#1BBF72] font-Raleway font-bold"
                   >
                     Dashboard
