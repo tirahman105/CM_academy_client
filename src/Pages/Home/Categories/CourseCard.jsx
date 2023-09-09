@@ -4,14 +4,12 @@ import { FiUsers } from "react-icons/fi";
 import { FaStar, FaBuromobelexperte, FaCartPlus } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
 
 const CourseCard = ({ course, handleDetailsClick }) => {
-  
   return (
     <motion.div
-    
-    
-      initial={{ y: 20, opacity: 0 }}
+      initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.2 }}
@@ -26,7 +24,7 @@ const CourseCard = ({ course, handleDetailsClick }) => {
         <img
           className="h-44 w-full rounded-md"
           src={course.courseThumbnail}
-          alt=""
+          alt={`Thumbnail for ${course.title}`}
         />
         <motion.div
           initial={{ opacity: 0 }}
@@ -39,7 +37,9 @@ const CourseCard = ({ course, handleDetailsClick }) => {
             className="h-6 shadow-md w-6 rounded-full"
             alt=""
           />
-          <p className="font-Poppins">{course.instructor}</p>
+          <p className="font-Poppins">
+            {course.instructor || <Skeleton count={10}></Skeleton>}
+          </p>
         </motion.div>
       </motion.div>
       <div className="px-5 h-14">

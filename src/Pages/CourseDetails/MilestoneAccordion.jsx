@@ -4,7 +4,7 @@ import { AiFillLock } from "react-icons/ai";
 
 const MilestoneAccordion = ({ courseOutline, activeMilestones, handleToggleMilestone }) => {
   return (
-    <div className="border-2 py-5 px-2 sm:w-[55%] rounded-md font-Lexend mb-16">
+    <div className="border-2 py-5 px-2 sm:w-[90%] rounded-md font-Lexend mb-16">
       {courseOutline.map((milestone, index) => (
         <div
           key={index}
