@@ -27,7 +27,7 @@ export default {
         Roboto: ['Roboto', 'sans-serif'],
         Poppins: ['Poppins', 'sans-serif'],
         Jost: ['Jost', 'sans-serif']
-
+      
 
 
 

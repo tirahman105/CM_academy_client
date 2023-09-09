@@ -48,7 +48,7 @@ function CategoryManagement() {
 
   return (
     <div>
-      <div className="border p-4">
+      <div className="border p-4  ">
         <div className="my-5 mt-4">
           <h1 className=" text-lg font-bold">Recent Categories</h1>
           <p className="text-base mb-4">All the categories in CM Academy</p>
