@@ -1,275 +1,350 @@
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layout/Main";
-import Home from "../Pages/Home/Home/Home";
-import CourseDetails from "../Pages/CourseDetails/CourseDetails";
-import AllCourseCategories from "../Pages/AllCourseCategories/AllCourseCategories";
-import SignIn from "../Pages/Authentication/SignIn/SignIn";
-import SignUp from "../Pages/Authentication/SignUp/SignUp";
-import Instructors from "../Pages/Instructors/Instructors/Instructors";
-import AddCourses from "../Pages/Dashboard/Instructor/AddCourses/AddCourses";
-import InstructorSignUp from "../Pages/Authentication/InstructorSignUp/InstructorSignUp";
-import PaymentSuccess from "../payments/PaymentFailSuccess/PaymentSuccess";
-import CheckOut from "../payments/PaymentCheckout/CheckOut";
-import PaymentFail from "../payments/PaymentFailSuccess/PaymentFail";
-import ResetPassword from "../Pages/Authentication/ResetPassword/ResetPassword";
-import ForgotPassword from "../Pages/Authentication/ForgotPassword/ForgotPassword";
-import CoursePage from "../Pages/CoursePage/CoursePage";
-import QuestionForm from "../Pages/Dashboard/Instructor/AddNewCourse/QuestionForm";
-import PrivateRoute from "./PrivateRoute";
-import Dashboard from "../Layout/Dashboard";
-import AddNewBlog from "../Pages/Dashboard/Instructor/AddNewBlog/AddNewBlog";
-import AllBlog from "../Pages/Blogs/AllBlog";
-import BlogDetails from "../Pages/Blogs/BlogDetails";
-import EditProfile from "../Pages/Dashboard/Shared/EditProfile/EditProfile";
-import ManageStudents from "../Pages/Dashboard/Admin/ManageStudents/ManageStudents";
-import EnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
-import ManageInstructors from "../Pages/Dashboard/Admin/ManageInstructors/ManageInstructors";
-import ManageCourse from "../Pages/Dashboard/Admin/ManageCourse/ManageCourse";
-import WithdrawRequest from "../Pages/Dashboard/Admin/WithdarwRequest/WithdrawRequest";
-import AddCategory from "../Pages/Dashboard/Admin/AddCategory/AddCategory";
-import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
-import AllEnrolledStudent from "../Pages/Dashboard/Admin/AllEnrolledStudent/AllEnrolledStudent";
-import MyEnrolledStudents from "../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents";
-import MyPayments from "../Pages/Dashboard/Instructor/MyPatments/MyPayments";
-import MyBlogs from "../Pages/Dashboard/Instructor/MyBlogs/MyBlogs";
-import MyCourseInstructor from "../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourseInstructor";
-import StudentPayment from "../Pages/Dashboard/Student/StudentPayment/StudentPayment";
-import CourseDetailsDynamic from "../Pages/CourseDetails/CourseDetailsDynamic";
-import MyCourses from "../Pages/Dashboard/Student/MyCourses/MyCourses";
-import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard/StudentDashboard";
-import InstructorDAshboard from "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard";
-import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
-import InstructorPublicProfile from "../Pages/instructorPublicProfile/InstructorPublicProfile";
-import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
-import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
-import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
-import Quiz from "../Pages/CoursePage/Quiz/Quiz";
-import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
-import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
-import WithdrawHistory from "../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory";
-import AboutUs from "../Pages/AboutUs/AboutUs";
-import ContactUs from "../Pages/ContactUs/ContactUs";
-import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
-import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import Loading from "../Pages/Home/Home/Loading/Loading";
+
+// Lazy-loaded components
+const LazyMain = lazy(() => import("../Layout/Main"));
+const Home = lazy(() => import("../Pages/Home/Home/Home"));
+const CourseDetails = lazy(() =>
+  import("../Pages/CourseDetails/CourseDetails")
+);
+const AllCourseCategories = lazy(() =>
+  import("../Pages/AllCourseCategories/AllCourseCategories")
+);
+const SignIn = lazy(() => import("../Pages/Authentication/SignIn/SignIn"));
+const SignUp = lazy(() => import("../Pages/Authentication/SignUp/SignUp"));
+const Instructors = lazy(() =>
+  import("../Pages/Instructors/Instructors/Instructors")
+);
+const AddCourses = lazy(() =>
+  import("../Pages/Dashboard/Instructor/AddCourses/AddCourses")
+);
+const InstructorSignUp = lazy(() =>
+  import("../Pages/Authentication/InstructorSignUp/InstructorSignUp")
+);
+const PaymentSuccess = lazy(() =>
+  import("../payments/PaymentFailSuccess/PaymentSuccess")
+);
+const CheckOut = lazy(() => import("../payments/PaymentCheckout/CheckOut"));
+const PaymentFail = lazy(() =>
+  import("../payments/PaymentFailSuccess/PaymentFail")
+);
+const ResetPassword = lazy(() =>
+  import("../Pages/Authentication/ResetPassword/ResetPassword")
+);
+const ForgotPassword = lazy(() =>
+  import("../Pages/Authentication/ForgotPassword/ForgotPassword")
+);
+const CoursePage = lazy(() => import("../Pages/CoursePage/CoursePage"));
+const QuestionForm = lazy(() =>
+  import("../Pages/Dashboard/Instructor/AddNewCourse/QuestionForm")
+);
+const PrivateRoute = lazy(() => import("./PrivateRoute"));
+const Dashboard = lazy(() => import("../Layout/Dashboard"));
+const AddNewBlog = lazy(() =>
+  import("../Pages/Dashboard/Instructor/AddNewBlog/AddNewBlog")
+);
+const AllBlog = lazy(() => import("../Pages/Blogs/AllBlog"));
+const BlogDetails = lazy(() => import("../Pages/Blogs/BlogDetails"));
+const EditProfile = lazy(() =>
+  import("../Pages/Dashboard/Shared/EditProfile/EditProfile")
+);
+const ManageStudents = lazy(() =>
+  import("../Pages/Dashboard/Admin/ManageStudents/ManageStudents")
+);
+const EnrolledStudents = lazy(() =>
+  import("../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents")
+);
+const ManageInstructors = lazy(() =>
+  import("../Pages/Dashboard/Admin/ManageInstructors/ManageInstructors")
+);
+const ManageCourse = lazy(() =>
+  import("../Pages/Dashboard/Admin/ManageCourse/ManageCourse")
+);
+const WithdrawRequest = lazy(() =>
+  import("../Pages/Dashboard/Admin/WithdarwRequest/WithdrawRequest")
+);
+const AddCategory = lazy(() =>
+  import("../Pages/Dashboard/Admin/AddCategory/AddCategory")
+);
+const AdminDashboard = lazy(() =>
+  import("../Pages/Dashboard/Admin/AdminDashboard/AdminDashboard")
+);
+const AllEnrolledStudent = lazy(() =>
+  import("../Pages/Dashboard/Admin/AllEnrolledStudent/AllEnrolledStudent")
+);
+const MyEnrolledStudents = lazy(() =>
+  import("../Pages/Dashboard/Instructor/MyEnrolledStudents/MyEnrolledStudents")
+);
+const MyPayments = lazy(() =>
+  import("../Pages/Dashboard/Instructor/MyPatments/MyPayments")
+);
+const MyBlogs = lazy(() =>
+  import("../Pages/Dashboard/Instructor/MyBlogs/MyBlogs")
+);
+const MyCourseInstructor = lazy(() =>
+  import("../Pages/Dashboard/Instructor/MyCourseInstructor/MyCourseInstructor")
+);
+const StudentPayment = lazy(() =>
+  import("../Pages/Dashboard/Student/StudentPayment/StudentPayment")
+);
+const CourseDetailsDynamic = lazy(() =>
+  import("../Pages/CourseDetails/CourseDetailsDynamic")
+);
+const MyCourses = lazy(() =>
+  import("../Pages/Dashboard/Student/MyCourses/MyCourses")
+);
+const StudentDashboard = lazy(() =>
+  import("../Pages/Dashboard/Student/StudentDashboard/StudentDashboard")
+);
+const InstructorDashboard = lazy(() =>
+  import(
+    "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard"
+  )
+);
+const ErrorPage = lazy(() => import("../Pages/Shared/ErrorPage/ErrorPage"));
+const InstructorPublicProfile = lazy(() =>
+  import("../Pages/instructorPublicProfile/InstructorPublicProfile")
+);
+const CoursePageUpdate = lazy(() =>
+  import("../Pages/CoursePage/CoursePageUpdate")
+);
+const BankAccountSetup = lazy(() =>
+  import("../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup")
+);
+const Quiz = lazy(() => import("../Pages/CoursePage/Quiz/Quiz"));
+const InstructorProfile = lazy(() =>
+  import("../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile")
+);
+const StudentProfileUpdated = lazy(() =>
+  import("../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated")
+);
+const WithdrawHistory = lazy(() =>
+  import("../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory")
+);
+const AboutUs = lazy(() => import("../Pages/AboutUs/AboutUs"));
+const ContactUs = lazy(() => import("../Pages/ContactUs/ContactUs"));
+const PrivacyPolicy = lazy(() =>
+  import("../Pages/PrivacyPolicy/PrivacyPolicy")
+);
+const TermsAndConditions = lazy(() =>
+  import("../Pages/TermsAndConditions/TermsAndConditions")
+);
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: (
+      <Suspense fallback={<Loading></Loading>}>
+        <LazyMain />
+      </Suspense>
+    ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
-        path: "/courseDetails", // Define the path with parameters
-        element: <CourseDetails></CourseDetails>,
+        path: "/courseDetails",
+        element: <CourseDetails />,
       },
       {
-        path: "/courseDetailsDynamic", // Define the path with parameters
-        element: <CourseDetailsDynamic></CourseDetailsDynamic>,
+        path: "/courseDetailsDynamic",
+        element: <CourseDetailsDynamic />,
       },
       {
-        path: "/courseCategories", // Define the path with parameters
-        element: <AllCourseCategories></AllCourseCategories>,
+        path: "/courseCategories",
+        element: <AllCourseCategories />,
       },
       {
         path: "/instructor",
-        element: <Instructors></Instructors>,
+        element: <Instructors />,
       },
       {
         path: "/instructorProfile",
-        element: <InstructorPublicProfile></InstructorPublicProfile>,
+        element: <InstructorPublicProfile />,
       },
       {
         path: "login",
-        element: <SignIn></SignIn>,
+        element: <SignIn />,
       },
       {
         path: "signup",
-        element: <SignUp></SignUp>,
+        element: <SignUp />,
       },
       {
         path: "instructorSignUp",
-        element: <InstructorSignUp></InstructorSignUp>,
+        element: <InstructorSignUp />,
       },
       {
         path: "coursepage",
-        element: <CoursePage></CoursePage>,
+        element: <CoursePage />,
       },
       {
         path: "coursepageUpdate",
-        element: <CoursePageUpdate></CoursePageUpdate>,
+        element: <CoursePageUpdate />,
       },
       {
         path: "/reset-password/:oobCode",
-        element: <ResetPassword></ResetPassword>,
+        element: <ResetPassword />,
       },
       {
         path: "/forgot-password",
-        element: <ForgotPassword></ForgotPassword>,
+        element: <ForgotPassword />,
       },
       {
         path: "/checkout/:id",
-        element: <CheckOut></CheckOut>,
+        element: <CheckOut />,
       },
       {
         path: "/payment/success/:tranId",
-        element: <PaymentSuccess></PaymentSuccess>,
+        element: <PaymentSuccess />,
       },
       {
         path: "/payment/fail/:tranId",
-        element: <PaymentFail></PaymentFail>,
+        element: <PaymentFail />,
       },
       {
         path: "/allblog",
-        element: <AllBlog></AllBlog>,
+        element: <AllBlog />,
       },
       {
         path: "/blog-details/:id",
-        element: <BlogDetails></BlogDetails>,
+        element: <BlogDetails />,
       },
       {
         path: "/course-page",
-        element: <CoursePage></CoursePage>,
+        element: <CoursePage />,
       },
       {
         path: "/quiz",
-        element: <Quiz></Quiz>,
+        element: <Quiz />,
       },
       {
         path: "/about",
-        element: <AboutUs></AboutUs>,
+        element: <AboutUs />,
       },
       {
         path: "/contact",
-        element: <ContactUs></ContactUs>,
+        element: <ContactUs />,
       },
       {
         path: "/policy",
-        element: <PrivacyPolicy></PrivacyPolicy>,
+        element: <PrivacyPolicy />,
       },
       {
         path: "/terms",
-        element: <TermsAndConditions></TermsAndConditions>,
+        element: <TermsAndConditions />,
       },
     ],
   },
-
-  // {
-  //   path:"/addcourse",
-  //   element: <PrivateRoute><AddCourses></AddCourses></PrivateRoute>
-  // }
   {
     path: "dashboard",
     element: (
-      <PrivateRoute>
-        <Dashboard></Dashboard>
-      </PrivateRoute>
+      <Suspense fallback={<div>Loading...</div>}>
+        <PrivateRoute>
+          <Dashboard />
+        </PrivateRoute>
+      </Suspense>
     ),
     children: [
-      // --------------------------shared -------------------------------------------
       {
         path: "edit-profile",
-        element: <EditProfile></EditProfile>,
+        element: <EditProfile />,
       },
       {
         path: "enrolled-students",
-        element: <EnrolledStudents></EnrolledStudents>,
+        element: <EnrolledStudents />,
       },
-
-      // --------------------------Admin ---------------------------------------
       {
         path: "admin-dashboard",
-        element: <AdminDashboard></AdminDashboard>,
+        element: <AdminDashboard />,
       },
       {
         path: "manage-students",
-        element: <ManageStudents></ManageStudents>,
+        element: <ManageStudents />,
       },
       {
         path: "All-enrolled-students",
-        element: <AllEnrolledStudent></AllEnrolledStudent>,
+        element: <AllEnrolledStudent />,
       },
       {
         path: "manage-instructors",
-        element: <ManageInstructors></ManageInstructors>,
+        element: <ManageInstructors />,
       },
       {
         path: "manage-course",
-        element: <ManageCourse></ManageCourse>,
+        element: <ManageCourse />,
       },
       {
         path: "withdraw-request",
-        element: <WithdrawRequest></WithdrawRequest>,
+        element: <WithdrawRequest />,
       },
       {
         path: "add-category",
-        element: <AddCategory></AddCategory>,
+        element: <AddCategory />,
       },
-      // --------------------------Instructor ---------------------------------------
       {
         path: "instructor-dashboard",
-        element: <InstructorDAshboard></InstructorDAshboard>,
+        element: <InstructorDashboard />,
       },
       {
         path: "instructor-profile",
-        element: <InstructorProfile></InstructorProfile>,
+        element: <InstructorProfile />,
       },
       {
         path: "my-courses-instructor",
-        element: <MyCourseInstructor></MyCourseInstructor>,
+        element: <MyCourseInstructor />,
       },
       {
         path: "my-blogs",
-        element: <MyBlogs></MyBlogs>,
+        element: <MyBlogs />,
       },
       {
         path: "my-enrolled-students",
-        element: <MyEnrolledStudents></MyEnrolledStudents>,
+        element: <MyEnrolledStudents />,
       },
       {
         path: "my-payments",
-        element: <MyPayments></MyPayments>,
+        element: <MyPayments />,
       },
       {
         path: "withdraw-history",
-        element: <WithdrawHistory></WithdrawHistory>,
+        element: <WithdrawHistory />,
       },
       {
         path: "acc-setup",
-        element: <BankAccountSetup></BankAccountSetup>,
+        element: <BankAccountSetup />,
       },
       {
         path: "add-course",
-        element: <AddCourses></AddCourses>,
+        element: <AddCourses />,
       },
       {
         path: "add-blog",
-        element: <AddNewBlog></AddNewBlog>,
+        element: <AddNewBlog />,
       },
       {
         path: "quiz",
-        element: <QuestionForm></QuestionForm>,
+        element: <QuestionForm />,
       },
-
-      //  Student dashboard
       {
         path: "student-dashboard",
-        element: <StudentDashboard></StudentDashboard>,
+        element: <StudentDashboard />,
       },
       {
         path: "my-courses",
-        element: <MyCourses></MyCourses>,
+        element: <MyCourses />,
       },
       {
         path: "student-payment",
-        element: <StudentPayment></StudentPayment>,
+        element: <StudentPayment />,
       },
       {
         path: "student-profile",
-        element: <StudentProfileUpdated></StudentProfileUpdated>,
+        element: <StudentProfileUpdated />,
       },
     ],
   },
