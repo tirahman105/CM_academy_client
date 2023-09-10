@@ -243,7 +243,11 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: (
+
+   
+
       <Suspense fallback={<Loading></Loading>}>
+
         <PrivateRoute>
           <Dashboard />
         </PrivateRoute>

@@ -141,6 +141,7 @@ const InstructorProfile = () => {
     };
 
     if (!userDataFromAPI) {
+
         return <Loading></Loading>;
     }
 

@@ -1,12 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiUsers } from "react-icons/fi";
 import { FaStar, FaBuromobelexperte, FaCartPlus } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
+import { MdNotStarted } from "react-icons/md";
 
-const CourseCard = ({ course, handleDetailsClick }) => {
+
+const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
+  console.log(isEnrolled);
+
+  const navigate = useNavigate();
+
+  const handleViewCourse = (courseOutline) => {
+    navigate("/coursepage", { state: { courseOutline } });
+  };
+
+
+
+
+
+
+
+
+
+
   return (
     <motion.div
       initial={{ y: 10, opacity: 0 }}
@@ -85,12 +104,23 @@ const CourseCard = ({ course, handleDetailsClick }) => {
       </motion.div>
       <div className="bg-[#1bbf725e] h-[1px] "></div>
       <div className="py-2 flex justify-between px-4">
-        <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]">
-          <FaCartPlus className="text-[#1bbf72fb]" />
-          <Link to={`/checkout/${course._id}`}>
-            <p className="font-bold font-mono">Enroll Now</p>
-          </Link>
-        </button>
+        {isEnrolled ? (
+          <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]"
+          onClick={() =>handleViewCourse(course.courseOutline)}
+          >
+            <MdNotStarted className="text-[#1bbf72fb]"></MdNotStarted>
+
+            <p className="font-bold font-mono">View Course</p>
+          </button>
+        ) : (
+          <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]">
+            <FaCartPlus className="text-[#1bbf72fb]" />
+            <Link to={`/checkout/${course._id}`}>
+              <p className="font-bold font-mono">Enroll Now</p>
+            </Link>
+          </button>
+        )}
+
         <button
           className="text-gray-700 font-Raleway border-2 font-bold text-xs rounded-md px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md"
           onClick={() => handleDetailsClick(course)}
