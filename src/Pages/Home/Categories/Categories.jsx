@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Categories.css";
 import { useNavigate } from "react-router-dom";
 import CourseCard from "./CourseCard";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../../providers/AuthProvider";
+
 function Categories() {
+  const { user } = useContext(AuthContext); // Get the user object from the AuthContext
   const [courses, setCourses] = useState([]);
   const [activeCourses, setActiveCourses] = useState([]);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [Categories, setCategories] = useState([]);
+  const [enrolledCourses, setEnrolledCourses] = useState([]); // Add state to store enrolled courses
   const navigate = useNavigate();
 
-  console.log(courses);
 
+  // console.log(enrolledCourses);
   useEffect(() => {
-    fetch("https://cm-academy-test-server-production.up.railway.app/categories/approved")
+    fetch(
+      "https://cm-academy-test-server-production.up.railway.app/categories/approved"
+    )
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);
         setActiveCourses(data);
       });
   }, []);
-
-  // this all categories route  https://cm-academy-test-server-production.up.railway.app/categoriesName
-
-  
 
   useEffect(() => {
     fetch(
@@ -34,30 +36,37 @@ function Categories() {
         setCategories(data);
       });
   }, []);
-  console.log(Categories);
 
-  // const Categories = [
-  //   "Digital Marketing",
-  //   "Web Development",
-  //   "Communication Skills",
-  // ];
+  // Fetch the list of enrolled courses when the component mounts
+  useEffect(() => {
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/orders/${user?.email}`
+    ) // Replace with the actual API endpoint
+      .then((response) => response.json())
+      .then((data) => {
+        // Extract the course IDs from the enrolled courses
+        const enrolledCourseIds = data.map(
+          (enrolledCourse) => enrolledCourse.course._id
+        );
+        setEnrolledCourses(enrolledCourseIds);
+      });
+  }, []);
 
   const handleCategoryClick = (index) => {
     setActiveButtonIndex(index);
-    const selectedCategory = Categories[index]?.name; // Access the name property of the selected category
+    const selectedCategory = Categories[index]?.name;
     const matchingCourses = courses.filter(
       (course) => course.courseCategory === selectedCategory
     );
     setActiveCourses(matchingCourses);
-
-    console.log(matchingCourses);
   };
 
   const handleDetailsClick = (course) => {
     navigate("/courseDetailsDynamic", { state: { course } });
-
-    console.log(course);
   };
+
+
+
 
   return (
     <div className="max-w-7xl mx-auto px-2 mt-28 ">
@@ -80,14 +89,14 @@ function Categories() {
                     : "text-gray-800"
                 }`}
               >
-                
-                {category.name} {/* Use 'category.name' here */}
+                {category.name}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Course card */}
+
+
         <motion.div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
           {activeCourses.map((activeCourse, courseIndex) => (
             <CourseCard
@@ -95,6 +104,8 @@ function Categories() {
               course={activeCourse}
               handleDetailsClick={handleDetailsClick}
               index={courseIndex}
+              // Check if the course is in the list of enrolled courses
+              isEnrolled={enrolledCourses.includes(activeCourse._id)}
             />
           ))}
         </motion.div>

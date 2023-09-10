@@ -15,8 +15,8 @@ const Banner = () => {
       className="css-selector duration-500  relative  pt-24   "
     >
       <div>
-        <div className="area ">
-          <ul className="circles">
+        <div className="area  ">
+          <ul className="circles ">
             <li></li>
             <li></li>
             <li></li>

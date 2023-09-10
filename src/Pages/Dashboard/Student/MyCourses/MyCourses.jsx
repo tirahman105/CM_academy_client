@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { MdNotStarted } from "react-icons/md";
+import RatingFeedbackForm from "./RatingFeedbackForm";
 
 const MyCourses = () => {
   const { user } = useContext(AuthContext);
   const [studentCourses, setStudentCourses] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
   const navigate = useNavigate();
+
+  console.log(user);
 
   useEffect(() => {
     // Check if the user object is available
@@ -41,6 +44,9 @@ const MyCourses = () => {
     navigate("/coursepage", { state: { courseOutline } });
   };
 
+
+  console.log(studentCourses);
+
   return (
     <div className="">
       <h1>Student Enrolled Courses</h1>
@@ -55,6 +61,7 @@ const MyCourses = () => {
               className="border rounded-lg border-[#36cbd330] shadow-md  backdrop-blur-md bg-opacity-10 bg-slate-300  space-y-2   "
               key={courseIndex}
             >
+              {console.log(course.course._id)}
               {/* ////image past start///// */}
               <div className="relative">
                 <img
@@ -89,6 +96,15 @@ const MyCourses = () => {
                   <p className="font-bold font-mono ">Start Your Course</p>
                 </button>
               </div>
+              <RatingFeedbackForm
+                courseId={course.course._id}
+              
+                user={user}
+                courseInstructor={course.course.instructor}
+                courseTitle={course.course.title}
+                courseCategory={course.course.courseCategory}
+                
+              ></RatingFeedbackForm>
             </div>
           ))}
         </div>

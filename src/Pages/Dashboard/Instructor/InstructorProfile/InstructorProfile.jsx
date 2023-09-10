@@ -140,7 +140,7 @@ const InstructorProfile = () => {
     };
 
     if (!userDataFromAPI) {
-        return <div>Loading...</div>;
+        return <div>Loading.</div>;
     }
 
     return (
