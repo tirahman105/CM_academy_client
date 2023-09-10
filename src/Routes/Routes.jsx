@@ -43,7 +43,6 @@ import InstructorPublicProfile from "../Pages/instructorPublicProfile/Instructor
 import CoursePageUpdate from "../Pages/CoursePage/CoursePageUpdate";
 import BankAccountSetup from "../Pages/Dashboard/Instructor/BankaccountSetup/BankAccountSetup";
 import StudentProfile from "../Pages/Dashboard/Student/StudentProfile/StudentProfile";
-import Quiz from "../Pages/CoursePage/Quiz/Quiz";
 import InstructorProfile from "../Pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
 import StudentProfileUpdated from "../Pages/Dashboard/Student/StudentProfile/StudentProfileUpdated";
 import WithdrawHistory from "../Pages/Dashboard/Instructor/WithdrawHistory/WithdrawHistory";
@@ -51,6 +50,8 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import Quiz from "../Pages/CoursePage/Quiz/Quiz";
+import TestQuiz from "../Pages/CoursePage/Quiz/TestQuiz";
 
 const router = createBrowserRouter([
   {
@@ -136,7 +137,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/quiz",
-        element: <Quiz></Quiz>,
+        element: <TestQuiz></TestQuiz>,
       },
       {
         path: "/about",
@@ -249,10 +250,7 @@ const router = createBrowserRouter([
         path: "add-blog",
         element: <AddNewBlog></AddNewBlog>,
       },
-      {
-        path: "quiz",
-        element: <QuestionForm></QuestionForm>,
-      },
+    
 
       //  Student dashboard
       {
