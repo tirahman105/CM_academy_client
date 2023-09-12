@@ -149,11 +149,11 @@ const Dashboard = () => {
       icon: <MdOutlinePayments />,
       src: "/dashboard/my-payments",
     },
-    {
-      title: "Withdraw History",
-      icon: <MdOutlinePayments />,
-      src: "/dashboard/withdraw-history",
-    },
+    // {
+    //   title: "Withdraw History",
+    //   icon: <MdOutlinePayments />,
+    //   src: "/dashboard/withdraw-history",
+    // },
   ];
 
   return (

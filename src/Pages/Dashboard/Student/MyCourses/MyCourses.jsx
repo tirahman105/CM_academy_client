@@ -2,12 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { MdNotStarted } from "react-icons/md";
+import RatingFeedbackForm from "./RatingFeedbackForm";
+import Loading from "../../../Home/Home/Loading/Loading";
 
 const MyCourses = () => {
   const { user } = useContext(AuthContext);
   const [studentCourses, setStudentCourses] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
   const navigate = useNavigate();
+
+  console.log(user);
 
   useEffect(() => {
     // Check if the user object is available
@@ -37,24 +41,27 @@ const MyCourses = () => {
     }
   }, [user]);
 
-  const handleDetailsClick = (courseOutline) => {
-    navigate("/coursepage", { state: { courseOutline } });
+  const handleDetailsClick = (courseOutline, courseId, email) => {
+    navigate("/coursepage", { state: { courseOutline, courseId, email } });
   };
 
+  console.log(studentCourses);
+
   return (
-    <div className="testBgForMyCourse">
+    <div className="">
       <h1>Student Enrolled Courses</h1>
 
       {loading ? (
         // Render a loading message or spinner while waiting for data
         <p>Loading...</p>
       ) : (
-        <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl text-white ">
+        <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl ">
           {studentCourses.map((course, courseIndex) => (
             <div
               className="border rounded-lg border-[#36cbd330] shadow-md  backdrop-blur-md bg-opacity-10 bg-slate-300  space-y-2   "
               key={courseIndex}
             >
+              {console.log(course.course._id)}
               {/* ////image past start///// */}
               <div className="relative">
                 <img
@@ -81,7 +88,11 @@ const MyCourses = () => {
                 <button
                   className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border w-full border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]"
                   onClick={() =>
-                    handleDetailsClick(course.course.courseOutline)
+                    handleDetailsClick(
+                      course.course.courseOutline,
+                      course.course._id,
+                      user.email
+                    )
                   }
                 >
                   <MdNotStarted className="text-[#1bbf72fb]"></MdNotStarted>
@@ -89,6 +100,13 @@ const MyCourses = () => {
                   <p className="font-bold font-mono ">Start Your Course</p>
                 </button>
               </div>
+              <RatingFeedbackForm
+                courseId={course.course._id}
+                user={user}
+                courseInstructor={course.course.instructor}
+                courseTitle={course.course.title}
+                courseCategory={course.course.courseCategory}
+              ></RatingFeedbackForm>
             </div>
           ))}
         </div>
