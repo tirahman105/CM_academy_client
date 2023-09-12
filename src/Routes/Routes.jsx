@@ -51,6 +51,8 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import NewStudentDashboard from "../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard";
+import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
 const router = createBrowserRouter([
   {
@@ -214,6 +216,10 @@ const router = createBrowserRouter([
         element: <InstructorDAshboard></InstructorDAshboard>,
       },
       {
+        path: "new-instructor-dashboard",
+        element: <NewInstructorDashboard></NewInstructorDashboard>,
+      },
+      {
         path: "instructor-profile",
         element: <InstructorProfile></InstructorProfile>,
       },
@@ -256,12 +262,12 @@ const router = createBrowserRouter([
 
       //  Student dashboard
       {
-        path: "student-dashboard",
+        path: "student-dashboard1",
         element: <StudentDashboard></StudentDashboard>,
       },
       {
-        path: "my-courses",
-        element: <MyCourses></MyCourses>,
+        path: "student-dashboard",
+        element: <NewStudentDashboard></NewStudentDashboard>,
       },
       {
         path: "student-payment",
