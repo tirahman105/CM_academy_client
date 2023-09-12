@@ -10,6 +10,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import HomeBlog from "../HomeBlog/HomeBlog";
 import AfterBanner from "../AfterBanner/AfterBanner";
 import { motion } from "framer-motion";
+import ReviewSection from "../ReviewSection/ReviewSection";
 const Home = () => {
   return (
     <motion.div
@@ -26,6 +27,7 @@ const Home = () => {
       <StatSection></StatSection>
       <FAQ></FAQ>
       <HomeBlog></HomeBlog>
+      <ReviewSection></ReviewSection>
       <KeySponsor></KeySponsor>
     </motion.div>
   );
