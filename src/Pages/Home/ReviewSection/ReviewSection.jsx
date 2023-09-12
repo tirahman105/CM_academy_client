@@ -32,15 +32,17 @@ const ReviewSection = () => {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper container"
       >
            <div className="w-full mx-auto md:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
            {reviews.map((review, index) => (
             <SwiperSlide key={index}>
 
-                <div className='grid grid-cols-2 items-center gap-4 border rounded-md p-4'>
-                    <div className='w-2/3'>
-                        <img  src={review.studentImage} alt={review.studentName} />
+                <div className='grid grid-cols-2 items-center  border rounded-md p-4'>
+                    <div className=''>
+                       <div>
+                         <img className='w-1/2' src={review.studentImage} alt={review.studentName} />
+                       </div>
                     </div>
                     <div>
                         <div className='text-start'>
