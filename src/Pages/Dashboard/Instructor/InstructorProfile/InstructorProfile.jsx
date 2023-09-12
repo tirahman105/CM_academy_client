@@ -142,25 +142,21 @@ const InstructorProfile = () => {
 
     if (!userDataFromAPI) {
 
+        return  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500 text-center mx-auto"></div>;
 
-        return <Loading></Loading>;
-
-
-     
     }
 
     return (
-        <div className="flex justify-between items-start w-3/5 mx-auto mt-20">
-            {/* Left side with profile picture */}
-            <div className="w-1/2 p-4 flex flex-col items-center">
+        <div>
+            <div className="w-3/5 p-4 flex items-center mx-auto">
                 <img
                     src={selectedImage || userDataFromAPI.userImage || 'default-profile-picture-url.jpg'}
                     alt="Profile Picture"
-                    className="w-40 h-40 rounded-full object-cover mx-auto mb-4 hover:scale-105 duration-500"
+                    className="w-40 h-40 rounded-full object-cover mr-10 hover:scale-105 duration-500"
                 />
 
                 <div className="mb-4">
-                    <label className="flex items-center cursor-pointer text-gray-500 hover:text-gray-700">
+                    <label className="flex items-center cursor-pointer p-2 rounded-xl">
                         {isUploading ? (
                             <div className="flex items-center">
                                 <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500"></div>
@@ -174,8 +170,8 @@ const InstructorProfile = () => {
                             </>
                         ) : (
                             <>
-                                <FcAddImage className="text-3xl" />
-                                <span className="text-xl p-2 rounded-lg">Upload photo</span>
+                                <FcAddImage className="text-5xl text-white mr-3" />
+                                <span className="text-xl p-2 rounded-lg text-white bg-[#1bbabf] hover:bg-[#1BBF72] duration-300">Upload photo</span>
                                 <input
                                     type="file"
                                     {...register('image', { required: true })}
@@ -188,100 +184,109 @@ const InstructorProfile = () => {
                 </div>
             </div>
 
-            {/* Right side with user information */}
-            <div className="w-full p-4 relative">
-                <div className="mb-4">
-                    <p className="font-semibold text-lg">Instructor ID:</p>
-                    <p>{userDataFromAPI._id}</p>
-                </div>
+            <div className="flex justify-between items-start w-3/5 mx-auto mt-20 shadow-lg  rounded-xl bg-slate-100">
+                {/* Left side with profile picture */}
 
-                <div className="mb-4">
-                    <p className="font-semibold text-lg">Full Name:</p>
-                    {isEditing ? (
-                        <input
-                            className="border rounded-md px-2 py-1 w-full"
-                            type="text"
-                            value={editedFields.fullName}
-                            onChange={(e) =>
-                                setEditedFields({ ...editedFields, fullName: e.target.value })
-                            }
-                        />
-                    ) : (
-                        <p className="font-semibold text-2xl">{userDataFromAPI.fullName}</p>
-                    )}
-                </div>
 
-                <div className="mb-4">
-                    <p className="font-semibold text-lg">Contact Number:</p>
-                    {isEditing ? (
-                        <input
-                            className="border rounded-md px-2 py-1 w-full"
-                            type="text"
-                            value={editedFields.contactNumber}
-                            onChange={(e) =>
-                                setEditedFields({ ...editedFields, contactNumber: e.target.value })
-                            }
-                        />
-                    ) : (
-                        <p>{userDataFromAPI.contactNumber}</p>
-                    )}
-                </div>
+                {/* Right side with user information */}
+                <div className="w-full p-4 relative border-2 border-gray-200">
+                    <div className="mb-4 mt-8 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold">Instructor ID</p>
+                        <span>:</span>
+                        <p className='font-bold'>{userDataFromAPI._id}</p>
+                    </div>
 
-                <div className="mb-4">
-                    <p className="font-semibold text-lg">Email Address:</p>
-                    <div className={`w-full ${isEditing ? 'bg-gray-100' : 'bg-white'}`}>
+                    <div className="mb-4 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-lg whitespace-nowrap">Full Name</p>
+                        <span>:</span>
                         {isEditing ? (
-                            <p className="ml-2 text-gray-400 border rounded-md px-2 py-1">
-                                {userDataFromAPI.email}{' '}
-                                <span className="text-red-300 items-end text-lg">Not Editable</span>
-                            </p>
+                            <input
+                                className="border rounded-md px-2 py-2 w-full"
+                                type="text"
+                                value={editedFields.fullName}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, fullName: e.target.value })
+                                }
+                            />
                         ) : (
-                            <p>{userDataFromAPI.email}</p>
+                            <p className="font-semibold text-2xl">{userDataFromAPI.fullName}</p>
                         )}
                     </div>
-                </div>
 
+                    <div className="mb-4 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-lg whitespace-nowrap">Contact Number</p>
+                        <span>:</span>
+                        {isEditing ? (
+                            <input
+                                className="border rounded-md px-2 py-1 w-full"
+                                type="text"
+                                value={editedFields.contactNumber}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, contactNumber: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p>{userDataFromAPI.contactNumber}</p>
+                        )}
+                    </div>
 
-                <div className="mb-4">
-                    <p className="font-semibold text-lg">About Me:</p>
-                    {isEditing ? (
-                        <textarea
-                            className="border rounded-md px-2 py-1 w-full text-base h-28"
-                            value={editedFields.aboutMe}
-                            onChange={(e) =>
-                                setEditedFields({ ...editedFields, aboutMe: e.target.value })
-                            }
-                        />
-                    ) : (
-                        <p className='text-xl font-normal'>{userDataFromAPI.aboutMe}</p>
-                    )}
-                </div>
-
-
-                <div className="absolute top-0 right-0 mt-4 mr-4">
-                    {isEditing ? (
-                        <div className="flex justify-end text-lg">
-                            <button
-                                className="flex items-center text-red-500 hover:text-red-700 transition duration-300"
-                                onClick={handleCancelEdit}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="text-green-500 hover:text-green-700 ml-2 transition duration-300"
-                                onClick={handleSaveEdit}
-                            >
-                                Save
-                            </button>
+                    <div className="mb-4 w-full flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-lg whitespace-nowrap">Email Address</p>
+                        <span>:</span>
+                        <div className={`w-full ${isEditing ? 'bg-gray-100' : ''}`}>
+                            {isEditing ? (
+                                <p className="ml-2 text-gray-400 border rounded-md px-2 py-1">
+                                    {userDataFromAPI.email}{' '}
+                                    <span className="text-red-300 items-end text-lg">Not Editable</span>
+                                </p>
+                            ) : (
+                                <p>{userDataFromAPI.email}</p>
+                            )}
                         </div>
-                    ) : (
-                        <button
-                            className="flex items-center text-lg text-green-500 hover:text-green-700 transition duration-300"
-                            onClick={handleEditClick}
-                        >
-                            <FiEdit /> Edit
-                        </button>
-                    )}
+                    </div>
+
+
+                    <div className="mb-4">
+                        <p className="font-semibold text-lg mt-2 mb-4">About Me:</p>
+                        {isEditing ? (
+                            <textarea
+                                className="border rounded-md px-2 py-1 w-full text-base h-28"
+                                value={editedFields.aboutMe}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, aboutMe: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p className='text-xl font-normal'>{userDataFromAPI.aboutMe}</p>
+                        )}
+                    </div>
+
+
+                    <div className="absolute top-0 right-0 mt-4 mr-4">
+                        {isEditing ? (
+                            <div className="flex justify-end text-lg">
+                                <button
+                                    className="flex items-center text-red-500 hover:text-red-700 transition duration-300"
+                                    onClick={handleCancelEdit}
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    className="text-green-500 hover:text-green-700 ml-2 transition duration-300"
+                                    onClick={handleSaveEdit}
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                className="flex items-center text-lg text-green-500 hover:text-green-700 transition duration-300"
+                                onClick={handleEditClick}
+                            >
+                                <FiEdit /> Edit
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

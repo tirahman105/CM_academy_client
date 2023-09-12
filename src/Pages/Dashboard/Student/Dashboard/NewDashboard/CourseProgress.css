@@ -1,0 +1,23 @@
+.course-card-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.course-card {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.course-card-item {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Additional styles for your card items as needed */
