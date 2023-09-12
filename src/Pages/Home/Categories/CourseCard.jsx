@@ -20,19 +20,13 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
 
 
 
-
-
-
-
-
-
   return (
     <motion.div
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="rounded-lg duration-700 shadow-md border-4 backdrop-blur-md bg-opacity-25 space-y-2"
+      className="rounded-lg  shadow-md border-4  space-y-2"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -49,7 +43,7 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="shadow-md text-xs w-56 bg-gray-700 border-2 text-white bg-opacity-80 backdrop-blur-md flex items-center gap-2 absolute rounded-e-md px-4 py-[4px] bottom-3 z-10"
+          className="shadow-md text-xs w-56 bg-gray-700 border-2 text-white bg-opacity-80 flex items-center gap-2 absolute rounded-e-md px-4 py-[4px] bottom-3 z-10"
         >
           <img
             src="https://media.discordapp.net/attachments/1137192144587739287/1144607311084654622/videos-teachers-768x432.jpg"

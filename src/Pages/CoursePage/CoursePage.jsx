@@ -7,14 +7,16 @@ import { useLocation } from "react-router-dom";
 import ".././CoursePage/CourseOutline/Course.css";
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline } = location.state;
+  const { courseOutline, courseId, email } = location.state;
+
+  console.log(courseOutline, courseId, email);
 
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedSession, setSelectedSession] = useState(0);
 
   const [showCertificateModal, setShowCertificateModal] = useState(false);
 
-  const handleSessionSelect = (sessionIndex, videoLink) => {
+  const handleSessionSelect = (sessionIndex) => {
     setSelectedSession(sessionIndex);
   };
 
@@ -81,6 +83,8 @@ const CoursePage = () => {
             onSelectMilestone={handleMilestoneSelect}
             onSelectSession={handleSessionSelect}
             activeSessionIndex={selectedSession}
+            courseId={courseId}
+            email={email}
           />
           <div className="flex justify-center">
             <button

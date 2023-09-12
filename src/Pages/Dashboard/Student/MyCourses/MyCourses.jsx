@@ -40,10 +40,9 @@ const MyCourses = () => {
     }
   }, [user]);
 
-  const handleDetailsClick = (courseOutline) => {
-    navigate("/coursepage", { state: { courseOutline } });
+  const handleDetailsClick = (courseOutline, courseId, email) => {
+    navigate("/coursepage", { state: { courseOutline, courseId, email } });
   };
-
 
   console.log(studentCourses);
 
@@ -88,7 +87,11 @@ const MyCourses = () => {
                 <button
                   className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border w-full border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]"
                   onClick={() =>
-                    handleDetailsClick(course.course.courseOutline)
+                    handleDetailsClick(
+                      course.course.courseOutline,
+                      course.course._id,
+                      user.email
+                    )
                   }
                 >
                   <MdNotStarted className="text-[#1bbf72fb]"></MdNotStarted>
@@ -98,12 +101,10 @@ const MyCourses = () => {
               </div>
               <RatingFeedbackForm
                 courseId={course.course._id}
-              
                 user={user}
                 courseInstructor={course.course.instructor}
                 courseTitle={course.course.title}
                 courseCategory={course.course.courseCategory}
-                
               ></RatingFeedbackForm>
             </div>
           ))}
