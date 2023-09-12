@@ -92,7 +92,7 @@ function AllCourseCategories() {
     if (categoryName === "All") {
       // Set active courses based on all courses in the store
       setActiveCourses(courses);
-      setLoading(false); // Set loading to false when data is fetched
+      setLoading(true); // Set loading to false when data is fetched
     } else {
       fetch(
         `https://cm-academy-test-server-production.up.railway.app/categories/${categoryName}`

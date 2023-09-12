@@ -141,8 +141,16 @@ const InstructorProfile = () => {
     };
 
     if (!userDataFromAPI) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        return <div>Loading.</div>;
+=======
+        return <Loading></Loading>;
+>>>>>>> main
+=======
 
         return <Loading></Loading>;
+>>>>>>> a01027b1a33f8ebf3d444d68b58cfc87c1c2ebba
     }
 
     return (

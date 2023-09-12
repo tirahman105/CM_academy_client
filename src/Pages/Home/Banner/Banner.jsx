@@ -14,7 +14,7 @@ const Banner = () => {
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
       className="css-selector duration-500  relative  pt-24   "
     >
-      <div>
+      {/* <div>
         <div className="area  ">
           <ul className="circles ">
             <li></li>
@@ -29,7 +29,7 @@ const Banner = () => {
             <li></li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
       <div>
         <div className="hero-overlay bg-opacity-50 "></div>

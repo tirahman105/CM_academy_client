@@ -8,10 +8,13 @@ const CourseOutline = ({
   onSelectMilestone,
   onSelectSession,
   activeSessionIndex,
+  courseId,
+  email,
 }) => {
   const [expandedMilestone, setExpandedMilestone] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
+  const [sessionCompleted, setSessionCompleted] = useState(false);
   const navigate = useNavigate();
 
   const handleQuizButton = (milestone) => {
@@ -30,6 +33,36 @@ const CourseOutline = ({
       console.log("toggleMilestone", milestoneIndex);
     }
   };
+
+  const handleSessionSelect = async (sessionTitle, email, courseId) => {
+    if (!sessionCompleted) {
+      try {
+        // Encode the sessionTitle before appending it to the URL
+        const encodedSessionTitle = encodeURIComponent(sessionTitle);
+
+        // Make a POST request to your backend route to update the session status
+        const response = await fetch(
+          `http://localhost:5000/orders/${email}/${courseId}/${encodedSessionTitle}`,
+          {
+            method: "PUT",
+          }
+        );
+        console.log("Response:", response);
+
+        if (response.ok) {
+          // Update the session status in the frontend state
+          console.log("Session completed!");
+          setSessionCompleted(true);
+        } else {
+          console.error("Error updating session status:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error updating session status:", error);
+      }
+    }
+  };
+
+  console.log("sessionCompleted", sessionCompleted);
 
   const handleSearch = (query) => {
     const filtered = milestoneList.filter((milestone) =>
@@ -112,7 +145,16 @@ const CourseOutline = ({
                           className="cursor-pointer px-3 rounded-md"
                           onClick={() => {
                             onSelectMilestone(milestoneIndex);
-                            onSelectSession(sessionIndex, session.videoLink);
+                            onSelectSession(
+                              sessionIndex,
+                              session.videoLink,
+                              session.sessionTitle
+                            );
+                            handleSessionSelect(
+                              session.sessionTitle,
+                              email,
+                              courseId
+                            );
                           }}
                         >
                           {session.sessionTitle}
