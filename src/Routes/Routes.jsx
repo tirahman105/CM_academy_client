@@ -22,13 +22,19 @@ const AddCourses = lazy(() =>
 const InstructorSignUp = lazy(() =>
   import("../Pages/Authentication/InstructorSignUp/InstructorSignUp")
 );
+
+
 const PaymentSuccess = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentSuccess")
 );
+
+
 const CheckOut = lazy(() => import("../payments/PaymentCheckout/CheckOut"));
 const PaymentFail = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentFail")
 );
+
+
 const ResetPassword = lazy(() =>
   import("../Pages/Authentication/ResetPassword/ResetPassword")
 );
@@ -240,6 +246,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
   {
     path: "dashboard",
     element: (
