@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+
 import Loading from "../Pages/Home/Home/Loading/Loading";
 
 // Lazy-loaded components
@@ -298,6 +299,10 @@ const router = createBrowserRouter([
         element: <InstructorDashboard />,
       },
       {
+        path: "new-instructor-dashboard",
+        element: <NewInstructorDashboard></NewInstructorDashboard>,
+      },
+      {
         path: "instructor-profile",
         element: <InstructorProfile />,
       },
@@ -338,12 +343,14 @@ const router = createBrowserRouter([
         element: <QuestionForm />,
       },
       {
+
         path: "student-dashboard",
         element: <StudentDashboard />,
       },
       {
         path: "my-courses",
         element: <MyCourses />,
+
       },
       {
         path: "student-payment",
