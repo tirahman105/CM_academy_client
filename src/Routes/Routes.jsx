@@ -1,6 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+
 import Loading from "../Pages/Home/Home/Loading/Loading";
+
+// import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
 // Lazy-loaded components
 const LazyMain = lazy(() => import("../Layout/Main"));
@@ -135,6 +138,12 @@ const PrivacyPolicy = lazy(() =>
 );
 const TermsAndConditions = lazy(() =>
   import("../Pages/TermsAndConditions/TermsAndConditions")
+);
+const NewInstructorDashboard = lazy(() =>
+  import("../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard")
+);
+const NewStudentDashboard = lazy(() =>
+  import("../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard")
 );
 
 
@@ -298,6 +307,10 @@ const router = createBrowserRouter([
         element: <InstructorDashboard />,
       },
       {
+        path: "new-instructor-dashboard",
+        element: <NewInstructorDashboard></NewInstructorDashboard>,
+      },
+      {
         path: "instructor-profile",
         element: <InstructorProfile />,
       },
@@ -339,11 +352,17 @@ const router = createBrowserRouter([
       },
       {
         path: "student-dashboard",
-        element: <StudentDashboard />,
+        element: <NewStudentDashboard />,
       },
+      // {
+
+      //   path: "student-dashboard",
+      //   element: <StudentDashboard />,
+      // },
       {
         path: "my-courses",
         element: <MyCourses />,
+
       },
       {
         path: "student-payment",
