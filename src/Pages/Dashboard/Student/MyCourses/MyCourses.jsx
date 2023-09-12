@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { MdNotStarted } from "react-icons/md";
+import Loading from "../../../Home/Home/Loading/Loading";
 
 const MyCourses = () => {
   const { user } = useContext(AuthContext);
@@ -42,14 +43,14 @@ const MyCourses = () => {
   };
 
   return (
-    <div className="testBgForMyCourse">
+    <div className="">
       <h1>Student Enrolled Courses</h1>
 
       {loading ? (
         // Render a loading message or spinner while waiting for data
-        <p>Loading...</p>
+        <Loading></Loading>
       ) : (
-        <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl text-white ">
+        <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl ">
           {studentCourses.map((course, courseIndex) => (
             <div
               className="border rounded-lg border-[#36cbd330] shadow-md  backdrop-blur-md bg-opacity-10 bg-slate-300  space-y-2   "

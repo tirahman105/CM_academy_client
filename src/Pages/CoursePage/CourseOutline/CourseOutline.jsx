@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import QuizModal from "../Quiz/QuizModal";
 
 const CourseOutline = ({
   milestoneList,
@@ -12,12 +13,14 @@ const CourseOutline = ({
   const [expandedMilestone, setExpandedMilestone] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
+  const [showQuizzesForMilestone, setShowQuizzesForMilestone] = useState(null); // Track which milestone's quizzes to show
   const navigate = useNavigate();
 
-  const handleQuizButton = (milestone) => {
-    navigate(`/quiz`, { state: { milestone } });
-    console.log("handleQuizButton", milestone);
+  const handleQuizButton = (milestoneIndex) => {
+    // Toggle the display of the quiz content for a specific milestone
+    setShowQuizzesForMilestone(milestoneIndex);
   };
+
   useEffect(() => {
     setExpandedMilestone(selectedMilestone);
   }, [selectedMilestone]);
@@ -27,7 +30,6 @@ const CourseOutline = ({
       setExpandedMilestone(null);
     } else {
       setExpandedMilestone(milestoneIndex);
-      console.log("toggleMilestone", milestoneIndex);
     }
   };
 
@@ -44,11 +46,6 @@ const CourseOutline = ({
         <h2 className="text-[18px] md:text-xl w-full md:w-3/5 md:mb-3 mt-3 font-bold ">
           Course Content
         </h2>
-        {/* <progress
-          className="progress progress-info w-full md:w-1/3 lg:w-1/4 xl:w-1/3 h-4"
-          value="70"
-          max="100"
-        ></progress> */}
       </div>
       <div className="w-full mt-4 md:mt-0">
         <input
@@ -65,7 +62,7 @@ const CourseOutline = ({
           }}
         />
       </div>
-      <div className="p-5 mt-5 ">
+      <div className="p-5 mt-5">
         {filteredMilestones.map((milestone, milestoneIndex) => (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -128,7 +125,7 @@ const CourseOutline = ({
                   >
                     <span
                       className="cursor-pointer px-3 rounded-md"
-                      onClick={() => handleQuizButton(milestone)}
+                      onClick={() => handleQuizButton(milestoneIndex)}
                     >
                       Quizzes of {milestone.milestone} Milestone
                     </span>
@@ -148,6 +145,15 @@ const CourseOutline = ({
           Course Summary
         </motion.button>
       </div>
+
+      {/* Render the QuizModal when showQuizzesForMilestone is not null */}
+      {showQuizzesForMilestone !== null && (
+        <QuizModal
+          milestone={filteredMilestones[showQuizzesForMilestone].milestone}
+          quizzes={filteredMilestones[showQuizzesForMilestone].quizzes}
+          onClose={() => setShowQuizzesForMilestone(null)}
+        />
+      )}
     </div>
   );
 };

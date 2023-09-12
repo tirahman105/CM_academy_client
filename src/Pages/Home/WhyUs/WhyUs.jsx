@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLightbulb, FaChalkboardTeacher, FaChartLine } from 'react-icons/fa';
+// import { FaLightbulb, FaChalkboardTeacher, FaChartLine } from 'react-icons/fa';
 import Lottie from 'lottie-react';
 import animationData from '../../../../src/assets/Why.json';
 
@@ -26,7 +26,6 @@ const WhyUs = () => {
                     <div className="md:w-1/2 text-gray-800">
                         <div className="mb-8">
                            <div className='flex gap-4 items-center justify-center'> 
-                           <FaLightbulb className="text-7xl text-[#25C278] mb-2" />
                             <div>
                             <h2 className="text-3xl font-semibold mb-2">Inspire Curiosity</h2>
                             <p className="text-gray-600">
@@ -37,7 +36,6 @@ const WhyUs = () => {
                         </div>
                         <div className="mb-8">
                            <div className='flex gap-4 items-center justify-center'>
-                           <FaChalkboardTeacher className="text-8xl text-[#25C278] mb-2" />
                             <div>
                             <h2 className="text-3xl font-semibold mb-2">Learn from Experts</h2>
                             <p className="text-gray-600">
@@ -48,7 +46,6 @@ const WhyUs = () => {
                         </div>
                         <div>
                            <div className='flex gap-4 items-center justify-center'>
-                           <FaChartLine className="text-8xl text-[#25C278] mb-2" />
                            <div>
                            <h2 className="text-3xl font-semibold mb-2">Shape Your Future</h2>
                             <p className="text-gray-600">

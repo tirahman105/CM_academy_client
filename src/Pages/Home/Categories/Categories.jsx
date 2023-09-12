@@ -80,6 +80,7 @@ function Categories() {
                     : "text-gray-800"
                 }`}
               >
+                
                 {category.name} {/* Use 'category.name' here */}
               </button>
             ))}
