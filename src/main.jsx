@@ -1,18 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from 'react-redux'; // Import the Provider from Redux
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./Routes/Routes";
+import AuthProvider from "./providers/AuthProvider.jsx";
+import store from "./Store/store"; // Import your Redux store
 
-  RouterProvider,
-} from "react-router-dom";
-import router from './Routes/Routes';
-import AuthProvider from './providers/AuthProvider.jsx';
-
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider><RouterProvider router={router} /></AuthProvider>
-  </React.StrictMode>,
-)
+    <Provider store={store}> {/* Wrap your App with Provider and provide the store */}
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </Provider>
+  </React.StrictMode>
+);

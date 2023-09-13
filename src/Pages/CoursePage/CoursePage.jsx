@@ -1,20 +1,22 @@
-import { useState } from 'react';
-import CourseVideo from './CourseOutline/CourseVideo';
-import CourseOutline from './CourseOutline/CourseOutline';
-import Certificate from './Certificate/Certificate';
-import { useLocation } from 'react-router-dom';
+import { useState } from "react";
+import CourseVideo from "./CourseOutline/CourseVideo";
+import CourseOutline from "./CourseOutline/CourseOutline";
+import Certificate from "./Certificate/Certificate";
+import { useLocation } from "react-router-dom";
 
-import ".././CoursePage/CourseOutline/Course.css"
+import ".././CoursePage/CourseOutline/Course.css";
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline } = location.state;
+  const { courseOutline, courseId, email } = location.state;
+
+  console.log(courseOutline, courseId, email);
 
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedSession, setSelectedSession] = useState(0);
 
   const [showCertificateModal, setShowCertificateModal] = useState(false);
 
-  const handleSessionSelect = (sessionIndex, videoLink) => {
+  const handleSessionSelect = (sessionIndex) => {
     setSelectedSession(sessionIndex);
   };
 
@@ -24,7 +26,10 @@ const CoursePage = () => {
   };
 
   const handleNextSession = () => {
-    if (selectedSession < courseOutline[selectedMilestone]?.sessions.length - 1) {
+    if (
+      selectedSession <
+      courseOutline[selectedMilestone]?.sessions.length - 1
+    ) {
       setSelectedSession(selectedSession + 1);
     } else {
       // If there are no more sessions in the current milestone, move to the next milestone
@@ -35,7 +40,7 @@ const CoursePage = () => {
     }
   };
 
-  console.log("selectedSession", selectedSession)
+  console.log("selectedSession", selectedSession);
 
   const handlePreviousSession = () => {
     if (selectedSession > 0) {
@@ -44,7 +49,9 @@ const CoursePage = () => {
       // If there are no previous sessions in the current milestone, move to the previous milestone
       if (selectedMilestone > 0) {
         setSelectedMilestone(selectedMilestone - 1);
-        setSelectedSession(courseOutline[selectedMilestone - 1].sessions.length - 1); // Set session to the last one in the previous milestone
+        setSelectedSession(
+          courseOutline[selectedMilestone - 1].sessions.length - 1
+        ); // Set session to the last one in the previous milestone
       }
     }
   };
@@ -58,8 +65,8 @@ const CoursePage = () => {
   };
 
   return (
-    <div>
-      <div className="lg:flex pt-36 cb pb-32">
+    <div className="cb">
+      <div className="lg:flex justify-center items-center md:px-16 pt-36  pb-32">
         <div className="lg:w-3/4 p-4">
           <CourseVideo
             sessionList={courseOutline[selectedMilestone]?.sessions || []}
@@ -76,15 +83,27 @@ const CoursePage = () => {
             onSelectMilestone={handleMilestoneSelect}
             onSelectSession={handleSessionSelect}
             activeSessionIndex={selectedSession}
+            courseId={courseId}
+            email={email}
           />
-          <div className='flex justify-center'>
-            <button className="font-bold text-white px-4 py-2 shadow-md rounded-xl border-[#36cbd3dc] border-2" onClick={handleOpenCertificateModal}>Get Certificate</button>
+          <div className="flex justify-center">
+            <button
+              className="font-bold text-white px-4 py-2 shadow-md rounded-xl border-[#36cbd3dc] border-2"
+              onClick={handleOpenCertificateModal}
+            >
+              Get Certificate
+            </button>
           </div>
-          <dialog id="my_modal_1" className={`modal ${showCertificateModal ? 'open' : ''}`}>
+          <dialog
+            id="my_modal_1"
+            className={`modal ${showCertificateModal ? "open" : ""}`}
+          >
             <form method="dialog" className="modal-box">
               <Certificate />
               <div className="modal-action">
-                <button className="btn" onClick={handleCloseCertificateModal}>Close</button>
+                <button className="btn" onClick={handleCloseCertificateModal}>
+                  Close
+                </button>
               </div>
             </form>
           </dialog>

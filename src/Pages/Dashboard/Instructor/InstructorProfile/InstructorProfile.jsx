@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { FcAddImage } from 'react-icons/fc';
 import { BiSave } from 'react-icons/bi';
 import Swal from 'sweetalert2';
+import Loading from '../../../Home/Home/Loading/Loading';
 
 const imageHostingToken = import.meta.env.VITE_image_hosating;
 
@@ -140,7 +141,9 @@ const InstructorProfile = () => {
     };
 
     if (!userDataFromAPI) {
+
         return  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500 text-center mx-auto"></div>;
+
     }
 
     return (

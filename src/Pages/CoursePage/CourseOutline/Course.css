@@ -19,15 +19,15 @@
 .cb {
   background-color: hsla(222, 47%, 11%, 1);
   background-image: radial-gradient(
-    circle at 70% 44%,
+    circle at 60% 54%,
     hsla(189, 100%, 56%, 0.3) 10px,
-    transparent 20%
+    transparent 40%
   );
-  background-attachment: fixed; /* Add this line */
+  background-attachment: fixed; 
 }
 
 .boxShadowCourse {
-  box-shadow: 1px 1px 10px 1px #36cbd368;
+  box-shadow: 1px 1px 10px 1px #000a0a67;
 }
 
 .grBg {
@@ -35,8 +35,59 @@
   background: linear-gradient(to right, #0fa6e9 5%, #38cfd2 68%);
 }
 
-.textGr {
-  background: -webkit-linear-gradient(198deg, #38cfd2 3%, #0fa6e9 82%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+
+/* .cb {
+  opacity: 0.9;
+  background-color: rgb(0, 1, 3);
+  background-image: radial-gradient(
+    circle at 60% 54%,
+    hsla(189, 100%, 56%, 0.3) 100px,
+    transparent 40%
+  );
+  background-attachment: fixed; 
+
+} */
+
+
+/* 
+.mainBg {
+  opacity: 1;
+ 
+  background-color: #181829;
+
+  background-image: linear-gradient(
+      #423d3d 0.1px,
+      transparent 0.6px
+    ),
+    linear-gradient(
+      to right,
+      #6d6363 0.9px,
+      #06222533 0.6px
+    );
+  background-size: 30px 30px;
+  background-attachment: fixed; 
+
+} */
+
+
+/* Width of the scrollbar */
+/* MyComponent.module.css */
+.myComponentContainer {
+  /* Width of the scrollbar */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track (the area where the scrollbar is) */
+  &::-webkit-scrollbar-track {
+    background: linear-gradient(to right, #181d22 5%, #173636 68%);
+    border-radius: 3px; /* Rounded corners for the track */
+  }
+
+  /* Handle (the draggable part of the scrollbar) */
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #07709c 5%, #173636 68%);
+    border-radius: 3px; /* Rounded corners for the handle */
+  }
 }
