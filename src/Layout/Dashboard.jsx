@@ -19,7 +19,7 @@ import { PiFileVideo, PiStudentBold } from "react-icons/pi";
 import { LuFileCog } from "react-icons/lu";
 import { GrChapterAdd } from "react-icons/gr";
 import { CgNotes, CgProfile } from "react-icons/cg";
-import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
+// import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 import useInstructor from "../Hooks/useInstructor";
 import useStudent from "../Hooks/useStudent";
 import useAdmin from "../Hooks/useAdmin";
@@ -49,9 +49,9 @@ const Dashboard = () => {
 
   const StudentMenus = [
     {
-      title: "My Courses",
+      title: "My Dashboard",
       icon: <PiFileVideo />,
-      src: "/dashboard/my-courses",
+      src: "/dashboard/student-dashboard",
     },
     {
       title: "My Payments",
@@ -107,7 +107,7 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       icon: <BiSolidDashboard />,
-      src: "/dashboard/instructor-dashboard",
+      src: "/dashboard/new-instructor-dashboard",
     },
     {
       title: "My Profile",
@@ -149,11 +149,11 @@ const Dashboard = () => {
       icon: <MdOutlinePayments />,
       src: "/dashboard/my-payments",
     },
-    {
-      title: "Withdraw History",
-      icon: <MdOutlinePayments />,
-      src: "/dashboard/withdraw-history",
-    },
+    // {
+    //   title: "Withdraw History",
+    //   icon: <MdOutlinePayments />,
+    //   src: "/dashboard/withdraw-history",
+    // },
   ];
 
   return (
@@ -288,7 +288,8 @@ const Dashboard = () => {
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
-          <DashboardTopNav></DashboardTopNav>
+          {/* <DashboardTopNav></DashboardTopNav> */}
+          
           <Outlet></Outlet>
         </div>
       </div>

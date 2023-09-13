@@ -447,7 +447,7 @@ const Certificate = () => {
            />  */}
           <h1 className="text-2xl font-bold mt-4">Certificate of Achievement</h1>
           <p className="mb-1">This is to certify that</p>
-          <h2 className="text-xl font-bold mb-2">{user?.displayName}</h2>
+          <h2 className="text-xl font-bold mb-2">{user?.fullName}</h2>
           <p>has successfully completed the course</p>
           <p className="mb-4 font-bold text-lg">Web Development</p>
           <p>Instructor: Tareq Ibna Rahman</p>

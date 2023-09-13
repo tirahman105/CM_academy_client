@@ -59,7 +59,7 @@ const CourseVideo = ({
   };
 
   return (
-    <div className="p-4 rounded-lg backdrop-blur-md border bg-[#1a2c49] text-white shadow-lg border-[#36cbd330]">
+    <div className="p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]">
       <div className="aspect-w-16 aspect-h-9 lg:aspect-h-[500px] ">
         <ReactPlayer
           url={videoUrl}
@@ -69,14 +69,14 @@ const CourseVideo = ({
           key={videoUrl}
         />
       </div>
-      <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex flex-col md:flex-row px-4 py-2 border-[#36cbd330] border mt-4 justify-between  font-Lexend">
+      <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex flex-col md:flex-row px-4 py-2 border-[#36cbd330]  border mt-4 justify-between  font-Lexend">
         <div className="flex items-center gap-3">
-          <p className="text-xl font-bold">Feedback</p>
+          <p className="text-[12px] sm:text-sm font-bold">Feedback</p>
           {likeStatus === "liked" ? (
-            <BiCheck className={`text-3xl cursor-pointer text-[#36cbd3e6]`} onClick={handleLike} />
+            <BiCheck className={`text-[14px] sm:text-lg cursor-pointer text-[#36cbd3e6]`} onClick={handleLike} />
           ) : (
             <BiLike
-              className={`text-3xl text-[#36cbd3e6] ${
+              className={`text-[14px] sm:text-lg text-[#36cbd3e6] ${
                 likeStatus === "disliked" ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={likeStatus === "disliked" ? null : handleLike}
@@ -84,12 +84,12 @@ const CourseVideo = ({
           )}
           {likeStatus === "disliked" ? (
             <BiCheck
-              className={`text-3xl mt-2 cursor-pointer text-[#36cbd3e6]`}
+              className={`text-[14px] sm:text-lg mt-2 cursor-pointer text-[#36cbd3e6]`}
               onClick={handleDislike}
             />
           ) : (
             <BiDislike
-              className={`text-3xl mt-2 text-[#36cbd3e6] ${
+              className={`text-[14px] sm:text-lg mt-2 text-[#36cbd3e6] ${
                 likeStatus === "liked" ? "cursor-not-allowed" : "cursor-pointer"
               }`}
               onClick={likeStatus === "liked" ? null : handleDislike}
@@ -97,15 +97,15 @@ const CourseVideo = ({
           )}
         </div>
         <div className="flex items-center gap-3">
-          <p className="text-xl font-bold">Bookmark</p>
+          <p className="text-[12px] sm:text-sm font-bold">Bookmark</p>
           {bookmarked ? (
             <BiCheck
-              className={`text-3xl cursor-pointer text-[#36cbd3e6] `}
+              className={`text-[14px] sm:text-lg cursor-pointer text-[#36cbd3e6] `}
               onClick={handleBookmark}
             />
           ) : (
             <BiBookmark
-              className={`text-3xl cursor-pointer text-[#36cbd3e6]`}
+              className={`text-[14px] sm:text-lg cursor-pointer text-[#36cbd3e6]`}
               onClick={handleBookmark}
             />
           )}
@@ -117,7 +117,7 @@ const CourseVideo = ({
             {currentSession.sessionTitle}
           </h3>
         </div>
-        <div className="mt-3 w-full md:w-2/5 flex flex-col justify-end md:flex-row gap-2">
+        <div className="mt-3 w-full md:w-2/5 flex sm:flex-col justify-end md:flex-row gap-2">
           <button
             className=" font-Lexend font-bold grBg   border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3"
             onClick={handlePrevious}

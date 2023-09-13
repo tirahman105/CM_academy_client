@@ -11,8 +11,6 @@ const Navbar = () => {
   
   const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
-
- 
   console.log(user);
 
   const handleLogOut = () => {
@@ -106,7 +104,7 @@ const Navbar = () => {
                 alt=""
                 className="w-8 h-8 md:h-14 md:w-14 sm:ml-8"
               />
-              <p className="text-[#1BBF72] font-Jost font-bold">
+              <p className="  font-Jost font-bold">
                 <span className="text-gray-600">CM</span> Academy
               </p>
             </Link>
@@ -114,11 +112,11 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 font-semibold">
               <li>
-                <Link className="text-[#1BBF72] font-Raleway font-bold">
+                <Link className="  font-Raleway font-bold">
                   Home
                 </Link>
               </li>
-              <li className="text-[#1BBF72] font-Raleway font-bold" tabIndex={0}>
+              <li className="  font-Raleway font-bold" tabIndex={0}>
                 <details>
                   <summary>Course Categories</summary>
                   <ul className="px-0">
@@ -139,7 +137,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/instructor"
-                    className="ml-auto text-[#1BBF72] font-Raleway font-bold"
+                    className="ml-auto   font-Raleway font-bold"
                   >
                     Become an Instructor
                   </Link>
@@ -149,7 +147,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/dashboard"
-                    className="ml-auto text-[#1BBF72] font-Raleway font-bold"
+                    className="ml-auto   font-Raleway font-bold"
                   >
                     Dashboard
                   </Link>
