@@ -5,7 +5,7 @@
         <div className=" px-10 md:px-48 pt-24 pb-10">
         <h2 className="text-4xl font-bold">TERMS AND CONDITIONS</h2> 
             <div>
-            <p className="mt-10">These Terms & Conditions (“ <b>Terms</b> ”) of (a) use of our websitewww.10minuteschool.com  (“ <b>Website</b> ”), our applications (“Application”) or any products or services in connection with the Application/, Website/products (“ <b>Services</b>”)  or (b) any modes of registrations or usage of products, including through SD cards, tablets or other storage/transmitting device  are between 10MS Limited (“ <b>Company/We/Us/Our</b>”) and its users (“ <b>User/You/Your</b>”).
+            <p className="mt-10">These Terms & Conditions (“ <b>Terms</b> ”) of (a) use of our website www.cm-academy.com  (“ <b>Website</b> ”), our applications (“Application”) or any products or services in connection with the Application/, Website/products (“ <b>Services</b>”)  or (b) any modes of registrations or usage of products, including through SD cards, tablets or other storage/transmitting device  are between CM Academy Limited (“ <b>Company/We/Us/Our</b>”) and its users (“ <b>User/You/Your</b>”).
 
             Please carefully read the terms and privacy policy of the Company (“ <b>Privacy Policy</b>”) prior to registering, using the application, website, or services. Any discrepancies between the Terms and other policies on the application, website, or service are settled in favor of the Terms.
             
@@ -63,7 +63,7 @@ viii. You have agreed to these terms after the company provided you with a suffi
             </li>
 
             <li className="mt-5">Customer service
-            <p>Well do all in our power to make your experience enjoyable. If you run into any problems, please get in touch with us at support@10minuteschool.com.</p>
+            <p>Well do all in our power to make your experience enjoyable. If you run into any problems, please get in touch with us at code.mates.team@gmail.com</p>
             </li>
             </ol>
 
