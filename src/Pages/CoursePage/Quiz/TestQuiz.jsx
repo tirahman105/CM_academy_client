@@ -11,7 +11,7 @@ const TestQuiz = () => {
 
     useEffect(() => {
         // Define the URL you want to fetch data from
-        const apiUrl = "https://cm-academy-test-server-production.up.railway.app/categories/64e8adb31a93e023beb3186d";
+        const apiUrl = "https://cm-academy-test-server-production.up.railway.app/categories/byId/64e8adb31a93e023beb3186d";
 
         // Make the HTTP GET request using Axios
         axios.get(apiUrl)

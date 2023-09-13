@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import QuizModal from "../Quiz/QuizModal";
 
 const CourseOutline = ({
   milestoneList,
@@ -9,17 +7,12 @@ const CourseOutline = ({
   onSelectMilestone,
   onSelectSession,
   activeSessionIndex,
+  onQuizButtonClick, // Receive the callback to handle quiz button click
 }) => {
   const [expandedMilestone, setExpandedMilestone] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
   const [showQuizzesForMilestone, setShowQuizzesForMilestone] = useState(null); // Track which milestone's quizzes to show
-  const navigate = useNavigate();
-
-  const handleQuizButton = (milestoneIndex) => {
-    // Toggle the display of the quiz content for a specific milestone
-    setShowQuizzesForMilestone(milestoneIndex);
-  };
 
   useEffect(() => {
     setExpandedMilestone(selectedMilestone);
@@ -40,10 +33,16 @@ const CourseOutline = ({
     setFilteredMilestones(filtered);
   };
 
+  const handleQuizButton = (milestoneIndex) => {
+    if (onQuizButtonClick) {
+      onQuizButtonClick(milestoneIndex); // Call the callback to handle quiz button click
+    }
+  };
+
   return (
-    <div className="p-4 mb-6 border rounded-lg border-[#36cbd330] text-white  backdrop-blur-md bg-[#1a2c49] shadow-md   bg-opacity-60">
+    <div className="p-4 mb-6 border rounded-lg border-[#36cbd330] text-white backdrop-blur-md bg-[#1a2c49] shadow-md bg-opacity-60">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <h2 className="text-[18px] md:text-xl w-full md:w-3/5 md:mb-3 mt-3 font-bold ">
+        <h2 className="text-[18px] md:text-xl w-full md:w-3/5 md:mb-3 mt-3 font-bold">
           Course Content
         </h2>
       </div>
@@ -140,20 +139,11 @@ const CourseOutline = ({
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="text-white font-Raleway duration-500 grBg font-bold py-2 text-lg rounded-xl px-4  shadow-md w-full"
+          className="text-white font-Raleway duration-500 grBg font-bold py-2 text-lg rounded-xl px-4 shadow-md w-full"
         >
           Course Summary
         </motion.button>
       </div>
-
-      {/* Render the QuizModal when showQuizzesForMilestone is not null */}
-      {showQuizzesForMilestone !== null && (
-        <QuizModal
-          milestone={filteredMilestones[showQuizzesForMilestone].milestone}
-          quizzes={filteredMilestones[showQuizzesForMilestone].quizzes}
-          onClose={() => setShowQuizzesForMilestone(null)}
-        />
-      )}
     </div>
   );
 };
