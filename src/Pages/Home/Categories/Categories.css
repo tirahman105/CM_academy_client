@@ -13,13 +13,7 @@
   border-radius: 0.25em;
 }
 
-.bg-gradient {
-  background-image: linear-gradient(
-    to bottom,
-    #0488b4,
-  #66e3e8
-  ); 
-}
+
 
 
 /* ///////////////////// */
