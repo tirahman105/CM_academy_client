@@ -4,10 +4,10 @@ import { FaSearch } from 'react-icons/fa';
 import IntructorFinance from './IntructorFinance';
 import DashboradCourses from './DashboradCourses';
 import { useContext } from 'react';
-import YourStatistics from './YourStatistics';
 import { AuthContext } from '../../../../../providers/AuthProvider';
 import InstructorProfile from './InstructorNavProfile';
 import InstructorNavProfile from './InstructorNavProfile';
+import InstructorStatistics from './InstructorStatistics';
 
 const NewInstructorDashboard = () => {
 
@@ -90,7 +90,7 @@ const NewInstructorDashboard = () => {
                     </div>
 
                 </div>
-                <YourStatistics></YourStatistics>
+                <InstructorStatistics></InstructorStatistics>
 
             </div>
         </div>

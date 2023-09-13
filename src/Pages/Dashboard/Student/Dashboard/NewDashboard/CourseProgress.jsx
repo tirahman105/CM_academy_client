@@ -4,30 +4,6 @@ import { BsArrowLeftCircle, BsArrowRightCircleFill } from 'react-icons/bs';
 const CourseProgress = ( {courses} ) => {
 
     console.log(courses);
-    // const courses = [
-    //     {
-    //         id: 1,
-    //         title: 'JavaScript',
-    //         instructor: 'Noah Tou',
-    //         progress: 75,
-    //         image: 'https://lh3.googleusercontent.com/a/AAcHTtcXMGB_cSc1A4bwNwmNa2L6F2k4AxXheecQNt8kry_PtrQ=s96-c',
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'CSS with Tailwind',
-    //         instructor: 'Mochi',
-    //         progress: 30,
-    //         image: 'https://i.ibb.co/LgTVhjT/pexels-asad-photo-maldives-1450353.jpg',
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'CSS with Tailwind, Bootstrap and also Javascript',
-    //         instructor: 'Mochi',
-    //         progress: 50,
-    //         image: 'https://i.ibb.co/LgTVhjT/pexels-asad-photo-maldives-1450353.jpg',
-    //     },
-    //     // Add more course data as needed
-    // ];
 
     const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
 
@@ -117,3 +93,12 @@ const CourseProgress = ( {courses} ) => {
 };
 
 export default CourseProgress;
+
+
+
+
+
+
+
+
+
