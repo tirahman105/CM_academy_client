@@ -9,7 +9,7 @@ const AfterBanner = () => {
     >
       <div className="grid gap-4 md:grid-cols-3  ">
         {/* ///////////////// */}
-        <div className=" items-center gap-6 shadow-lg backdrop-blur-sm  rounded-md flex hover:scale-105 duration-500 px-6 py-5 md:w-96 bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
+        <div className=" items-center gap-6 shadow-lg   rounded-md flex hover:scale-105 duration-500 px-6 py-5 md:w-96 bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
           <img src="https://i.ibb.co/nLhxHCL/learning.png" alt="" />
 
           <div>
@@ -20,7 +20,7 @@ const AfterBanner = () => {
           </div>
         </div>
         {/* ////////////// */}
-        <div className=" items-center gap-6 border-2 backdrop-blur-sm shadow-lg rounded-md flex hover:scale-105 duration-500  px-6 py-5 md:w-96 bg-[#1bbf721f] border-[#1bbf7283]">
+        <div className=" items-center gap-6 border-2  shadow-lg rounded-md flex hover:scale-105 duration-500  px-6 py-5 md:w-96 bg-[#1bbf721f] border-[#1bbf7283]">
           <img src="https://i.ibb.co/fVJs3V6/source.png" alt="" />
 
           <div>
@@ -33,7 +33,7 @@ const AfterBanner = () => {
           </div>
         </div>
         {/* ////////////// */}
-        <div className=" items-center gap-6 border-2 shadow-lg backdrop-blur-sm rounded-md hover:scale-105 duration-500  flex px-6 py-5 md:w-96 bg-[#1bbf721f] border-[#1bbf7283]">
+        <div className=" items-center gap-6 border-2 shadow-lg  rounded-md hover:scale-105 duration-500  flex px-6 py-5 md:w-96 bg-[#1bbf721f] border-[#1bbf7283]">
           <img src="https://i.ibb.co/RBvknSC/out-line.png" alt="" />
 
           <div>

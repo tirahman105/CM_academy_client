@@ -56,7 +56,7 @@ const CourseDetailsDynamic = () => {
     >
       {/* Banner section start */}
       <div className="pt-[74px]   ">
-        <div className=" items-center      flex   css-selector  ">
+        <div className=" items-center      flex   bg-gradient  ">
           <div className="flex items-center px-4 sm:px-6 py-5 gap-6  max-w-7xl mx-auto ">
             <div className="sm:w-2/4">
               <motion.h1
