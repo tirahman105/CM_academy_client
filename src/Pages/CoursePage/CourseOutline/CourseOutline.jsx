@@ -14,7 +14,6 @@ const CourseOutline = ({
   const [expandedMilestone, setExpandedMilestone] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMilestones, setFilteredMilestones] = useState(milestoneList);
-  const [sessionCompleted, setSessionCompleted] = useState(false);
   const navigate = useNavigate();
 
   const handleQuizButton = (milestone) => {
@@ -35,34 +34,30 @@ const CourseOutline = ({
   };
 
   const handleSessionSelect = async (sessionTitle, email, courseId) => {
-    if (!sessionCompleted) {
-      try {
-        // Encode the sessionTitle before appending it to the URL
-        const encodedSessionTitle = encodeURIComponent(sessionTitle);
+    try {
+      // Encode the sessionTitle before appending it to the URL
+      const encodedSessionTitle = encodeURIComponent(sessionTitle);
 
-        // Make a POST request to your backend route to update the session status
-        const response = await fetch(
-          `http://localhost:5000/orders/${email}/${courseId}/${encodedSessionTitle}`,
-          {
-            method: "PUT",
-          }
-        );
-        console.log("Response:", response);
-
-        if (response.ok) {
-          // Update the session status in the frontend state
-          console.log("Session completed!");
-          setSessionCompleted(true);
-        } else {
-          console.error("Error updating session status:", response.statusText);
+      // Make a POST request to your backend route to update the session status
+      const response = await fetch(
+        `http://localhost:5000/orders/${email}/${courseId}/${encodedSessionTitle}`,
+        {
+          method: "PUT",
         }
-      } catch (error) {
-        console.error("Error updating session status:", error);
+      );
+      console.log("Response:", response);
+
+      if (response.ok) {
+        // Update the session status in the frontend state
+        console.log("Session completed!");
+        console.log("Response:", response);
+      } else {
+        console.error("Error updating session status:", response.statusText);
       }
+    } catch (error) {
+      console.error("Error updating session status:", error);
     }
   };
-
-  console.log("sessionCompleted", sessionCompleted);
 
   const handleSearch = (query) => {
     const filtered = milestoneList.filter((milestone) =>
@@ -99,7 +94,7 @@ const CourseOutline = ({
             }}
           />
         </div>
-        <div className="px-1 sm:px-5 mt-5 myComponentContainer overflow-y-auto h-96">
+        <div className="px-1 sm:px-5 mt-5 myComponentContainer   overflow-y-auto h-96">
           {filteredMilestones.map((milestone, milestoneIndex) => (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
