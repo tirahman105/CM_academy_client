@@ -12,11 +12,11 @@ const Banner = () => {
       initial="hidden"
       animate="visible"
       exit={{ opacity: 0, transition: { duration: 0.5 } }}
-      className="css-selector duration-500  relative  pt-24   "
+      className="bg-gradient duration-500  relative  pt-24   "
     >
       <div>
-        <div className="area ">
-          <ul className="circles">
+        <div className="area  ">
+          <ul className="circles ">
             <li></li>
             <li></li>
             <li></li>
@@ -32,7 +32,7 @@ const Banner = () => {
       </div>
 
       <div>
-        <div className="hero-overlay bg-opacity-50 "></div>
+        <div className="hero-overlay  "></div>
 
         <div className="flex flex-col-reverse lg:flex-row  max-w-7xl mx-auto ">
           <div className="w-full lg:w-1/2 p-5 lg:mt-24  ">

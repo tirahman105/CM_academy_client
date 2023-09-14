@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CourseOutline = ({
@@ -23,6 +23,32 @@ const CourseOutline = ({
       setExpandedMilestone(null);
     } else {
       setExpandedMilestone(milestoneIndex);
+    }
+  };
+
+  const handleSessionSelect = async (sessionTitle, email, courseId) => {
+    try {
+      // Encode the sessionTitle before appending it to the URL
+      const encodedSessionTitle = encodeURIComponent(sessionTitle);
+
+      // Make a POST request to your backend route to update the session status
+      const response = await fetch(
+        `http://localhost:5000/orders/${email}/${courseId}/${encodedSessionTitle}`,
+        {
+          method: "PUT",
+        }
+      );
+      console.log("Response:", response);
+
+      if (response.ok) {
+        // Update the session status in the frontend state
+        console.log("Session completed!");
+        console.log("Response:", response);
+      } else {
+        console.error("Error updating session status:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating session status:", error);
     }
   };
 
@@ -68,13 +94,17 @@ const CourseOutline = ({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${
-              milestoneIndex === selectedMilestone ? " " : ""
-            }`}
+            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${milestoneIndex === selectedMilestone ? " " : ""
+              }`}
             key={milestoneIndex}
           >
             <span
               className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold `}
+              onClick={() => toggleMilestone(milestoneIndex)}
+            >
+            </span>
+            <span
+              className={`cursor-pointer rounded-md text-[12px] font-TitilliumWeb text-base font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
             >
               {milestone.milestone}
@@ -93,13 +123,12 @@ const CourseOutline = ({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ delay: 0.4 }}
-                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[14px] md:text-lg  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${
-                        milestoneIndex === selectedMilestone &&
-                        sessionIndex === activeSessionIndex
+                      transition={{ delay: 0.3 }}
+                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[11px] text-sm  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${milestoneIndex === selectedMilestone &&
+                          sessionIndex === activeSessionIndex
                           ? "grBg "
                           : ""
-                      }`}
+                        }`}
                       key={sessionIndex}
                       id={`sessionButton-${milestoneIndex}-${sessionIndex}`}
                     >
@@ -107,13 +136,38 @@ const CourseOutline = ({
                         className="cursor-pointer px-3 rounded-md"
                         onClick={() => {
                           onSelectMilestone(milestoneIndex);
-                          onSelectSession(sessionIndex, session.videoLink);
+                          onSelectSession(
+                            sessionIndex,
+                            session.videoLink,
+                            session.sessionTitle
+                          );
+                          handleSessionSelect(
+                            session.sessionTitle,
+                            email,
+                            courseId
+                          );
                         }}
                       >
                         {session.sessionTitle}
                       </span>
                     </motion.button>
                   ))}
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className={` py-1  text-left mt-5 duration-700 text-[12px] text-sm  text-white font-bold font-TitilliumWeb  shadow-md bg-[#1a2c49] border border-[#36cbd330] rounded-lg`}
+                    id={``}
+                  >
+                    <span
+                      className="cursor-pointer px-3 rounded-md"
+                      onClick={() => handleQuizButton(milestone)}
+                    >
+                      Quizzes of {milestone.milestone} Milestone
+                    </span>
+                  </motion.button>
+                  
                   <motion.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

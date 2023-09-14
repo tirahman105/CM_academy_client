@@ -1,6 +1,6 @@
 /* Hide horizontal scrollbar */
 ::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.3em;
   height: 0.5em;
 }
 
@@ -13,10 +13,30 @@
   border-radius: 0.25em;
 }
 
-.bg-gradient {
-  background-image: linear-gradient(
-    to bottom,
-    #0488b4,
-  #66e3e8
-  ); 
+
+
+
+/* ///////////////////// */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

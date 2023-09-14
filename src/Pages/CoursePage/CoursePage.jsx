@@ -9,7 +9,9 @@ import QuizModal from "./Quiz/QuizModal";
 
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline } = location.state;
+  const { courseOutline, courseId, email } = location.state;
+
+  console.log(courseOutline, courseId, email);
 
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedSession, setSelectedSession] = useState(0);
@@ -17,7 +19,7 @@ const CoursePage = () => {
   const [showQuizModal, setShowQuizModal] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState(null); // Store selected quiz details
 
-  const handleSessionSelect = (sessionIndex, videoLink) => {
+  const handleSessionSelect = (sessionIndex) => {
     setSelectedSession(sessionIndex);
   };
 
@@ -27,7 +29,10 @@ const CoursePage = () => {
   };
 
   const handleNextSession = () => {
-    if (selectedSession < courseOutline[selectedMilestone]?.sessions.length - 1) {
+    if (
+      selectedSession <
+      courseOutline[selectedMilestone]?.sessions.length - 1
+    ) {
       setSelectedSession(selectedSession + 1);
     } else {
       if (selectedMilestone < courseOutline.length - 1) {

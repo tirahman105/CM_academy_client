@@ -1,6 +1,10 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+<<<<<<< HEAD
 import { BrowserRouter as Router } from "react-router-dom"; // Import BrowserRouter as Router
+=======
+import { BrowserRouter as Router } from "react-router-dom"; 
+>>>>>>> main
 import "@testing-library/jest-dom";
 
 import CourseCard from "./CourseCard";
@@ -15,7 +19,11 @@ describe("CourseCard Component", () => {
 
   it("renders course card with correct information", () => {
     render(
+<<<<<<< HEAD
       <Router> {/* Wrap your component in Router */}
+=======
+      <Router> 
+>>>>>>> main
         <CourseCard course={course} />
       </Router>
     );

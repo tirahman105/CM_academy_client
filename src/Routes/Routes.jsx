@@ -1,7 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+
 import Loading from "../Pages/Home/Home/Loading/Loading";
-import TestQuiz from "../Pages/CoursePage/Quiz/TestQuiz";
+
+// import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
 // Lazy-loaded components
 const LazyMain = lazy(() => import("../Layout/Main"));
@@ -23,13 +25,19 @@ const AddCourses = lazy(() =>
 const InstructorSignUp = lazy(() =>
   import("../Pages/Authentication/InstructorSignUp/InstructorSignUp")
 );
+
+
 const PaymentSuccess = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentSuccess")
 );
+
+
 const CheckOut = lazy(() => import("../payments/PaymentCheckout/CheckOut"));
 const PaymentFail = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentFail")
 );
+
+
 const ResetPassword = lazy(() =>
   import("../Pages/Authentication/ResetPassword/ResetPassword")
 );
@@ -95,9 +103,9 @@ const CourseDetailsDynamic = lazy(() =>
 const MyCourses = lazy(() =>
   import("../Pages/Dashboard/Student/MyCourses/MyCourses")
 );
-const StudentDashboard = lazy(() =>
-  import("../Pages/Dashboard/Student/StudentDashboard/StudentDashboard")
-);
+// const StudentDashboard = lazy(() =>
+//   import("../Pages/Dashboard/Student/StudentDashboard/StudentDashboard")
+// );
 const InstructorDashboard = lazy(() =>
   import(
     "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard"
@@ -130,6 +138,12 @@ const PrivacyPolicy = lazy(() =>
 );
 const TermsAndConditions = lazy(() =>
   import("../Pages/TermsAndConditions/TermsAndConditions")
+);
+const NewInstructorDashboard = lazy(() =>
+  import("../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard")
+);
+const NewStudentDashboard = lazy(() =>
+  import("../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard")
 );
 
 
@@ -220,11 +234,6 @@ const router = createBrowserRouter([
         element: <CoursePage />,
       },
       {
-        path: "/quizTest",
-        element: <TestQuiz></TestQuiz>,
-      }
-      ,
-      {
         path: "/quiz",
         element: <Quiz />,
       },
@@ -246,6 +255,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
   {
     path: "dashboard",
     element: (
@@ -297,6 +307,10 @@ const router = createBrowserRouter([
         element: <InstructorDashboard />,
       },
       {
+        path: "new-instructor-dashboard",
+        element: <NewInstructorDashboard></NewInstructorDashboard>,
+      },
+      {
         path: "instructor-profile",
         element: <InstructorProfile />,
       },
@@ -333,12 +347,22 @@ const router = createBrowserRouter([
         element: <AddNewBlog />,
       },
       {
-        path: "student-dashboard",
-        element: <StudentDashboard />,
+        path: "quiz",
+        element: <QuestionForm />,
       },
+      {
+        path: "student-dashboard",
+        element: <NewStudentDashboard />,
+      },
+      // {
+
+      //   path: "student-dashboard",
+      //   element: <StudentDashboard />,
+      // },
       {
         path: "my-courses",
         element: <MyCourses />,
+
       },
       {
         path: "student-payment",
