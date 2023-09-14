@@ -52,9 +52,12 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
   const renderResult = () => {
     if (quizCompleted) {
       return (
-        <div className="mb-4 text-white">
-          <h2 className="text-xl font-semibold">Quiz Result</h2>
-          <p>Your score: {score} out of {quizzes.length}</p>
+        <div className="mb-8 p-6 rounded-lg shadow-lg bg-gradient-to-r from-[#1a2c49] via-[#35406e] to-indigo-800 border border-[#36cbd330] text-white">
+          <h2 className="text-4xl font-semibold mb-4">Quiz Result</h2>
+          <p className="text-2xl mb-2">
+            Your Score: <span className="text-yellow-500 font-bold text-xl">{score}</span> /{' '}
+            <span className="text-blue-500 font-bold text-xl">{quizzes.length}</span>
+          </p>
           {/* You can provide additional feedback based on the score */}
           {score === quizzes.length ? (
             <p>Congratulations! You got all the questions correct.</p>
@@ -112,7 +115,7 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50 backdrop-blur-lg">
       <div className="bg-[#1a2c49]  p-6 bg-opacity-70 rounded-lg">
         <div className="h-full">
           {renderResult()}
