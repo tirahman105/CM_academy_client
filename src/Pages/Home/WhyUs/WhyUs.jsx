@@ -23,7 +23,9 @@ const WhyUs = () => {
               animationData={animationData}
               play
               loop
+
               style={{ width: 350, height: 350 }} // Adjust the dimensions as needed
+
             />
           </div>
           <div className="md:w-1/2 text-gray-800">
