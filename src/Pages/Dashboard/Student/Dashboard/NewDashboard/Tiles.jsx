@@ -3,13 +3,12 @@ import { BiTimeFive } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import viewIcon from "../../../../../assets/iconForDashboard/icons8-video-clip-48.png";
 
-
 const Tiles = (course) => {
   // console.log("Tiles", course);
   const navigate = useNavigate();
 
-  const handleViewCourse = (courseId, courseOutline) => {
-    navigate("/coursepage", { state: { courseOutline, courseId } });
+  const handleViewCourse = (courseId, courseOutline ,title, instructor) => {
+    navigate("/coursepage", { state: { courseOutline, courseId , title, instructor} });
   };
   return (
     <div
@@ -39,11 +38,15 @@ const Tiles = (course) => {
       <button
         className="border-2 flex gap-2 text-sm items-center hover:bg-gray-700 hover:text-white border-black text-black  px-4 py-2 rounded-lg transition duration-300"
         onClick={() =>
-          handleViewCourse(course.course._id, course.course.courseOutline)
+          handleViewCourse(
+            course.course._id,
+            course.course.courseOutline,
+            course.course.instructor,
+            course.course.title
+          )
         }
       >
         View Course
-
         <img src={viewIcon} className="h-5 " alt="" />
       </button>
     </div>

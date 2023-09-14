@@ -386,10 +386,10 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { AuthContext } from '../../../providers/AuthProvider';
 
-const Certificate = () => {
+const Certificate = ({title,instructor}) => {
   const certificateRef = useRef();
   const { user } = useContext(AuthContext);
-
+console.log(title, instructor)
   const generateCertificate = async () => {
     const certificateContent = certificateRef.current;
     if (!certificateContent) {
@@ -449,8 +449,8 @@ const Certificate = () => {
           <p className="mb-1">This is to certify that</p>
           <h2 className="text-xl font-bold mb-2">{user?.fullName}</h2>
           <p>has successfully completed the course</p>
-          <p className="mb-4 font-bold text-lg">Web Development</p>
-          <p>Instructor: Tareq Ibna Rahman</p>
+          <p className="mb-4 font-bold text-lg">{instructor}</p>
+          <p>Instructor: {title}</p>
         </div>
       </div>
       <button

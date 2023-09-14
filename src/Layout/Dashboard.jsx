@@ -119,11 +119,11 @@ const Dashboard = () => {
       icon: <CgNotes />,
       src: "/dashboard/my-courses-instructor",
     },
-    {
-      title: "My Enrolled Students",
-      icon: <MdOutlineGroup />,
-      src: "/dashboard/my-enrolled-students",
-    },
+    // {
+    //   title: "My Enrolled Students",
+    //   icon: <MdOutlineGroup />,
+    //   src: "/dashboard/my-enrolled-students",
+    // },
     {
       title: "Add New Course",
       icon: <GrChapterAdd />,
