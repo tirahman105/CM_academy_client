@@ -165,7 +165,7 @@ const Dashboard = () => {
         <div
           className={`${
             open ? "w-72 px-5" : "md:w-[80px] px-2 w-0"
-          } pt-8 duration-500  bg-teal-600 shadow-lg rounded-xl ml-4 h-full bg-opacity-30 backdrop-blur-md transform translate-x-0 md:translate-x-0 `}
+          } pt-8 duration-500  bg-[#181515] text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <BsFillArrowLeftSquareFill
             className={`text-2xl absolute cursor-pointer -right-6 md:-right-3 top-9 ${
