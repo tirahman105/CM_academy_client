@@ -15,6 +15,8 @@ import { motion } from "framer-motion";
 import useInstructor from "../../Hooks/useInstructor";
 import iconWarn from "../../assets/IconForDetails/icons8-warning-16 (1).png";
 
+
+
 const CourseDetailsDynamic = () => {
   const [isInstructor] = useInstructor();
   const location = useLocation();
@@ -407,5 +409,8 @@ const CourseDetailsDynamic = () => {
     </motion.div>
   );
 };
+
+
+
 
 export default CourseDetailsDynamic;
