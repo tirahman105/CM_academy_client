@@ -45,7 +45,6 @@ const ManageInstructors = () => {
 
   return (
     <div className="">
-    
       {/* instructor table  */}
 
       <div className="border p-4">
@@ -111,7 +110,13 @@ const ManageInstructors = () => {
                   className="hover:bg-slate-100 duration-150"
                 >
                   <td className="border px-4 py-2">{startIndex + index + 1}</td>
-                  <td className="border px-auto py-2"><img src={instructor.userImage} className='w-12 avatar rounded-full' alt="" /></td>
+                  <td className="border px-auto py-2">
+                    <img
+                      src={instructor.userImage}
+                      className="w-12 avatar rounded-full"
+                      alt=""
+                    />
+                  </td>
                   <td className="border px-4 py-2">{instructor.fullName}</td>
                   <td className="border px-4 py-2">{instructor.email}</td>
                   <td className="border px-4 py-2">{instructor.phone}</td>
@@ -123,12 +128,12 @@ const ManageInstructors = () => {
           </table>
         )}
 
-        {/* Pagination controls */}
-        <div className="flex justify-center mt-4 border w-1/2 mx-auto px-3 py-1 rounded-lg bg-green-100 border-green-500">
+         {/* Pagination controls */}
+         <div className="flex justify-center mt-4">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="mr-2 px-3 py-1 bg-green-300 rounded-md"
+            className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
           >
             <GrFormPrevious></GrFormPrevious>
           </button>
@@ -139,7 +144,7 @@ const ManageInstructors = () => {
               className={`mx-1 px-3 py-1 text-sm ${
                 currentPage === index + 1
                   ? "bg-green-600 text-white"
-                  : "bg-green-300"
+                  : "bg-gray-200"
               } rounded-md`}
             >
               {index + 1}
@@ -148,10 +153,10 @@ const ManageInstructors = () => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPageCount}
-            className="ml-2 px-3 py-1 bg-green-300 rounded-md"
+            className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
           >
             <p className="text-green-600">
-              <GrFormPrevious />
+              <GrFormNext />
             </p>
           </button>
         </div>

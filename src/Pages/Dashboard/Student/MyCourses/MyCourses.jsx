@@ -41,8 +41,8 @@ const MyCourses = () => {
     }
   }, [user]);
 
-  const handleDetailsClick = (courseOutline, courseId, email) => {
-    navigate("/coursepage", { state: { courseOutline, courseId, email } });
+  const handleDetailsClick = (courseOutline, courseId, email, instructor, title ) => {
+    navigate("/coursepage", { state: { courseOutline, courseId, email , instructor, title} });
   };
 
   console.log(studentCourses);
@@ -91,6 +91,8 @@ const MyCourses = () => {
                     handleDetailsClick(
                       course.course.courseOutline,
                       course.course._id,
+                      course.course.instructor,
+                      course.course.title,
                       user.email
                     )
                   }

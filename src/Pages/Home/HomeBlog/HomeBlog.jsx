@@ -9,12 +9,17 @@ import { Pagination, Navigation } from "swiper/modules";
 
 const HomeBlog = () => {
   const [blogs, setBlogs] = useState([]);
+  const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
     // Fetch the JSON data
     fetch("https://cm-academy-test-server-production.up.railway.app/all-blog")
       .then((response) => response.json())
-      .then((data) => setBlogs(data))
+      .then((data) => {
+        setBlogs(data)
+        setCategoryName(data.blogCategory)
+      })
+      
       .catch((error) => console.error("Error fetching blogs:", error));
   }, []);
 
@@ -57,7 +62,10 @@ const HomeBlog = () => {
                       className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-110"
                     />
                   </div>
-                  <div>
+                  <div className="text-left">
+                    <p className="my-2" ><span className={`bg-[#f3ef78] font-bold text-gray-600 px-2 py-1 rounded-lg text-sm ${categoryName== "Technology"? "bg-slate-500" : ""}`}>{blog.blogCategory}</span></p>
+             
+
                     <h2 className="text-xl font-semibold mb-1">{blog.blogTitle}</h2>
                     <p className="text-gray-600 mb-2">
                       {blog.blogDetails.split(" ").slice(0, 15).join(" ")}{" "}

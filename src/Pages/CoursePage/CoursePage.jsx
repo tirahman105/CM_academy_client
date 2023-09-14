@@ -9,7 +9,7 @@ import QuizModal from "./Quiz/QuizModal";
 
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline, courseId, email } = location.state;
+  const { courseOutline, courseId, email, instructor, title } = location.state;
 
   console.log(courseOutline, courseId, email);
 
@@ -60,7 +60,6 @@ const CoursePage = () => {
   const handleOpenCertificateModal = () => {
     setShowModal(true);
     setShowCertificateModal(true);
-    console
   };
 
   const handleCloseCertificateModal = () => {
@@ -101,7 +100,7 @@ const CoursePage = () => {
           <div className="flex justify-center">
             <button
               className="font-bold text-white px-4 py-2 shadow-md rounded-xl border-[#36cbd3dc] border-2"
-              onClick={handleOpenCertificateModal}
+              onClick={()=>window.my_modal_1.showModal()}
             >
               Get Certificate
             </button>
@@ -111,7 +110,7 @@ const CoursePage = () => {
             className={`modal ${showModal  ? "open" : ""}`}
           >
             <form method="dialog" className="modal-box">
-              <Certificate />
+              <Certificate title={title} instructor={instructor} />
               <div className="modal-action">
                 <button className="btn" onClick={handleCloseCertificateModal}>
                   Close
