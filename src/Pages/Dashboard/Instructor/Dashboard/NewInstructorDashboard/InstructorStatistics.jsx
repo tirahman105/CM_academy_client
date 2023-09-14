@@ -9,38 +9,38 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const userLearningData = [
+const enrollmentData = [
   {
     date: '2023-09-01',
-    hoursLearned: 2.5,
+    enrolledStudents: 10, 
   },
   {
     date: '2023-09-02',
-    hoursLearned: 1.8,
+    enrolledStudents: 15, 
   },
   {
     date: '2023-09-03',
-    hoursLearned: 3.2,
+    enrolledStudents: 12, 
   },
   {
     date: '2023-09-04',
-    hoursLearned: 2.9,
+    enrolledStudents: 18, 
   },
   {
     date: '2023-09-05',
-    hoursLearned: 1.5,
+    enrolledStudents: 20, 
   },
   {
     date: '2023-09-06',
-    hoursLearned: 2.7,
+    enrolledStudents: 22, 
   },
   {
     date: '2023-09-07',
-    hoursLearned: 3.5,
+    enrolledStudents: 25, 
   },
 ];
 
-const YourStatistics = () => {
+const InstructorStatistics = () => {
   return (
     <div
       className='mt-10'
@@ -51,20 +51,20 @@ const YourStatistics = () => {
       }}
     >
       <h2 className='my-4 font-Lexend font-bold text-2xl'>
-        Daily Hours Learned
+        Enrolled Students Statistics
       </h2>
         <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={userLearningData}>
+        <LineChart data={enrollmentData}>
           <XAxis dataKey="date" style={{ fontSize: '12px', fill: 'black' }} />
           <YAxis style={{ fontSize: '12px', fill: 'black' }} />
           <Tooltip contentStyle={{ fontSize: '12px', color: 'black' }} />
           <Legend iconSize={12} iconType="rect" />
           <Line
             type="monotone"
-            dataKey="hoursLearned"
-            stroke="black" // Set line color to white
+            dataKey="enrolledStudents"
+            stroke="black"
             strokeWidth={2}
-            name="Hours Learned"
+            name="Enrolled Students"
           />
         </LineChart>
       </ResponsiveContainer>
@@ -72,4 +72,4 @@ const YourStatistics = () => {
   );
 };
 
-export default YourStatistics;
+export default InstructorStatistics;

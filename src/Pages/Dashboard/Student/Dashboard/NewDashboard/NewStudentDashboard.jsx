@@ -10,6 +10,7 @@ import { AuthContext } from '../../../../../providers/AuthProvider';
 import CourseProgress from './CourseProgress';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const NewStudentDashboard = () => {
 
@@ -84,16 +85,16 @@ const NewStudentDashboard = () => {
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-12 rounded-full flex">
-                                    <img src="https://lh3.googleusercontent.com/a/AAcHTtcXMGB_cSc1A4bwNwmNa2L6F2k4AxXheecQNt8kry_PtrQ=s96-c" />
+                                    <img src={user?.userImage} />
                                 </div>
 
                             </label>
                             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
-                                    <a className="justify-between">
+                                    <Link to='/dashboard/student-profile' className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li><a>Settings</a></li>
                                 <li><a>Logout</a></li>

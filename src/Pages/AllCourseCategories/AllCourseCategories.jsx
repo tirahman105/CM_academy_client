@@ -22,52 +22,88 @@ function AllCourseCategories() {
   const location = useLocation();
   const { user } = useContext(AuthContext); // Get the user object from the AuthContext
 
+  // Create a state variable to cache fetched data
+  const [cachedData, setCachedData] = useState({});
+
   const [activeCourses, setActiveCourses] = useState([]);
   const [enrolledCourses, setEnrolledCourses] = useState([]); // Add state to store enrolled courses
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch category names from the API
-    fetch(
-      "https://cm-academy-test-server-production.up.railway.app/categoriesName"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        // Dispatch the action to set categories in the store
-        dispatch(setCategories(data));
-      });
+    // Fetch category names from the API if not already cached
+    if (!cachedData.categories) {
+      fetch(
+        "https://cm-academy-test-server-production.up.railway.app/categoriesName"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          // Cache the fetched data
+          setCachedData((prevState) => ({
+            ...prevState,
+            categories: data,
+          }));
+          // Dispatch the action to set categories in the store
+          dispatch(setCategories(data));
+        });
+    } else {
+      // If data is already cached, dispatch the action to set categories in the store
+      dispatch(setCategories(cachedData.categories));
+    }
 
     // Fetch all courses initially or based on the query parameter
     const selectedCategory = new URLSearchParams(location.search).get(
       "category"
     );
     if (selectedCategory && selectedCategory !== "All") {
-      // Set the active category in the store
-      dispatch(setActiveCategory(selectedCategory));
-      fetch(
-        `https://cm-academy-test-server-production.up.railway.app/categories/${selectedCategory}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          // Dispatch the action to set courses in the store
-          dispatch(setCourses(data));
-          setActiveCourses(data);
-          setLoading(false); // Set loading to false when data is fetched
-        });
+      if (!cachedData[selectedCategory]) {
+        // Fetch courses for the selected category if not already cached
+        fetch(
+          `https://cm-academy-test-server-production.up.railway.app/categories/${selectedCategory}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            // Cache the fetched data
+            setCachedData((prevState) => ({
+              ...prevState,
+              [selectedCategory]: data,
+            }));
+            // Dispatch the action to set courses in the store
+            dispatch(setCourses(data));
+            setActiveCourses(data);
+            setLoading(false); // Set loading to false when data is fetched
+          });
+      } else {
+        // If data is already cached, dispatch the action to set courses in the store
+        dispatch(setCourses(cachedData[selectedCategory]));
+        setActiveCourses(cachedData[selectedCategory]);
+        setLoading(false); // Set loading to false when data is fetched
+      }
     } else {
-      fetch(
-        "https://cm-academy-test-server-production.up.railway.app/categories/approved"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          // Dispatch the action to set courses in the store
-          dispatch(setCourses(data));
-          setActiveCourses(data);
-          setLoading(false); // Set loading to false when data is fetched
-        });
+      // Fetch courses for the "All" category if not already cached
+      if (!cachedData.allCourses) {
+        fetch(
+          "https://cm-academy-test-server-production.up.railway.app/categories/approved"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            // Cache the fetched data
+            setCachedData((prevState) => ({
+              ...prevState,
+              allCourses: data,
+            }));
+            // Dispatch the action to set courses in the store
+            dispatch(setCourses(data));
+            setActiveCourses(data);
+            setLoading(false); // Set loading to false when data is fetched
+          });
+      } else {
+        // If data is already cached, dispatch the action to set courses in the store
+        dispatch(setCourses(cachedData.allCourses));
+        setActiveCourses(cachedData.allCourses);
+        setLoading(false); // Set loading to false when data is fetched
+      }
     }
-  }, [dispatch, location.search]);
+  }, [dispatch, location.search, cachedData]);
 
   // Fetch the list of enrolled courses when the component mounts
   useEffect(() => {
@@ -92,18 +128,31 @@ function AllCourseCategories() {
     if (categoryName === "All") {
       // Set active courses based on all courses in the store
       setActiveCourses(courses);
-      setLoading(true); // Set loading to false when data is fetched
+      setLoading(false); // Set loading to false when data is fetched
     } else {
-      fetch(
-        `https://cm-academy-test-server-production.up.railway.app/categories/${categoryName}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          // Set active courses in the store
-          dispatch(setCourses(data));
-          setActiveCourses(data);
-          setLoading(false); // Set loading to false when data is fetched
-        });
+      if (!cachedData[categoryName]) {
+        // Fetch courses for the selected category if not already cached
+        fetch(
+          `https://cm-academy-test-server-production.up.railway.app/categories/${categoryName}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            // Set active courses in the store
+            dispatch(setCourses(data));
+            setActiveCourses(data);
+            setLoading(false); // Set loading to false when data is fetched
+            // Cache the fetched data
+            setCachedData((prevState) => ({
+              ...prevState,
+              [categoryName]: data,
+            }));
+          });
+      } else {
+        // If data is already cached, set active courses in the store
+        dispatch(setCourses(cachedData[categoryName]));
+        setActiveCourses(cachedData[categoryName]);
+        setLoading(false); // Set loading to false when data is fetched
+      }
     }
 
     navigate(`/courseCategories?category=${encodeURIComponent(categoryName)}`);
@@ -112,7 +161,6 @@ function AllCourseCategories() {
   const handleDetailsClick = (course) => {
     navigate("/courseDetailsDynamic", { state: { course } });
   };
-
   console.log(loading);
   return (
     <div className="max-w-7xl mx-auto px-2 pt-28">
@@ -149,7 +197,6 @@ function AllCourseCategories() {
           </div>
         </div>
 
-
         {/* Render skeleton when loading */}
         {loading ? (
           <div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
@@ -159,8 +206,6 @@ function AllCourseCategories() {
           </div>
         ) : (
           // Render actual course cards when data is ready
-
-
 
           <motion.div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
             {activeCourses.map((activeCourse, courseIndex) => (
