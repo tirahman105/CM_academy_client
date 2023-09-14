@@ -141,13 +141,9 @@ const InstructorProfile = () => {
     };
 
     if (!userDataFromAPI) {
-<<<<<<< HEAD
-        return <Loading></Loading>;
-=======
 
         return  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500 text-center mx-auto"></div>;
 
->>>>>>> main
     }
 
     return (

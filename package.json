@@ -34,15 +34,10 @@
     "react-icons": "^4.11.0",
     "react-loader-spinner": "^5.3.4",
     "react-loading-skeleton": "^3.3.1",
-<<<<<<< HEAD
-    "react-messenger-customer-chat": "^0.8.0",
-    "react-player": "^2.12.0",
-=======
     "react-lottie-player": "^1.5.5",
     "react-messenger-customer-chat": "^0.8.0",
     "react-player": "^2.12.0",
     "react-rating-stars-component": "^2.2.0",
->>>>>>> main
     "react-redux": "^8.1.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.14.2",

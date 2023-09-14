@@ -110,12 +110,7 @@ const Categories = () => {
                     : "text-gray-800"
                 }`}
               >
-<<<<<<< HEAD
-                
-                {category.name} {/* Use 'category.name' here */}
-=======
                 {category.name}
->>>>>>> main
               </button>
             ))}
           </div>

@@ -2,10 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { MdNotStarted } from "react-icons/md";
-<<<<<<< HEAD
-=======
 import RatingFeedbackForm from "./RatingFeedbackForm";
->>>>>>> main
 import Loading from "../../../Home/Home/Loading/Loading";
 
 const MyCourses = () => {
@@ -56,7 +53,7 @@ const MyCourses = () => {
 
       {loading ? (
         // Render a loading message or spinner while waiting for data
-        <Loading></Loading>
+        <p>Loading...</p>
       ) : (
         <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl ">
           {studentCourses.map((course, courseIndex) => (

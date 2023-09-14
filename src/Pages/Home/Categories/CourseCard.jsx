@@ -4,10 +4,6 @@ import { FaCartPlus } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
-<<<<<<< HEAD
-
-const CourseCard = ({ course, handleDetailsClick }) => {
-=======
 import { MdNotStarted } from "react-icons/md";
 import { Rating, StickerStar	} from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
@@ -27,7 +23,6 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
     inactiveFillColor: "#1bbf7240",
   };
 
->>>>>>> main
   return (
     <motion.div
       initial={{ y: 10, opacity: 0 }}
@@ -47,24 +42,6 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
           src={course.courseThumbnail}
           alt={`Thumbnail for ${course.title}`}
         />
-<<<<<<< HEAD
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="shadow-md text-xs w-56 bg-gray-700 border-2 text-white bg-opacity-80 backdrop-blur-md flex items-center gap-2 absolute rounded-e-md px-4 py-[4px] bottom-3 z-10"
-        >
-          <img
-            src="https://media.discordapp.net/attachments/1137192144587739287/1144607311084654622/videos-teachers-768x432.jpg"
-            className="h-6 shadow-md w-6 rounded-full"
-            alt=""
-          />
-          <p className="font-Poppins">
-            {course.instructor || <Skeleton count={10}></Skeleton>}
-          </p>
-        </motion.div>
-=======
->>>>>>> main
       </motion.div>
       <div className="px-1 h-14  ">
         <motion.h1

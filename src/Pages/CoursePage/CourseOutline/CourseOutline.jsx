@@ -162,22 +162,6 @@ const CourseOutline = ({
                   >
                     <span
                       className="cursor-pointer px-3 rounded-md"
-                      onClick={() => handleQuizButton(milestone)}
-                    >
-                      Quizzes of {milestone.milestone} Milestone
-                    </span>
-                  </motion.button>
-                  
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className={`px-3 py-1  text-left mt-5 duration-700 text-[14px] md:text-lg  text-white font-bold font-TitilliumWeb  shadow-md bg-[#1a2c49] border border-[#36cbd330] rounded-lg`}
-                    id={``}
-                  >
-                    <span
-                      className="cursor-pointer px-3 rounded-md"
                       onClick={() => handleQuizButton(milestoneIndex)}
                     >
                       Quizzes of {milestone.milestone} Milestone
