@@ -17,6 +17,8 @@ const CoursePage = () => {
   const [selectedSession, setSelectedSession] = useState(0);
   const [showCertificateModal, setShowCertificateModal] = useState(false);
   const [showQuizModal, setShowQuizModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const [selectedQuiz, setSelectedQuiz] = useState(null); // Store selected quiz details
 
   const handleSessionSelect = (sessionIndex) => {
@@ -48,17 +50,21 @@ const CoursePage = () => {
     } else {
       if (selectedMilestone > 0) {
         setSelectedMilestone(selectedMilestone - 1);
-        setSelectedSession(courseOutline[selectedMilestone - 1].sessions.length - 1);
+        setSelectedSession(
+          courseOutline[selectedMilestone - 1].sessions.length - 1
+        );
       }
     }
   };
 
   const handleOpenCertificateModal = () => {
+    setShowModal(true);
     setShowCertificateModal(true);
-    console.log('clicked')
   };
 
   const handleCloseCertificateModal = () => {
+    setShowModal(false);
+
     setShowCertificateModal(false);
   };
 
@@ -99,7 +105,10 @@ const CoursePage = () => {
               Get Certificate
             </button>
           </div>
-          <dialog id="my_modal_1" className={`modal ${showCertificateModal ? "open" : ""}`}>
+          <dialog
+            id="my_modal_1"
+            className={`modal ${showModal  ? "open" : ""}`}
+          >
             <form method="dialog" className="modal-box">
               <Certificate title={title} instructor={instructor} />
               <div className="modal-action">
@@ -120,7 +129,6 @@ const CoursePage = () => {
           onClose={() => setShowQuizModal(false)}
         />
       )}
-
     </div>
   );
 };
