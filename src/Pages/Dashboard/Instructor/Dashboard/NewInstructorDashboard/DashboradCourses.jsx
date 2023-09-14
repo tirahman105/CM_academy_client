@@ -1,14 +1,23 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import { AiFillFire } from "react-icons/ai";
-import { BiTimeFive } from "react-icons/bi";
-import { AuthContext } from "../../../../../providers/AuthProvider";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../../../providers/AuthProvider";
 
 const DashboradCourses = () => {
   const [status, setStatus] = useState("Approved");
   const [courses, setCourses] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
   const { user } = useContext(AuthContext);
+
+  // for pagination
+  const itemsPerPage = 4;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPageCount = Math.ceil(courses.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage - 1; // Calculate the last index of the displayed range
+  const visibleCourses = courses.slice(startIndex, endIndex + 1);
 
   useEffect(() => {
     // Fetch data from the API
@@ -23,16 +32,18 @@ const DashboradCourses = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [status, user?.email]);
+  }, [status]);
 
-  // Function to filter courses based on the selected category
   const navigate = useNavigate();
-
+  // Function to filter courses based on the selected category
   const handleViewClick = (course) => {
     navigate("/courseDetailsDynamic", { state: { course } });
     console.log(course);
   };
 
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
   return (
     <div>
       <h1 className="text-2xl text-left font-bold mt-20">Courses</h1>
@@ -75,7 +86,7 @@ const DashboradCourses = () => {
         </h1>
       </div>
 
-      {courses.map((course) => (
+      {visibleCourses.map((course) => (
         <div
           key={course._id}
           className="max-w-full bg-gray-100 rounded-lg p-4 flex items-center space-x-4 mt-2"
@@ -112,6 +123,38 @@ const DashboradCourses = () => {
           </button>
         </div>
       ))}
+      {/* Pagination controls */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
+        >
+          <GrFormPrevious></GrFormPrevious>
+        </button>
+        {Array.from({ length: totalPageCount }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`mx-1 px-3 py-1 text-sm ${
+              currentPage === index + 1
+                ? "bg-green-600 text-white"
+                : "bg-gray-200"
+            } rounded-md`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPageCount}
+          className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
+        >
+          <p className="text-green-600">
+            <GrFormNext />
+          </p>
+        </button>
+      </div>
     </div>
   );
 };
