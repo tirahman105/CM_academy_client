@@ -103,9 +103,9 @@ const CourseDetailsDynamic = lazy(() =>
 const MyCourses = lazy(() =>
   import("../Pages/Dashboard/Student/MyCourses/MyCourses")
 );
-const StudentDashboard = lazy(() =>
-  import("../Pages/Dashboard/Student/StudentDashboard/StudentDashboard")
-);
+// const StudentDashboard = lazy(() =>
+//   import("../Pages/Dashboard/Student/StudentDashboard/StudentDashboard")
+// );
 const InstructorDashboard = lazy(() =>
   import(
     "../Pages/Dashboard/Instructor/InstructorDashboard/InstructorDAshboard"
