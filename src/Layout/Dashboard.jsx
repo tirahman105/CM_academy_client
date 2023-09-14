@@ -24,6 +24,7 @@ import useInstructor from "../Hooks/useInstructor";
 import useStudent from "../Hooks/useStudent";
 import useAdmin from "../Hooks/useAdmin";
 import { AuthContext } from "../providers/AuthProvider";
+import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);

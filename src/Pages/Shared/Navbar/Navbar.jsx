@@ -3,13 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../public/cm-logo-png.ico";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useInstructor from "../../../Hooks/useInstructor";
-
+import useStudent from "../../../Hooks/useStudent";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
-  
+  const [isStudent] = useStudent();
+  const [isAdmin] = useAdmin();
   const [Categories, setCategories] = useState([]);
+
+
   const navigate = useNavigate();
   console.log(user);
 
@@ -33,6 +37,17 @@ const Navbar = () => {
     // Navigate to AllCourseCategories with the selected category name as a query parameter
     navigate(`/courseCategories?category=${encodeURIComponent(categoryName)}`);
   };
+
+  let dashboardRoute = "";
+
+  if (isInstructor) {
+    dashboardRoute = "/dashboard/new-instructor-dashboard";
+  } else if (isStudent) {
+    dashboardRoute = "/dashboard/student-dashboard";
+  } else if (isAdmin) {
+    dashboardRoute = "/dashboard/admin-dashboard";
+  }
+
 
   return (
     <>
@@ -112,9 +127,7 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 font-semibold">
               <li>
-                <Link className="  font-Raleway font-bold">
-                  Home
-                </Link>
+                <Link className="  font-Raleway font-bold">Home</Link>
               </li>
               <li className="  font-Raleway font-bold" tabIndex={0}>
                 <details>
@@ -123,7 +136,6 @@ const Navbar = () => {
                     {Categories.map((category, index) => (
                       <li className="" key={index}>
                         <button
-                        
                           onClick={() => handleCategoryClick(category.name)} // Close the dropdown when a category is clicked
                         >
                           {category.name}
@@ -146,7 +158,7 @@ const Navbar = () => {
               {user && (
                 <li>
                   <Link
-                    to="/dashboard"
+                    to={dashboardRoute}
                     className="ml-auto   font-Raleway font-bold"
                   >
                     Dashboard

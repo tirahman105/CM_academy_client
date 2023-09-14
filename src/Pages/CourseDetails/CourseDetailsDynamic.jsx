@@ -1,7 +1,7 @@
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdCheckCircle, MdLibraryBooks, MdQuiz } from "react-icons/md";
 import { useLocation } from "react-router";
 import "./CourseDetails.css";
@@ -12,11 +12,15 @@ import MilestoneAccordion from "./MilestoneAccordion";
 import FaqAccordion from "./FaqAccordion";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useInstructor from "../../Hooks/useInstructor";
+import iconWarn from "../../assets/IconForDetails/icons8-warning-16 (1).png";
 
 const CourseDetailsDynamic = () => {
+  const [isInstructor] = useInstructor();
   const location = useLocation();
   const { course } = location.state;
 
+  console.log(isInstructor);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -99,9 +103,22 @@ const CourseDetailsDynamic = () => {
       </div>
       {/* Banner section end */}
 
+      <div>
+        {course.ApprovedStatus === "Deny" && (
+          <>
+            <div className="flex w-full bg-[#F6D7D4] gap-2 items-center justify-center">
+              <img className="h-5" src={iconWarn} alt="" />
+              <p className="text-center  py-2   font-bold text-[#410E0B] ">
+                Your Course is not approved yet! Please wait for approval.
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+
       <div className="max-w-7xl flex    mx-auto gap-10 px-4  ">
         <div className="">
-      {/* Instructor section start */}
+          {/* Instructor section start */}
           <div className=" mt-12  ">
             <div className="sm:flex  items-center px-6 py-5 gap-6 sm:w-[90%] border-2 relative rounded-lg ">
               <div className="bg-[#1bbf7259] absolute backdrop-blur-md top-0 left-0 px-4 shadow-sm rounded-r-md shadow-[#1bbf7283]  ">
@@ -256,7 +273,7 @@ const CourseDetailsDynamic = () => {
         {/* course Card start */}
 
         <div className="hidden md:block sticky h-full pr-2  top-20 backdrop-blur-lg">
-          <div className="max-w-7xl  mb-48 h-[600px] border w-[334px] boxShadow rounded-lg  ">
+          <div className="max-w-7xl  mb-48 h-[600px] border w-[334px] boxShadow rounded-lg  relative ">
             <img
               className="w-[334px] h-[200px] rounded-lg mb-4"
               src={course.courseThumbnail}
@@ -273,6 +290,7 @@ const CourseDetailsDynamic = () => {
               <div className=" mt-7 w-full">
                 <Link to={`/checkout/${course._id}`}>
                   <button
+                    disabled={isInstructor}
                     className=" w-full bg-[#258d5c11] font-Lexend text-lg border-2 font-bold py-[9px]  rounded-md px-4  hover:css-selector  hover:border-[#1bbf7246] duration-500 
                   text-gray-700 boxShadowBtn "
                   >
@@ -325,7 +343,7 @@ const CourseDetailsDynamic = () => {
       {/* /////////////////content end */}
 
       {/* ///////bottom badge bar start */}
-      <div className="bg-[#242527]  sm:h-auto w-full fixed sm:static bottom-0 z-[1000] sm:block  py-2">
+      <div className="bg-[#242527] block  sm:h-auto w-full fixed sm:static bottom-0 z-[1000] sm:hidden  py-2">
         <div className="sm:max-w-7xl  mx-auto px-4 sm:py-2 flex justify-between items-center">
           <div className="">
             <motion.h1
@@ -369,11 +387,12 @@ const CourseDetailsDynamic = () => {
             </motion.div>
             <Link to={`/checkout/${course._id}`}>
               <motion.button
+                disabled={isInstructor}
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className=" css-selector font-Lexend  sm:text-lg text-[10px] border-2 font-bold sm:py-[4px]  rounded-md sm:px-5 px-1 
+                className=" bg-white font-Lexend  sm:text-lg text-[10px] border-2 font-bold sm:py-[4px]  rounded-md sm:px-5 px-1 
                 w-[80px] sm:w-auto  hover:css-selector  hover:border-[#1bbf7246] duration-500 
                 text-gray-700 boxShadowBtn "
               >

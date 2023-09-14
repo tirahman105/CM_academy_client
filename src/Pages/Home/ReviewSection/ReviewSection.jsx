@@ -53,7 +53,7 @@ const ReviewSection = () => {
   };
 
     return (
-        <div className='container mx-auto'>
+        <div className='max-w-7xl mx-auto'>
         
         <Swiper
         // ref={swiperRef} // Set the Swiper instance reference

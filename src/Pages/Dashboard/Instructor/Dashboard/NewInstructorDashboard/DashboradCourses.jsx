@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiFillFire } from "react-icons/ai";
 import { BiTimeFive } from "react-icons/bi";
+import { AuthContext } from "../../../../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const DashboradCourses = () => {
   const [status, setStatus] = useState("Approved");
   const [courses, setCourses] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     // Fetch data from the API
     fetch(
-      `https://cm-academy-test-server-production.up.railway.app/categories/status/${status} `
+      `https://cm-academy-test-server-production.up.railway.app/categories/instructor/${user?.email}/${status} `
     )
       .then((response) => response.json())
       .then((data) => {
@@ -20,9 +23,15 @@ const DashboradCourses = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [status]);
+  }, [status, user?.email]);
 
   // Function to filter courses based on the selected category
+  const navigate = useNavigate();
+
+  const handleViewClick = (course) => {
+    navigate("/courseDetailsDynamic", { state: { course } });
+    console.log(course);
+  };
 
   return (
     <div>
@@ -85,15 +94,20 @@ const DashboradCourses = () => {
             <p className="bg-[#1bbf72fa] text-sm px-2 py-[2px] shadow-sm font-bold rounded-lg text-white">
               Approved
             </p>
-          ) : <p className="bg-[#f88f8f] text-sm px-2 py-[2px] shadow-sm font-bold rounded-lg text-white">
-          Pending
-        </p>}
+          ) : (
+            <p className="bg-[#f88f8f] text-sm px-2 py-[2px] shadow-sm font-bold rounded-lg text-white">
+              Pending
+            </p>
+          )}
 
           <div className="flex items-center space-x-2">
             <AiFillFire />
             <p className="text-gray-600 text-sm">4.9</p>
           </div>
-          <button className="border-2 hover:bg-black hover:text-white border-black text-black text-base px-4 py-2 rounded-lg transition duration-300">
+          <button
+            onClick={() => handleViewClick(course)}
+            className="border-2 hover:bg-black hover:text-white border-black text-black text-base px-4 py-2 rounded-lg transition duration-300"
+          >
             View Course
           </button>
         </div>
