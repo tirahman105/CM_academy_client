@@ -157,7 +157,9 @@ const CourseDetailsDynamic = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="text-gray-600 font-Lexend font-semibold text-sm"
                 >
-                 Course Instructor
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Corrupti expedita nostrum exercitationem quibusdam adipisci,
+                  harum minus quo impedit consectetur doloribus?
                 </motion.p>
               </div>
             </div>
@@ -407,8 +409,5 @@ const CourseDetailsDynamic = () => {
     </motion.div>
   );
 };
-
-
-
 
 export default CourseDetailsDynamic;
