@@ -1,30 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { BsFillArrowLeftSquareFill } from "react-icons/bs";
-import {
-  BiSolidDashboard,
-  BiListPlus,
-  BiLogOut,
-  BiMoneyWithdraw,
-} from "react-icons/bi";
-import { RiContactsFill } from "react-icons/ri";
-import {
-  MdOutlinePayments,
-  MdManageAccounts,
-  MdAccountBalance,
-  MdOutlinePostAdd,
-  MdOutlineGroup,
-} from "react-icons/md";
-import { PiFileVideo, PiStudentBold } from "react-icons/pi";
-import { LuFileCog } from "react-icons/lu";
-import { GrChapterAdd } from "react-icons/gr";
-import { CgNotes, CgProfile } from "react-icons/cg";
-// import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 import useInstructor from "../Hooks/useInstructor";
 import useStudent from "../Hooks/useStudent";
 import useAdmin from "../Hooks/useAdmin";
 import { AuthContext } from "../providers/AuthProvider";
-import DashboardTopNav from "../Pages/Dashboard/Shared/DashboardTopNav/DashboardTopNav";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -51,17 +30,14 @@ const Dashboard = () => {
   const StudentMenus = [
     {
       title: "My Dashboard",
-      icon: <PiFileVideo />,
       src: "/dashboard/student-dashboard",
     },
     {
       title: "My Payments",
-      icon: <MdOutlinePayments />,
       src: "/dashboard/student-payment",
     },
     {
       title: "My Profile",
-      icon: <RiContactsFill />,
       src: "/dashboard/student-profile",
     },
   ];
@@ -69,37 +45,30 @@ const Dashboard = () => {
   const AdminMenus = [
     {
       title: "Dashboard",
-      icon: <BiSolidDashboard />,
       src: "/dashboard/admin-dashboard",
     },
     {
       title: "Manage Students",
-      icon: <MdManageAccounts />,
       src: "/dashboard/manage-students",
     },
     {
       title: "All Enrolled Student",
-      icon: <PiStudentBold />,
       src: "/dashboard/All-enrolled-students",
     },
     {
       title: "Manage instructors",
-      icon: <MdManageAccounts />,
       src: "/dashboard/manage-instructors",
     },
     {
       title: "Manage Course",
-      icon: <LuFileCog />,
       src: "/dashboard/manage-course",
     },
     {
       title: "Withdraw Request",
-      icon: <BiMoneyWithdraw />,
       src: "/dashboard/withdraw-request",
     },
     {
       title: "Add New Category",
-      icon: <BiListPlus />,
       src: "/dashboard/Add-category",
     },
   ];
@@ -107,54 +76,38 @@ const Dashboard = () => {
   const InstructorMenus = [
     {
       title: "Dashboard",
-      icon: <BiSolidDashboard />,
       src: "/dashboard/new-instructor-dashboard",
     },
     {
       title: "My Profile",
-      icon: <CgProfile />,
       src: "/dashboard/instructor-profile",
     },
     {
       title: "My Courses",
-      icon: <CgNotes />,
       src: "/dashboard/my-courses-instructor",
     },
-    // {
-    //   title: "My Enrolled Students",
-    //   icon: <MdOutlineGroup />,
-    //   src: "/dashboard/my-enrolled-students",
-    // },
+
     {
       title: "Add New Course",
-      icon: <GrChapterAdd />,
       src: "/dashboard/add-course",
     },
     {
       title: "My Blogs",
-      icon: <CgNotes />,
       src: "/dashboard/my-blogs",
     },
     {
       title: "Add New Blog",
-      icon: <MdOutlinePostAdd />,
       src: "/dashboard/add-blog",
     },
     {
       title: "Payment Account Setup",
-      icon: <MdAccountBalance />,
       src: "/dashboard/acc-setup",
     },
     {
       title: "Payment History",
-      icon: <MdOutlinePayments />,
       src: "/dashboard/my-payments",
     },
-    // {
-    //   title: "Withdraw History",
-    //   icon: <MdOutlinePayments />,
-    //   src: "/dashboard/withdraw-history",
-    // },
+
   ];
 
   return (
@@ -165,18 +118,21 @@ const Dashboard = () => {
         <div
           className={`${
             open ? "w-72 px-5" : "md:w-[80px] px-2 w-0"
-          } pt-8 duration-500  bg-teal-600 shadow-lg rounded-xl ml-4 h-full bg-opacity-30 backdrop-blur-md transform translate-x-0 md:translate-x-0 `}
+          } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
-          <BsFillArrowLeftSquareFill
-            className={`text-2xl absolute cursor-pointer -right-6 md:-right-3 top-9 ${
+          <p
+            className={`text-2xl absolute cursor-pointer -right-6 md:-right-3 top-9 bg-teal-300 rounded-lg px-2 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
-          ></BsFillArrowLeftSquareFill>
+            
+          >
+            Open
+          </p>
           <div className="flex items-center ">
             <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
 
-            <h1 className={`text-[#195b4e] ${!open && "scale-0"}`}>
+            <h1 className={`text-white ${!open && "scale-0"}`}>
               <Link to="/"> CM Academy</Link>
             </h1>
           </div>
@@ -190,7 +146,7 @@ const Dashboard = () => {
                   alt=""
                 />
                 <h1
-                  className={`text-[#195b4e] font-semibold ${
+                  className={`text-white font-semibold ${
                     !open && "scale-0"
                   }`}
                 >
@@ -271,9 +227,9 @@ const Dashboard = () => {
             <hr className=" my-6" />
             <button
               onClick={handleLogOut}
-              className=" text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+              className=" text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
             >
-              <BiLogOut className="text-3xl"></BiLogOut>
+              <p className="text-3xl"></p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
               >
@@ -289,7 +245,6 @@ const Dashboard = () => {
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
-          {/* <DashboardTopNav></DashboardTopNav> */}
           
           <Outlet></Outlet>
         </div>
