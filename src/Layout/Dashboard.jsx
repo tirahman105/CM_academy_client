@@ -4,6 +4,13 @@ import useInstructor from "../Hooks/useInstructor";
 import useStudent from "../Hooks/useStudent";
 import useAdmin from "../Hooks/useAdmin";
 import { AuthContext } from "../providers/AuthProvider";
+import dashboard from "../../src/assets/iconForDashboard/dashboard.png";
+import profile from "../../src/assets/iconForDashboard/user.png";
+import course from "../../src/assets/iconForDashboard/homework.png"
+import addCourse from "../../src/assets/iconForDashboard/add.png"
+import blog from "../../src/assets/iconForDashboard/blogger.png"
+import payment from "../../src/assets/iconForDashboard/bill.png"
+import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png"
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -31,6 +38,8 @@ const Dashboard = () => {
     {
       title: "My Dashboard",
       src: "/dashboard/student-dashboard",
+      icon: dashboard
+      
     },
     {
       title: "My Payments",
@@ -39,6 +48,7 @@ const Dashboard = () => {
     {
       title: "My Profile",
       src: "/dashboard/student-profile",
+      icon: profile
     },
   ];
 
@@ -46,30 +56,37 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       src: "/dashboard/admin-dashboard",
+      icon: dashboard
     },
     {
       title: "Manage Students",
       src: "/dashboard/manage-students",
+      icon: profile
     },
     {
       title: "All Enrolled Student",
       src: "/dashboard/All-enrolled-students",
+      icon: profile
     },
     {
       title: "Manage instructors",
       src: "/dashboard/manage-instructors",
+      icon: profile
     },
     {
       title: "Manage Course",
       src: "/dashboard/manage-course",
+      icon: course
     },
     {
       title: "Withdraw Request",
       src: "/dashboard/withdraw-request",
+      icon: payment
     },
     {
       title: "Add New Category",
       src: "/dashboard/Add-category",
+      icon: addCourse
     },
   ];
 
@@ -77,35 +94,44 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       src: "/dashboard/new-instructor-dashboard",
+      icon: dashboard
+      
     },
     {
       title: "My Profile",
       src: "/dashboard/instructor-profile",
+      icon: profile
     },
     {
       title: "My Courses",
       src: "/dashboard/my-courses-instructor",
+      icon: course
     },
 
     {
       title: "Add New Course",
       src: "/dashboard/add-course",
+      icon: addCourse
     },
     {
       title: "My Blogs",
       src: "/dashboard/my-blogs",
+      icon: blog
     },
     {
       title: "Add New Blog",
       src: "/dashboard/add-blog",
+      icon: addCourse
     },
     {
-      title: "Payment Account Setup",
+      title: "Payment Setup",
       src: "/dashboard/acc-setup",
+      icon: paymentSetup
     },
     {
       title: "Payment History",
       src: "/dashboard/my-payments",
+      icon: payment
     },
 
   ];
@@ -121,13 +147,13 @@ const Dashboard = () => {
           } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
-            className={`text-2xl absolute cursor-pointer -right-6 md:-right-3 top-9 bg-teal-300 rounded-lg px-2 ${
+            className={`text-5xl absolute cursor-pointer -right-6 md:-right-3 top-9 bg-slate-600 rounded-lg px-2 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
             
           >
-            Open
+             &lt;
           </p>
           <div className="flex items-center ">
             <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
@@ -161,11 +187,11 @@ const Dashboard = () => {
                   {StudentMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                      className="text-white  flex items-center gap-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl">{menu.icon} </span>
+                        <span className="text-3xl">{menu?.icon} </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -183,11 +209,11 @@ const Dashboard = () => {
                   {AdminMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-[#195b4e] font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                      className="text-white font-semibold flex items-center gap-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl">{menu.icon} </span>
+                        <span className="text-3xl"> <img src={menu?.icon} alt="" /> </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -206,11 +232,11 @@ const Dashboard = () => {
                   {InstructorMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-[#195b4e]font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl">{menu.icon} </span>
+                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
