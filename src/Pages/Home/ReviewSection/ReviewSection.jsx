@@ -183,7 +183,7 @@ const ReviewSection = () => {
   };
 
   return (
-    <div className="pt-12 px-2 lg:pb-1  bg-[#E3F7EE]">
+    <div className="pt-12 px-2 lg:pb-1  bg-gradient mt-32 mb-32">
       <h1 className="text-4xl font-bold mb-5  font-Poppins home-container">
         What Our Student Are Saying
 
@@ -196,13 +196,13 @@ const ReviewSection = () => {
           <ReactCardCarousel autoplay={true} autoplay_speed={3000} >
             {
               reviews.map((review) =>
-                <div key={review._id} className="card w-60 md:w-96 bg-white shadow-xl ">
+                <div key={review._id} className="card w-60 md:w-[700px] bg-white shadow-xl ">
                   <h2 className="text-4xl md:text-7xl pl-8 pt-8 text-[#1BBF72]"><BiSolidQuoteLeft></BiSolidQuoteLeft> </h2>
                   <div className="px-6 md:px-10 ">
-                    <h2 className="font-bold text-md md:text-xl text-center my-1 md:my-3 ">{review.courseTitle}</h2>
-                    <p className='text-xs md:text-sm font-serif h-24 md:h-24 '>{review.feedback}</p>
+                    <h2 className="font-bold text-md font md:text-xl text-center my-1 md:my-3 ">{review.courseTitle}</h2>
+                    <p className='text-xs md:text-base font-JosefinSans text-center h-24 md:h-24 '>{review.feedback}</p>
                   </div>
-                  <div className=' border-t-2 border-t-[#1BBF72] mt-6  md:mt-2'></div>
+                  <div className=' border-t-2 border-t-[#1bbf7241] mt-6  md:mt-2'></div>
                   <div className='px-6 md:px-10  my-6 flex justify-between items-center'>
                     <div className='flex items-center gap-5 mb-2  md:mb-4'>
                       <img className='w-10 h-10  md:w-14 md:h-14 rounded-full' src={review.studentImage} alt="" />

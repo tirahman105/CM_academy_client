@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useEffect } from "react";
-
+import InstructorImage from "../../../../assets/IconForAddCourse/Instructor.png";
 const Final = () => {
   const [newQuizQuestion, setNewQuizQuestion] = useState("");
   const [quizOptions, setQuizOptions] = useState([]);
@@ -143,6 +143,7 @@ const Final = () => {
       courseIntroVideo: courseIntroVideo,
       ApprovedStatus: "Deny",
       enrollCount: 0,
+      rating: 0,
     };
     console.log(formData);
 
@@ -211,37 +212,48 @@ const Final = () => {
 
   ///////////////////////////////////////
   return (
-    <div>
-      <div className=" my-4 mt-4">
-        <h1 className=" text-lg font-bold">Add New Course</h1>
-        <p className="text-base mb-4">Add the necessary details, course curriculum and also the quizzes here.</p>
-        <hr />
+    <div className=" mt-14">
+      <div className="   flex justify-around max-w-7xl mx-auto">
+        <div className="w-[70%]">
+          <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
+            Empower Learning: Design Your Course
+          </h1>
+          <p className="mt-4 text-[18px] text-gray-600 font-TitilliumWeb">
+            Your knowledge can change lives. Begin your teaching journey by
+            creating a course that reflects your expertise. The 'Create Course'
+            page is where you lay the foundation. Define your course's title and
+            description, and let your passion for teaching shine through.
+          </p>
+        </div>
+        <img src={InstructorImage} alt="" />
       </div>
-      <form className="w-3/5 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      {/* <hr /> */}
+      <form className="max-w-3xl mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4 text-base font-bold flex justify-center border rounded-md ">
           <div
-            className={`w-1/3 text-center cursor-pointer p-2  ${activeTab === "basicInfo"
-              ? "border-[#0AAE8D]  rounded-md bg-[#0AAE8D] text-white text-sm "
-              : ""
-              }`}
+            className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${
+              activeTab === "basicInfo"
+                ? "  rounded-md bg-[#1E1F1F] text-white text-sm "
+                : ""
+            }`}
             onClick={() => switchTab("basicInfo")}
           >
             Basic Info
           </div>
           <div
-            className={`w-1/3 text-center  cursor-pointer p-2 ${activeTab === "courseCurriculum"
-              ? "border-[#0AAE8D] rounded-md bg-[#0AAE8D] text-white "
-              : ""
-              }`}
+            className={`w-1/3 text-center duration-300  cursor-pointer p-2 ${
+              activeTab === "courseCurriculum"
+                ? "rounded-md bg-[#1E1F1F] text-white "
+                : ""
+            }`}
             onClick={() => switchTab("courseCurriculum")}
           >
             Course Curriculum
           </div>
           <div
-            className={` w-1/3 text-center  cursor-pointer p-2  ${activeTab === "quiz"
-              ? "border-[#0AAE8D]  rounded-md bg-[#0AAE8D] text-white"
-              : ""
-              }`}
+            className={` w-1/3 text-center duration-300  cursor-pointer p-2  ${
+              activeTab === "quiz" ? "  rounded-md bg-[#1E1F1F] text-white" : ""
+            }`}
             onClick={() => switchTab("quiz")}
           >
             Quiz
@@ -254,15 +266,25 @@ const Final = () => {
             <div className="form-control mb-3">
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Category</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Category
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Choose the relevant category for your course content.**
+                    </span>
+                  </span>
                 </label>
                 <select
                   name="courseCategory"
-                  className="input input-bordered bg-gray-200 h-10"
+                  className="  bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-600 px-4"
                   {...register("courseCategory")}
                 >
                   {Categories.map((category, index) => (
-                    <option key={index} value={category.name}>
+                    <option
+                      className="text-sm font-Poppins font-semibold text-gray-600"
+                      key={index}
+                      value={category.name}
+                    >
                       {category.name}
                     </option>
                   ))}
@@ -270,37 +292,56 @@ const Final = () => {
               </div>
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Title</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Title
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Give your course a compelling and informative title.**
+                    </span>
+                  </span>
                 </label>
                 <input
                   type="text"
                   name="title"
                   placeholder="Title"
-                  className="input input-bordered bg-gray-200 h-10"
+                  className=" bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5"
                   {...register("title")}
                 />
               </div>
               {/* Course Description */}
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-base font-bold">Course Description</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Description
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Provide a concise overview of what your course covers.**
+                    </span>
+                  </span>
                 </label>
                 <textarea
                   name="courseDescription"
                   placeholder="Course Description"
-                  className="input input-bordered bg-gray-200 h-20"
+                  className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5 pt-7 resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2 "
                   {...register("courseDescription")}
                 />
               </div>
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">What You Will Learn</span>
+                  <span className="text-base font-bold font-Poppins">
+                    What You Will Learn
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **List the key takeaways learners can expect, separated by
+                      commas.**
+                    </span>
+                  </span>
                 </label>
                 <input
                   type="text"
                   name="whatYouWillLearn"
                   placeholder="What You Will Learn (comma-separated)"
-                  className="input input-bordered bg-gray-200 h-10"
+                  className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5  resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2"
                   value={whatYouWillLearn.join(", ")} // Convert array to comma-separated string
                   onChange={(e) =>
                     setWhatYouWillLearn(
@@ -312,13 +353,20 @@ const Final = () => {
               {/* Course Thumbnail */}
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Thumbnail</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Thumbnail
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Add a link to an image that represents your course
+                      visually.**
+                    </span>
+                  </span>
                 </label>
                 <input
                   type="text"
                   name="courseThumbnail"
                   placeholder="Course Thumbnail Link"
-                  className="input input-bordered bg-gray-200 h-10"
+                  className=" bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5  focus:border-[#1e1f1f9f] focus:outline-none border-2"
                   value={courseThumbnail}
                   onChange={(e) => setCourseThumbnail(e.target.value)}
                 />
@@ -326,39 +374,59 @@ const Final = () => {
               {/* course intro video */}
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Intro Video</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Intro Video
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Include a link to an introductory video for your
+                      course.**
+                    </span>
+                  </span>
                 </label>
                 <input
                   type="text"
                   name="courseIntroVideo"
                   placeholder="Course Intro Video Link"
-                  className="input input-bordered bg-gray-200 h-10"
+                  className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 focus:outline-none border-2  focus:border-[#1e1f1f9f]"
                   value={courseIntroVideo}
                   onChange={(e) => setCourseIntroVideo(e.target.value)}
                 />
               </div>
-              <div className="form-control mb-3">
+              <div className=" mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Price</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Price
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Specify the cost of enrolling in your course.**
+                    </span>
+                  </span>
                 </label>
                 <input
                   type="number"
                   name="coursePrice"
                   placeholder="Course Price"
-                  className="input input-bordered bg-gray-200 h-20"
+                  className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 focus:outline-none border-2 focus:border-[#1e1f1f9f]"
                   {...register("coursePrice")}
                 />
               </div>
               {/* Course Requirements */}
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Course Requirements</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Requirements
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Outline any prerequisites or materials needed, separated
+                      by commas.**
+                    </span>
+                  </span>
                 </label>
                 <input
                   type="text"
                   name="courseRequirements"
                   placeholder="Course Requirements (comma-separated)"
-                  className="input input-bordered bg-gray-200 h-10"
+                  className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5  resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2"
                   value={courseRequirements.join(", ")} // Convert array to comma-separated string
                   onChange={(e) =>
                     setCourseRequirements(
@@ -370,62 +438,85 @@ const Final = () => {
               {/* Who is Course For*/}
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-sm font-bold">Who is Course For</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Who is This Course For
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Describe the target audience for your course.**
+                    </span>
+                  </span>
                 </label>
                 <textarea
                   name="whoIsCourseFor"
                   placeholder="Who is Course For"
-                  className="input input-bordered bg-gray-200 h-20"
+                  className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5 pt-9 resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2"
                   {...register("whoIsCourseFor")}
                 />
               </div>
               {/* faq section */}
-              <div className='form-control mb-3'>
-                <div className='form-control mb-3'>
-                  <label className='label'>
-                    <span className='text-base font-bold'>FAQ</span>
+              <div className="form-control mb-3">
+                <div className="form-control mb-3">
+                  <label className="label">
+                    <span className="text-base font-bold font-Poppins">
+                      FAQ
+                      <br />
+                      <span className="text-[12px] text-gray-600 font-mono ">
+                        **Add frequently asked questions and their corresponding
+                        answers to provide additional information about your
+                        course.**
+                      </span>
+                    </span>
                   </label>
-                  <div className='space-y-4'>
+                  <div className="space-y-4">
                     {faq.map((faqItem, faqIndex) => (
-                      <div key={faqIndex} className='bg-white rounded-lg shadow-md p-6'>
-                        <h4 className='font-semibold text-base mb-2 bg-red-300 text-black p-2 rounded-lg'>
+                      <div
+                        key={faqIndex}
+                        className="bg-white rounded-lg shadow-md p-6"
+                      >
+                        <h4 className="font-semibold  mb-2 bg-gray-200 text-gray-700 text-sm font-mono p-2 rounded-lg">
                           Question {faqIndex + 1}: {faqItem.question}
                         </h4>
-                        <p className='text-gray-600'></p>
-                        <div className='bg-green-300 p-4 font-sans rounded-lg shadow-md'>
-                          <p className='text-black text-base'>{faqItem.answer}</p>
+                        <p className="text-gray-600"></p>
+                        <div className="bg-gray-200 text-sm font-mono p-4 text-gray-700  rounded-lg shadow-md">
+                          <p className=" ">
+                            {faqItem.answer}
+                          </p>
                         </div>
                       </div>
                     ))}
                     {!addingFaq && (
                       <button
-                        type='button'
-                        className='btn btn-success mt-2'
+                        type="button"
+                        className=" px-2 text-base rounded-md py-1  bg-[#1E1F1F] text-white mt-2"
                         onClick={() => startAddingFaq()}
                       >
                         Add FAQ
                       </button>
                     )}
                     {addingFaq && (
-                      <div className='bg-white rounded-lg shadow-md p-6'>
+                      <div className="bg-white rounded-lg shadow-md p-6">
                         <div>
                           <input
-                            type='text'
-                            className='input input-bordered bg-gray-200 h-12 m-3 ml-0 w-full'
-                            placeholder='Question'
+                            type="text"
+                            className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none border-2 focus:border-[#1e1f1f9f] w-full"
+                            placeholder="Question"
                             value={newFaqQuestion}
                             onChange={handleFaqQuestionChange}
                           />
                         </div>
                         <div>
                           <textarea
-                            className='input input-bordered bg-gray-200 h-40 m-3 w-full'
-                            placeholder='Answer'
+                            className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5 w-full resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2"
+                            placeholder="Answer"
                             value={newFaqAnswer}
                             onChange={handleFaqAnswerChange}
                           />
                         </div>
-                        <button type='button' className='btn btn-outline mr-3 btn-sm mt-2' onClick={saveFaq}>
+                        <button
+                          type="button"
+                          className="btn btn-outline mr-3 btn-sm mt-2"
+                          onClick={saveFaq}
+                        >
                           Save FAQ
                         </button>
                       </div>
@@ -433,13 +524,11 @@ const Final = () => {
                   </div>
                 </div>
               </div>
-
-
             </div>
             <div className="flex justify-center mt-4">
               <button
                 type="button"
-                className="btn btn-success  mb-5"
+                className="px-4 text-lg rounded-md py-1  bg-[#1E1F1F] text-white mt-2  mb-5"
                 onClick={() => switchTab("courseCurriculum")}
               >
                 Next
@@ -456,22 +545,33 @@ const Final = () => {
                   <span className="text-xl font-bold">Course Outline</span>
                 </label>
                 <div className="space-y-4">
-                  <div className='space-y-4'>
+                  <div className="space-y-4">
                     {courseOutline.map((milestone, milestoneIndex) => (
-                      <div key={milestoneIndex} className='bg-white rounded-lg shadow-md p-6'>
-                        <h4 className='font-semibold text-lg mb-2'>
+                      <div
+                        key={milestoneIndex}
+                        className="bg-white rounded-lg shadow-md p-6"
+                      >
+                        <h4 className="font-semibold text-lg mb-2">
                           Milestone {milestoneIndex + 1}: {milestone.milestone}
                         </h4>
-                        <div className='flex flex-wrap -m-3'>
+                        <div className="flex flex-wrap -m-3">
                           {milestone.sessions.map((session, sessionIndex) => (
-                            <div key={sessionIndex} className='bg-gray-100 p-4 rounded-lg shadow-md m-3'>
-                              <h5 className='text-blue-600 text-lg font-semibold'>Session {sessionIndex + 1}:  {session.sessionTitle}</h5>
-                              <p className='text-gray-600 text-sm'>{session.description}</p>
+                            <div
+                              key={sessionIndex}
+                              className="bg-gray-100 p-4 rounded-lg shadow-md m-3"
+                            >
+                              <h5 className="text-blue-600 text-lg font-semibold">
+                                Session {sessionIndex + 1}:{" "}
+                                {session.sessionTitle}
+                              </h5>
+                              <p className="text-gray-600 text-sm">
+                                {session.description}
+                              </p>
                               <a
                                 href={`${session.videoLink}`}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='text-blue-500 text-sm hover:underline mt-1 block'
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 text-sm hover:underline mt-1 block"
                               >
                                 Watch Video
                               </a>
@@ -511,8 +611,9 @@ const Final = () => {
                               <input
                                 type="text"
                                 className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                                placeholder={`Session ${sessionIndex + 1
-                                  } Title`}
+                                placeholder={`Session ${
+                                  sessionIndex + 1
+                                } Title`}
                                 value={session.sessionTitle}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -524,8 +625,9 @@ const Final = () => {
                               {/* Add textarea for session description */}
                               <textarea
                                 className="input input-bordered bg-gray-200 h-20 m-3 w-full"
-                                placeholder={`Session ${sessionIndex + 1
-                                  } Description`}
+                                placeholder={`Session ${
+                                  sessionIndex + 1
+                                } Description`}
                                 value={session.description}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -537,8 +639,9 @@ const Final = () => {
                               <input
                                 type="text"
                                 className="input input-bordered bg-gray-200 h-100 m-3 w-full"
-                                placeholder={`Session ${sessionIndex + 1
-                                  } Video Link`}
+                                placeholder={`Session ${
+                                  sessionIndex + 1
+                                } Video Link`}
                                 value={session.videoLink}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -613,8 +716,9 @@ const Final = () => {
                         key={index}
                         className="border p-4 mb-4 rounded-lg shadow-md"
                       >
-                        <h4 className="text-sm font-bold mb-2">{`Question ${index + 1
-                          }: ${quiz.question}`}</h4>
+                        <h4 className="text-sm font-bold mb-2">{`Question ${
+                          index + 1
+                        }: ${quiz.question}`}</h4>
                         <ul className="text-sm list-disc pl-6 mb-2">
                           {quiz.options.map((option, optionIndex) => (
                             <li key={optionIndex} className="mb-1">
@@ -694,8 +798,9 @@ const Final = () => {
                     }
                   >
                     {quizOptions.map((_, index) => (
-                      <option key={index} value={index}>{`Option ${index + 1
-                        }`}</option>
+                      <option key={index} value={index}>{`Option ${
+                        index + 1
+                      }`}</option>
                     ))}
                   </select>
                 </div>
