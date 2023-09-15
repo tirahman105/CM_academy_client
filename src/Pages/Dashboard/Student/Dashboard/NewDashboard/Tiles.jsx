@@ -7,8 +7,24 @@ const Tiles = (course) => {
   // console.log("Tiles", course);
   const navigate = useNavigate();
 
-  const handleViewCourse = (courseId, courseOutline ,title, instructor) => {
-    navigate("/coursepage", { state: { courseOutline, courseId , title, instructor} });
+  const handleViewCourse = (
+    courseId,
+    courseOutline,
+    title,
+    instructor,
+    courseCategory
+  ) => {
+    console.log(
+      "Tiles",
+      courseId,
+      courseOutline,
+      title,
+      instructor,
+      courseCategory
+    );
+    navigate("/coursepage", {
+      state: { courseOutline, courseId, title, instructor, courseCategory },
+    });
   };
   return (
     <div
@@ -42,7 +58,8 @@ const Tiles = (course) => {
             course.course._id,
             course.course.courseOutline,
             course.course.instructor,
-            course.course.title
+            course.course.title,
+            course.course.courseCategory
           )
         }
       >
