@@ -11,6 +11,9 @@ import addCourse from "../../src/assets/iconForDashboard/add.png"
 import blog from "../../src/assets/iconForDashboard/blogger.png"
 import payment from "../../src/assets/iconForDashboard/bill.png"
 import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png"
+import userManage from "../../src/assets/iconForDashboard/user_manage.png"
+import enrolledCourse from "../../src/assets/iconForDashboard/page.png"
+
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -62,17 +65,17 @@ const Dashboard = () => {
     {
       title: "Manage Students",
       src: "/dashboard/manage-students",
-      icon: profile
+      icon: userManage
     },
     {
       title: "All Enrolled Student",
       src: "/dashboard/All-enrolled-students",
-      icon: profile
+      icon: enrolledCourse
     },
     {
       title: "Manage instructors",
       src: "/dashboard/manage-instructors",
-      icon: profile
+      icon: userManage
     },
     {
       title: "Manage Course",
@@ -188,7 +191,7 @@ const Dashboard = () => {
                   {StudentMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white  flex items-center gap-2 cursor-pointer mx-2"
+                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
@@ -210,9 +213,9 @@ const Dashboard = () => {
                   {AdminMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white  flex items-center gap-2 cursor-pointer mx-2"
+                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
-                      <Link to={menu.src} className="flex my-2 ">
+                      <Link to={menu.src} className="flex items-center my-2 ">
                         {" "}
                         <span className="text-3xl me-2"> <img src={menu?.icon} alt="" /> </span>
                         <span
@@ -259,7 +262,7 @@ const Dashboard = () => {
               <p className="text-3xl"></p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
-              >
+              > 
                 Logout
               </span>
             </button>
