@@ -44,6 +44,7 @@ const Dashboard = () => {
     {
       title: "My Payments",
       src: "/dashboard/student-payment",
+      icon: payment
     },
     {
       title: "My Profile",
