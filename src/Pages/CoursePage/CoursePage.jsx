@@ -6,12 +6,16 @@ import Certificate from "../../Pages/CoursePage/Certificate/Certificate";
 import { useLocation } from "react-router-dom";
 import ".././CoursePage/CourseOutline/Course.css";
 import QuizModal from "./Quiz/QuizModal";
+import RatingFeedbackForm from "../Dashboard/Student/MyCourses/RatingFeedbackForm";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline, courseId, email, instructor, title } = location.state;
+  const { courseOutline, courseId, email, instructor, title ,courseCategory } = location.state;
 
-  console.log(courseOutline, courseId, email);
+  const { user } = useContext(AuthContext);
+  console.log(courseOutline, courseId, email, instructor, title ,courseCategory);
 
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedSession, setSelectedSession] = useState(0);
@@ -87,6 +91,17 @@ const CoursePage = () => {
             onSessionChange={handleSessionSelect}
             onPreviousSession={handlePreviousSession}
           />
+          <div className=" mt-10  p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]  ">
+            <RatingFeedbackForm
+              courseId={courseId}
+              user={user?.email}
+              courseInstructor={instructor}
+              courseTitle={title}
+              courseCategory={courseCategory}
+            >
+              {" "}
+            </RatingFeedbackForm>
+          </div>
         </div>
         <div className="lg:w-2/4 p-4">
           <CourseOutline
@@ -100,14 +115,14 @@ const CoursePage = () => {
           <div className="flex justify-center">
             <button
               className="font-bold text-white px-4 py-2 shadow-md rounded-xl border-[#36cbd3dc] border-2"
-              onClick={()=>window.my_modal_1.showModal()}
+              onClick={() => window.my_modal_1.showModal()}
             >
               Get Certificate
             </button>
           </div>
           <dialog
             id="my_modal_1"
-            className={`modal ${showModal  ? "open" : ""}`}
+            className={`modal ${showModal ? "open" : ""}`}
           >
             <form method="dialog" className="modal-box">
               <Certificate title={title} instructor={instructor} />
