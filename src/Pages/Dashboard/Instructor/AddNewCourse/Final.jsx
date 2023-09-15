@@ -174,6 +174,7 @@ const Final = () => {
       sessionTitle: "",
       description: "",
       videoLink: "",
+      
     },
   ]);
   const [addingMilestone, setAddingMilestone] = useState(false);
@@ -213,7 +214,7 @@ const Final = () => {
   ///////////////////////////////////////
   return (
     <div className=" mt-14">
-      <div className="   flex justify-around max-w-7xl mx-auto">
+      <div className="   flex justify-around max-w-7xl mx-auto sticky top-0 pt-5 pb-1  mb-8 bg-white">
         <div className="w-[70%]">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
             Empower Learning: Design Your Course
@@ -229,11 +230,11 @@ const Final = () => {
       </div>
       {/* <hr /> */}
       <form className="max-w-3xl mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4 text-base font-bold flex justify-center border rounded-md ">
+        <div className="mb-4 text-base bg-white font-bold flex justify-center border rounded-md sticky top-[280px] ">
           <div
             className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${
               activeTab === "basicInfo"
-                ? "  rounded-md bg-[#1E1F1F] text-white text-sm "
+                ? "  rounded-md bg-[#1E1F1F] text-white  "
                 : ""
             }`}
             onClick={() => switchTab("basicInfo")}
@@ -478,9 +479,7 @@ const Final = () => {
                         </h4>
                         <p className="text-gray-600"></p>
                         <div className="bg-gray-200 text-sm font-mono p-4 text-gray-700  rounded-lg shadow-md">
-                          <p className=" ">
-                            {faqItem.answer}
-                          </p>
+                          <p className=" ">{faqItem.answer}</p>
                         </div>
                       </div>
                     ))}
@@ -542,7 +541,17 @@ const Final = () => {
             <div className="form-control mb-3">
               <div className="form-control mb-3">
                 <label className="label">
-                  <span className="text-xl font-bold">Course Outline</span>
+                  <span className="text-base font-bold font-Poppins">
+                    Course Outline
+                    <br />
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Organize your course into milestones. For each
+                      milestone, provide details such as the title, description,
+                      and list of sessions and sessions video link . This helps
+                      learners understand the structure and content of your
+                      course.**
+                    </span>
+                  </span>
                 </label>
                 <div className="space-y-4">
                   <div className="space-y-4">
@@ -551,14 +560,14 @@ const Final = () => {
                         key={milestoneIndex}
                         className="bg-white rounded-lg shadow-md p-6"
                       >
-                        <h4 className="font-semibold text-lg mb-2">
+                        <h4 className="font-semibold font-mono text-lg mb-2">
                           Milestone {milestoneIndex + 1}: {milestone.milestone}
                         </h4>
                         <div className="flex flex-wrap -m-3">
                           {milestone.sessions.map((session, sessionIndex) => (
                             <div
                               key={sessionIndex}
-                              className="bg-gray-100 p-4 rounded-lg shadow-md m-3"
+                              className="bg-gray-100 font-LeagueSpartan p-4 rounded-lg shadow-md m-3"
                             >
                               <h5 className="text-blue-600 text-lg font-semibold">
                                 Session {sessionIndex + 1}:{" "}
@@ -597,7 +606,7 @@ const Final = () => {
                         <div>
                           <input
                             type="text"
-                            className="input input-bordered bg-gray-200 h-100 m-3  ml-0 w-full"
+                            className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none border-2 focus:border-[#1e1f1f9f] w-full"
                             placeholder="Milestone Title"
                             value={newMilestoneTitle}
                             onChange={(e) =>
@@ -610,7 +619,7 @@ const Final = () => {
                             <div key={sessionIndex}>
                               <input
                                 type="text"
-                                className="input input-bordered bg-gray-200 h-100 m-3 w-full"
+                                className=" bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none border-2 focus:border-[#1e1f1f9f] ml-[37px] w-[95%]"
                                 placeholder={`Session ${
                                   sessionIndex + 1
                                 } Title`}
@@ -624,7 +633,7 @@ const Final = () => {
                               />
                               {/* Add textarea for session description */}
                               <textarea
-                                className="input input-bordered bg-gray-200 h-20 m-3 w-full"
+                                className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5  resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2 ml-[37px] w-[95%]"
                                 placeholder={`Session ${
                                   sessionIndex + 1
                                 } Description`}
@@ -638,7 +647,7 @@ const Final = () => {
                               />
                               <input
                                 type="text"
-                                className="input input-bordered bg-gray-200 h-100 m-3 w-full"
+                                className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none border-2 focus:border-[#1e1f1f9f] ml-[37px] w-[95%] mt-5"
                                 placeholder={`Session ${
                                   sessionIndex + 1
                                 } Video Link`}
@@ -679,7 +688,7 @@ const Final = () => {
               <div className="flex justify-center mt-4">
                 <button
                   type="button"
-                  className="btn btn-success  mb-5"
+                  className="px-4 text-lg rounded-md py-1  bg-[#1E1F1F] text-white mt-2  mb-5"
                   onClick={() => switchTab("quiz")}
                 >
                   Next
@@ -690,8 +699,18 @@ const Final = () => {
         )}
         {activeTab === "quiz" && (
           <div>
+            <span className="text-base font-bold font-Poppins">
+              Quiz Insert Section
+              <br />
+              <span className="text-[12px] text-gray-600 font-mono ">
+                **Enhance your course by adding quizzes at specific milestones.
+                Select a milestone, create quiz questions, and define correct
+                answers. Quizzes are a great way to assess your learners'
+                understanding and knowledge retention.**
+              </span>
+            </span>
             <select
-              className="input input-bordered bg-gray-200 h-10"
+              className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none  mt-5"
               value={selectedMilestoneIndex}
               onChange={(e) =>
                 setSelectedMilestoneIndex(parseInt(e.target.value))
@@ -748,6 +767,9 @@ const Final = () => {
 
             {addingQuiz && (
               <div>
+                <span className="text-[12px] text-gray-600 font-mono ">
+                  **Create quiz questions for assessments.**
+                </span>
                 <input
                   type="text"
                   className="input input-bordered bg-gray-200 h-100 m-3 ml-0 w-full"
@@ -759,6 +781,10 @@ const Final = () => {
                 {/* Render dynamic input fields for options */}
                 {quizOptions.map((option, index) => (
                   <div key={index}>
+                    <span className="text-[12px] text-gray-600 font-mono ">
+                      **Provide multiple-choice options for each quiz
+                      question.**
+                    </span>
                     <input
                       type="text"
                       className="input input-bordered bg-gray-200 h-100 m-3 w-full"
@@ -770,7 +796,7 @@ const Final = () => {
                     />
                     <button
                       type="button"
-                      className="btn btn-danger btn-sm mt-2"
+                      className="px-2 text-sm rounded-md py-1  bg-[#e98686] text-white mt-2"
                       onClick={() => removeQuizOption(index)}
                     >
                       Remove Option
@@ -788,10 +814,17 @@ const Final = () => {
 
                 <div>
                   <label className="label">
-                    <span className="text-sm font-bold">Correct Option</span>
+                    <span className="text-base font-bold font-Poppins">
+                      Correct Option
+                      <br />
+                      <span className="text-[12px] text-gray-600 font-mono ">
+                        **Specify the correct answer among the multiple-choice
+                        options for each quiz question.**
+                      </span>
+                    </span>
                   </label>
                   <select
-                    className="input input-bordered bg-gray-200 h-10"
+                    className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none  mt-1"
                     value={newQuizCorrectOption}
                     onChange={(e) =>
                       setNewQuizCorrectOption(parseInt(e.target.value))
@@ -806,15 +839,19 @@ const Final = () => {
                 </div>
 
                 <textarea
-                  className="input input-bordered bg-gray-200 h-20 m-3 w-full"
+                  className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5  resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2 w-full"
                   placeholder="Explanation"
                   value={newQuizExplanation}
                   onChange={(e) => setNewQuizExplanation(e.target.value)}
                 />
-
+                <p className="text-[12px] text-gray-600 font-mono ">
+                  **Provide a brief explanation or additional context for the
+                  correct answer to help learners understand the concept
+                  better.**
+                </p>
                 <button
                   type="button"
-                  className="btn btn-outline mr-3 btn-sm mt-2"
+                  className="btn btn-outline mr-3 btn-sm mt-8"
                   onClick={addNewQuiz}
                 >
                   Save Quiz
@@ -824,7 +861,7 @@ const Final = () => {
 
             <div>
               <div className="flex justify-center">
-                <button type="submit" className="btn btn-success mt-4 mb-5">
+                <button type="submit" className="px-4 text-lg rounded-md py-1  bg-[#1E1F1F] text-white mt-2  mb-5">
                   Add Your Course
                 </button>
               </div>
