@@ -191,7 +191,7 @@ const Dashboard = () => {
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl">{menu?.icon} </span>
+                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -209,11 +209,11 @@ const Dashboard = () => {
                   {AdminMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white font-semibold flex items-center gap-2 cursor-pointer mx-2"
+                      className="text-white  flex items-center gap-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl"> <img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2"> <img src={menu?.icon} alt="" /> </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
