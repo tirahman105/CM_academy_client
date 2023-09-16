@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import useInstructor from "../../Hooks/useInstructor";
 import iconWarn from "../../assets/IconForDetails/icons8-warning-16 (1).png";
-import enrolledCourse from "../../assets/iconForDashboard/page.png";
 
 
 
@@ -158,7 +157,9 @@ const CourseDetailsDynamic = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="text-gray-600 font-Lexend font-semibold text-sm"
                 >
-                 CM-Academy course instructor
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Corrupti expedita nostrum exercitationem quibusdam adipisci,
+                  harum minus quo impedit consectetur doloribus?
                 </motion.p>
               </div>
             </div>
