@@ -4,7 +4,6 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
@@ -57,16 +56,20 @@ const data = [
 
 const DashboardChart = () => {
   return (
-    <div style={{ width: '100%', height: '400px' }}>
-      <h2>Daily User Registrations</h2>
+    <div className='mt-10'
+    style={{
+      width: '100%',
+      height: '400px',
+      backgroundColor: 'white', 
+    }}>
+      <h2 className=' ml-6 mb-10'>Daily User Registrations</h2>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
+          <XAxis dataKey="date" style={{ fontSize: '12px', fill: 'black' }}  />
+          <YAxis style={{ fontSize: '12px', fill: 'black' }} />
+          <Tooltip contentStyle={{ fontSize: '12px', color: 'black' }}/>
           <Legend />
-          <Line type="monotone" dataKey="user" stroke="#8884d8" strokeWidth={2} />
+          <Line type="monotone" dataKey="user" stroke="black" strokeWidth={2} />
         </LineChart>
       </ResponsiveContainer>
     </div>
