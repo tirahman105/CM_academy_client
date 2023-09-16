@@ -18,7 +18,7 @@ const NewStudentDashboard = () => {
   const [loading, setLoading] = useState(true); // Add loading state
   const [studentCourses, setStudentCourses] = useState([]);
 
-  console.log(studentCourses[0]);
+  // console.log(studentCourses[0]);
 
   // my enrolled course fetching
   useEffect(() => {
