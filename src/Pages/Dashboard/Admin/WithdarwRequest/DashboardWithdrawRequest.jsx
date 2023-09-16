@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { CiViewList } from "react-icons/ci";
 
 const DashboardWithdrawRequest = () => {
   const [showModal, setShowModal] = useState(false);
   const [withdrawalRequests, setWithdrawalRequests] = useState([]);
 
   const [bankDetails, setBankDetails] = useState({});
+
+  console.log(withdrawalRequests);
 
   useEffect(() => {
     // Fetch withdrawal request data from the API
@@ -28,6 +29,8 @@ const DashboardWithdrawRequest = () => {
     fetchWithdrawalRequests();
   }, []); // Empty dependency array to run this effect only once on component mount
 
+
+
   const handleOpenModal = (InstructorEmail) => {
     // https://cm-academy-test-server-production.up.railway.app/bank-account-setup/instructorEmail
     fetch(
@@ -41,22 +44,23 @@ const DashboardWithdrawRequest = () => {
 
     setShowModal(true);
   };
+  
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
   return (
     <div>
-      <h1 className="text-2xl">Withdraw request by instructors to admin</h1>
+      <h1 className="text-2xl mb-4">Withdraw request from Instructors </h1>
       <table className="table-auto w-full">
         <thead>
           <tr className="bg-gray-100 text-[#1bbf72ee] font-bold text-lg divide-x-2">
-            <th className="px-4 py-2">Sl</th>
-            <th className="px-4 py-2">Instructor name</th>
-            <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2">Contact</th>
+            <th className="px-4 py-2 uppercase">Sl</th>
+            <th className="px-4 py-2 uppercase">Name</th>
+            <th className="px-4 py-2 uppercase">Email</th>
+            <th className="px-4 py-2 uppercase">Contact</th>
             {/* <th className="px-4 py-2">Bank details</th> */}
-            <th className="px-4 py-2">Withdraw amount</th>
+            <th className="px-4 py-2 uppercase">Amount</th>
             {/* <th className="px-4 py-2">Status</th> */}
           </tr>
         </thead>
