@@ -3,9 +3,6 @@ import enrollment from '../../../../assets/enrollment.png'
 
 const AllEnrolled = () => {
     const [students, setStudents] = useState([]);
-
-
-
     useEffect(() => {
         fetch('https://cm-academy-test-server-production.up.railway.app/orders/studentEmail')
             .then((res) => res.json())
@@ -13,7 +10,6 @@ const AllEnrolled = () => {
                 setStudents(result);
             });
     }, []);
-
 
     return (
         <div>
