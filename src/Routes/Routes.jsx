@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import Loading from "../Pages/Home/Home/Loading/Loading";
+import ChatWithStudent from "../Pages/Dashboard/Instructor/MyCourseInstructor/ChatWithStudent";
 
 // import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
@@ -26,17 +27,14 @@ const InstructorSignUp = lazy(() =>
   import("../Pages/Authentication/InstructorSignUp/InstructorSignUp")
 );
 
-
 const PaymentSuccess = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentSuccess")
 );
-
 
 const CheckOut = lazy(() => import("../payments/PaymentCheckout/CheckOut"));
 const PaymentFail = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentFail")
 );
-
 
 const ResetPassword = lazy(() =>
   import("../Pages/Authentication/ResetPassword/ResetPassword")
@@ -140,12 +138,18 @@ const TermsAndConditions = lazy(() =>
   import("../Pages/TermsAndConditions/TermsAndConditions")
 );
 const NewInstructorDashboard = lazy(() =>
-  import("../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard")
+  import(
+    "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard"
+  )
 );
 const NewStudentDashboard = lazy(() =>
-  import("../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard")
+  import(
+    "../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard"
+  )
 );
-
+// const ChatWithStudent = lazy(() =>
+//   import("../Pages/Dashboard/Instructor/MyCourseInstructor/ChatWithStudent")
+// );
 
 const router = createBrowserRouter([
   {
@@ -255,7 +259,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
+
   {
     path: "dashboard",
     element: (
@@ -362,7 +366,6 @@ const router = createBrowserRouter([
       {
         path: "my-courses",
         element: <MyCourses />,
-
       },
       {
         path: "student-payment",
@@ -371,6 +374,10 @@ const router = createBrowserRouter([
       {
         path: "student-profile",
         element: <StudentProfileUpdated />,
+      },
+      {
+        path: "chat-w-student",
+        element: <ChatWithStudent />,
       },
     ],
   },

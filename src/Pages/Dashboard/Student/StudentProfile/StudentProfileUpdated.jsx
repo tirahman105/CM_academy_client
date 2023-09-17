@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FcAddImage } from "react-icons/fc";
 import { BiSave } from "react-icons/bi";
 import Swal from "sweetalert2";
+import CreateSupportTicket from "./SupportTicket/CreateSupportTicket";
 
 const imageHostingToken = import.meta.env.VITE_image_hosating;
 
@@ -295,6 +296,8 @@ const StudentProfileUpdated = () => {
                     </div>
                 </div>
             </div>
+
+            <CreateSupportTicket></CreateSupportTicket>
         </div>
   );
 };
