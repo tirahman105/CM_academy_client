@@ -169,12 +169,13 @@ const Final = () => {
       alert("Error sending form data:", error);
     }
   };
+  
   const [newMilestoneSessions, setNewMilestoneSessions] = useState([
     {
       sessionTitle: "",
       description: "",
       videoLink: "",
-      
+      isCompleted: false, // Add this line
     },
   ]);
   const [addingMilestone, setAddingMilestone] = useState(false);
@@ -185,7 +186,10 @@ const Final = () => {
   };
   const handleSessionChange = (index, updatedSession) => {
     const updatedSessions = [...newMilestoneSessions];
-    updatedSessions[index] = updatedSession;
+    updatedSessions[index] = {
+      ...updatedSession,
+      isCompleted: false, // Make sure to include isCompleted
+    };
     setNewMilestoneSessions(updatedSessions);
   };
   const saveMilestone = () => {

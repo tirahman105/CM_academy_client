@@ -92,7 +92,7 @@ const WithdrawRequest = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="modal modal-bottom sm:modal-middle" open>
+          <div className="modal modal-middle sm:modal-middle" open>
             <div method="dialog" className="modal-box bg-slate-200 sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
               <div className="flex gap-3 items-center mx-auto mb-2">
                 <h1 className="w-1/2">Account holder Name </h1>
