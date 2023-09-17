@@ -11,7 +11,7 @@ const AllSupportTickets = () => {
 
   const fetchAllSupportTickets = () => {
     // Make a GET request to your API endpoint to fetch all support tickets
-    fetch('http://localhost:5000/api/support-tickets')
+    fetch('https://cm-academy-test-server-production.up.railway.app/api/support-tickets')
       .then((response) => response.json())
       .then((data) => {
         setSupportTickets(data);

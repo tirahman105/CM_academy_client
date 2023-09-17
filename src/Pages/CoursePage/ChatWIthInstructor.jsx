@@ -8,7 +8,7 @@ const ChatWithInstructor = ({ courseId, userId }) => {
 
   // Function to fetch chat data
   const fetchChatData = () => {
-    fetch(`http://localhost:5000/api/messages/${courseId}/${userId}`)
+    fetch(`https://cm-academy-test-server-production.up.railway.app/api/messages/${courseId}/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         setChatData(data);
@@ -43,7 +43,7 @@ const ChatWithInstructor = ({ courseId, userId }) => {
     setNewMessage("");
 
     // Send the new message to the server
-    fetch(`http://localhost:5000/api/messages`, {
+    fetch(`https://cm-academy-test-server-production.up.railway.app/api/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
