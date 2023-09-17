@@ -9,13 +9,22 @@ import QuizModal from "./Quiz/QuizModal";
 import RatingFeedbackForm from "../Dashboard/Student/MyCourses/RatingFeedbackForm";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import ChatWIthInstructor from "./ChatWIthInstructor";
 
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline, courseId, email, instructor, title ,courseCategory } = location.state;
+  const { courseOutline, courseId, email, instructor, title, courseCategory } =
+    location.state;
 
   const { user } = useContext(AuthContext);
-  console.log(courseOutline, courseId, email, instructor, title ,courseCategory);
+  console.log(
+    courseOutline,
+    courseId,
+    email,
+    instructor,
+    title,
+    courseCategory
+  );
 
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedSession, setSelectedSession] = useState(0);
@@ -101,6 +110,12 @@ const CoursePage = () => {
             >
               {" "}
             </RatingFeedbackForm>
+          </div>
+          <div className=" mt-10  p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]  ">
+            <ChatWIthInstructor
+              courseId={courseId}
+              userId={user?._id}
+            ></ChatWIthInstructor>
           </div>
         </div>
         <div className="lg:w-2/4 p-4">

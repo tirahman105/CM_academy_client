@@ -87,7 +87,7 @@ const CourseOutline = ({
           }}
         />
       </div>
-      <div className="p-5 mt-5">
+      <div className="p-5 mt-5  overflow-y-auto h-96 myComponentContainer">
         {filteredMilestones.map((milestone, milestoneIndex) => (
           <motion.div
             initial={{ opacity: 0, height: 0 }}

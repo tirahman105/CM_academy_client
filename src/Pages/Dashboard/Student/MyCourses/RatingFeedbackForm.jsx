@@ -112,7 +112,7 @@ const RatingFeedbackForm = ({
             placeholder="Enter your feedback"
             value={feedback}
             onChange={handleFeedbackChange}
-            className="w-full h-32 p-2 border border-gray-300 rounded-lg focus:outline-none text-gray-700 font-mono"
+            className="w-full h-32 p-2 border border-gray-300 rounded-lg focus:outline-none text-gray-700 font-mono "
           />
           <button className="font-Lexend font-bold grBg   border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3" onClick={handleSubmit}>Submit Feedback and Rating</button>
         </div>

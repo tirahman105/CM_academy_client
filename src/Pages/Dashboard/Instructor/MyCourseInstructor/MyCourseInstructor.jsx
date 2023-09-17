@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
-
+import ChatRequest from "./chatRequest";
 const MyCourseInstructor = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -26,13 +26,13 @@ const MyCourseInstructor = () => {
   const handleDetailsClick = (course) => {
     navigate("/courseDetailsDynamic", { state: { course } });
 
-    console.log(course);
+    console.log(course._id);
   };
 
-  console.log(instructorCourses);
+  console.log(instructorCourses[0]?._id);
   return (
     <div className="border p-4">
-       <div className=" my-4 mt-4">
+      <div className=" my-4 mt-4">
         <h1 className=" text-lg font-bold">My Courses</h1>
         <p className="text-base mb-4">All my courses</p>
         <hr />
@@ -79,6 +79,11 @@ const MyCourseInstructor = () => {
           </div>
         ))}
       </div>
+
+      <ChatRequest
+        courseId={instructorCourses[0]?._id}
+    
+      ></ChatRequest>
     </div>
   );
 };
