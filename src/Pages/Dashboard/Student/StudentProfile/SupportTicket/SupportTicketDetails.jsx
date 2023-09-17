@@ -33,7 +33,7 @@ const SupportTicketDetails = ({ ticketNumber, onClose }) => {
       content: newMessage,
     };
 
-    fetch(`http://localhost:5000/api/support-tickets/${ticketNumber}/add-message`, {
+    fetch(`https://cm-academy-test-server-production.up.railway.app/support-tickets/${ticketNumber}/add-message`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
