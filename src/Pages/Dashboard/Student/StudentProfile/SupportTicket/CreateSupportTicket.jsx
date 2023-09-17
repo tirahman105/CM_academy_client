@@ -28,7 +28,7 @@ const CreateSupportTicket = () => {
   const fetchAllSupportTickets = () => {
     console.log("Fetching support tickets...");
     fetch(
-      `http://localhost:5000/api/support-tickets/${user?.email}/${user?.fullName}`
+      `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${user?.email}/${user?.fullName}`
     )
       .then((response) => {
         console.log("Got response from support tickets API:", response);
@@ -58,7 +58,7 @@ const CreateSupportTicket = () => {
     };
 
     // Make an HTTP POST request to your backend API to create the support ticket
-    fetch("http://localhost:5000/api/support-tickets", {
+    fetch("https://cm-academy-test-server-production.up.railway.app/api/support-tickets", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

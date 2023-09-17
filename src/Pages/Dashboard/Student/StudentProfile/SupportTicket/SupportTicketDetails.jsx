@@ -6,7 +6,7 @@ const SupportTicketDetails = ({ ticketNumber, onClose }) => {
 
   // Function to fetch ticket messages
   const fetchTicketMessages = () => {
-    fetch(`http://localhost:5000/api/support-tickets/${ticketNumber}`)
+    fetch(`https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}`)
       .then((response) => response.json())
       .then((data) => {
         setMessages(data.messages);

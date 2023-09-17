@@ -14,7 +14,7 @@ const ChatRequest = ({ courseId }) => {
 
   const fetchMessages = () => {
     // Fetch messages from the server based on userId and courseId
-    fetch(`http://localhost:5000/api/messages/${courseId}`)
+    fetch(`https://cm-academy-test-server-production.up.railway.app/api/messages/${courseId}`)
       .then((response) => response.json())
       .then((data) => {
         setMessages(data);
