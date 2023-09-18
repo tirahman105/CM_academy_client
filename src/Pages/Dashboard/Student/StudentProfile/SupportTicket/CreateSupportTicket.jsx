@@ -55,6 +55,7 @@ const CreateSupportTicket = () => {
       sender: "student",
       subject,
       message,
+      
     };
 
     // Make an HTTP POST request to your backend API to create the support ticket
@@ -144,7 +145,7 @@ const CreateSupportTicket = () => {
         </div>
       )}
       <div>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">Support Tickets</h2>
+        <h2 className="text-2xl font-semibold  mt-4 mb-2">Support Tickets</h2>
         {supportTickets.map((ticket) => (
           <div
             key={ticket._id}

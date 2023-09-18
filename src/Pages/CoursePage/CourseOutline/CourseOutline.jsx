@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CourseOutline = ({
+  setMilestone,
   milestoneList,
   selectedMilestone,
   onSelectMilestone,
@@ -94,15 +95,15 @@ const CourseOutline = ({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${milestoneIndex === selectedMilestone ? " " : ""
-              }`}
+            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${
+              milestoneIndex === selectedMilestone ? " " : ""
+            }`}
             key={milestoneIndex}
           >
             <span
               className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
-            >
-            </span>
+            ></span>
             <span
               className={`cursor-pointer rounded-md text-[12px] font-TitilliumWeb text-base font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
@@ -124,11 +125,12 @@ const CourseOutline = ({
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ delay: 0.3 }}
-                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[11px] text-sm  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${milestoneIndex === selectedMilestone &&
-                          sessionIndex === activeSessionIndex
+                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[11px] text-sm  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${
+                        milestoneIndex === selectedMilestone &&
+                        sessionIndex === activeSessionIndex
                           ? "grBg "
                           : ""
-                        }`}
+                      }`}
                       key={sessionIndex}
                       id={`sessionButton-${milestoneIndex}-${sessionIndex}`}
                     >
@@ -162,7 +164,10 @@ const CourseOutline = ({
                   >
                     <span
                       className="cursor-pointer px-3 rounded-md"
-                      onClick={() => handleQuizButton(milestoneIndex)}
+                      onClick={() => {
+                        handleQuizButton(milestoneIndex);
+                        setMilestone(milestone.milestone);
+                      }}
                     >
                       Quizzes of {milestone.milestone} Milestone
                     </span>
