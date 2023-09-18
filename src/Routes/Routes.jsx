@@ -5,6 +5,8 @@ import Loading from "../Pages/Home/Home/Loading/Loading";
 import ChatWithStudent from "../Pages/Dashboard/Instructor/MyCourseInstructor/ChatWithStudent";
 import ChatRequest from "../Pages/Dashboard/Instructor/MyCourseInstructor/chatRequest";
 import CreateSupportTicket from "../Pages/Dashboard/Student/StudentProfile/SupportTicket/CreateSupportTicket";
+import AllSupportTickets from "../Pages/Dashboard/Admin/ManageStudents/Support/getAllSupportTicket";
+import ResponseTicket from "../Pages/Dashboard/Admin/ManageStudents/Support/ResponseTicket";
 
 // import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
@@ -388,6 +390,14 @@ const router = createBrowserRouter([
       {
         path: "student-support-center",
         element: <CreateSupportTicket></CreateSupportTicket>,
+      },
+      {
+        path: "support-tickets",
+        element: <AllSupportTickets></AllSupportTickets>,
+      },
+      {
+        path: "response-ticket",
+        element: <ResponseTicket></ResponseTicket>,
       },
     ],
   },

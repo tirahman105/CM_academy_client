@@ -55,6 +55,7 @@ const CreateSupportTicket = () => {
       sender: "student",
       subject,
       message,
+      
     };
 
     // Make an HTTP POST request to your backend API to create the support ticket

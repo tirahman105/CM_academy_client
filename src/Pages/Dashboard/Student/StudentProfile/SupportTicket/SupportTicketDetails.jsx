@@ -31,9 +31,11 @@ const SupportTicketDetails = ({ ticketNumber, onClose }) => {
     const messageData = {
       sender: "student", // Change to 'admin' if needed
       content: newMessage,
+      timestamp: new Date().toLocaleString(), // Add timestamp with date
+
     };
 
-    fetch(`https://cm-academy-test-server-production.up.railway.app/support-tickets/${ticketNumber}/add-message`, {
+    fetch(`https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/add-message`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

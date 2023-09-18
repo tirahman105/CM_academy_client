@@ -95,6 +95,11 @@ const Dashboard = () => {
       src: "/dashboard/Add-category",
       icon: addCourse,
     },
+    {
+      title: "Support Tickets",
+      src: "/dashboard/support-tickets",
+      icon: addCourse,
+    },
   ];
 
   const InstructorMenus = [
