@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { IoMdCall } from "react-icons/io";
-import AllSupportTickets from "./Support/getAllSupportTicket";
 
 const ManageStudents = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -141,7 +140,7 @@ const ManageStudents = () => {
           </p>
         </button>
       </div>
-      <AllSupportTickets></AllSupportTickets>
+   
     </div>
   );
 };

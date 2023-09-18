@@ -6,14 +6,13 @@ import useAdmin from "../Hooks/useAdmin";
 import { AuthContext } from "../providers/AuthProvider";
 import dashboard from "../../src/assets/iconForDashboard/dashboard.png";
 import profile from "../../src/assets/iconForDashboard/user.png";
-import course from "../../src/assets/iconForDashboard/homework.png"
-import addCourse from "../../src/assets/iconForDashboard/add.png"
-import blog from "../../src/assets/iconForDashboard/blogger.png"
-import payment from "../../src/assets/iconForDashboard/bill.png"
-import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png"
-import userManage from "../../src/assets/iconForDashboard/user_manage.png"
-import enrolledCourse from "../../src/assets/iconForDashboard/page.png"
-
+import course from "../../src/assets/iconForDashboard/homework.png";
+import addCourse from "../../src/assets/iconForDashboard/add.png";
+import blog from "../../src/assets/iconForDashboard/blogger.png";
+import payment from "../../src/assets/iconForDashboard/bill.png";
+import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png";
+import userManage from "../../src/assets/iconForDashboard/user_manage.png";
+import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -41,18 +40,22 @@ const Dashboard = () => {
     {
       title: "My Dashboard",
       src: "/dashboard/student-dashboard",
-      icon: dashboard
-      
+      icon: dashboard,
     },
     {
       title: "My Payments",
       src: "/dashboard/student-payment",
-      icon: payment
+      icon: payment,
     },
     {
       title: "My Profile",
       src: "/dashboard/student-profile",
-      icon: profile
+      icon: profile,
+    },
+    {
+      title: "Support Center",
+      src: "/dashboard/student-support-center",
+      icon: profile,
     },
   ];
 
@@ -60,37 +63,42 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       src: "/dashboard/admin-dashboard",
-      icon: dashboard
+      icon: dashboard,
     },
     {
       title: "Manage Students",
       src: "/dashboard/manage-students",
-      icon: userManage
+      icon: userManage,
     },
     {
       title: "All Enrolled Student",
       src: "/dashboard/All-enrolled-students",
-      icon: enrolledCourse
+      icon: enrolledCourse,
     },
     {
       title: "Manage instructors",
       src: "/dashboard/manage-instructors",
-      icon: userManage
+      icon: userManage,
     },
     {
       title: "Manage Course",
       src: "/dashboard/manage-course",
-      icon: course
+      icon: course,
     },
     {
       title: "Withdraw Request",
       src: "/dashboard/withdraw-request",
-      icon: payment
+      icon: payment,
     },
     {
       title: "Add New Category",
       src: "/dashboard/Add-category",
-      icon: addCourse
+      icon: addCourse,
+    },
+    {
+      title: "Support Tickets",
+      src: "/dashboard/support-tickets",
+      icon: addCourse,
     },
   ];
 
@@ -98,46 +106,49 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       src: "/dashboard/new-instructor-dashboard",
-      icon: dashboard
-      
+      icon: dashboard,
     },
     {
       title: "My Profile",
       src: "/dashboard/instructor-profile",
-      icon: profile
+      icon: profile,
     },
     {
       title: "My Courses",
       src: "/dashboard/my-courses-instructor",
-      icon: course
+      icon: course,
     },
 
     {
       title: "Add New Course",
       src: "/dashboard/add-course",
-      icon: addCourse
+      icon: addCourse,
     },
     {
       title: "My Blogs",
       src: "/dashboard/my-blogs",
-      icon: blog
+      icon: blog,
     },
     {
       title: "Add New Blog",
       src: "/dashboard/add-blog",
-      icon: addCourse
+      icon: addCourse,
     },
     {
       title: "Payment Setup",
       src: "/dashboard/acc-setup",
-      icon: paymentSetup
+      icon: paymentSetup,
     },
     {
       title: "Payment History",
       src: "/dashboard/my-payments",
-      icon: payment
+      icon: payment,
     },
-
+    {
+      title: "Support Request",
+      src: "/dashboard/support-request",
+      icon: payment,
+    },
   ];
 
   return (
@@ -155,9 +166,8 @@ const Dashboard = () => {
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
-            
           >
-             &lt;
+            &lt;
           </p>
           <div className="flex items-center ">
             <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
@@ -176,11 +186,9 @@ const Dashboard = () => {
                   alt=""
                 />
                 <h1
-                  className={`text-white font-semibold ${
-                    !open && "scale-0"
-                  }`}
+                  className={`text-white font-semibold ${!open && "scale-0"}`}
                 >
-                  {user?.fullName }
+                  {user?.fullName}
                 </h1>
               </div>
             </div>
@@ -195,7 +203,9 @@ const Dashboard = () => {
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -217,7 +227,10 @@ const Dashboard = () => {
                     >
                       <Link to={menu.src} className="flex items-center my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"> <img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          {" "}
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -240,7 +253,9 @@ const Dashboard = () => {
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -262,7 +277,7 @@ const Dashboard = () => {
               <p className="text-3xl"></p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
-              > 
+              >
                 Logout
               </span>
             </button>
@@ -275,7 +290,6 @@ const Dashboard = () => {
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
-          
           <Outlet></Outlet>
         </div>
       </div>
