@@ -5,7 +5,6 @@ import IntructorFinance from './IntructorFinance';
 import DashboradCourses from './DashboradCourses';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../../providers/AuthProvider';
-import InstructorProfile from './InstructorNavProfile';
 import InstructorNavProfile from './InstructorNavProfile';
 import InstructorStatistics from './InstructorStatistics';
 
