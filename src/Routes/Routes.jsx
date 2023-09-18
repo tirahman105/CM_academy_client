@@ -3,6 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Loading from "../Pages/Home/Home/Loading/Loading";
 import ChatWithStudent from "../Pages/Dashboard/Instructor/MyCourseInstructor/ChatWithStudent";
+import ChatRequest from "../Pages/Dashboard/Instructor/MyCourseInstructor/chatRequest";
+import CreateSupportTicket from "../Pages/Dashboard/Student/StudentProfile/SupportTicket/CreateSupportTicket";
 
 // import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
@@ -378,6 +380,14 @@ const router = createBrowserRouter([
       {
         path: "chat-w-student",
         element: <ChatWithStudent />,
+      },
+      {
+        path: "msg-request",
+        element: <ChatRequest></ChatRequest>,
+      },
+      {
+        path: "student-support-center",
+        element: <CreateSupportTicket></CreateSupportTicket>,
       },
     ],
   },

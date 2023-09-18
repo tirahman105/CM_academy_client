@@ -29,7 +29,11 @@ const MyCourseInstructor = () => {
     console.log(course._id);
   };
 
-  console.log(instructorCourses[0]?._id);
+  const handleMsgReq = (courseId) => {
+    navigate("/dashboard/msg-request", { state: { courseId } });
+  };
+
+  console.log(instructorCourses[1]?._id);
   return (
     <div className="border p-4">
       <div className=" my-4 mt-4">
@@ -74,16 +78,19 @@ const MyCourseInstructor = () => {
                 >
                   Details
                 </button>
+                <button
+                  onClick={() => handleMsgReq(category._id)}
+                  className="btn btn-sm bg-[#edfffc] 
+                border-2 border-[#12C29F] text-[#12C29F]
+                "
+                >
+                  View Message Request
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      <ChatRequest
-        courseId={instructorCourses[0]?._id}
-    
-      ></ChatRequest>
     </div>
   );
 };

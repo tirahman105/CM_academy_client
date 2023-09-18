@@ -11,9 +11,8 @@ const ChatWithStudent = () => {
   const courseId = location.state?.courseId; // Use optional chaining
   const userId = location.state?.userId; // Use optional chaining
 
-
-
   console.log(location);
+
   // Function to fetch chat data
   const fetchChatData = () => {
     fetch(`https://cm-academy-test-server-production.up.railway.app/api/messages/${courseId}/${userId}`)
@@ -84,6 +83,12 @@ const ChatWithStudent = () => {
     scrollToBottom();
   }, [chatData]);
 
+  // Function to convert URLs in text to clickable links
+  const convertTextToLinks = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank">${url}</a>`);
+  };
+
   return (
     <div className="chat-box">
       <div
@@ -106,12 +111,12 @@ const ChatWithStudent = () => {
                 }`}
               >
                 <div className="border rounded-md max-w-[60%] mb-4 px-4 py-1 mr-5 break-words">
-                  <p className=" ">{message.content}</p>
+                  <p className=" " dangerouslySetInnerHTML={{ __html: convertTextToLinks(message.content) }} />
                   <p className={` ${
-                      message.sender === "student"
-                        ? "text-right "
-                        : "text-left"
-                    } mt-4 timestamp text-[10px]`}>
+                    message.sender === "student"
+                      ? "text-right "
+                      : "text-left"
+                  } mt-4 timestamp text-[10px]`}>
                     {message.timestamp}
                   </p>
                 </div>

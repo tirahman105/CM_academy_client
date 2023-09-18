@@ -1,55 +1,61 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../../providers/AuthProvider";
 
-const ChatRequest = ({ courseId }) => {
+const ChatRequest = () => {
   const [messages, setMessages] = useState([]);
-
   const navigate = useNavigate();
-  console.log(messages);
-  useEffect(() => {
-    // Fetch messages from the server when the component mounts
-    fetchMessages();
-  }, [courseId]);
+  const location = useLocation();
+  const { user } = useContext(AuthContext);
 
-  const fetchMessages = () => {
-    // Fetch messages from the server based on userId and courseId
-    fetch(`https://cm-academy-test-server-production.up.railway.app/api/messages/${courseId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setMessages(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching messages:", error);
-      });
-  };
-  // console.log(messages);
+  // Check if location.state exists and contains courseId
+  const courseId = location.state?.courseId || null;
+
+  console.log("courseId", courseId);
+
+  useEffect(() => {
+    if (courseId) {
+      console.log("Fetching messages for course: ", courseId);
+      fetch(
+        `https://cm-academy-test-server-production.up.railway.app/api/messages/${courseId}`
+      )
+        .then((response) => {
+          console.log("Response received: ", response);
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Received messages: ", data);
+          setMessages(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching messages:", error);
+        });
+    }
+  }, [courseId]); // Add courseId as a dependency
 
   const handleViewMsg = ({ courseId, userId }) => {
     console.log(courseId, userId);
-
+    console.log(user?.email);
     navigate("/dashboard/chat-w-student", { state: { courseId, userId } });
-    
   };
 
   return (
     <div>
-      <h1> All request Chatdff</h1>
+      <h1> All request Chat</h1>
 
       <div>
         {messages.map((message, index) => (
           <div
             key={index}
             className={`message rounded-md  border-2 mb-2   ${
-              message.sender == "student" ? " " : "self-start"
+              message.sender === "student" ? " " : "self-start"
             }`}
           >
             <div className="  mb-4 px-4 py-1 mr-5 ">
               <p className=" overflow-hidden ">
-                Youre Course Id : {message.courseId}
+                Your Course Id : {message.courseId}
               </p>
-
-              <p className=" mt-4 timestamp">student Id : {message.userId}</p>
+              <p className=" mt-4 timestamp">Student Id : {message.userId}</p>
             </div>
             <button
               onClick={() =>
