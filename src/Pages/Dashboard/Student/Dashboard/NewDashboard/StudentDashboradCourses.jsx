@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import Tiles from "./Tiles";
 
-const StudentDashboradCourses = ({ courses, popularCourse, topRated  }) => {
+const StudentDashboradCourses = ({
+  courses,
+  popularCourse,
+  topRated,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
   const [selectedCourse, setSelectedCourse] = useState([]);
 
@@ -12,7 +16,9 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated  }) => {
     if (selectedCategory === "All Courses") {
       setSelectedCourse(courses);
     }
-  }, [  selectedCategory, courses  ]);
+  }, [selectedCategory, courses]);
+
+console.log("popularCourse", popularCourse);
 
   return (
     <div>
@@ -64,7 +70,7 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated  }) => {
         selectedCourse.length > 0 &&
         selectedCourse.map((course, i) => (
           // Your logic here to check and map goes inside this block
-          <Tiles course={course.course || course}  key={i}></Tiles>
+          <Tiles course={course.course || course} key={i}></Tiles>
         ))}
     </div>
   );

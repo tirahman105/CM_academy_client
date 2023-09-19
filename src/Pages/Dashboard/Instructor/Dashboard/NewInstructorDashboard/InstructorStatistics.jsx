@@ -50,7 +50,7 @@ const InstructorStatistics = () => {
         backgroundColor: 'white', 
       }}
     >
-      <h2 className='my-4 font-Lexend font-bold text-2xl'>
+      <h2 className='my-4 font-Lexend font-bold text-2xl laptop:text-base'>
         Enrolled Students Statistics
       </h2>
         <ResponsiveContainer width="100%" height="100%">

@@ -5,7 +5,6 @@ import IntructorFinance from './IntructorFinance';
 import DashboradCourses from './DashboradCourses';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../../providers/AuthProvider';
-import InstructorProfile from './InstructorNavProfile';
 import InstructorNavProfile from './InstructorNavProfile';
 import InstructorStatistics from './InstructorStatistics';
 
@@ -15,28 +14,48 @@ const NewInstructorDashboard = () => {
     console.log(user);
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto p-8">
-            {/* Box 1 */}
-            <div className="p-6 rounded-lg w-full bg-white">
+        <div>
 
-
-                <div className="mb-4 rounded-md bg-gray-100 h-40 flex justify-around items-center">
-                    <div className='p-8 space-y-1'>
-                        <h1 className="text-4xl font-extrabold font-Jost tracking-wider">Hello {user?.fullName}</h1>
-                        <p className='text-base font-normal'>It’s good to see you again on Instructor.</p>
+            <div >
+                <div className='grid grid-cols-1 gap-1 laptop:grid-cols-2'>
+                    <div className='order-2 laptop:order-1'>
+                        <div className="rounded-lg w-full bg-white">
+                            <div className="mb-4 rounded-md bg-gray-100 h-25 p-8 pr-0 flex justify-around items-center laptop:w-auto laptop:p-5 laptop:pr-0 ">
+                                <div className='space-y-1'>
+                                    <h1 className="text-4xl font-extrabold font-Jost tracking-wider laptop:text-2xl mobile:text-xl">
+                                        Hello {user?.fullName}
+                                    </h1>
+                                    <p className='text-base font-semibold laptop:text-sm mobile:text-xs'>
+                                        It’s good to see you again on Instructor.
+                                    </p>
+                                </div>
+                                <div className='-mt-11'>
+                                    <img src={hello} alt="" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className='-mt-9'>
-                        <img src={hello} alt="" />
+                    <div className='order-1 laptop:order-2'>
+                        <div className="p-6 rounded-lg laptop:p-0">
+                            <div className="flex items-center gap-6 justify-start mb-4">
+                                <div className="relative flex items-center flex-grow rounded-md text-lg bg-gray-100">
+                                    <span className="flex items-center pl-4">
+                                        <FaSearch size={24} className="text-gray-700" />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder=""
+                                        className="w-full focus:outline-none bg-gray-100 p-2"
+                                    />
+                                </div>
+                                {/* Profile */}
+                                <InstructorNavProfile></InstructorNavProfile>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
 
 
-                <IntructorFinance></IntructorFinance>
-
-
-                <DashboradCourses></DashboradCourses>
 
 
 
@@ -45,33 +64,71 @@ const NewInstructorDashboard = () => {
 
 
 
-            </div>
 
-            {/* Box 2 */}
-            <div className="p-6 rounded-lg">
+                <div>
+                    <div className='grid grid-cols-1 gap-1 laptop:grid-cols-2'>
+                        <div className='order-2 laptop:order-1'>
+                            <div>
+                                <IntructorFinance></IntructorFinance>
+                            </div>
+                        </div>
+                        <div className='order-1 laptop:order-2'>
+                            <div className='grid grid-cols-2 gap-4 mt-6'>
+                                <div className='bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4 laptop:text-base mobile:text-sm'>
+                                    <p className='text-6xl font-extrabold laptop:text-3xl mobile:text-xl'>
+                                        10
+                                    </p>
+                                    <p className='text-lg font-normal mobile:text-base'>
+                                        Courses
+                                    </p>
+                                </div>
+                                <div className='bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4 laptop:text-base mobile:text-sm'>
+                                    <p className='text-6xl font-extrabold laptop:text-3xl mobile:text-xl'>
+                                        5
+                                    </p>
+                                    <p className='text-lg font-normal mobile:text-base'>
+                                        Blogs
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                <div className="flex items-center gap-6 justify-start mb-4">
-                    <div className="relative flex items-center flex-grow rounded-md text-lg bg-gray-100">
-                        <span className="flex items-center pl-4">
-                            <FaSearch size={24} className="text-gray-700" />
-                        </span>
-                        <input
-                            type="text"
-                            placeholder=""
-                            className="w-full focus:outline-none bg-gray-100 p-2"
-                        />
                     </div>
-
-
-                    {/* Profile */}
-                    <InstructorNavProfile></InstructorNavProfile>
-
                 </div>
 
+
+
+
+
+
+
+                <div>
+                    <div className='grid grid-cols-1 laptop:grid-cols-2'>
+                        <div><DashboradCourses></DashboradCourses></div>
+                        <div><InstructorStatistics></InstructorStatistics></div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                {/* <div>
+                    <DashboradCourses></DashboradCourses>
+                </div>
+                <div>
+                    <IntructorFinance></IntructorFinance>
+                </div>
                 <div className='grid grid-cols-2 gap-4 mt-6'>
                     <div className='bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4'>
 
-                        <p className='text-6xl font-extrabold'>
+                        <p className='text-6xl font-extrabold laptop:text-3xl'>
                             10
                         </p>
                         <p className='text-lg font-normal'>
@@ -81,7 +138,7 @@ const NewInstructorDashboard = () => {
 
                     <div className='bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4'>
 
-                        <p className='text-6xl font-extrabold'>
+                        <p className='text-6xl font-extrabold laptop:text-3xl'>
                             5
                         </p>
                         <p className='text-lg font-normal'>
@@ -89,10 +146,19 @@ const NewInstructorDashboard = () => {
                         </p>
                     </div>
 
+
                 </div>
-                <InstructorStatistics></InstructorStatistics>
+
+                <div>
+                    <InstructorStatistics></InstructorStatistics>
+                </div> */}
+
 
             </div>
+
+
+
+
         </div>
     );
 };
