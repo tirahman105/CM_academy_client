@@ -45,9 +45,9 @@ const DashboradCourses = () => {
     setCurrentPage(newPage);
   };
   return (
-    <div>
-      <h1 className="text-2xl text-left font-bold mt-20">Courses</h1>
-      <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost">
+    <div className="bg-yellow-100">
+      <h1 className="text-2xl text-left font-bold mt-20 laptop:text-xl">Courses</h1>
+      <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost laptop:text-base">
         <h1
           onClick={() => {
             setSelectedCategory("All Courses");
