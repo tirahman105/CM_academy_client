@@ -15,16 +15,16 @@ const NewInstructorDashboard = () => {
   return (
     <div className="mobile:px-4">
       <div>
-        <div className="grid grid-cols-1 gap-1 laptop:grid-cols-2">
+        <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
           <div className="order-2 laptop:order-1">
             <div className="rounded-lg w-full bg-white">
               <div className="mb-4 rounded-md bg-gray-100  mobile:p-8 pr-0 flex justify-around items-center laptop:w-auto laptop:p-5 laptop:pr-0 ">
                 <div className="space-y-1">
                   <h1 className="text-4xl font-extrabold font-Jost tracking-wider laptop:text-2xl mobile:text-xl">
-                    Hello {user?.fullName}
+                    Hello! {user?.fullName}
                   </h1>
                   <p className="text-base font-semibold laptop:text-sm mobile:text-xs">
-                    It’s good to see you again on Instructor.
+                    It's good to see you again on Instructor.
                   </p>
                 </div>
                 <div className="-mt-11">
@@ -54,7 +54,7 @@ const NewInstructorDashboard = () => {
         </div>
 
         <div>
-          <div className="grid grid-cols-1 gap-1 laptop:grid-cols-2">
+          <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
             <div className="order-2 laptop:order-1">
               <div>
                 <IntructorFinance></IntructorFinance>
@@ -82,7 +82,7 @@ const NewInstructorDashboard = () => {
         </div>
 
         <div>
-          <div className="grid grid-cols-1 laptop:grid-cols-2">
+          <div className="grid grid-cols-1 laptop:gap-2 laptop:grid-cols-2">
             <div>
               <DashboradCourses></DashboradCourses>
             </div>

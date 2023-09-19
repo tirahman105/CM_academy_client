@@ -284,7 +284,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen ">
+      <div className="h-screen tablet:pr-8 desktop:pr-20 laptop:pt-10 ">
         <div
           className={`pt-7 text-2xl font-semibold flex-1 ${
             open ? "md:ml-72" : "md:ml-32"
