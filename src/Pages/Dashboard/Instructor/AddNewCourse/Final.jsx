@@ -217,8 +217,8 @@ const Final = () => {
 
   ///////////////////////////////////////
   return (
-    <div className=" mt-14">
-      <div className="   flex justify-around max-w-7xl mx-auto  pt-5 pb-1  mb-8 bg-white">
+    <div className="laptop:mt-4 desktop:mt-8">
+      <div className="   flex justify-around max-w-7xl mx-auto  pt-5 pb-1  bg-white">
         <div className="w-[70%]">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
             Empower Learning: Design Your Course
@@ -230,11 +230,11 @@ const Final = () => {
             description, and let your passion for teaching shine through.
           </p>
         </div>
-        <img src={InstructorImage} alt="" />
+        <img className="h-1/4" src={InstructorImage} alt="" />
       </div>
       {/* <hr /> */}
       <form className="max-w-3xl mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <div className="bg-white pt-20 sticky top-[0px]">
+        <div className="bg-white pt-10 sticky top-[0px]">
           <div className="mb-4 text-base bg-white font-bold flex justify-center border rounded-md shadow-md  ">
             <div
               className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${
