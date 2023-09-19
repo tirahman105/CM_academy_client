@@ -27,9 +27,9 @@ export default {
         Jost: ['Jost', 'sans-serif']
       },
       screens: {
-        'mobile': '320px',           // Mobile Phones
+        'mobile': {'min':'0px', 'max':'767px'}, // Mobile Phones
         'tablet': '768px',           // Tablets
-        'laptop': '1024px',          // Laptops
+        'laptop': '1020px',          // Laptops
         'desktop': '1280px',         // Desktop Monitors
         'large-desktop': '1920px',   // Large Desktop Monitors
         'xl-desktop': '2560px',      // Extra Large Desktop Monitors
