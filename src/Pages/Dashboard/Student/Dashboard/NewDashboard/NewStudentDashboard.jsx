@@ -16,7 +16,7 @@ import { useStudentCourses } from "../../../../../Context/StudentCoursesContext"
 const NewStudentDashboard = () => {
   const [courses, setCourses] = useState([]);
   const { user } = useContext(AuthContext);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   // const [studentCourses, setStudentCourses] = useState([]);
 
   const { studentCourses, fetchStudentCourses } = useStudentCourses();
@@ -30,8 +30,7 @@ const NewStudentDashboard = () => {
     }
   }, [user]);
 
-
-   // Define the fetchStudentCourses function
+  // Define the fetchStudentCourses function
   //  const fetchStudentCourses = async () => {
   //   try {
   //     const response = await fetch(
@@ -47,9 +46,8 @@ const NewStudentDashboard = () => {
   //     setLoading(false); // Set loading to false in case of an error
   //   }
   // };
-  
 
-  // console.log("studentCourses", studentCourses);  
+  // console.log("studentCourses", studentCourses);
   // // Call fetchStudentCourses when user or user.email changes
   // useEffect(() => {
   //   // Check if the user object is available
@@ -76,11 +74,11 @@ const NewStudentDashboard = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto p-8">
       {/* Box 1 */}
-      <div className="p-6 rounded-lg w-full bg-white">
+      <div className="mobile:order-2 p-6 rounded-lg w-full bg-white">
         <div className="mb-4 rounded-md bg-gray-100 h-40 flex justify-around items-center">
           <div className="p-8 space-y-1">
             <h1 className="text-4xl font-extrabold font-Jost tracking-wider">
-              Hello {user?.fullName}
+              Hello! {user?.fullName}
             </h1>
             <p className="text-base font-normal">It’s good to see you again.</p>
           </div>
@@ -92,12 +90,15 @@ const NewStudentDashboard = () => {
 
         <CourseProgress courses={studentCourses}></CourseProgress>
 
-        <StudentDashboradCourses courses={studentCourses} popularCourse ={courses}  ></StudentDashboradCourses>
+        <StudentDashboradCourses
+          courses={studentCourses}
+          popularCourse={courses}
+        ></StudentDashboradCourses>
       </div>
 
       {/* Box 2 */}
-      <div className="p-6 rounded-lg">
-        <div className="flex items-center gap-6 justify-start mb-4">
+      <div className="p-6 rounded-lg  ">
+        <div className="flex items-center gap-6 justify-start mb-4 ">
           <div className="relative flex items-center flex-grow rounded-md text-lg bg-gray-100">
             <span className="flex items-center pl-4">
               <FaSearch size={24} className="text-gray-700" />
@@ -141,18 +142,23 @@ const NewStudentDashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-6">
-          <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4">
-            <p className="text-6xl font-extrabold">10</p>
-            <p className="text-lg font-normal">Courses Completed</p>
-          </div>
+        <div className="">
+          <div className="grid grid-cols-2 gap-4 mt-6 ">
+            <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4">
+              <p className="text-6xl font-extrabold">10</p>
+              <p className="text-lg font-normal">Courses Completed</p>
+            </div>
 
-          <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4">
-            <p className="text-6xl font-extrabold">5</p>
-            <p className="text-lg font-normal">Courses in Progress</p>
+            <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4">
+              <p className="text-6xl font-extrabold">5</p>
+              <p className="text-lg font-normal">Courses in Progress</p>
+            </div>
           </div>
         </div>
-        <YourStatistics></YourStatistics>
+
+        <div>
+          <YourStatistics></YourStatistics>
+        </div>
       </div>
     </div>
   );

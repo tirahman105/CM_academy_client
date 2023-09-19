@@ -92,39 +92,7 @@ const NewInstructorDashboard = () => {
           </div>
         </div>
 
-        {/* <div>
-                    <DashboradCourses></DashboradCourses>
-                </div>
-                <div>
-                    <IntructorFinance></IntructorFinance>
-                </div>
-                <div className='grid grid-cols-2 gap-4 mt-6'>
-                    <div className='bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4'>
-
-                        <p className='text-6xl font-extrabold laptop:text-3xl'>
-                            10
-                        </p>
-                        <p className='text-lg font-normal'>
-                            Courses
-                        </p>
-                    </div>
-
-                    <div className='bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4'>
-
-                        <p className='text-6xl font-extrabold laptop:text-3xl'>
-                            5
-                        </p>
-                        <p className='text-lg font-normal'>
-                            Blogs
-                        </p>
-                    </div>
-
-
-                </div>
-
-                <div>
-                    <InstructorStatistics></InstructorStatistics>
-                </div> */}
+       
       </div>
     </div>
   );
