@@ -13,6 +13,8 @@ import payment from "../../src/assets/iconForDashboard/bill.png";
 import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png";
 import userManage from "../../src/assets/iconForDashboard/user_manage.png";
 import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
+import liveChat from "../../src/assets/iconForDashboard/live-chat-support.png";
+import logout from "../../src/assets/iconForDashboard/logout.png";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -55,7 +57,7 @@ const Dashboard = () => {
     {
       title: "Support Center",
       src: "/dashboard/student-support-center",
-      icon: profile,
+      icon: liveChat,
     },
   ];
 
@@ -147,7 +149,7 @@ const Dashboard = () => {
     {
       title: "Support Request",
       src: "/dashboard/support-request",
-      icon: payment,
+      icon: liveChat,
     },
   ];
 
@@ -272,9 +274,11 @@ const Dashboard = () => {
             <hr className=" my-6" />
             <button
               onClick={handleLogOut}
-              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
             >
-              <p className="text-3xl"></p>
+              <p className="text-3xl">
+                <img src={logout} alt="" />
+              </p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
               >
