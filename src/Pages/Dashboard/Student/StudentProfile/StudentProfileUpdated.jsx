@@ -295,6 +295,7 @@ const StudentProfileUpdated = () => {
                     </div>
                 </div>
             </div>
+
         </div>
   );
 };

@@ -2,6 +2,11 @@ import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import Loading from "../Pages/Home/Home/Loading/Loading";
+import ChatWithStudent from "../Pages/Dashboard/Instructor/MyCourseInstructor/ChatWithStudent";
+import ChatRequest from "../Pages/Dashboard/Instructor/MyCourseInstructor/chatRequest";
+import CreateSupportTicket from "../Pages/Dashboard/Student/StudentProfile/SupportTicket/CreateSupportTicket";
+import AllSupportTickets from "../Pages/Dashboard/Admin/ManageStudents/Support/getAllSupportTicket";
+import ResponseTicket from "../Pages/Dashboard/Admin/ManageStudents/Support/ResponseTicket";
 
 // import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
@@ -26,17 +31,14 @@ const InstructorSignUp = lazy(() =>
   import("../Pages/Authentication/InstructorSignUp/InstructorSignUp")
 );
 
-
 const PaymentSuccess = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentSuccess")
 );
-
 
 const CheckOut = lazy(() => import("../payments/PaymentCheckout/CheckOut"));
 const PaymentFail = lazy(() =>
   import("../payments/PaymentFailSuccess/PaymentFail")
 );
-
 
 const ResetPassword = lazy(() =>
   import("../Pages/Authentication/ResetPassword/ResetPassword")
@@ -140,12 +142,18 @@ const TermsAndConditions = lazy(() =>
   import("../Pages/TermsAndConditions/TermsAndConditions")
 );
 const NewInstructorDashboard = lazy(() =>
-  import("../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard")
+  import(
+    "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard"
+  )
 );
 const NewStudentDashboard = lazy(() =>
-  import("../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard")
+  import(
+    "../Pages/Dashboard/Student/Dashboard/NewDashboard/NewStudentDashboard"
+  )
 );
-
+// const ChatWithStudent = lazy(() =>
+//   import("../Pages/Dashboard/Instructor/MyCourseInstructor/ChatWithStudent")
+// );
 
 const router = createBrowserRouter([
   {
@@ -255,7 +263,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
+
   {
     path: "dashboard",
     element: (
@@ -362,7 +370,6 @@ const router = createBrowserRouter([
       {
         path: "my-courses",
         element: <MyCourses />,
-
       },
       {
         path: "student-payment",
@@ -371,6 +378,26 @@ const router = createBrowserRouter([
       {
         path: "student-profile",
         element: <StudentProfileUpdated />,
+      },
+      {
+        path: "chat-w-student",
+        element: <ChatWithStudent />,
+      },
+      {
+        path: "msg-request",
+        element: <ChatRequest></ChatRequest>,
+      },
+      {
+        path: "student-support-center",
+        element: <CreateSupportTicket></CreateSupportTicket>,
+      },
+      {
+        path: "support-tickets",
+        element: <AllSupportTickets></AllSupportTickets>,
+      },
+      {
+        path: "response-ticket",
+        element: <ResponseTicket></ResponseTicket>,
       },
     ],
   },

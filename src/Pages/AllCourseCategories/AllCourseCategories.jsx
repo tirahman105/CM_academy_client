@@ -54,6 +54,8 @@ function AllCourseCategories() {
     const selectedCategory = new URLSearchParams(location.search).get(
       "category"
     );
+
+    
     if (selectedCategory && selectedCategory !== "All") {
       if (!cachedData[selectedCategory]) {
         // Fetch courses for the selected category if not already cached

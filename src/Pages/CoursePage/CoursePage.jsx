@@ -9,22 +9,27 @@ import QuizModal from "./Quiz/QuizModal";
 import RatingFeedbackForm from "../Dashboard/Student/MyCourses/RatingFeedbackForm";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import ChatWIthInstructor from "./ChatWIthInstructor";
 
 const CoursePage = () => {
   const location = useLocation();
-  const { courseOutline, courseId, email, instructor, title ,courseCategory } = location.state;
+  const { courseOutline, courseId, email, instructor, title, courseCategory } =
+    location.state;
 
   const { user } = useContext(AuthContext);
-  console.log(courseOutline, courseId, email, instructor, title ,courseCategory);
+  console.log(courseId, user?.email);
 
   const [selectedMilestone, setSelectedMilestone] = useState(0);
   const [selectedSession, setSelectedSession] = useState(0);
   const [showCertificateModal, setShowCertificateModal] = useState(false);
   const [showQuizModal, setShowQuizModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
   const [selectedQuiz, setSelectedQuiz] = useState(null); // Store selected quiz details
 
+  const [milestone, setMilestone] = useState("");
+
+
+  console.log("milestone", milestone);
   const handleSessionSelect = (sessionIndex) => {
     setSelectedSession(sessionIndex);
   };
@@ -79,7 +84,7 @@ const CoursePage = () => {
       setShowQuizModal(true);
     }
   };
-
+  console.log("selectedMilestone", selectedMilestone);
   return (
     <div className="relative">
       <div className="lg:flex pt-36 cb pb-32">
@@ -102,6 +107,12 @@ const CoursePage = () => {
               {" "}
             </RatingFeedbackForm>
           </div>
+          <div className=" mt-10  p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]  ">
+            <ChatWIthInstructor
+              courseId={courseId}
+              userId={user?._id}
+            ></ChatWIthInstructor>
+          </div>
         </div>
         <div className="lg:w-2/4 p-4">
           <CourseOutline
@@ -111,6 +122,7 @@ const CoursePage = () => {
             onSelectSession={handleSessionSelect}
             activeSessionIndex={selectedSession}
             onQuizButtonClick={handleQuizButton}
+            setMilestone={setMilestone}
           />
           <div className="flex justify-center">
             <button
@@ -139,7 +151,9 @@ const CoursePage = () => {
       {/* Render the QuizModal */}
       {showQuizModal && selectedQuiz && (
         <QuizModal
-          milestoneName={courseOutline[selectedMilestone].milestone} // Pass the milestone name
+          courseId={courseId}
+          studentEmail={user?.email}
+          milestoneName={milestone} // Pass the milestone name
           quizzes={selectedQuiz} // Pass all quiz questions
           onClose={() => setShowQuizModal(false)}
         />
