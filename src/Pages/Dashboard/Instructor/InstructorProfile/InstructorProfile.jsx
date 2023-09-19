@@ -19,6 +19,11 @@ const InstructorProfile = () => {
         fullName: '',
         contactNumber: '',
         aboutMe: '',
+        designation: '',
+        location: '',
+        facebookLink: '',
+        linkedinLink: '',
+        githubLink: '',
     });
 
     const {
@@ -38,6 +43,11 @@ const InstructorProfile = () => {
                         fullName: filteredUserData?.fullName || '',
                         contactNumber: filteredUserData?.contactNumber || '',
                         aboutMe: filteredUserData?.aboutMe || '',
+                        designation: filteredUserData?.designation || '',
+                        location: filteredUserData?.location || '',
+                        facebookLink: filteredUserData?.facebookLink || '',
+                        linkedinLink: filteredUserData?.linkedinLink || '',
+                        githubLink: filteredUserData?.githubLink || '',
                     });
                 })
                 .catch((error) => {
@@ -56,6 +66,11 @@ const InstructorProfile = () => {
             fullName: userDataFromAPI?.fullName || '',
             contactNumber: userDataFromAPI?.contactNumber || '',
             aboutMe: userDataFromAPI?.aboutMe || '',
+            designation: userDataFromAPI?.designation || '',
+            location: userDataFromAPI?.location || '',
+            facebookLink: userDataFromAPI?.facebookLink || '',
+            linkedinLink: userDataFromAPI?.linkedinLink || '',
+            githubLink: userDataFromAPI?.githubLink || '',
         });
     };
 
@@ -66,6 +81,11 @@ const InstructorProfile = () => {
             fullName: editedFields.fullName,
             contactNumber: editedFields.contactNumber,
             aboutMe: editedFields.aboutMe,
+            designation: editedFields.designation,
+            location: editedFields.location,
+            facebookLink: editedFields.facebookLink,
+            linkedinLink: editedFields.linkedinLink,
+            githubLink: editedFields.githubLink,
             email: userEmail,
             userImage: userDataFromAPI.userImage,
         };
@@ -141,14 +161,14 @@ const InstructorProfile = () => {
     };
 
     if (!userDataFromAPI) {
-
-        return  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500 text-center mx-auto"></div>;
-
+        return (
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500 text-center mx-auto"></div>
+        );
     }
 
     return (
-        <div>
-            <div className="w-3/5 p-4 flex items-center mx-auto">
+        <div className='px-2 pb-24'>
+            <div className="tablet:w-3/5 p-4 flex items-center tablet:mx-auto">
                 <img
                     src={selectedImage || userDataFromAPI.userImage || 'default-profile-picture-url.jpg'}
                     alt="Profile Picture"
@@ -163,15 +183,15 @@ const InstructorProfile = () => {
                             </div>
                         ) : selectedImage ? (
                             <>
-                                <button type="button" onClick={handleSaveEdit} className="flex items-center">
+                                <button type="button" onClick={handleSaveEdit} className="flex items-center gap-1 ">
                                     <BiSave className="text-3xl text-green-700" />
-                                    <span className="text-xl p-2 rounded-lg">Save photo</span>
+                                    <span className="text-sm px-2 font-semibold shadow-md  rounded-lg">Save photo</span>
                                 </button>
                             </>
                         ) : (
                             <>
                                 <FcAddImage className="text-5xl text-white mr-3" />
-                                <span className="text-xl p-2 rounded-lg text-white bg-[#1bbabf] hover:bg-[#1BBF72] duration-300">Upload photo</span>
+                                <span className="text-sm px-2 py-1 rounded-lg text-white bg-[#40BF72]">Upload photo</span>
                                 <input
                                     type="file"
                                     {...register('image', { required: true })}
@@ -184,21 +204,19 @@ const InstructorProfile = () => {
                 </div>
             </div>
 
-            <div className="flex justify-between items-start w-3/5 mx-auto mt-20 shadow-lg  rounded-xl bg-slate-100">
+            <div className="flex justify-between items-start desktop:w-3/5 mx-auto mt-20 shadow-lg border-2 border-slate-600  rounded-xl ">
                 {/* Left side with profile picture */}
-
-
                 {/* Right side with user information */}
-                <div className="w-full p-4 relative border-2 border-gray-200">
-                    <div className="mb-4 mt-8 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold">Instructor ID</p>
-                        <span>:</span>
+                <div className="w-full p-4 relative  border-gray-200">
+                    <div className="mb-4 mt-8  p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm">Instructor ID</p>
+                        
                         <p className='font-bold'>{userDataFromAPI._id}</p>
                     </div>
 
-                    <div className="mb-4 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold text-lg whitespace-nowrap">Full Name</p>
-                        <span>:</span>
+                    <div className="mb-4  p-2 items-center gap-4  bg-gray-100">
+                        <p className="font-semibold  whitespace-nowrap text-sm ">Full Name</p>
+                        
                         {isEditing ? (
                             <input
                                 className="border rounded-md px-2 py-2 w-full"
@@ -209,13 +227,12 @@ const InstructorProfile = () => {
                                 }
                             />
                         ) : (
-                            <p className="font-semibold text-2xl">{userDataFromAPI.fullName}</p>
+                            <p className="font-semibold text-xl">{userDataFromAPI.fullName}</p>
                         )}
                     </div>
 
-                    <div className="mb-4 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold text-lg whitespace-nowrap">Contact Number</p>
-                        <span>:</span>
+                    <div className="mb-4  p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">Contact Number</p>
                         {isEditing ? (
                             <input
                                 className="border rounded-md px-2 py-1 w-full"
@@ -226,13 +243,12 @@ const InstructorProfile = () => {
                                 }
                             />
                         ) : (
-                            <p>{userDataFromAPI.contactNumber}</p>
+                            <p className='text-lg'>{editedFields.contactNumber}</p>
                         )}
                     </div>
 
-                    <div className="mb-4 w-full flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold text-lg whitespace-nowrap">Email Address</p>
-                        <span>:</span>
+                    <div className="mb-4  p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold  text-sm whitespace-nowrap">Email Address</p>
                         <div className={`w-full ${isEditing ? 'bg-gray-100' : ''}`}>
                             {isEditing ? (
                                 <p className="ml-2 text-gray-400 border rounded-md px-2 py-1">
@@ -240,14 +256,101 @@ const InstructorProfile = () => {
                                     <span className="text-red-300 items-end text-lg">Not Editable</span>
                                 </p>
                             ) : (
-                                <p>{userDataFromAPI.email}</p>
+                                <p className='text-xl'>{userDataFromAPI.email}</p>
                             )}
                         </div>
                     </div>
 
+                    {/* Add new fields here */}
+                    {/* designation */}
+                    <div className="mb-4  p-2 gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">Designation</p>
+                        
+                        {isEditing ? (
+                            <input
+                                className="border rounded-md px-2 py-1 w-full"
+                                type="text"
+                                value={editedFields.designation}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, designation: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p className='text-xl'>{editedFields.designation}</p>
+                        )}
+                    </div>
 
+                    {/* Location */}
+                    <div className="mb-4  p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">Location</p>
+                        {isEditing ? (
+                            <input
+                                className="border rounded-md px-2 py-1 w-full"
+                                type="text"
+                                value={editedFields.location}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, location: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p className='text-xl'>{editedFields.location}</p>
+                        )}
+                    </div>
+
+                    {/* Facebook */}
+                    <div className="mb-4 p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">Facebook</p>
+                        {isEditing ? (
+                            <input
+                                className="border rounded-md px-2 py-1 w-full"
+                                type="text"
+                                value={editedFields.facebookLink}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, facebookLink: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p className='text-xl'>{editedFields.facebookLink}</p>
+                        )}
+                    </div>
+
+                    {/* LinkedIn */}
+                    <div className="mb-4  p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">LinkedIn</p>
+                        {isEditing ? (
+                            <input
+                                className="border rounded-md px-2 py-1 w-full"
+                                type="text"
+                                value={editedFields.linkedinLink}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, linkedinLink: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p className='text-xl'>{editedFields.linkedinLink}</p>
+                        )}
+                    </div>
+
+                    {/* GitHub */}
+                    <div className="mb-4   p-2  gap-4 text-lg bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">GitHub</p>
+                        {isEditing ? (
+                            <input
+                                className="border rounded-md px-2 py-1 w-full"
+                                type="text"
+                                value={editedFields.githubLink}
+                                onChange={(e) =>
+                                    setEditedFields({ ...editedFields, githubLink: e.target.value })
+                                }
+                            />
+                        ) : (
+                            <p className='text-xl'>{editedFields.githubLink}</p>
+                        )}
+                    </div>
+
+                    {/* About Me */}
                     <div className="mb-4">
-                        <p className="font-semibold text-lg mt-2 mb-4">About Me:</p>
+                        <p className="font-semibold text-sm mt-2 mb-4">About Me</p>
                         {isEditing ? (
                             <textarea
                                 className="border rounded-md px-2 py-1 w-full text-base h-28"
@@ -257,10 +360,9 @@ const InstructorProfile = () => {
                                 }
                             />
                         ) : (
-                            <p className='text-xl font-normal'>{userDataFromAPI.aboutMe}</p>
+                            <p className='text-xl font-normal'>{editedFields.aboutMe}</p>
                         )}
                     </div>
-
 
                     <div className="absolute top-0 right-0 mt-4 mr-4">
                         {isEditing ? (
