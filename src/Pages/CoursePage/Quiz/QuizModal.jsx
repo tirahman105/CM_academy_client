@@ -6,6 +6,7 @@ const QuizModal = ({
   onClose,
   courseId,
   studentEmail,
+  setRefresh
 }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState(
@@ -76,6 +77,7 @@ const QuizModal = ({
     } catch (error) {
       console.error("Error storing quiz score:", error);
     }
+    window.location.reload();
   };
 
   console.log("score", score);
@@ -120,7 +122,10 @@ console.log("milestoneName", milestoneName);
           )}
           {!showCorrectAnswers && (
             <button
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                setRefresh(true);
+              }}
               className="mt-4 px-4 py-2 rounded-md bg-green-500 text-white hover:bg-green-600"
             >
               Close

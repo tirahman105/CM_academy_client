@@ -7,6 +7,7 @@ const Tiles = (course) => {
   // console.log("Tiles", course);
   const navigate = useNavigate();
 
+  console.log("Tiles", course);
   const handleViewCourse = (
     courseId,
     courseOutline,

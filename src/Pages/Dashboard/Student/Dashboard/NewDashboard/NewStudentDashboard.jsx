@@ -11,43 +11,54 @@ import CourseProgress from "./CourseProgress";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useStudentCourses } from "../../../../../Context/StudentCoursesContext";
 
 const NewStudentDashboard = () => {
   const [courses, setCourses] = useState([]);
   const { user } = useContext(AuthContext);
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [studentCourses, setStudentCourses] = useState([]);
+  const [loading, setLoading] = useState(true); 
+  // const [studentCourses, setStudentCourses] = useState([]);
 
-  // console.log(studentCourses[0]);
+  const { studentCourses, fetchStudentCourses } = useStudentCourses();
 
-  // my enrolled course fetching
   useEffect(() => {
-    // Check if the user object is available
+    // Check if the user object is available and fetch student courses
     if (user && user.email) {
-      const fetchStudentCourses = async () => {
-        try {
-          const response = await fetch(
-            `https://cm-academy-test-server-production.up.railway.app/orders/${user.email}`
-          );
-          const data = await response.json();
-
-          // Filter orders to find the ones associated with the logged-in student's email
-          // const enrolledCourses = data;
-
-          // Store the enrolled courses in state
-          setStudentCourses(data);
-          setLoading(false); // Set loading to false when data is fetched
-        } catch (error) {
-          console.error("Error fetching student courses:", error);
-          setLoading(false); // Set loading to false in case of an error
-        }
-      };
-
-      fetchStudentCourses();
+      fetchStudentCourses(user.email);
     } else {
-      setLoading(false); // Set loading to false if user is not available
+      setLoading(false);
     }
   }, [user]);
+
+
+   // Define the fetchStudentCourses function
+  //  const fetchStudentCourses = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://cm-academy-test-server-production.up.railway.app/orders/${user.email}`
+  //     );
+  //     const data = await response.json();
+
+  //     // Store the enrolled courses in state
+  //     setStudentCourses(data);
+  //     setLoading(false); // Set loading to false when data is fetched
+  //   } catch (error) {
+  //     console.error("Error fetching student courses:", error);
+  //     setLoading(false); // Set loading to false in case of an error
+  //   }
+  // };
+  
+
+  // console.log("studentCourses", studentCourses);  
+  // // Call fetchStudentCourses when user or user.email changes
+  // useEffect(() => {
+  //   // Check if the user object is available
+  //   if (user && user.email) {
+  //     fetchStudentCourses();
+  //   } else {
+  //     setLoading(false); // Set loading to false if user is not available
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     // Fetch data from the API
@@ -81,7 +92,7 @@ const NewStudentDashboard = () => {
 
         <CourseProgress courses={studentCourses}></CourseProgress>
 
-        <StudentDashboradCourses courses={studentCourses} ></StudentDashboradCourses>
+        <StudentDashboradCourses courses={studentCourses} popularCourse ={courses}  ></StudentDashboradCourses>
       </div>
 
       {/* Box 2 */}
