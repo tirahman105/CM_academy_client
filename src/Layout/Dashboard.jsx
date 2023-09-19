@@ -6,14 +6,13 @@ import useAdmin from "../Hooks/useAdmin";
 import { AuthContext } from "../providers/AuthProvider";
 import dashboard from "../../src/assets/iconForDashboard/dashboard.png";
 import profile from "../../src/assets/iconForDashboard/user.png";
-import course from "../../src/assets/iconForDashboard/homework.png"
-import addCourse from "../../src/assets/iconForDashboard/add.png"
-import blog from "../../src/assets/iconForDashboard/blogger.png"
-import payment from "../../src/assets/iconForDashboard/bill.png"
-import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png"
-import userManage from "../../src/assets/iconForDashboard/user_manage.png"
-import enrolledCourse from "../../src/assets/iconForDashboard/page.png"
-
+import course from "../../src/assets/iconForDashboard/homework.png";
+import addCourse from "../../src/assets/iconForDashboard/add.png";
+import blog from "../../src/assets/iconForDashboard/blogger.png";
+import payment from "../../src/assets/iconForDashboard/bill.png";
+import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png";
+import userManage from "../../src/assets/iconForDashboard/user_manage.png";
+import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -42,7 +41,6 @@ const Dashboard = () => {
       title: "My Dashboard",
       src: "/dashboard/student-dashboard",
       icon: dashboard
-      
     },
     {
       title: "My Payments",
@@ -99,7 +97,6 @@ const Dashboard = () => {
       title: "Dashboard",
       src: "/dashboard/new-instructor-dashboard",
       icon: dashboard
-      
     },
     {
       title: "My Profile",
@@ -111,7 +108,6 @@ const Dashboard = () => {
       src: "/dashboard/my-courses-instructor",
       icon: course
     },
-
     {
       title: "Add New Course",
       src: "/dashboard/add-course",
@@ -137,17 +133,16 @@ const Dashboard = () => {
       src: "/dashboard/my-payments",
       icon: payment
     },
-
   ];
 
   return (
-    <div className="">
+    <div className="text-base laptop:text-base">
       <div
         className={`fixed z-10 h-full   py-4 duration-500  ${open ? " " : " "}`}
       >
         <div
           className={`${
-            open ? "w-72 px-5" : "md:w-[80px] px-2 w-0"
+            open ? "w-48 px-5" : "md:w-[80px] px-2 w-0"
           } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
@@ -155,14 +150,16 @@ const Dashboard = () => {
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
-            
           >
-             &lt;
+            &lt;
           </p>
           <div className="flex items-center ">
-            <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
-
-            <h1 className={`text-white ${!open && "scale-0"}`}>
+            <img
+              className="laptop:w-7 laptop:h-7"
+              src="https://i.ibb.co/xgF8nhd/cmLogo.png"
+              alt=""
+            />
+            <h1 className={`text-white laptop:text-xl ${!open && "scale-0"}`}>
               <Link to="/"> CM Academy</Link>
             </h1>
           </div>
@@ -176,26 +173,28 @@ const Dashboard = () => {
                   alt=""
                 />
                 <h1
-                  className={`text-white font-semibold ${
+                  className={`text-white laptop:text-base font-semibold ${
                     !open && "scale-0"
                   }`}
                 >
-                  {user?.fullName }
+                  {user?.fullName}
                 </h1>
               </div>
             </div>
 
-            <div className="pt-6  ">
+            <div className="pt-5  ">
               {isStudent && (
                 <>
                   {StudentMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
+                      className="laptop:text-xs text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -213,11 +212,13 @@ const Dashboard = () => {
                   {AdminMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
+                      className="laptop:text-sm text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex items-center my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"> <img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -236,11 +237,13 @@ const Dashboard = () => {
                   {InstructorMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
+                      className="laptop:text-sm text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -257,12 +260,12 @@ const Dashboard = () => {
             <hr className=" my-6" />
             <button
               onClick={handleLogOut}
-              className=" text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+              className="laptop:text-sm text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md"
             >
               <p className="text-3xl"></p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
-              > 
+              >
                 Logout
               </span>
             </button>
@@ -271,11 +274,10 @@ const Dashboard = () => {
       </div>
       <div className="h-screen ">
         <div
-          className={`p-7 text-2xl font-semibold flex-1 ${
+          className={`p-7 text-base font-semibold flex-1 ${
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
-          
           <Outlet></Outlet>
         </div>
       </div>

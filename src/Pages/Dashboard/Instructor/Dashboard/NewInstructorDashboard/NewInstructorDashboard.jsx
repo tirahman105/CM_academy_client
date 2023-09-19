@@ -14,18 +14,18 @@ const NewInstructorDashboard = () => {
     console.log(user);
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto p-8">
+        <div className="grid grid-cols-1 laptop:grid-cols-2 gap-8 mx-auto ">
             {/* Box 1 */}
-            <div className="p-6 rounded-lg w-full bg-white">
+            <div className="p-1 rounded-lg w-full bg-white">
 
 
-                <div className="mb-4 rounded-md bg-gray-100 h-40 flex justify-around items-center">
-                    <div className='p-8 space-y-1'>
-                        <h1 className="text-4xl font-extrabold font-Jost tracking-wider">Hello {user?.fullName}</h1>
+                <div className="mb-4 laptop:w-auto rounded-md bg-gray-100 h-25 p-8 flex justify-around items-center">
+                    <div className='space-y-1'>
+                        <h1 className="text-4xl laptop:text-xl font-extrabold font-Jost tracking-wider">Hello {user?.fullName}</h1>
                         <p className='text-base font-normal'>It’s good to see you again on Instructor.</p>
                     </div>
 
-                    <div className='-mt-9'>
+                    <div className='-mt-14'>
                         <img src={hello} alt="" />
                     </div>
 
