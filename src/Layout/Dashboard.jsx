@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [isInstructor] = useInstructor();
   const [isStudent] = useStudent();
   const [isAdmin] = useAdmin();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   console.log(
     "isAdmin",
@@ -158,7 +158,7 @@ const Dashboard = () => {
       >
         <div
           className={`${
-            open ? "w-72 laptop:w-60 px-5" : "md:w-[80px] px-2 w-0"
+            open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
           } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
