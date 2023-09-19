@@ -61,7 +61,7 @@ const CourseProgress = ({ courses }) => {
                     251.2 -
                     (251.2 * courses[currentCourseIndex]?.progress) / 100
                   }
-                  transition="stroke-dashoffset 0.5s ease-in-out"
+                  
                 />
                 <text
                   x="50%"

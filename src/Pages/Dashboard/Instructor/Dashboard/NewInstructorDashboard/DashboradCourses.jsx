@@ -45,7 +45,7 @@ const DashboradCourses = () => {
     setCurrentPage(newPage);
   };
   return (
-    <div className="bg-yellow-100">
+    <div className="">
       <h1 className="text-2xl text-left font-bold mt-20 laptop:text-xl">Courses</h1>
       <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost laptop:text-base">
         <h1
@@ -53,9 +53,9 @@ const DashboradCourses = () => {
             setSelectedCategory("All Courses");
             setStatus("Approved");
           }}
-          className={`cursor-pointer ${
+          className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend ${
             selectedCategory === "All Courses"
-              ? "border border-gray-600 px-2 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all"
+              ? "   px-1  rounded-lg bg-gray-700 text-white duration-300 transition-all"
               : "text-black"
           }`}
         >
@@ -66,9 +66,9 @@ const DashboradCourses = () => {
             setSelectedCategory("Pending");
             setStatus("Deny");
           }}
-          className={`cursor-pointer ${
+          className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend ${
             selectedCategory === "Pending"
-              ? "border border-gray-600 px-2 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all"
+              ? " px-1  rounded-lg bg-gray-700 text-white duration-300 transition-all"
               : "text-black"
           }`}
         >
@@ -76,9 +76,9 @@ const DashboradCourses = () => {
         </h1>
         <h1
           onClick={() => setSelectedCategory("Top Rated")}
-          className={`cursor-pointer ${
+          className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend ${
             selectedCategory === "Top Rated"
-              ? "border border-gray-600 px-2 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all"
+              ? " px-1  rounded-lg bg-gray-700 text-white duration-300 transition-all"
               : "text-black"
           }`}
         >
@@ -89,35 +89,43 @@ const DashboradCourses = () => {
       {visibleCourses.map((course) => (
         <div
           key={course._id}
-          className="max-w-full bg-gray-100 rounded-lg p-4 flex items-center space-x-4 mt-2"
+          className="max-w-full bg-gray-100 rounded-lg mobile:px-1 mobile:py-2 tablet:p-4 flex items-center space-x-4 mt-2"
         >
           <img
             src={course.courseThumbnail}
             alt={course.title}
-            className="w-20 h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
+            className="tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
           />
-          <div style={{ flex: "1" }}>
-            <p className="text-gray-900 font-bold text-lg">{course.title}</p>
-            <p className="text-sm text-gray-600">by {course.instructor}</p>
+          <div  className=" flex-1 min-w-[100px]">
+            <p className="text-gray-900 mobile:text-[14px] font-bold text-lg truncate   ">{course.title}</p>
+            {status == "Approved" ? (
+            <p className="bg-[#1bbf72fa] mobile:w-[52px] tablet:w-20 mobile:h-4 mobile:flex mobile:items-center mobile:text-[9px] tablet:text-sm tablet:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-lg text-white">
+              Approved
+            </p>
+          ) : (
+            <p className="bg-[#f88f8f] mobile:w-[45px] tablet:w-20 mobile:h-4 mobile:flex mobile:items-center mobile:text-[9px] tablet:text-sm tablet:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-lg text-white">
+              Pending
+            </p>
+          )}
           </div>
 
-          {status === "Approved" ? (
-            <p className="bg-[#1bbf72fa] text-sm px-2 py-[2px] shadow-sm font-bold rounded-lg text-white">
+          {/* {status == "Approved" ? (
+            <p className="bg-[#1bbf72fa] mobile:h-4 mobile:flex mobile:items-center mobile:text-[9px] tablet:text-sm tablet:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-lg text-white">
               Approved
             </p>
           ) : (
             <p className="bg-[#f88f8f] text-sm px-2 py-[2px] shadow-sm font-bold rounded-lg text-white">
               Pending
             </p>
-          )}
+          )} */}
 
           <div className="flex items-center space-x-2">
-            <AiFillFire />
-            <p className="text-gray-600 text-sm">4.9</p>
+            <AiFillFire className="mobile:text-[10px] tablet:text-base" />
+            <p className="text-gray-600 mobile:text-[10px] tablet:text-sm font-bold font-Lexend">4.9</p>
           </div>
           <button
             onClick={() => handleViewClick(course)}
-            className="border-2 hover:bg-black hover:text-white border-black text-black text-base px-4 py-2 rounded-lg transition duration-300"
+            className="border-2 hover:bg-black hover:text-white border-black mobile:h-5 mobile:flex mobile:items-center mobile:px-1 text-black mobile:text-[9px] tablet:text-sm tablet:px-4 tablet:py-2 rounded-lg transition duration-300"
           >
             View Course
           </button>
@@ -128,7 +136,7 @@ const DashboradCourses = () => {
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
+          className="mr-2 tablet:px-3 tablet:py-1 bg-gray-200 rounded-md"
         >
           <GrFormPrevious></GrFormPrevious>
         </button>
@@ -148,7 +156,7 @@ const DashboradCourses = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPageCount}
-          className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
+          className="ml-2 tablet:px-3 tablet:py-1 bg-gray-200 rounded-md"
         >
           <p className="text-green-600">
             <GrFormNext />

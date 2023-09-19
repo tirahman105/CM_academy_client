@@ -172,3 +172,9 @@ body {
   background: linear-gradient(to right, #87a9b8 5%, #070707 68%);
   border-radius: 3px; /* Rounded corners for the handle */
 }
+
+.custom-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

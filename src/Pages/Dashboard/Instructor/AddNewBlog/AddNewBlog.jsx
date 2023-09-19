@@ -44,13 +44,13 @@ const AddNewBlog = () => {
   const today = new Date().toISOString().substr(0, 10);
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+    <div className="p-6 ">
       <div className=" my-4 mt-4">
-        <h1 className=" text-lg font-bold">Add New blog</h1>
-        <p className="text-base mb-4">Add the necessary details and post you blog.</p>
+        <h1 className=" mobile:text-lg tablet:text-2xl text-gray-700 font-Lexend font-bold ">Add New blog</h1>
+        <p className="mobile:text-sm tablet:text-base font-Lexend text-gray-700 mb-4">Add the necessary details and post you blog.</p>
         <hr />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-3/5 mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="tablet:w-3/5 mx-auto">
         <div className="mb-4">
           <label
             htmlFor="blogImage"
@@ -61,7 +61,7 @@ const AddNewBlog = () => {
           <input
             type="text"
             id="blogImage"
-            className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.blogImage ? "border-red-500" : "border-gray-300"
+            className={`w-full p-2 border  focus:outline-none focus:ring-2 focus:ring-gray-700 ${errors.blogImage ? "border-red-500" : "border-gray-300"
               }`}
             {...register("blogImage", { required: "Image URL is required" })}
           />
@@ -79,7 +79,7 @@ const AddNewBlog = () => {
           <input
             type="text"
             id="blogTitle"
-            className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.blogTitle ? "border-red-500" : "border-gray-300"
+            className={`w-full p-2 border  focus:outline-none focus:ring-2 focus:ring-gray-700 ${errors.blogTitle ? "border-red-500" : "border-gray-300"
               }`}
             {...register("blogTitle", { required: "Title is required" })}
           />
@@ -96,7 +96,7 @@ const AddNewBlog = () => {
           </label>
           <textarea
             id="blogDetails"
-            className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.blogDetails ? "border-red-500" : "border-gray-300"
+            className={`w-full p-2 border  focus:outline-none focus:ring-2 focus:ring-gray-700 ${errors.blogDetails ? "border-red-500" : "border-gray-300"
               }`}
             {...register("blogDetails", { required: "Details are required" })}
           />
@@ -115,12 +115,12 @@ const AddNewBlog = () => {
             type="text"
             id="blogAuthor"
             defaultValue={user?.displayName}
-            className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.blogAuthor ? "border-red-500" : "border-gray-300"
+            className={`w-full p-2 border text-sm  focus:outline-none focus:ring-2 focus:ring-gray-700 ${errors.blogAuthor ? "border-red-500" : "border-gray-300"
               }`}
             {...register("blogAuthor", { required: "Author is required" })}
           />
           {errors.blogAuthor && (
-            <p className="text-red-500 text-base mt-1">{errors.blogAuthor.message}</p>
+            <p className="text-red-500 text-sm mt-1">{errors.blogAuthor.message}</p>
           )}
         </div>
         <div className="mb-4">
@@ -132,7 +132,7 @@ const AddNewBlog = () => {
           </label>
           <select
             id="blogCategory"
-            className={`w-full text-base font-medium p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.blogCategory ? "border-red-500" : "border-gray-300"
+            className={`w-full text-base font-medium p-2 border  focus:outline-none focus:ring-2 focus:ring-gray-700 ${errors.blogCategory ? "border-red-500" : "border-gray-300"
               }`}
             {...register("blogCategory", { required: "Category is required" })}
           >
@@ -152,14 +152,14 @@ const AddNewBlog = () => {
         <div className="mb-4">
           <label
             htmlFor="blogDate"
-            className="block text-gray-700 text-base font-medium font-medium mb-1"
+            className="block text-gray-700 text-base font-medium  mb-1"
           >
             Blog Date
           </label>
           <input
             type="date"
             id="blogDate"
-            className={`w-full text-base  p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.blogDate ? "border-red-500" : "border-gray-300"
+            className={`w-full text-base  p-2 border  focus:outline-none focus:ring-2 focus:ring-gray-700 ${errors.blogDate ? "border-red-500" : "border-gray-300"
               }`}
             defaultValue={today}
             {...register("blogDate", { required: "Date is required" })}
@@ -170,7 +170,7 @@ const AddNewBlog = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-success mt-4 mb-5 hover:bg-green-600"
+          className=" bg-[#40BF72] font-Lexend text-white px-2 py-1 rounded-md mt-4 mb-5 hover:bg-green-600"
         >
           Add Blog
         </button>

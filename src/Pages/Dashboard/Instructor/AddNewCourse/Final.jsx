@@ -169,7 +169,7 @@ const Final = () => {
       alert("Error sending form data:", error);
     }
   };
-  
+
   const [newMilestoneSessions, setNewMilestoneSessions] = useState([
     {
       sessionTitle: "",
@@ -217,8 +217,8 @@ const Final = () => {
 
   ///////////////////////////////////////
   return (
-    <div className=" mt-14">
-      <div className="   flex justify-around max-w-7xl mx-auto sticky top-0 pt-5 pb-1  mb-8 bg-white">
+    <div className="laptop:mt-4 desktop:mt-8">
+      <div className="   flex justify-around max-w-7xl mx-auto  pt-5 pb-1  bg-white">
         <div className="w-[70%]">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
             Empower Learning: Design Your Course
@@ -230,44 +230,48 @@ const Final = () => {
             description, and let your passion for teaching shine through.
           </p>
         </div>
-        <img src={InstructorImage} alt="" />
+        <img className="h-1/4" src={InstructorImage} alt="" />
       </div>
       {/* <hr /> */}
       <form className="max-w-3xl mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4 text-base bg-white font-bold flex justify-center border rounded-md sticky top-[280px] ">
-          <div
-            className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${
-              activeTab === "basicInfo"
-                ? "  rounded-md bg-[#1E1F1F] text-white  "
-                : ""
-            }`}
-            onClick={() => switchTab("basicInfo")}
-          >
-            Basic Info
-          </div>
-          <div
-            className={`w-1/3 text-center duration-300  cursor-pointer p-2 ${
-              activeTab === "courseCurriculum"
-                ? "rounded-md bg-[#1E1F1F] text-white "
-                : ""
-            }`}
-            onClick={() => switchTab("courseCurriculum")}
-          >
-            Course Curriculum
-          </div>
-          <div
-            className={` w-1/3 text-center duration-300  cursor-pointer p-2  ${
-              activeTab === "quiz" ? "  rounded-md bg-[#1E1F1F] text-white" : ""
-            }`}
-            onClick={() => switchTab("quiz")}
-          >
-            Quiz
+        <div className="bg-white pt-10 sticky top-[0px]">
+          <div className="mb-4 text-base bg-white font-bold flex justify-center border rounded-md shadow-md  ">
+            <div
+              className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${
+                activeTab === "basicInfo"
+                  ? "  rounded-md bg-[#1E1F1F] text-white  "
+                  : ""
+              }`}
+              onClick={() => switchTab("basicInfo")}
+            >
+              Basic Info
+            </div>
+            <div
+              className={`w-1/3 text-center duration-300  cursor-pointer p-2 ${
+                activeTab === "courseCurriculum"
+                  ? "rounded-md bg-[#1E1F1F] text-white "
+                  : ""
+              }`}
+              onClick={() => switchTab("courseCurriculum")}
+            >
+              Course Curriculum
+            </div>
+            <div
+              className={` w-1/3 text-center duration-300  cursor-pointer p-2  ${
+                activeTab === "quiz"
+                  ? "  rounded-md bg-[#1E1F1F] text-white"
+                  : ""
+              }`}
+              onClick={() => switchTab("quiz")}
+            >
+              Quiz
+            </div>
           </div>
         </div>
 
         {/* Render Basic Info form fields */}
         {activeTab === "basicInfo" && (
-          <div>
+          <div className="">
             <div className="form-control mb-3">
               <div className="form-control mb-3">
                 <label className="label">
@@ -865,7 +869,10 @@ const Final = () => {
 
             <div>
               <div className="flex justify-center">
-                <button type="submit" className="px-4 text-lg rounded-md py-1  bg-[#1E1F1F] text-white mt-2  mb-5">
+                <button
+                  type="submit"
+                  className="px-4 text-lg rounded-md py-1  bg-[#1E1F1F] text-white mt-2  mb-5"
+                >
                   Add Your Course
                 </button>
               </div>
