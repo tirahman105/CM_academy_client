@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import UpdatedWithdrawRequest from '../WithdarwRequest/UpdatedWithdrawRequest';
 import ManageCourse from './ManageCourse';
 import AllEnrolled from '../AllEnrolledStudent/AllEnrolled';
@@ -9,7 +9,10 @@ const AdminManagement = ({ courses, setCourses }) => {
     const [courseActions, setCourseActions] = useState({});
     const [showWithdrawRequest, setShowWithdrawRequest] = useState(false);
 
-   
+    const getCurrentCourses = () => {
+        return courses;
+    };
+
     const updateCourseStatus = async (courseId, newStatus) => {
         try {
             const response = await fetch(
@@ -31,7 +34,6 @@ const AdminManagement = ({ courses, setCourses }) => {
                         ? { ...course, ApprovedStatus: newStatus }
                         : course
                 );
-                console.log(updatedCourses);
                 setCourses(updatedCourses);
             } else {
                 console.error(`Failed to update course ${newStatus} status`);
@@ -51,14 +53,11 @@ const AdminManagement = ({ courses, setCourses }) => {
         if (selectedAction === 'Approved' || selectedAction === 'Denied') {
             try {
                 await updateCourseStatus(courseId, selectedAction);
-
-                // Update the courseActions to reset the selected action for this course
                 setCourseActions({ ...courseActions, [courseId]: '' });
             } catch (error) {
                 console.error('Error performing action:', error);
             }
         } else if (selectedAction === 'delete') {
-            // Show a confirmation dialog before deleting the course
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -69,7 +68,6 @@ const AdminManagement = ({ courses, setCourses }) => {
                 confirmButtonText: 'Yes, delete it!',
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    // If the user confirms, send a DELETE request to delete the course
                     try {
                         const response = await fetch(
                             `https://cm-academy-test-server-production.up.railway.app/categories/${courseId}`,
@@ -79,7 +77,6 @@ const AdminManagement = ({ courses, setCourses }) => {
                         );
 
                         if (response.ok) {
-                            // If the delete request is successful, update the courses state
                             const remainingCourses = courses.filter(
                                 (course) => course._id !== courseId
                             );
@@ -90,7 +87,6 @@ const AdminManagement = ({ courses, setCourses }) => {
                                 'success'
                             );
                         } else {
-                            // Handle errors if the delete request fails
                             console.error('Error deleting course:', response.statusText);
                             Swal.fire(
                                 'Error',
@@ -110,7 +106,6 @@ const AdminManagement = ({ courses, setCourses }) => {
             });
         }
     };
-
 
     return (
         <div>
@@ -156,7 +151,7 @@ const AdminManagement = ({ courses, setCourses }) => {
 
             {selectedCategory === 'Manage Course' && (
                 <ManageCourse
-                    courses={courses}
+                    courses={getCurrentCourses()}
                     courseActions={courseActions}
                     handleActionChange={handleActionChange}
                     handlePerformAction={handlePerformAction}
@@ -164,11 +159,15 @@ const AdminManagement = ({ courses, setCourses }) => {
             )}
 
             {selectedCategory === 'Withdraw Requests' && showWithdrawRequest && (
-                <UpdatedWithdrawRequest />
+                <UpdatedWithdrawRequest
+                    courses={getCurrentCourses()}
+                />
             )}
 
             {selectedCategory === 'Enrolled Students' && (
-                <AllEnrolled></AllEnrolled>
+                <AllEnrolled
+                    courses={getCurrentCourses()}
+                />
             )}
         </div>
     );

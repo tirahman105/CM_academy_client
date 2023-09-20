@@ -186,7 +186,7 @@ const router = createBrowserRouter([
         element: <Instructors />,
       },
       {
-        path: "/instructorProfile",
+        path: "/instructorProfile/:instructorId",
         element: <InstructorPublicProfile />,
       },
       {

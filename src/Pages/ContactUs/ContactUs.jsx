@@ -90,7 +90,7 @@ const ContactUs = () => {
                   type="text"
                   placeholder="Enter Your Name"
                   className="input input-bordered"
-                  name="from_name"
+                  name="from_name" required
                 />
               </div>
 
@@ -102,7 +102,7 @@ const ContactUs = () => {
                   type="text"
                   placeholder="Enter Your Email"
                   className="input input-bordered"
-                  name="from_email"
+                  name="from_email" required
                 />
               </div>
 
@@ -114,7 +114,7 @@ const ContactUs = () => {
                   type="text"
                   placeholder="Your Message Here"
                   className="input input-bordered h-24"
-                  name="message"
+                  name="message" required
                 />
               </div>
               {/* <div className=" flex gap-2 ">
