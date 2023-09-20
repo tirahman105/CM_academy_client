@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../../../../providers/AuthProvider";
 import SupportTicketDetails from "./SupportTicketDetails";
 import supportImg from "../../../../../assets/iconForDashboard/support.png";
+import closeSupport from "../../../../../assets/iconForDashboard/closeSupport.png";
 
 const CreateSupportTicket = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,7 +75,7 @@ const CreateSupportTicket = () => {
       });
   };
 
-  const handleViewTicket = (ticketNumber) => {
+  const handleViewTicket = async (ticketNumber) => {
     setSelectedTicket(ticketNumber);
     // Scroll to the SupportTicketDetails section when viewing a ticket
     if (supportTicketDetailsRef.current) {
@@ -85,21 +86,46 @@ const CreateSupportTicket = () => {
     }
   };
 
+  const handleCloseTicket = async (ticketNumber) => {
+    // Close the ticket and update its status
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/support-tickets/${ticketNumber}/close`,
+        {
+          method: "PUT",
+        }
+      );
+
+      if (response.status === 200) {
+        // Ticket closed successfully, update its status immediately
+        const updatedTickets = supportTickets.map((ticket) =>
+          ticket.TicketNumber === ticketNumber
+            ? { ...ticket, status: "closed" }
+            : ticket
+        );
+        setSupportTickets(updatedTickets);
+      }
+    } catch (error) {
+      console.error("Error closing support ticket:", error);
+    }
+  };
+  // Close the ticket and update its status
+
   return (
-    <div>
-      <div className="   flex justify-around max-w-7xl mx-auto  pt-5 pb-1  mb-6  bg-white">
+    <div className="px-4">
+      <div className=" mobile: tablet:flex justify-around max-w-7xl mx-auto  pt-5 pb-1 gap-3  mb-6  bg-white">
         <div className="">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
             Empower Learning: Design Your Course
           </h1>
-          <p className="mt-4 text-[18px] text-gray-600 font-TitilliumWeb">
+          <p className="mt-4 mobile:text-[14px] laptop:text-[14px] tablet:text-[14px] desktop:text-[18px] text-gray-600 font-TitilliumWeb">
             Your knowledge can change lives. Begin your teaching journey by
             creating a course that reflects your expertise. The 'Create Course'
             page is where you lay the foundation. Define your course's title and
             description, and let your passion for teaching shine through.
           </p>
         </div>
-        <img className="h-32" src={supportImg} alt="" />
+        <img className="h-32 mobile:hidden" src={supportImg} alt="" />
       </div>
 
       <button
@@ -159,7 +185,9 @@ const CreateSupportTicket = () => {
       )}
 
       <div className=" mt-14">
-        <h2 className="text-2xl font-semibold mt-4 mb-2 font-Lexend">Your All Support Ticket</h2>
+        <h2 className="text-2xl font-semibold mt-4 mb-2 font-Lexend">
+          Your All Support Ticket
+        </h2>
 
         <div className="grid tablet:grid-cols-2 gap-4">
           {supportTickets.map((ticket) => (
@@ -179,24 +207,51 @@ const CreateSupportTicket = () => {
                   <p className="text-gray-500 text-sm font-LeagueSpartan">
                     TN : {ticket.TicketNumber}
                   </p>
-                  <p className="text-[#61ba86] bg-[#e6fff2] px-2 relative border rounded-[3px] border-green-300">
-                    <span className="absolute -right-[4px] -top-[5px]">
-                      <span className="relative flex h-3 w-3 ">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#047734] opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-[#61ba86]"></span>
+                  <p
+                    className={` ${
+                      ticket.status === "pending"
+                        ? "text-[#61ba86] bg-[#e6fff2] border-green-300"
+                        : "text-[#f44336] bg-[#ffebee]"
+                    }  px-2 relative border rounded-[3px] `}
+                  >
+                    {ticket.status === "pending" ? (
+                      <span className="absolute -right-[4px] -top-[5px]">
+                        <span className="relative flex h-3 w-3 ">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#047734] opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-[#61ba86]"></span>
+                        </span>
                       </span>
-                    </span>
-                    {ticket.status === "pending" && "Active"}
+                    ) : (
+                      ""
+                    )}
+
+                    {ticket.status === "pending" ? "Active" : "Closed"}
                   </p>
                 </div>
 
                 <hr className="mt-5" />
-                <button
-                  onClick={() => handleViewTicket(ticket.TicketNumber)}
-                  className="text-gray-700 border hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
-                >
-                  View Ticket
-                </button>
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => handleViewTicket(ticket.TicketNumber)}
+                    className="text-gray-700 border hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                  >
+                    View Ticket
+                  </button>
+
+                  {ticket.status === "pending" ? (
+                    <button
+                      onClick={() => handleCloseTicket(ticket.TicketNumber)}
+                      className="text-gray-700 border flex gap-1  items-center hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                    >
+                      Close Ticket
+                      <img className="h-4" src={closeSupport} alt="" />
+                    </button>
+                  ) : (
+                    <p className=" font-mono text-sm text-[#f44336]">
+                      Ticket Closed!
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           ))}

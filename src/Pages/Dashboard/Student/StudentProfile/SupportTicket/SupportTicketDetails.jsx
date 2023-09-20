@@ -195,8 +195,8 @@ const SupportTicketDetails = ({ ticketNumber, onClose }) => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">
-        Support Ticket: {ticketNumber}
+      <h2 className="text-xl font-semibold mb-4 font-Lexend ">
+        Support Ticket Details of : <span className="italic font-bold">#{ticketNumber}</span>
       </h2>
       <div className="mb-4">
         <div
