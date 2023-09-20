@@ -2,12 +2,26 @@ import React, { useState, useEffect } from "react";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa';
 import moneyLogo from '../../../../assets/money-icon.png'
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const UpdatedWithdrawRequest = () => {
     const [showModal, setShowModal] = useState(false);
     const [withdrawalRequests, setWithdrawalRequests] = useState([]);
 
-    console.log(withdrawalRequests);
+    console.log(withdrawalRequests)
+
+    const itemsPerPage = 5;
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const withdrawaToDisplay = withdrawalRequests.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(withdrawalRequests.length / itemsPerPage);
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
 
     const [bankDetails, setBankDetails] = useState({});
 
@@ -52,7 +66,7 @@ const UpdatedWithdrawRequest = () => {
     return (
         <div>
             <div>
-                {withdrawalRequests.map((request, index) => (
+                {withdrawaToDisplay.map((request, index) => (
                     <div
                         key={index}
                         className="max-w-full bg-gray-100 rounded-lg p-4 flex items-center space-x-4 mt-2"
@@ -81,6 +95,38 @@ const UpdatedWithdrawRequest = () => {
                         </button>
                     </div>
                 ))}
+            </div>
+
+            <div className="mt-4 flex justify-center">
+            <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="mr-2 tablet:px-3 tablet:py-1 bg-gray-200 rounded-md"
+        >
+            <GrFormPrevious></GrFormPrevious>
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+            <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                className={`mx-1 px-3 py-1 text-sm ${
+                    currentPage === index + 1
+                        ? 'bg-green-600 text-white'
+                        : 'bg-gray-200'
+                } rounded-md`}
+            >
+                {index + 1}
+            </button>
+        ))}
+                <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="ml-2 tablet:px-3 tablet:py-1 bg-gray-200 rounded-md"
+            >
+                <p className="text-green-600">
+                    <GrFormNext />
+                </p>
+            </button>
             </div>
 
 
