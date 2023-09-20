@@ -3,11 +3,29 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 import UpdatedWithdrawRequest from '../WithdarwRequest/UpdatedWithdrawRequest';
 import ManageCourse from './ManageCourse';
 import AllEnrolled from '../AllEnrolledStudent/AllEnrolled';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const AdminManagement = ({ courses, setCourses }) => {
     const [selectedCategory, setSelectedCategory] = useState('Manage Course');
     const [courseActions, setCourseActions] = useState({});
     const [showWithdrawRequest, setShowWithdrawRequest] = useState(false);
+
+     // Define pagination state
+     const [currentPage, setCurrentPage] = useState(1);
+     const coursesPerPage = 10; // Number of courses to display per page
+ 
+     // Calculate the index range for the current page
+     const indexOfLastCourse = currentPage * coursesPerPage;
+     const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+     const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
+ 
+     // Calculate the total number of pages
+     const totalPages = Math.ceil(courses.length / coursesPerPage);
+ 
+     // Function to change the current page
+     const handlePageChange = (pageNumber) => {
+         setCurrentPage(pageNumber);
+     };
 
    
     const updateCourseStatus = async (courseId, newStatus) => {
@@ -156,7 +174,7 @@ const AdminManagement = ({ courses, setCourses }) => {
 
             {selectedCategory === 'Manage Course' && (
                 <ManageCourse
-                    courses={courses}
+                courses={currentCourses}
                     courseActions={courseActions}
                     handleActionChange={handleActionChange}
                     handlePerformAction={handlePerformAction}
@@ -170,6 +188,55 @@ const AdminManagement = ({ courses, setCourses }) => {
             {selectedCategory === 'Enrolled Students' && (
                 <AllEnrolled></AllEnrolled>
             )}
+
+              {/* Pagination controls */}
+              {/* <div className="mt-4 flex justify-center">
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`mx-1 px-3 py-1 ${
+                            currentPage === index + 1
+                                ? 'bg-gray-700 text-white'
+                                : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                        } rounded-md`}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+                </div> */}
+                  {/* Pagination controls */}
+      <div className="flex justify-center mt-4 mb-4">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="mr-2 tablet:px-3 tablet:py-1 bg-gray-200 rounded-md"
+        >
+          <GrFormPrevious></GrFormPrevious>
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`mx-1 px-3 py-1 text-sm ${
+              currentPage === index + 1
+                ? "bg-green-600 text-white"
+                : "bg-gray-200"
+            } rounded-md`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="ml-2 tablet:px-3 tablet:py-1 bg-gray-200 rounded-md"
+        >
+          <p className="text-green-600">
+            <GrFormNext />
+          </p>
+        </button>
+      </div>
         </div>
     );
 };
