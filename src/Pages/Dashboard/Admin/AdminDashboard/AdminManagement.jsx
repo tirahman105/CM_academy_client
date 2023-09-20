@@ -1,32 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'; // Import SweetAlert2
 import UpdatedWithdrawRequest from '../WithdarwRequest/UpdatedWithdrawRequest';
 import ManageCourse from './ManageCourse';
 import AllEnrolled from '../AllEnrolledStudent/AllEnrolled';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
+
 const AdminManagement = ({ courses, setCourses }) => {
     const [selectedCategory, setSelectedCategory] = useState('Manage Course');
     const [courseActions, setCourseActions] = useState({});
     const [showWithdrawRequest, setShowWithdrawRequest] = useState(false);
+  
+    // // Pagination state
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const coursesPerPage = 10;
+  
+    // useEffect(() => {
+    //   // Reset current page when changing the selected category
+    //   setCurrentPage(1);
+    // }, [selectedCategory]);
+  
+    // // Calculate the index range for the current page
+    // const indexOfLastCourse = currentPage * coursesPerPage;
+    // const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+    // const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
+  
+    // // Calculate the total number of pages
+    // const totalPages = Math.ceil(courses.length / coursesPerPage);
+  
+    // // Function to change the current page
+    // const handlePageChange = (pageNumber) => {
+    //   setCurrentPage(pageNumber);
+    // };
 
-     // Define pagination state
-     const [currentPage, setCurrentPage] = useState(1);
-     const coursesPerPage = 10; // Number of courses to display per page
- 
-     // Calculate the index range for the current page
-     const indexOfLastCourse = currentPage * coursesPerPage;
-     const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
-     const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
- 
-     // Calculate the total number of pages
-     const totalPages = Math.ceil(courses.length / coursesPerPage);
- 
-     // Function to change the current page
-     const handlePageChange = (pageNumber) => {
-         setCurrentPage(pageNumber);
-     };
-
+    
    
     const updateCourseStatus = async (courseId, newStatus) => {
         try {
@@ -174,7 +181,7 @@ const AdminManagement = ({ courses, setCourses }) => {
 
             {selectedCategory === 'Manage Course' && (
                 <ManageCourse
-                courses={currentCourses}
+                courses={courses}
                     courseActions={courseActions}
                     handleActionChange={handleActionChange}
                     handlePerformAction={handlePerformAction}
@@ -206,7 +213,7 @@ const AdminManagement = ({ courses, setCourses }) => {
                 ))}
                 </div> */}
                   {/* Pagination controls */}
-      <div className="flex justify-center mt-4 mb-4">
+      {/* <div className="flex justify-center mt-4 mb-4">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
@@ -236,8 +243,8 @@ const AdminManagement = ({ courses, setCourses }) => {
             <GrFormNext />
           </p>
         </button>
-      </div>
-        </div>
+      </div> */}
+    </div>
     );
 };
 

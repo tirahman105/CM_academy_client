@@ -155,7 +155,8 @@ const CourseDetailsDynamic = () => {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   className="text-gray-600 font-Lexend font-semibold text-sm"
                 >
-                  {/* COurse instrcutor about */}
+                  {/* COurse instrcutor about */} 
+                  <p>{course.about}</p>
                 </motion.p>
               </div>
             </div>
