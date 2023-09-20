@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
 import { MdNotStarted } from "react-icons/md";
-import { Rating, StickerStar	} from "@smastrom/react-rating";
+import { Rating, StickerStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 
@@ -23,6 +23,20 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
     activeFillColor: "#1bbf72fa",
     inactiveFillColor: "#1bbf7240",
   };
+
+
+  const instructormail = course.instructorEmail;
+  const [instructorInfo, setInstructorInfo] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://cm-academy-test-server-production.up.railway.app/users/instructor/${instructormail}/info`)
+      .then((res) => res.json())
+      .then((data) => {
+        setInstructorInfo(data);
+      });
+  }, [instructormail]);
+
+  console.log('instructorInfo', instructorInfo);
 
   return (
     <motion.div
@@ -65,9 +79,18 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
           className="h-6  shadow-md w-6 rounded-full"
           alt=""
         />
-        <p className="  text-gray-500 font-bold">
-          {course.instructor || <Skeleton count={10}></Skeleton>}
-        </p>
+
+
+        <Link
+          to={`/instructorProfile/${instructorInfo._id}`}
+          state={{ instructorInfo }}
+        >
+          <p className="text-gray-500 font-bold">
+            {course.instructor || <Skeleton count={10}></Skeleton>}
+          </p>
+        </Link>
+
+
       </motion.div>
       <motion.div className=" flex justify-between px-4 items-center">
         <div className="flex items-center justify-center gap-1">
@@ -96,7 +119,7 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
           {/* <FiUsers className="text-[#1bbf72fb]" /> */}
         </div>
       </motion.div>
-      
+
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -121,37 +144,37 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
         </div>
       </motion.div>
 
-      
-        {/* bg-[#1bbf7216] rounded-b-lg */}
-        <div className="bg-[#1bbf722a] h-[1px] "></div>
 
-        <div className="py-2 flex justify-between px-4">
-          {isEnrolled ? (
-            <button
-              className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-gray-700"
-              onClick={() => handleViewCourse(course.courseOutline)}
-            >
-              <MdNotStarted className="text-[#1bbf72fb]"></MdNotStarted>
+      {/* bg-[#1bbf7216] rounded-b-lg */}
+      <div className="bg-[#1bbf722a] h-[1px] "></div>
 
-              <p className="font-bold font-mono">View Course</p>
-            </button>
-          ) : (
-            <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]">
-              <FaCartPlus className="text-[#1bbf72fb]" />
-              <Link to={`/checkout/${course._id}`}>
-                <p className="font-bold font-mono">Enroll Now</p>
-              </Link>
-            </button>
-          )}
-
+      <div className="py-2 flex justify-between px-4">
+        {isEnrolled ? (
           <button
-            className=" font-Raleway border-2 font-bold text-xs rounded-md px-4 bg-gray-700 text-white  duration-500 hover:bg-[#1bbf72c9] hover:text-white shadow-md"
-            onClick={() => handleDetailsClick(course)}
+            className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-gray-700"
+            onClick={() => handleViewCourse(course.courseOutline)}
           >
-            Details
+            <MdNotStarted className="text-[#1bbf72fb]"></MdNotStarted>
+
+            <p className="font-bold font-mono">View Course</p>
           </button>
-        </div>
-     
+        ) : (
+          <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]">
+            <FaCartPlus className="text-[#1bbf72fb]" />
+            <Link to={`/checkout/${course._id}`}>
+              <p className="font-bold font-mono">Enroll Now</p>
+            </Link>
+          </button>
+        )}
+
+        <button
+          className=" font-Raleway border-2 font-bold text-xs rounded-md px-4 bg-gray-700 text-white  duration-500 hover:bg-[#1bbf72c9] hover:text-white shadow-md"
+          onClick={() => handleDetailsClick(course)}
+        >
+          Details
+        </button>
+      </div>
+
     </motion.div>
   );
 };

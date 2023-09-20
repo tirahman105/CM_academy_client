@@ -15,7 +15,7 @@ const ManageCourse = ({ courses, courseActions, handleActionChange, handlePerfor
                         className='w-20 h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110'
                     />
                     <div style={{ flex: '1' }}>
-                        <p className='text-gray-900 font-bold text-lg'>{course.title}</p>
+                        <p className='text-gray-900 font-bold text-base md:text-base xl:text-lg laptop:text-base'>{course.title}</p>
                         <p className='text-sm text-gray-600'>by {course.instructor}</p>
                     </div>
                     <div className='flex items-center gap-2'>
