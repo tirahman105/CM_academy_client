@@ -25,25 +25,25 @@ const CourseProgress = ({ courses }) => {
     };
 
   return (
-    <div>
-      <div className="rounded-lg flex items-center">
-        <div className="card-container w-full">
-          <div className="flex justify-start items-center space-x-10 bg-gray-100 p-2 rounded-md">
+    <div className="mobile:mt-8 tablet:mt-8 laptop:mt-0">
+      <div className="rounded-lg flex items-center ">
+        <div className=" w-full">
+          <div className="flex justify-start laptop:gap-2 desktop:gap-0 items-center desktop:space-x-10 tablet:space-x-10 laptop:space-x-0 bg-gray-100 p-2 rounded-md">
             <img
               src={courses[currentCourseIndex]?.course.courseThumbnail}
               alt={courses[currentCourseIndex]?.course.title}
-              className="w-16 h-16 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
+              className="tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 laptop:w-12 laptop:h-12 desktop:w-20 desktop:h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
             />
-            <div className="flex-1 min-w-0">
-              <p className="text-gray-900 font-bold text-lg truncate">
+            <div className=" ml-2 min-w-0 laptop:min-w-[20px]">
+              <p className="text-gray-900 mobile:text-[14px] laptop:text-[14px]  font-bold desktop:text-lg truncate">
                 {courses[currentCourseIndex]?.course.title}
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="desktop:text-sm mobile:text-[10px] laptop:text-[12px] text-gray-600 truncate">
                 by {courses[currentCourseIndex]?.course.instructor}
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="mobile:ml-4 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-12 h-12"
@@ -59,7 +59,7 @@ const CourseProgress = ({ courses }) => {
                   strokeDasharray="251.2"
                   strokeDashoffset={
                     251.2 -
-                    (251.2 * courses[currentCourseIndex]?.progress) / 100
+                    (251.2 * 70 || courses[currentCourseIndex]?.progress ) / 100
                   }
                   
                 />
@@ -70,12 +70,12 @@ const CourseProgress = ({ courses }) => {
                   textAnchor="middle"
                   className="text-gray-900 text-2xl font-bold"
                 >
-                  {courses[currentCourseIndex]?.course.progress}%
+                  {courses[currentCourseIndex]?.course.progress || 70}% 
                 </text>
               </svg>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 mobile:ml-4">
               <button
                 onClick={() =>
                   handleContinue(
@@ -83,17 +83,17 @@ const CourseProgress = ({ courses }) => {
                     courses[currentCourseIndex]?.course.courseOutline
                   )
                 }
-                className="ml-auto border-2 bg-black hover:bg-white hover:text-black text-white text-base px-4 py-2 rounded-lg transition duration-300"
+                className="ml-auto tablet:border-2 bg-black hover:bg-white hover:text-black text-white  tablet:text-base mobile:text-[12px] laptop:text-[13px] desktop:text-base laptop:px-2 desktop:px-4 laptop:py-1 desktop:py-2  mobile:px-2 tablet:px-4 tablet:py-2 rounded-lg transition duration-300"
               >
                 Continue
               </button>
             </div>
-            <div className="flex justify-between gap-4 items-center text-4xl ml-6 bg-white p-3 rounded-xl">
+            <div className="flex justify-between gap-4 items-center text-4xl ml-6 tablet:bg-white p-3 rounded-xl">
               <button onClick={handlePrevClick}>
-                <BsArrowLeftCircle className="hover:scale-105 duration-300" />
+                <BsArrowLeftCircle className="hover:scale-105 duration-300 laptop:text-xl desktop:text-4xl" />
               </button>
               <button onClick={handleNextClick}>
-                <BsArrowRightCircleFill className="hover:scale-105 duration-300" />
+                <BsArrowRightCircleFill className="hover:scale-105 duration-300 laptop:text-xl desktop:text-4xl" />
               </button>
             </div>
           </div>

@@ -30,15 +30,15 @@ const Tiles = (course) => {
   return (
     <div
       key={course.course._id}
-      className="max-w-full bg-gray-100 rounded-lg p-4 flex items-center space-x-4 mt-2"
+      className="max-w-full bg-gray-100 rounded-lg mobile:px-1 mobile:py-2 tablet:p-4 flex items-center space-x-4 mt-2"
     >
       <img
         src={course.course.courseThumbnail || course.courseThumbnail}
         alt={course.course.title || course.title}
-        className="w-20 h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
+        className="tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 laptop:w-14 laptop:h-14 desktop:w-20 desktop:h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
       />
-      <div style={{ flex: "1" }}>
-        <p className="text-gray-900 font-bold text-lg">
+      <div className="flex-1 min-w-[100px]">
+        <p className="text-gray-900 mobile:text-[14px] tablet:text-sm  font-bold desktop:text-lg truncate   ">
           {course.course.title || course.title}
         </p>
         <p className="text-sm text-gray-600">

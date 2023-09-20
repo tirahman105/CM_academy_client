@@ -169,8 +169,8 @@ const StudentProfileUpdated = () => {
   }
 
   return (
-    <div>
-            <div className="w-3/5 p-4 flex items-center mx-auto">
+    <div className='px-2 pb-24'>
+            <div className="tablet:w-3/5 p-4 flex items-center tablet:mx-auto">
                 <img
                     src={selectedImage || userDataFromAPI.userImage || 'default-profile-picture-url.jpg'}
                     alt="Profile Picture"
@@ -178,7 +178,7 @@ const StudentProfileUpdated = () => {
                 />
 
                 <div className="mb-4">
-                    <label className="flex items-center cursor-pointer p-2 rounded-xl">
+                    <label className="flex items-center cursor-pointer  rounded-xl">
                         {isUploading ? (
                             <div className="flex items-center">
                                 <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500"></div>
@@ -186,14 +186,14 @@ const StudentProfileUpdated = () => {
                         ) : selectedImage ? (
                             <>
                                 <button type="button" onClick={handleSaveEdit} className="flex items-center">
-                                    <BiSave className="text-3xl text-green-700" />
-                                    <span className="text-xl p-2 rounded-lg">Save photo</span>
+                                    <BiSave className="text-3xl text-[#40BF72]" />
+                                    <span className="text-sm px-2 font-semibold shadow-md  rounded-lg">Save photo</span>
                                 </button>
                             </>
                         ) : (
                             <>
-                                <FcAddImage className="text-5xl text-white mr-3" />
-                                <span className="text-xl p-2 rounded-lg text-white bg-[#1bbabf] hover:bg-[#1BBF72] duration-300">Upload photo</span>
+                                <FcAddImage className="text-5xl mr-1" />
+                                <span className="text-sm px-1 py-1 rounded-lg text-white bg-[#40BF72]">Upload photo</span>
                                 <input
                                     type="file"
                                     {...register('image', { required: true })}
@@ -206,21 +206,20 @@ const StudentProfileUpdated = () => {
                 </div>
             </div>
 
-            <div className="flex justify-between items-start w-3/5 mx-auto mt-20 shadow-lg  rounded-xl bg-slate-100">
+            <div className="flex justify-between items-start desktop:w-3/5 mx-auto mt-20 shadow-lg border-2 border-slate-600  rounded-xl ">
                 {/* Left side with profile picture */}
 
 
                 {/* Right side with user information */}
-                <div className="w-full p-4 relative border-2 border-gray-200">
-                    <div className="mb-4 mt-8 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold">Student ID</p>
-                        <span>:</span>
-                        <p className='font-bold'>{userDataFromAPI._id}</p>
+                <div className="w-full p-4 relative font-LeagueSpartan  ">
+                    <div className="mb-4 mt-8  p-2   bg-gray-100">
+                        <p className="font-semibold text-sm">Student ID</p>
+                       
+                        <p className='font-semibold  text-xl'>{userDataFromAPI._id}</p>
                     </div>
 
-                    <div className="mb-4 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold text-lg whitespace-nowrap">Full Name</p>
-                        <span>:</span>
+                    <div className="mb-4  p-2   bg-gray-100">
+                        <p className="font-semibold text-sm whitespace-nowrap">Full Name</p>
                         {isEditing ? (
                             <input
                                 className="border rounded-md px-2 py-2 w-full"
@@ -231,13 +230,13 @@ const StudentProfileUpdated = () => {
                                 }
                             />
                         ) : (
-                            <p className="font-semibold text-2xl">{userDataFromAPI.fullName}</p>
+                            <p className="font-semibold text-xl">{userDataFromAPI.fullName}</p>
                         )}
                     </div>
 
-                    <div className="mb-4 flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold text-lg whitespace-nowrap">Contact Number</p>
-                        <span>:</span>
+                    <div className="mb-4  p-2  bg-gray-100">
+                        <p className="font-semibold text-sm ">Contact Number</p>
+                        
                         {isEditing ? (
                             <input
                                 className="border rounded-md px-2 py-1 w-full"
@@ -248,13 +247,13 @@ const StudentProfileUpdated = () => {
                                 }
                             />
                         ) : (
-                            <p>{userDataFromAPI.contactNumber}</p>
+                            <p className="text-xl font-semibold">{userDataFromAPI.contactNumber}</p>
                         )}
                     </div>
 
-                    <div className="mb-4 w-full flex justify-start p-2 items-center gap-4 text-lg bg-gray-100">
-                        <p className="font-semibold text-lg whitespace-nowrap">Email Address</p>
-                        <span>:</span>
+                    <div className="mb-4 w-full  p-2   text-lg bg-gray-100">
+                        <p className="font-semibold text-sm">Email Address</p>
+                       
                         <div className={`w-full ${isEditing ? 'bg-gray-100' : ''}`}>
                             {isEditing ? (
                                 <p className="ml-2 text-gray-400 border rounded-md px-2 py-1">
@@ -262,7 +261,7 @@ const StudentProfileUpdated = () => {
                                     <span className="text-red-300 items-end text-lg">Not Editable</span>
                                 </p>
                             ) : (
-                                <p>{userDataFromAPI.email}</p>
+                                <p className="font-semibold text-xl">{userDataFromAPI.email}</p>
                             )}
                         </div>
                     </div>
@@ -272,13 +271,13 @@ const StudentProfileUpdated = () => {
                         {isEditing ? (
                             <div className="flex justify-end text-lg">
                                 <button
-                                    className="flex items-center text-red-500 hover:text-red-700 transition duration-300"
+                                    className="flex items-center font-mono text-red-500 hover:text-red-700 transition duration-300"
                                     onClick={handleCancelEdit}
                                 >
                                     Cancel
                                 </button>
                                 <button
-                                    className="text-green-500 hover:text-green-700 ml-2 transition duration-300"
+                                    className="text-[#40BF72] ml-2 font-mono "
                                     onClick={handleSaveEdit}
                                 >
                                     Save
@@ -286,7 +285,7 @@ const StudentProfileUpdated = () => {
                             </div>
                         ) : (
                             <button
-                                className="flex items-center text-lg text-green-500 hover:text-green-700 transition duration-300"
+                                className="flex items-center text-lg font-mono text-[#40BF72]  "
                                 onClick={handleEditClick}
                             >
                                 <FiEdit /> Edit
