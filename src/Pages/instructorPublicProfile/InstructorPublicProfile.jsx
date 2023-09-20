@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import { AiFillPlayCircle, AiFillStar } from 'react-icons/ai';
 import { HiUserGroup } from 'react-icons/hi';
 import { MdLocationOn } from 'react-icons/md';
+import { useLocation } from 'react-router-dom';
 // import bannerBackgroundImage from "../../assets/InstructorBanner.jpg"
 
 const InstructorPublicProfile = () => {
+    const location = useLocation();
+  const { instructorInfo } = location.state;
+
+  console.log(instructorInfo);
     return (
         <div className='w-full min-h-screen bg-slate-100'>
             {/*  <div className='bg-no-repeat bg-cover w-full h-[30vh] lg:h-[60vh]'
@@ -21,20 +26,20 @@ const InstructorPublicProfile = () => {
                              ring-4 ring-[#023B56] ring-offset-base-100 ring-offset-4
                             hover:ring-sky-500
                             dark:ring-[#f8f7f1] dark:ring-offset-[#374151] dark:hover:ring-[#e4cf59] hover:ring-offset-8 hover:scale-105 transition-transform ">
-                                <img src="https://scontent.fdac145-1.fna.fbcdn.net/v/t39.30808-6/272181930_3186526674910529_8212759804538838683_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFGlRFHd_Uq3TWPKgVmtHNDTyhXrrep6pVPKFeut6nqlfaW8j314xELot30HZHgJ5-xFjReddCz3hJbX1vxqfT8&_nc_ohc=MwN4h4yRiK4AX8EdkKb&_nc_ht=scontent.fdac145-1.fna&oh=00_AfBOo0nSzLydf8E7XmUny9hlmQzKxK0sL8BnOt_xoUGOmQ&oe=64F3A466" />
+                                <img src={instructorInfo.userImage} className='h-full w-full'/>
                             </div>
                             <div className='mt-2 lg:mt-6 lg:text-center'>
                                 <h1 className='text-xl lg:text-3xl font-bold text-[#023B56] mb-1
-                                lg:mb-1'>Samsul Alam Asif</h1>
+                                lg:mb-1'>{instructorInfo.fullName}</h1>
                                 <h1 className='text-sm lg:text-xl font-semibold text-gray-700'>
-                                    Frontend Developer</h1>
+                                    {instructorInfo.designation}</h1>
                                 <h1 className='p-2 flex justify-center items-center gap-2 text-center bg-[#023B56] text-[#00FF84] font-bold text-xs w-28 rounded-lg shadow-lg lg:mx-auto my-8 lg:my-2'><AiFillStar></AiFillStar> Top Teacher</h1>
                             </div>
                         </div>
                         <div className='w-1/2 lg:w-full mx-auto'>
                             <div className='flex flex-col-reverse lg:flex-col gap-3 lg:gap-2'>
-                                <Link to="https://www.facebook.com/mdsamsulalamasif" className='mx-auto text-center w-28 font-extrabold border-2 border-[#023B56]
-                                 text-[#023B56] rounded-2xl p-2 my-2'>Follow</Link>
+                                <Link to={instructorInfo.facebookLink} className='mx-auto text-center w-28 font-extrabold border-2 border-[#023B56]
+                                 text-[#023B56] rounded-2xl p-2 my-2 hover:bg-blue-950 hover:text-white duration-500'>Follow</Link>
                                 <div className='lg:w-3/5 border-t-2 lg:border-t lg:border-gray-600
                                  mx-auto'></div>
                                 <div className='mx-auto space-y-2 mt-3  lg:mt-2'>
@@ -48,7 +53,7 @@ const InstructorPublicProfile = () => {
                                         </HiUserGroup>600 Students</h1>
                                     <h1 className='flex justify-start items-center gap-3 font-semibold text-sm'>
                                         <MdLocationOn className='text-cyan-600 text-xl'>
-                                        </MdLocationOn>Dhaka Bangladesh</h1>
+                                        </MdLocationOn>{instructorInfo.location}</h1>
 
                                 </div>
 
@@ -62,10 +67,7 @@ const InstructorPublicProfile = () => {
                     <h1 className='text-2xl font-bold underline lg:mt-10 text-[#023B56]'>About Me</h1>
                     <p className='text-sm font-semibold lg:text-lg lg:tracking-wider my-4
                      text-gray-700'>
-                        Hello! I&#39;m Samsul Alam, a programmer with a good level of expertise in Front-End Web Development. I&#39;m currently studying at Bachelor of Business Administration (BBA) in Management from Government Titumir College (Affiliated with the University of Dhaka).  I&#39;m a tech lover and like to write blogs about programming and web development. I&#39;m interested in MERN (MongoDB, ExpressJS, ReactJS, NodeJS) stack web development.
-                        <br />
-                        <br />
-                        I am a hardworking, confident, enthusiastic Web developer and I want to utilize my knowledge and personal skills in Web Development. Also eagerly wants to serve a professional organization to the best of my knowledge with true dedication, hard work, and commitment. I am down to earth honest, confident, fun loving and caring as well.
+                        {instructorInfo.aboutMe}
                     </p>
                 </div>
             </div>
