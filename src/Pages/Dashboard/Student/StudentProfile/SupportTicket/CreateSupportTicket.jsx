@@ -196,9 +196,11 @@ const CreateSupportTicket = () => {
               className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
             >
               <div>
-                <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3">
-                  {ticket.Subject}
-                </h3>
+                <div className="mobile:min-w-[300px]">
+                  <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3 truncate">
+                    {ticket.Subject}
+                  </h3>
+                </div>
                 <p className="text-gray-500 text-sm font-LeagueSpartan mb-4">
                   {" "}
                   Created on: {ticket.Date}
