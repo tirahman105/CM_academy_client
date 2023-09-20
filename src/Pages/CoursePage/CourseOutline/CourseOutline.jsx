@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CourseOutline = ({
+  setRefresh,
+  courseId,
+  email,
+  milestone,
+  setMilestone,
   milestoneList,
   selectedMilestone,
   onSelectMilestone,
@@ -26,6 +31,41 @@ const CourseOutline = ({
     }
   };
 
+
+//   const [quizResult, setQuizResult] = useState(null);
+
+//   useEffect(() => {
+//     const fetchQuizResult = async () => {
+//       try {
+//         if (selectedMilestone !== null) {
+//           const endpoint = `http://localhost:5000/api/getQuizResult/${email}/${courseId}/${milestoneList[selectedMilestone].milestone}`;
+//           console.log("Fetching quiz result from:", endpoint);
+  
+//           const response = await fetch(endpoint);
+  
+//           if (response.ok) {
+//             const data = await response.json();
+//             console.log("Quiz result data:", data);
+  
+//             setQuizResult(data.quizScore);
+//           } else {
+//             console.error("Error fetching quiz result:", response.statusText);
+//             setQuizResult(null);
+//           }
+//         }
+//       } catch (error) {
+//         console.error("Error fetching quiz result:", error);
+//         setQuizResult(null);
+//       }
+//     };
+  
+//     fetchQuizResult();
+//   }, [courseId, email, milestoneList, selectedMilestone]);
+  
+  
+//   console.log("quizResult", quizResult);
+// console.log("milestone", milestoneList[selectedMilestone].milestone);
+  
   const handleSessionSelect = async (sessionTitle, email, courseId) => {
     try {
       // Encode the sessionTitle before appending it to the URL
@@ -87,22 +127,22 @@ const CourseOutline = ({
           }}
         />
       </div>
-      <div className="p-5 mt-5">
+      <div className="p-5 mt-5  overflow-y-auto h-96 myComponentContainer">
         {filteredMilestones.map((milestone, milestoneIndex) => (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${milestoneIndex === selectedMilestone ? " " : ""
-              }`}
+            className={`w-full px-5 py-5 mb-4 h-0 border duration-700  border-[#36cbd330] bg-[#1a2c49] shadow-md text-xl md:text-2xl rounded-lg  ${
+              milestoneIndex === selectedMilestone ? " " : ""
+            }`}
             key={milestoneIndex}
           >
             <span
               className={`cursor-pointer rounded-md text-[18px] font-TitilliumWeb md:text-2xl font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
-            >
-            </span>
+            ></span>
             <span
               className={`cursor-pointer rounded-md text-[12px] font-TitilliumWeb text-base font-bold `}
               onClick={() => toggleMilestone(milestoneIndex)}
@@ -124,11 +164,12 @@ const CourseOutline = ({
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ delay: 0.3 }}
-                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[11px] text-sm  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${milestoneIndex === selectedMilestone &&
-                          sessionIndex === activeSessionIndex
+                      className={`px-3 py-1 w-full text-left mt-5 duration-700 text-[11px] text-sm  text-white font-bold font-TitilliumWeb border-l-8 border-r-8 border-white shadow-md bg-[#1bbf7215] rounded-lg ${
+                        milestoneIndex === selectedMilestone &&
+                        sessionIndex === activeSessionIndex
                           ? "grBg "
                           : ""
-                        }`}
+                      }`}
                       key={sessionIndex}
                       id={`sessionButton-${milestoneIndex}-${sessionIndex}`}
                     >
@@ -162,7 +203,10 @@ const CourseOutline = ({
                   >
                     <span
                       className="cursor-pointer px-3 rounded-md"
-                      onClick={() => handleQuizButton(milestoneIndex)}
+                      onClick={() => {
+                        handleQuizButton(milestoneIndex);
+                        setMilestone(milestone.milestone);
+                      }}
                     >
                       Quizzes of {milestone.milestone} Milestone
                     </span>

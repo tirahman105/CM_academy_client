@@ -15,8 +15,6 @@ import { motion } from "framer-motion";
 import useInstructor from "../../Hooks/useInstructor";
 import iconWarn from "../../assets/IconForDetails/icons8-warning-16 (1).png";
 
-
-
 const CourseDetailsDynamic = () => {
   const [isInstructor] = useInstructor();
   const location = useLocation();
@@ -69,7 +67,7 @@ const CourseDetailsDynamic = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.3 }}
                 className="text-4xl font-bold font-Lexend leading-10 mb-4 text-gray-700 "
               >
                 {course.title}
@@ -78,7 +76,7 @@ const CourseDetailsDynamic = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
                 className="text-gray-700 font-semibold  font-TitilliumWeb   tracking-wider leading-8"
               >
                 {course.courseDescription}
@@ -88,7 +86,7 @@ const CourseDetailsDynamic = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
                 className="flex items-center gap-2 font-bold"
               >
                 <Rating
@@ -128,7 +126,7 @@ const CourseDetailsDynamic = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.4 }}
                   className="font-bold text-gray-700 "
                 >
                   Course Instructor
@@ -145,7 +143,7 @@ const CourseDetailsDynamic = () => {
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -10, opacity: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                   className="text-2xl font-bold font-Lexend leading-10 "
                 >
                   {course.instructor}
@@ -154,12 +152,10 @@ const CourseDetailsDynamic = () => {
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -10, opacity: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
                   className="text-gray-600 font-Lexend font-semibold text-sm"
                 >
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Corrupti expedita nostrum exercitationem quibusdam adipisci,
-                  harum minus quo impedit consectetur doloribus?
+                  {/* COurse instrcutor about */}
                 </motion.p>
               </div>
             </div>
@@ -173,7 +169,7 @@ const CourseDetailsDynamic = () => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               className="text-xl font-bold font-Lexend leading-10 mb-4"
             >
               What You Will Learn
@@ -209,7 +205,7 @@ const CourseDetailsDynamic = () => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               className="text-xl font-bold font-Lexend leading-10 mb-4"
             >
               Course Requirement
@@ -237,7 +233,7 @@ const CourseDetailsDynamic = () => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               className="text-xl font-bold font-Lexend leading-10 mb-4"
             >
               Who Are Suitable For This Course
@@ -260,7 +256,7 @@ const CourseDetailsDynamic = () => {
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="text-xl font-bold font-Lexend leading-10 mb-4"
           >
             FAQ
@@ -352,7 +348,7 @@ const CourseDetailsDynamic = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               className="sm:text-3xl text-sm font-bold font-Lexend sm:leading-10 sm:mb-4 text-white "
             >
               {course.title}
@@ -361,7 +357,7 @@ const CourseDetailsDynamic = () => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
               className="flex items-center gap-1 font-bold"
             >
               <Rating
@@ -379,7 +375,7 @@ const CourseDetailsDynamic = () => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
               className="flex items-center  gap-1 "
             >
               <HiCurrencyBangladeshi className="text-white sm:text-3xl"></HiCurrencyBangladeshi>
@@ -393,7 +389,7 @@ const CourseDetailsDynamic = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
                 className=" bg-white font-Lexend  sm:text-lg text-[10px] border-2 font-bold sm:py-[4px]  rounded-md sm:px-5 px-1 
                 w-[80px] sm:w-auto  hover:css-selector  hover:border-[#1bbf7246] duration-500 
                 text-gray-700 boxShadowBtn "

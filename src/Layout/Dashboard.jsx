@@ -6,21 +6,22 @@ import useAdmin from "../Hooks/useAdmin";
 import { AuthContext } from "../providers/AuthProvider";
 import dashboard from "../../src/assets/iconForDashboard/dashboard.png";
 import profile from "../../src/assets/iconForDashboard/user.png";
-import course from "../../src/assets/iconForDashboard/homework.png"
-import addCourse from "../../src/assets/iconForDashboard/add.png"
-import blog from "../../src/assets/iconForDashboard/blogger.png"
-import payment from "../../src/assets/iconForDashboard/bill.png"
-import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png"
-import userManage from "../../src/assets/iconForDashboard/user_manage.png"
-import enrolledCourse from "../../src/assets/iconForDashboard/page.png"
-
+import course from "../../src/assets/iconForDashboard/homework.png";
+import addCourse from "../../src/assets/iconForDashboard/add.png";
+import blog from "../../src/assets/iconForDashboard/blogger.png";
+import payment from "../../src/assets/iconForDashboard/bill.png";
+import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png";
+import userManage from "../../src/assets/iconForDashboard/user_manage.png";
+import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
+import liveChat from "../../src/assets/iconForDashboard/live-chat-support.png";
+import logout from "../../src/assets/iconForDashboard/logout.png";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
   const [isStudent] = useStudent();
   const [isAdmin] = useAdmin();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   console.log(
     "isAdmin",
@@ -41,18 +42,22 @@ const Dashboard = () => {
     {
       title: "My Dashboard",
       src: "/dashboard/student-dashboard",
-      icon: dashboard
-      
+      icon: dashboard,
     },
     {
       title: "My Payments",
       src: "/dashboard/student-payment",
-      icon: payment
+      icon: payment,
     },
     {
       title: "My Profile",
       src: "/dashboard/student-profile",
-      icon: profile
+      icon: profile,
+    },
+    {
+      title: "Support Center",
+      src: "/dashboard/student-support-center",
+      icon: liveChat,
     },
   ];
 
@@ -60,37 +65,42 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       src: "/dashboard/admin-dashboard",
-      icon: dashboard
+      icon: dashboard,
     },
     {
       title: "Manage Students",
       src: "/dashboard/manage-students",
-      icon: userManage
+      icon: userManage,
     },
     {
       title: "All Enrolled Student",
       src: "/dashboard/All-enrolled-students",
-      icon: enrolledCourse
+      icon: enrolledCourse,
     },
     {
       title: "Manage instructors",
       src: "/dashboard/manage-instructors",
-      icon: userManage
+      icon: userManage,
     },
     {
       title: "Manage Course",
       src: "/dashboard/manage-course",
-      icon: course
+      icon: course,
     },
     {
       title: "Withdraw Request",
       src: "/dashboard/withdraw-request",
-      icon: payment
+      icon: payment,
     },
     {
       title: "Add New Category",
       src: "/dashboard/Add-category",
-      icon: addCourse
+      icon: addCourse,
+    },
+    {
+      title: "Support Tickets",
+      src: "/dashboard/support-tickets",
+      icon: addCourse,
     },
   ];
 
@@ -98,46 +108,49 @@ const Dashboard = () => {
     {
       title: "Dashboard",
       src: "/dashboard/new-instructor-dashboard",
-      icon: dashboard
-      
+      icon: dashboard,
     },
     {
       title: "My Profile",
       src: "/dashboard/instructor-profile",
-      icon: profile
+      icon: profile,
     },
     {
       title: "My Courses",
       src: "/dashboard/my-courses-instructor",
-      icon: course
+      icon: course,
     },
 
     {
       title: "Add New Course",
       src: "/dashboard/add-course",
-      icon: addCourse
+      icon: addCourse,
     },
     {
       title: "My Blogs",
       src: "/dashboard/my-blogs",
-      icon: blog
+      icon: blog,
     },
     {
       title: "Add New Blog",
       src: "/dashboard/add-blog",
-      icon: addCourse
+      icon: addCourse,
     },
     {
       title: "Payment Setup",
       src: "/dashboard/acc-setup",
-      icon: paymentSetup
+      icon: paymentSetup,
     },
     {
       title: "Payment History",
       src: "/dashboard/my-payments",
-      icon: payment
+      icon: payment,
     },
-
+    {
+      title: "Support Request",
+      src: "/dashboard/support-request",
+      icon: liveChat,
+    },
   ];
 
   return (
@@ -147,7 +160,7 @@ const Dashboard = () => {
       >
         <div
           className={`${
-            open ? "w-72 px-5" : "md:w-[80px] px-2 w-0"
+            open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
           } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
@@ -155,9 +168,8 @@ const Dashboard = () => {
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
-            
           >
-             &lt;
+            &lt;
           </p>
           <div className="flex items-center ">
             <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
@@ -176,11 +188,9 @@ const Dashboard = () => {
                   alt=""
                 />
                 <h1
-                  className={`text-white font-semibold ${
-                    !open && "scale-0"
-                  }`}
+                  className={`laptop:text-base text-white font-semibold ${!open && "scale-0"}`}
                 >
-                  {user?.fullName }
+                  {user?.fullName}
                 </h1>
               </div>
             </div>
@@ -195,7 +205,9 @@ const Dashboard = () => {
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -217,7 +229,10 @@ const Dashboard = () => {
                     >
                       <Link to={menu.src} className="flex items-center my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"> <img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          {" "}
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -236,11 +251,13 @@ const Dashboard = () => {
                   {InstructorMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
+                      className="laptop:text-sm text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
-                        <span className="text-3xl me-2"><img src={menu?.icon} alt="" /> </span>
+                        <span className="text-3xl me-2">
+                          <img src={menu?.icon} alt="" />{" "}
+                        </span>
                         <span
                           className={`${
                             !open ? "hidden" : ""
@@ -257,25 +274,26 @@ const Dashboard = () => {
             <hr className=" my-6" />
             <button
               onClick={handleLogOut}
-              className=" text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
             >
-              <p className="text-3xl"></p>
+              <p className="text-3xl">
+                <img src={logout} alt="" />
+              </p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
-              > 
+              >
                 Logout
               </span>
             </button>
           </div>
         </div>
       </div>
-      <div className="h-screen ">
+      <div className="h-screen tablet:pr-8 desktop:pr-20 laptop:pt-10 ">
         <div
-          className={`p-7 text-2xl font-semibold flex-1 ${
+          className={`pt-7 text-2xl font-semibold flex-1 ${
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >
-          
           <Outlet></Outlet>
         </div>
       </div>

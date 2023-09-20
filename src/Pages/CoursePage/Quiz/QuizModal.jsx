@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 
-const QuizModal = ({ milestoneName, quizzes, onClose }) => {
+const QuizModal = ({
+  milestoneName,
+  quizzes,
+  onClose,
+  courseId,
+  studentEmail,
+  setRefresh
+}) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState(new Array(quizzes.length).fill(null));
+  const [selectedAnswers, setSelectedAnswers] = useState(
+    new Array(quizzes.length).fill(null)
+  );
   const [quizCompleted, setQuizCompleted] = useState(false); // Track quiz completion
   const [score, setScore] = useState(0); // Store the user's score
   const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
@@ -32,7 +41,8 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
 
   const currentQuestion = quizzes[currentQuestionIndex];
 
-  const calculateQuizResult = () => {
+  console.log("currentQuestion", currentQuestion.question);
+  const calculateQuizResult = async () => {
     // Calculate the user's score based on selected answers
     const userScore = quizzes.reduce((totalScore, quiz, questionIndex) => {
       if (quiz.correctOption === selectedAnswers[questionIndex]) {
@@ -41,13 +51,46 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
       return totalScore;
     }, 0);
 
-    setScore(userScore);
+    // Calculate the score percentage
+    const scorePercentage = (userScore / quizzes.length) * 100;
+
+    setScore(scorePercentage);
     setQuizCompleted(true);
+
+    // Send the score to the backend API
+    try {
+      const response = await fetch("http://localhost:5000/api/storeQuizScore", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          milestoneName, // Include the milestone name
+          score: scorePercentage,
+          courseId, // Include the courseId
+          studentEmail, // Include the studentEmail
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to store quiz score.");
+      }
+    } catch (error) {
+      console.error("Error storing quiz score:", error);
+    }
+    window.location.reload();
   };
+
+  console.log("score", score);
 
   const handleShowCorrectAnswers = () => {
     setShowCorrectAnswers(true);
   };
+
+  console.log("score", score);
+
+
+console.log("milestoneName", milestoneName);
+
 
   const renderResult = () => {
     if (quizCompleted) {
@@ -55,8 +98,11 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
         <div className="mb-8 p-6 rounded-lg shadow-lg bg-gradient-to-r from-[#1a2c49] via-[#35406e] to-indigo-800 border border-[#36cbd330] text-white">
           <h2 className="text-4xl font-semibold mb-4">Quiz Result</h2>
           <p className="text-2xl mb-2">
-            Your Score: <span className="text-yellow-500 font-bold text-xl">{score}</span> /{' '}
-            <span className="text-blue-500 font-bold text-xl">{quizzes.length}</span>
+            Your Score:{" "}
+            <span className="text-yellow-500 font-bold text-xl">{score}</span> /{" "}
+            <span className="text-blue-500 font-bold text-xl">
+              {quizzes.length}
+            </span>
           </p>
           {/* You can provide additional feedback based on the score */}
           {score === quizzes.length ? (
@@ -76,7 +122,10 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
           )}
           {!showCorrectAnswers && (
             <button
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                setRefresh(true);
+              }}
               className="mt-4 px-4 py-2 rounded-md bg-green-500 text-white hover:bg-green-600"
             >
               Close
@@ -92,7 +141,9 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
     if (showCorrectAnswers) {
       return (
         <div className="mt-4 text-white">
-          <h2 className="text-xl font-semibold">Correct Answers and Explanations</h2>
+          <h2 className="text-xl font-semibold">
+            Correct Answers and Explanations
+          </h2>
           {quizzes.map((quiz, questionIndex) => (
             <div key={questionIndex} className="mb-4">
               <h3 className="text-lg font-semibold">
@@ -137,7 +188,9 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
                         id={`quiz-option-${optionIndex}`}
                         name="quiz-options"
                         value={option}
-                        checked={selectedAnswers[currentQuestionIndex] === optionIndex}
+                        checked={
+                          selectedAnswers[currentQuestionIndex] === optionIndex
+                        }
                         onChange={() => handleOptionChange(optionIndex)}
                       />
                       <label
@@ -154,23 +207,27 @@ const QuizModal = ({ milestoneName, quizzes, onClose }) => {
                 {currentQuestionIndex > 0 && (
                   <button
                     onClick={handlePreviousQuestion}
-                    className={`px-4 py-2 mr-3 rounded-md ${currentQuestionIndex > 0
+                    className={`px-4 py-2 mr-3 rounded-md ${
+                      currentQuestionIndex > 0
                         ? "bg-green-500 text-white hover:bg-green-600"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                      }`}
+                    }`}
                   >
                     Previous
                   </button>
                 )}
                 <button
                   onClick={handleNextQuestion}
-                  className={`px-4 py-2 rounded-md ${selectedAnswers[currentQuestionIndex] === null
+                  className={`px-4 py-2 rounded-md ${
+                    selectedAnswers[currentQuestionIndex] === null
                       ? "bg-green-500 disabled text-white cursor-not-allowed"
                       : "bg-green-500 text-white hover:bg-green-600"
-                    }`}
+                  }`}
                   disabled={selectedAnswers[currentQuestionIndex] === null}
                 >
-                  {currentQuestionIndex < quizzes.length - 1 ? "Next" : "Submit"}
+                  {currentQuestionIndex < quizzes.length - 1
+                    ? "Next"
+                    : "Submit"}
                 </button>
               </div>
             </div>
