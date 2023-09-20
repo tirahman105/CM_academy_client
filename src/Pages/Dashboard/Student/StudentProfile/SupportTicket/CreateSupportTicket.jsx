@@ -1,6 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../../../../providers/AuthProvider";
 import SupportTicketDetails from "./SupportTicketDetails";
+import supportImg from "../../../../../assets/iconForDashboard/support.png";
+import closeSupport from "../../../../../assets/iconForDashboard/closeSupport.png";
 
 const CreateSupportTicket = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,8 +10,9 @@ const CreateSupportTicket = () => {
   const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
   const [supportTickets, setSupportTickets] = useState([]);
-  const [selectedTicket, setSelectedTicket] = useState(null); // Store the selected ticket number
+  const [selectedTicket, setSelectedTicket] = useState(null);
 
+  const supportTicketDetailsRef = useRef(null);
   useEffect(() => {
     fetchAllSupportTickets();
   }, []);
@@ -24,18 +27,12 @@ const CreateSupportTicket = () => {
     setMessage("");
   };
 
-  console.log(user?.email, user?.fullName);
   const fetchAllSupportTickets = () => {
-    console.log("Fetching support tickets...");
     fetch(
       `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${user?.email}/${user?.fullName}`
     )
-      .then((response) => {
-        console.log("Got response from support tickets API:", response);
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        console.log("Got support tickets:", data);
         setSupportTickets(data);
       })
       .catch((error) => {
@@ -53,27 +50,24 @@ const CreateSupportTicket = () => {
       studentName: user?.fullName,
       studentEmail: user?.email,
       sender: "student",
+      timestamp: new Date().toLocaleString(),
       subject,
       message,
-      
     };
 
-    // Make an HTTP POST request to your backend API to create the support ticket
-    fetch("https://cm-academy-test-server-production.up.railway.app/api/support-tickets", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTicket),
-    })
+    fetch(
+      "https://cm-academy-test-server-production.up.railway.app/api/support-tickets",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTicket),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response from the server
-        console.log("Support ticket created:", data);
-
-        // Fetch all support tickets again to include the newly created ticket
         fetchAllSupportTickets();
-
         closeModal();
       })
       .catch((error) => {
@@ -81,19 +75,64 @@ const CreateSupportTicket = () => {
       });
   };
 
-  const handleViewTicket = (ticketNumber) => {
-    setSelectedTicket(ticketNumber); // Set the selected ticket number
+  const handleViewTicket = async (ticketNumber) => {
+    setSelectedTicket(ticketNumber);
+    // Scroll to the SupportTicketDetails section when viewing a ticket
+    if (supportTicketDetailsRef.current) {
+      window.scrollTo({
+        top: supportTicketDetailsRef.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
   };
 
-  console.log(selectedTicket)
-  console.log(supportTickets);
+  const handleCloseTicket = async (ticketNumber) => {
+    // Close the ticket and update its status
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/support-tickets/${ticketNumber}/close`,
+        {
+          method: "PUT",
+        }
+      );
+
+      if (response.status === 200) {
+        // Ticket closed successfully, update its status immediately
+        const updatedTickets = supportTickets.map((ticket) =>
+          ticket.TicketNumber === ticketNumber
+            ? { ...ticket, status: "closed" }
+            : ticket
+        );
+        setSupportTickets(updatedTickets);
+      }
+    } catch (error) {
+      console.error("Error closing support ticket:", error);
+    }
+  };
+  // Close the ticket and update its status
+
   return (
-    <div>
+    <div className="px-4">
+      <div className=" mobile: tablet:flex justify-around max-w-7xl mx-auto  pt-5 pb-1 gap-3  mb-6  bg-white">
+        <div className="">
+          <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
+            Empower Learning: Design Your Course
+          </h1>
+          <p className="mt-4 mobile:text-[14px] laptop:text-[14px] tablet:text-[14px] desktop:text-[18px] text-gray-600 font-TitilliumWeb">
+            Your knowledge can change lives. Begin your teaching journey by
+            creating a course that reflects your expertise. The 'Create Course'
+            page is where you lay the foundation. Define your course's title and
+            description, and let your passion for teaching shine through.
+          </p>
+        </div>
+        <img className="h-32 mobile:hidden" src={supportImg} alt="" />
+      </div>
+
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-gray-700 text-white font-bold py-2 px-4 rounded font-Lexend"
         onClick={openModal}
       >
-        Create a new support ticket
+        Create a new support ticket +
       </button>
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -144,29 +183,89 @@ const CreateSupportTicket = () => {
           </div>
         </div>
       )}
-      <div>
-        <h2 className="text-2xl font-semibold  mt-4 mb-2">Support Tickets</h2>
-        {supportTickets.map((ticket) => (
-          <div
-            key={ticket._id}
-            className="bg-white rounded-lg shadow-md p-4 mb-4"
-          >
-            <h3 className="text-lg font-semibold">{ticket.TicketNumber}</h3>
-            <p className="text-gray-500">{ticket.StudentName}</p>
-            <button
-              onClick={() => handleViewTicket(ticket.TicketNumber)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+
+      <div className=" mt-14">
+        <h2 className="text-2xl font-semibold mt-4 mb-2 font-Lexend">
+          Your All Support Ticket
+        </h2>
+
+        <div className="grid tablet:grid-cols-2 gap-4">
+          {supportTickets.map((ticket) => (
+            <div
+              key={ticket._id}
+              className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
             >
-              View Ticket
-            </button>
-          </div>
-        ))}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3">
+                  {ticket.Subject}
+                </h3>
+                <p className="text-gray-500 text-sm font-LeagueSpartan mb-4">
+                  {" "}
+                  Created on: {ticket.Date}
+                </p>
+                <div className="flex items-center text-sm justify-between ">
+                  <p className="text-gray-500 text-sm font-LeagueSpartan">
+                    TN : {ticket.TicketNumber}
+                  </p>
+                  <p
+                    className={` ${
+                      ticket.status === "pending"
+                        ? "text-[#61ba86] bg-[#e6fff2] border-green-300"
+                        : "text-[#f44336] bg-[#ffebee]"
+                    }  px-2 relative border rounded-[3px] `}
+                  >
+                    {ticket.status === "pending" ? (
+                      <span className="absolute -right-[4px] -top-[5px]">
+                        <span className="relative flex h-3 w-3 ">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#047734] opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-[#61ba86]"></span>
+                        </span>
+                      </span>
+                    ) : (
+                      ""
+                    )}
+
+                    {ticket.status === "pending" ? "Active" : "Closed"}
+                  </p>
+                </div>
+
+                <hr className="mt-5" />
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => handleViewTicket(ticket.TicketNumber)}
+                    className="text-gray-700 border hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                  >
+                    View Ticket
+                  </button>
+
+                  {ticket.status === "pending" ? (
+                    <button
+                      onClick={() => handleCloseTicket(ticket.TicketNumber)}
+                      className="text-gray-700 border flex gap-1  items-center hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                    >
+                      Close Ticket
+                      <img className="h-4" src={closeSupport} alt="" />
+                    </button>
+                  ) : (
+                    <p className=" font-mono text-sm text-[#f44336]">
+                      Ticket Closed!
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       {selectedTicket && (
-        <SupportTicketDetails
-          ticketNumber={selectedTicket}
-          onClose={() => setSelectedTicket(null)} // Close the details view
-        />
+        <div className="scroll-container" ref={supportTicketDetailsRef}>
+          <SupportTicketDetails
+            ticketNumber={selectedTicket}
+            onClose={() => {
+              setSelectedTicket(null);
+            }}
+          />
+        </div>
       )}
     </div>
   );
