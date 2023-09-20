@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Swal from 'sweetalert2';
+
 
 const QuizModal = ({
   milestoneName,
@@ -15,6 +17,27 @@ const QuizModal = ({
   const [quizCompleted, setQuizCompleted] = useState(false); // Track quiz completion
   const [score, setScore] = useState(0); // Store the user's score
   const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
+
+
+  const handleCloseButtonClick = async () => {
+    const { isConfirmed } = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'If you close the quiz, your progress will be lost.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, close it',
+      cancelButtonText: 'No, continue',
+    });
+
+    if (isConfirmed) {
+      // User confirmed, close the modal
+      onClose();
+      setRefresh(true);
+    }
+  };
+
 
   const handleNextQuestion = () => {
     if (selectedAnswers[currentQuestionIndex] !== null) {
@@ -41,7 +64,6 @@ const QuizModal = ({
 
   const currentQuestion = quizzes[currentQuestionIndex];
 
-  console.log("currentQuestion", currentQuestion.question);
   const calculateQuizResult = async () => {
     // Calculate the user's score based on selected answers
     const userScore = quizzes.reduce((totalScore, quiz, questionIndex) => {
@@ -80,17 +102,9 @@ const QuizModal = ({
     window.location.reload();
   };
 
-  console.log("score", score);
-
   const handleShowCorrectAnswers = () => {
     setShowCorrectAnswers(true);
   };
-
-  console.log("score", score);
-
-
-console.log("milestoneName", milestoneName);
-
 
   const renderResult = () => {
     if (quizCompleted) {
@@ -167,12 +181,20 @@ console.log("milestoneName", milestoneName);
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50 backdrop-blur-lg">
-      <div className="bg-[#1a2c49]  p-6 bg-opacity-70 rounded-lg">
+      <div className="bg-[#1a2c49] p-10 bg-opacity-70 rounded-lg">
         <div className="h-full">
           {renderResult()}
           {renderCorrectAnswers()}
           {!quizCompleted && !showCorrectAnswers && (
-            <div>
+            <div style={{ position: 'relative' }}>
+              {/* Add the Close button in the top-right corner */}
+              <button
+                onClick={handleCloseButtonClick}
+                className="absolute font-bold top-0 right-0 -mt-7 mr-0 px-3 py-1 rounded-full text-white hover:bg-red-600"
+              >
+                X
+              </button>
+
               <h2 className="text-2xl text-white font-bold mb-4">
                 Quizzes for {milestoneName} Milestone
               </h2>
@@ -207,22 +229,20 @@ console.log("milestoneName", milestoneName);
                 {currentQuestionIndex > 0 && (
                   <button
                     onClick={handlePreviousQuestion}
-                    className={`px-4 py-2 mr-3 rounded-md ${
-                      currentQuestionIndex > 0
-                        ? "bg-green-500 text-white hover:bg-green-600"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    }`}
+                    className={`px-4 py-2 mr-3 rounded-md ${currentQuestionIndex > 0
+                      ? "bg-green-500 text-white hover:bg-green-600"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      }`}
                   >
                     Previous
                   </button>
                 )}
                 <button
                   onClick={handleNextQuestion}
-                  className={`px-4 py-2 rounded-md ${
-                    selectedAnswers[currentQuestionIndex] === null
-                      ? "bg-green-500 disabled text-white cursor-not-allowed"
-                      : "bg-green-500 text-white hover:bg-green-600"
-                  }`}
+                  className={`px-4 py-2 rounded-md ${selectedAnswers[currentQuestionIndex] === null
+                    ? "bg-green-500 disabled text-white cursor-not-allowed"
+                    : "bg-green-500 text-white hover:bg-green-600"
+                    }`}
                   disabled={selectedAnswers[currentQuestionIndex] === null}
                 >
                   {currentQuestionIndex < quizzes.length - 1
