@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Tiles from "./Tiles";
 
-const StudentDashboradCourses = ({
-  courses,
-  popularCourse,
-  topRated,
-}) => {
+const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
   const [selectedCourse, setSelectedCourse] = useState([]);
 
@@ -18,18 +14,20 @@ const StudentDashboradCourses = ({
     }
   }, [selectedCategory, courses]);
 
-console.log("popularCourse", popularCourse);
+  console.log("popularCourse", popularCourse);
 
   return (
     <div>
-      <h1 className="text-2xl text-left font-bold mt-20">Courses</h1>
-      <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost">
+      <h1 className="text-2xl text-left font-bold mt-20 laptop:text-xl">
+        Courses
+      </h1>
+      <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost laptop:text-base">
         <h1
           onClick={() => {
             setSelectedCategory("All Courses");
             setSelectedCourse(courses);
           }}
-          className={`cursor-pointer ${
+          className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend ${
             selectedCategory === "All Courses"
               ? "border border-gray-600 px-2 py-1 rounded-lg bg-black text-white duration-300 transition-all"
               : "text-black"
@@ -43,7 +41,7 @@ console.log("popularCourse", popularCourse);
             setSelectedCategory("Top Rated");
             setSelectedCourse(topRated);
           }}
-          className={`cursor-pointer ${
+          className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend${
             selectedCategory === "Top Rated"
               ? "border border-gray-600 px-2 py-1 rounded-lg bg-black text-white duration-300 transition-all"
               : "text-black"
@@ -56,7 +54,7 @@ console.log("popularCourse", popularCourse);
             setSelectedCategory("Most Popular");
             setSelectedCourse(popularCourse);
           }}
-          className={`cursor-pointer ${
+          className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend${
             selectedCategory === "Most Popular"
               ? "border border-gray-600 px-2 py-1 rounded-lg bg-black text-white duration-300 transition-all"
               : "text-black"

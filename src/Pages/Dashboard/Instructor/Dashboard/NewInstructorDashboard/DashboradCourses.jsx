@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { AiFillFire } from "react-icons/ai";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -46,7 +45,9 @@ const DashboradCourses = () => {
   };
   return (
     <div className="">
-      <h1 className="text-2xl text-left font-bold mt-20 laptop:text-xl">Courses</h1>
+      <h1 className="text-2xl text-left font-bold mt-20 laptop:text-xl">
+        Courses
+      </h1>
       <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost laptop:text-base">
         <h1
           onClick={() => {
@@ -94,19 +95,21 @@ const DashboradCourses = () => {
           <img
             src={course.courseThumbnail}
             alt={course.title}
-            className="tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
+            className="tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 laptop:w-14 laptop:h-14 desktop:w-20 desktop:h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
           />
-          <div  className=" flex-1 min-w-[100px]">
-            <p className="text-gray-900 mobile:text-[14px] font-bold text-lg truncate   ">{course.title}</p>
+          <div className=" flex-1 min-w-[100px]">
+            <p className="text-gray-900 mobile:text-[14px] tablet:text-sm  font-bold desktop:text-lg truncate   ">
+              {course.title}
+            </p>
             {status == "Approved" ? (
-            <p className="bg-[#1bbf72fa] mobile:w-[52px] tablet:w-20 mobile:h-4 mobile:flex mobile:items-center mobile:text-[9px] tablet:text-sm tablet:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-lg text-white">
-              Approved
-            </p>
-          ) : (
-            <p className="bg-[#f88f8f] mobile:w-[45px] tablet:w-20 mobile:h-4 mobile:flex mobile:items-center mobile:text-[9px] tablet:text-sm tablet:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-lg text-white">
-              Pending
-            </p>
-          )}
+              <p className="bg-[#1bbf72fa] mobile:w-[52px] tablet:w-20 mobile:h-4 desktop:h-full flex items-center mobile:text-[9px] tablet:text-sm laptop:text-[10px] desktop:text-sm tablet:px-2 laptop:px-1 laptop:w-[54px] desktop:w-20 laptop:h-4 desktop:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-md text-white">
+                Approved
+              </p>
+            ) : (
+              <p className="bg-[#f88f8f] mobile:w-[52px] tablet:w-20 mobile:h-4 desktop:h-full flex items-center mobile:text-[9px] tablet:text-sm laptop:text-[10px] desktop:text-sm tablet:px-2 laptop:px-1 laptop:w-[54px] desktop:w-20 laptop:h-4 desktop:px-2 mobile:px-1 tablet:py-[2px] shadow-sm font-bold rounded-md text-white">
+                Pending
+              </p>
+            )}
           </div>
 
           {/* {status == "Approved" ? (
@@ -121,7 +124,9 @@ const DashboradCourses = () => {
 
           <div className="flex items-center space-x-2">
             <AiFillFire className="mobile:text-[10px] tablet:text-base" />
-            <p className="text-gray-600 mobile:text-[10px] tablet:text-sm font-bold font-Lexend">4.9</p>
+            <p className="text-gray-600 mobile:text-[10px] tablet:text-sm font-bold font-Lexend">
+              4.9
+            </p>
           </div>
           <button
             onClick={() => handleViewClick(course)}

@@ -217,8 +217,11 @@ const Final = () => {
 
   ///////////////////////////////////////
   return (
+
+
     <div className="laptop:mt-4 desktop:mt-8">
       <div className="   flex justify-around max-w-7xl mx-auto  pt-5 pb-1  bg-white">
+
         <div className="w-[70%]">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
             Empower Learning: Design Your Course
