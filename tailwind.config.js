@@ -5,9 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-
     extend: {
-
       fontFamily: {
         Montserrat: ['Montserrat', 'sans-serif'],
         LeagueSpartan: ['League Spartan', 'sans-serif'],
@@ -27,14 +25,18 @@ export default {
         Roboto: ['Roboto', 'sans-serif'],
         Poppins: ['Poppins', 'sans-serif'],
         Jost: ['Jost', 'sans-serif']
-      
-
-
-
-
+      },
+      screens: {
+        'mobile': {'min':'0px', 'max':'767px'}, // Mobile Phones
+        'tablet': '768px',           // Tablets
+        'laptop': '1020px',          // Laptops
+        'desktop': '1280px',         // Desktop Monitors
+        'large-desktop': '1920px',   // Large Desktop Monitors
+        'xl-desktop': '2560px',      // Extra Large Desktop Monitors
+        '2xl-desktop': '3440px',     // 2X Large Desktop Monitors
+        '3xl-desktop': '3840px',     // 3X Large Desktop Monitors
       },
     }
   },
   plugins: [require("daisyui")],
 }
-

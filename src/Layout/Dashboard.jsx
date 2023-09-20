@@ -13,13 +13,15 @@ import payment from "../../src/assets/iconForDashboard/bill.png";
 import paymentSetup from "../../src/assets/iconForDashboard/security-payment.png";
 import userManage from "../../src/assets/iconForDashboard/user_manage.png";
 import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
+import liveChat from "../../src/assets/iconForDashboard/live-chat-support.png";
+import logout from "../../src/assets/iconForDashboard/logout.png";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
   const [isStudent] = useStudent();
   const [isAdmin] = useAdmin();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   console.log(
     "isAdmin",
@@ -55,7 +57,7 @@ const Dashboard = () => {
     {
       title: "Support Center",
       src: "/dashboard/student-support-center",
-      icon: profile,
+      icon: liveChat,
     },
   ];
 
@@ -147,7 +149,7 @@ const Dashboard = () => {
     {
       title: "Support Request",
       src: "/dashboard/support-request",
-      icon: payment,
+      icon: liveChat,
     },
   ];
 
@@ -158,7 +160,7 @@ const Dashboard = () => {
       >
         <div
           className={`${
-            open ? "w-72 px-5" : "md:w-[80px] px-2 w-0"
+            open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
           } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
@@ -186,7 +188,7 @@ const Dashboard = () => {
                   alt=""
                 />
                 <h1
-                  className={`text-white font-semibold ${!open && "scale-0"}`}
+                  className={`laptop:text-base text-white font-semibold ${!open && "scale-0"}`}
                 >
                   {user?.fullName}
                 </h1>
@@ -249,7 +251,7 @@ const Dashboard = () => {
                   {InstructorMenus.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
+                      className="laptop:text-sm text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
                     >
                       <Link to={menu.src} className="flex my-2 ">
                         {" "}
@@ -272,9 +274,11 @@ const Dashboard = () => {
             <hr className=" my-6" />
             <button
               onClick={handleLogOut}
-              className=" text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
+              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
             >
-              <p className="text-3xl"></p>
+              <p className="text-3xl">
+                <img src={logout} alt="" />
+              </p>
               <span
                 className={`${!open ? "hidden" : ""} origin-left duration-200 `}
               >
@@ -284,9 +288,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen ">
+      <div className="h-screen tablet:pr-8 desktop:pr-20 laptop:pt-10 ">
         <div
-          className={`p-7 text-2xl font-semibold flex-1 ${
+          className={`pt-7 text-2xl font-semibold flex-1 ${
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >

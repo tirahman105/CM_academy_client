@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CourseOutline = ({
+  setRefresh,
+  courseId,
+  email,
+  milestone,
   setMilestone,
   milestoneList,
   selectedMilestone,
@@ -27,6 +31,41 @@ const CourseOutline = ({
     }
   };
 
+
+//   const [quizResult, setQuizResult] = useState(null);
+
+//   useEffect(() => {
+//     const fetchQuizResult = async () => {
+//       try {
+//         if (selectedMilestone !== null) {
+//           const endpoint = `http://localhost:5000/api/getQuizResult/${email}/${courseId}/${milestoneList[selectedMilestone].milestone}`;
+//           console.log("Fetching quiz result from:", endpoint);
+  
+//           const response = await fetch(endpoint);
+  
+//           if (response.ok) {
+//             const data = await response.json();
+//             console.log("Quiz result data:", data);
+  
+//             setQuizResult(data.quizScore);
+//           } else {
+//             console.error("Error fetching quiz result:", response.statusText);
+//             setQuizResult(null);
+//           }
+//         }
+//       } catch (error) {
+//         console.error("Error fetching quiz result:", error);
+//         setQuizResult(null);
+//       }
+//     };
+  
+//     fetchQuizResult();
+//   }, [courseId, email, milestoneList, selectedMilestone]);
+  
+  
+//   console.log("quizResult", quizResult);
+// console.log("milestone", milestoneList[selectedMilestone].milestone);
+  
   const handleSessionSelect = async (sessionTitle, email, courseId) => {
     try {
       // Encode the sessionTitle before appending it to the URL
