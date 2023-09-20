@@ -39,12 +39,6 @@ const NewInstructorDashboard = () => {
                 <DashboradCourses></DashboradCourses>
 
 
-
-
-
-
-
-
             </div>
 
             {/* Box 2 */}

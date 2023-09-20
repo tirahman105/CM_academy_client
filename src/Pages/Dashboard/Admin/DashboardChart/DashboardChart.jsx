@@ -62,7 +62,7 @@ const DashboardChart = () => {
       height: '400px',
       backgroundColor: 'white', 
     }}>
-      <h2 className=' ml-6 mb-10'>Daily User Registrations</h2>
+      <h2 className=' mb-10'>Daily User Registrations</h2>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <XAxis dataKey="date" style={{ fontSize: '12px', fill: 'black' }}  />

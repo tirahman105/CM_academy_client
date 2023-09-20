@@ -113,9 +113,9 @@ const AdminManagement = ({ courses, setCourses }) => {
 
 
     return (
-        <div>
-            <h1 className='text-2xl text-left font-bold mt-20'>Courses</h1>
-            <div className='flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost'>
+        <div className="w-full mx-auto">
+            <h1 className="text-2xl text-left font-bold mt-8 sm:mt-20">Courses</h1>
+            <div className="flex flex-col sm:flex-row justify-start gap-2 sm:gap-4 text-sm sm:text-base items-center mb-2 mt-4 font-bold font-Jost">
                 <h1
                     onClick={() => {
                         setSelectedCategory('Manage Course');

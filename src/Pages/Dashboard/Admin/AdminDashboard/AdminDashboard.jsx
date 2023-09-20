@@ -1,15 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import DashboardTopNav from '../../Shared/DashboardTopNav/DashboardTopNav';
-import { GrChapterAdd } from 'react-icons/gr';
-import { MdCastForEducation, MdEventAvailable, MdNotificationsActive, MdOutlineGroup, MdOutlinePayments, MdOutlinePostAdd } from 'react-icons/md';
+import { MdNotificationsActive } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import MyPayments from '../../Instructor/MyPatments/MyPayments';
-import WithdrawRequest from '../WithdarwRequest/WithdrawRequest';
-import DashboardWithdrawRequest from '../WithdarwRequest/DashboardWithdrawRequest';
 import DashboardChart from '../DashboardChart/DashboardChart';
-import { BsPencilSquare } from 'react-icons/bs';
 import AdminManagement from './AdminManagement';
-
 import hello from '../../../../assets/hello.png'
 import { AuthContext } from '../../../../providers/AuthProvider';
 import { FaSearch } from 'react-icons/fa';
@@ -73,90 +66,19 @@ const AdminDashboard = () => {
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto p-8">
 
-
       <div className="p-6 rounded-lg w-full bg-white">
-
-
         <div className="mb-4 rounded-md bg-gray-100 h-40 flex justify-around items-center">
           <div className='p-8 space-y-1'>
-            <h1 className="text-4xl font-extrabold font-Jost tracking-wider">Hello {user?.fullName}</h1>
+            <h1 className="xl:text-4xl lg:text-xl md:text-lg font-extrabold font-Jost tracking-wider">Hello {user?.fullName}</h1>
             <p className='text-base font-normal'>It’s good to see you again.</p>
           </div>
-
           <div className='-mt-9'>
             <img src={hello} alt="" />
           </div>
-
         </div>
         <AdminManagement courses={courses} setCourses={setCourses} />
-
-
-
-
-
-
-
-
       </div>
 
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 px-2">
-                <div className="border-l-2 border-r-2 border-gray-300 bg-gray-50 shadow-4xl shadow-gray/40 rounded-md px-3 group">
-                    <div className="flex items-center justify-between ">
-                        <div className="w-16 h-16 bg-black text-white flex items-center justify-center rounded-lg shadow-[#1bbf72ee]/50 group-hover:scale-110 duration-300">
-                            <FaUsersCog size={40} />
-                        </div>
-                        <div className="text-right pt-1 pb-2">
-                            <span className="text-black font-bold text-4xl drop-shadow-xl count__up">
-                                <span>{students?.length || 0}</span>
-                            </span>
-                            <h3 className="text-dark tracking-wider drop-shadow-xl">Total Users</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="border-l-2 border-r-2 border-gray-300 bg-gray-50 shadow-4xl shadow-gray/40 rounded-md px-3 group">
-                    <div className="flex items-center justify-between ">
-                        <div className="w-16 h-16 bg-black  text-white flex items-center justify-center rounded-lg shadow-green-800/50 group-hover:scale-110 duration-300">
-                            <MdCastForEducation size={40} />
-                        </div>
-                        <div className="text-right pt-1 pb-2">
-                            <span className="text-black text-4xl drop-shadow-xl font-bold count__up">
-                                <span>{instructors?.length || 0}</span>
-                            </span>
-                            <h3 className="text-dark tracking-wider drop-shadow-xl">Total Instructors</h3>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="border-l-2 border-r-2 border-gray-300 bg-gray-50 shadow-4xl shadow-gray/40 rounded-md px-3 group">
-                    <div className="flex items-center justify-between">
-                        <div className="w-16 h-16 bg-black text-white flex items-center justify-center rounded-lg shadow-blue-800/50 group-hover:scale-110 duration-300">
-                            <IoBookSharp size={40} />
-                        </div>
-                        <div className="text-right pt-1 pb-2">
-                            <span className="text-black text-4xl drop-shadow-xl font-bold count__up">
-                                <span>{courses?.length || 0}</span>
-                            </span>
-                            <h3 className="text-dark tracking-wider drop-shadow-xl">Total Course</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="border-l-2 border-r-2 border-gray-300 bg-gray-50 shadow-4xl shadow-gray/40 rounded-md px-3 group">
-                    <div className="flex items-center justify-between">
-                        <div className="w-16 h-16 bg-black 0 text-white flex items-center justify-center rounded-lg shadow-orange-500/50 group-hover:scale-110 duration-300">
-                            <BsPencilSquare size={40} />
-                        </div>
-                        <div className="text-right pt-1 pb-2">
-                            <span className="text-black text-4xl drop-shadow-xl font-bold count__up">
-                                <span>{blogs?.length || 0}</span>
-                            </span>
-                            <h3 className="text-dark tracking-wider drop-shadow-xl">Total blogs</h3>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
 
       {/* --------------------------- */}
       <div className="p-6 rounded-lg">
