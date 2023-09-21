@@ -4,10 +4,16 @@ import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 
 const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
-  const [selectedCourse, setSelectedCourse] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(courses);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const itemsPerPage = isSmallScreen ? 5 : 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    // When the selected category changes, update selectedCourse accordingly
+    // Reset currentPage to 1 when category changes
+    setCurrentPage(1);
+
+    // Update selectedCourse when the selected category changes
     if (selectedCategory === "All Courses") {
       setSelectedCourse(courses);
     } else if (selectedCategory === "Top Rated") {
@@ -17,13 +23,10 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
     }
   }, [selectedCategory, courses, popularCourse, topRated]);
 
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const itemsPerPage = isSmallScreen ? 5 : 10;
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPageCount = Math.ceil(selectedCourse?.length / itemsPerPage);
+  const totalPageCount = selectedCourse ? Math.ceil(selectedCourse.length / itemsPerPage) : 0;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage - 1; 
-  const visibleCourses = selectedCourse?.slice(startIndex, endIndex + 1) 
+  const visibleCourses = selectedCourse ? selectedCourse.slice(startIndex, endIndex + 1) : [];
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -71,43 +74,42 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
       {visibleCourses &&
         visibleCourses.length > 0 &&
         visibleCourses.map((course, i) => (
-          // Your logic here to check and map goes inside this block
           <Tiles course={course.course || course} key={i}></Tiles>
         ))}
 
-   {
-    selectedCourse?    <div className="flex justify-center mt-4">
-    <button
-      onClick={() => handlePageChange(currentPage - 1)}
-      disabled={currentPage === 1}
-      className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
-    >
-      <GrFormPrevious></GrFormPrevious>
-    </button>
-    {Array.from({ length: totalPageCount }, (_, index) => (
-      <button
-        key={index}
-        onClick={() => handlePageChange(index + 1)}
-        className={`mx-1 px-3 py-1 text-sm ${
-          currentPage === index + 1
-            ? "bg-green-600 text-white"
-            : "bg-gray-200"
-        } rounded-md`}
-      >
-        {index + 1}
-      </button>
-    ))}
-    <button
-      onClick={() => handlePageChange(currentPage + 1)}
-      disabled={currentPage === totalPageCount}
-      className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
-    >
-      <p className="text-green-600">
-        <GrFormNext />
-      </p>
-    </button>
-  </div> : ''
-   }
+      {selectedCourse && selectedCourse.length > itemsPerPage && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
+          >
+            <GrFormPrevious></GrFormPrevious>
+          </button>
+          {Array.from({ length: totalPageCount }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`mx-1 px-3 py-1 text-sm ${
+                currentPage === index + 1
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200"
+              } rounded-md`}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPageCount}
+            className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
+          >
+            <p className="text-green-600">
+              <GrFormNext />
+            </p>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

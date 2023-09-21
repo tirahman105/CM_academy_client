@@ -3,11 +3,21 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { MdNotificationsActive } from 'react-icons/md';
 import { AuthContext } from '../../../../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import profile from "../../../../../assets/iconForDashboard/user.png";
+import logout from "../../../../../assets/iconForDashboard/logout_2.png";
+import support from "../../../../../assets/iconForDashboard/message.png";
+
 
 const InstructorNavProfile = () => {
 
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
     console.log(user);
+
+    const handleLogOut = () => {
+        logOut()
+          .then(() => {})
+          .catch((error) => console.log(error));
+      };
 
     return (
         <div className='flex items-center '>
@@ -19,15 +29,23 @@ const InstructorNavProfile = () => {
                     </div>
 
                 </label>
-                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
                     <li>
                         <Link to='/dashboard/instructor-profile' className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
+                            <div className='flex gap-2'>
+                                <img className='h-5' src={profile} alt="" />
+                                <p>Profile</p>
+                            </div>
+                           
                         </Link>
                     </li>
-                    <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li><Link to="/dashboard/support-request">
+                        
+                    <div  className='flex gap-2 items-center my-2'>
+                    <img className='h-5' src={support} alt="" /> <p>Support </p></div>
+                        </Link></li>
+                    <li onClick={handleLogOut}> <div  className='flex gap-2'>
+                    <img className='h-5' src={logout} alt="" /> <p>Logout</p></div></li>
                 </ul>
             </div>
             <AiOutlineDown className='text-base' />
