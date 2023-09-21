@@ -28,7 +28,7 @@ const ManageCourse = ({ courses, courseActions, handleActionChange, handlePerfor
   return (
     <div>
       {coursesToDisplay.map((course) => (
-        <div key={course._id} className='max-w-full bg-gray-100 rounded-lg mobile:px-1 mobile:py-2 tablet:p-4 flex mobile:gap-4 items-center desktop:space-x-4 tablet:space-x-6 laptop:space-x-2 mt-2'>
+        <div key={course._id} className='max-w-full bg-gray-100 rounded-lg mobile:px-1 mobile:py-2 tablet:p-4 flex mobile:space-x-1 items-center desktop:space-x-4 tablet:space-x-6 laptop:space-x-2 mt-2'>
           <img src={course.courseThumbnail} alt={course.title} className='tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 laptop:w-14 laptop:h-14 desktop:w-20 desktop:h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110' />
           <div className='flex-1 min-w-[100px]'>
             <p className='text-gray-900 mobile:text-[14px] tablet:text-sm font-bold desktop:text-lg truncate '>{course.title}</p>

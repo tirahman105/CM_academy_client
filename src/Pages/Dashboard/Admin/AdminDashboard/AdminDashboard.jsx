@@ -74,7 +74,7 @@ const AdminDashboard = () => {
             <div className="flex items-center gap-6 justify-start mb-4">
               <div className="relative flex items-center mobile:ml-4 flex-grow rounded-md mobile:text-sm text-lg bg-gray-100">
                 <span className="flex items-center pl-4">
-                  <FaSearch size={24} className="text-gray-700 mobile:text-[12px] tablet:text-[14px] laptop:text-[16px]" />
+                  <FaSearch className="text-gray-700 mobile:text-[12px] tablet:text-[14px] laptop:text-[16px]" />
                 </span>
                 <input
                   type="text"
@@ -84,13 +84,13 @@ const AdminDashboard = () => {
               </div>
 
               <div className="flex items-center">
-                <MdNotificationsActive className="text-4xl mr-4" />
+                <MdNotificationsActive className="text-4xl mr-4 mobile:w-6 tablet:w-7 laptop:w-9" />
                 <div className="dropdown dropdown-end">
                   <label
                     tabIndex={0}
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="w-12 rounded-full flex">
+                    <div className="mobile:w-7 laptop:w-12 tablet:w-9  rounded-full flex">
                       <img src={user?.userImage} />
                     </div>
                   </label>

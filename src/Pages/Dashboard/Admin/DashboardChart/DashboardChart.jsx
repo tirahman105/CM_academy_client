@@ -65,7 +65,7 @@ const DashboardChart = () => {
           backgroundColor: "white",
         }}
       >
-        <h2 className=" mb-10 text-2xl mobile:text-xl  font-bold mt-10 text-center font-LeagueSpartan">
+        <h2 className=" mb-10 text-2xl mobile:text-xl  font-bold mt-[43px] text-center font-LeagueSpartan">
           Daily User Registrations
         </h2>
         <ResponsiveContainer width="100%" height="100%">

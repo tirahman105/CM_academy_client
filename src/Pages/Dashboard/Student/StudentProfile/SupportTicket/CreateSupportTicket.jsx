@@ -117,7 +117,7 @@ const CreateSupportTicket = () => {
       // Close the ticket and update its status
       try {
         const response = await fetch(
-          `http://localhost:5000/api/support-tickets/${ticketNumber}/close`,
+          `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
           {
             method: "PUT",
           }
