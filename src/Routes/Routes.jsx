@@ -7,6 +7,9 @@ import ChatRequest from "../Pages/Dashboard/Instructor/MyCourseInstructor/chatRe
 import CreateSupportTicket from "../Pages/Dashboard/Student/StudentProfile/SupportTicket/CreateSupportTicket";
 import AllSupportTickets from "../Pages/Dashboard/Admin/ManageStudents/Support/getAllSupportTicket";
 import ResponseTicket from "../Pages/Dashboard/Admin/ManageStudents/Support/ResponseTicket";
+import InstructorRoute from "./InstructorRoute";
+import AdminRoute from "./AdminRoute";
+import StudentRoute from "./StudentRoute";
 
 // import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
@@ -284,43 +287,43 @@ const router = createBrowserRouter([
       },
       {
         path: "admin-dashboard",
-        element: <AdminDashboard />,
+        element: <AdminRoute><AdminDashboard /></AdminRoute>,
       },
       {
         path: "manage-students",
-        element: <ManageStudents />,
+        element: <AdminRoute><ManageStudents /></AdminRoute>,
       },
       {
         path: "All-enrolled-students",
-        element: <AllEnrolledStudent />,
+        element: <AdminRoute><AllEnrolledStudent /></AdminRoute>,
       },
       {
         path: "manage-instructors",
-        element: <ManageInstructors />,
+        element: <AdminRoute><ManageInstructors /></AdminRoute>,
       },
       {
         path: "manage-course",
-        element: <ManageCourse />,
+        element: <AdminRoute><ManageCourse /></AdminRoute>,
       },
       {
         path: "withdraw-request",
-        element: <WithdrawRequest />,
+        element: <AdminRoute><WithdrawRequest /></AdminRoute>,
       },
       {
         path: "add-category",
-        element: <AddCategory />,
+        element: <AdminRoute><AddCategory /></AdminRoute>,
       },
       {
         path: "instructor-dashboard",
-        element: <InstructorDashboard />,
+        element: <InstructorRoute> <InstructorDashboard></InstructorDashboard> </InstructorRoute>,
       },
       {
         path: "new-instructor-dashboard",
-        element: <NewInstructorDashboard></NewInstructorDashboard>,
+        element: <InstructorRoute><NewInstructorDashboard></NewInstructorDashboard></InstructorRoute> ,
       },
       {
         path: "instructor-profile",
-        element: <InstructorProfile />,
+        element: <InstructorRoute> <InstructorProfile /></InstructorRoute> ,
       },
       {
         path: "my-courses-instructor",
@@ -328,7 +331,7 @@ const router = createBrowserRouter([
       },
       {
         path: "my-blogs",
-        element: <MyBlogs />,
+        element: <InstructorRoute><MyBlogs /></InstructorRoute>,
       },
       {
         path: "my-enrolled-students",
@@ -344,41 +347,32 @@ const router = createBrowserRouter([
       },
       {
         path: "acc-setup",
-        element: <BankAccountSetup />,
+        element: <InstructorRoute><BankAccountSetup /></InstructorRoute>,
       },
       {
         path: "add-course",
-        element: <AddCourses />,
+        element: <InstructorRoute><AddCourses /></InstructorRoute>,
       },
       {
         path: "add-blog",
-        element: <AddNewBlog />,
+        element: <InstructorRoute><AddNewBlog /></InstructorRoute>,
       },
       {
         path: "quiz",
         element: <QuestionForm />,
       },
-      {
-        path: "student-dashboard",
-        element: <NewStudentDashboard />,
-      },
+     
       // {
 
       //   path: "student-dashboard",
       //   element: <StudentDashboard />,
       // },
-      {
-        path: "my-courses",
-        element: <MyCourses />,
-      },
-      {
-        path: "student-payment",
-        element: <StudentPayment />,
-      },
-      {
-        path: "student-profile",
-        element: <StudentProfileUpdated />,
-      },
+      // {
+      //   path: "my-courses",
+      //   element: <MyCourses />,
+      // },
+     
+      
       {
         path: "chat-w-student",
         element: <ChatWithStudent />,
@@ -387,10 +381,7 @@ const router = createBrowserRouter([
         path: "msg-request",
         element: <ChatRequest></ChatRequest>,
       },
-      {
-        path: "student-support-center",
-        element: <CreateSupportTicket></CreateSupportTicket>,
-      },
+     
       {
         path: "support-tickets",
         element: <AllSupportTickets></AllSupportTickets>,
@@ -399,6 +390,24 @@ const router = createBrowserRouter([
         path: "response-ticket",
         element: <ResponseTicket></ResponseTicket>,
       },
+
+      /////////////////////////// student routes /////////////////////////// 
+      {
+        path: "student-dashboard",
+        element: <StudentRoute><NewStudentDashboard /></StudentRoute>,
+      },
+      {
+        path: "student-payment",
+        element: <StudentRoute><StudentPayment /></StudentRoute>,
+      },
+      {
+        path: "student-profile",
+        element: <StudentRoute><StudentProfileUpdated /></StudentRoute>,
+      },
+      {
+        path: "student-support-center",
+        element: <StudentRoute><CreateSupportTicket></CreateSupportTicket></StudentRoute>,
+      }
     ],
   },
 ]);
