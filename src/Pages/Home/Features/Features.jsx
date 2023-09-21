@@ -33,7 +33,7 @@ const Features = () => {
   // const initialTitle = Object.keys(titleToData)[0];
 
   return (
-    <div className="mt-16  home-container">
+    <div className="mt-16  home-container px-2">
       <div>
         {/* <h2 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">
           Everything in CM Academic Program</h2>
