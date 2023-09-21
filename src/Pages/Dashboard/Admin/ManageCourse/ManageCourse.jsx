@@ -123,6 +123,7 @@ const ManageCourse = () => {
     setCurrentPage(newPage);
   };
 
+  console.log(courses);
   return (
     <div className=" ">
       {/* course table  */}
@@ -140,7 +141,7 @@ const ManageCourse = () => {
                 key={course._id}
                 className="bg-white shadow-md rounded-lg p-1 m-2"
               >
-                <div className="flex gap-4 justify-start py-2 bg-cyan-400 bg-opacity-30 shadow-md rounded-sm relative">
+                <div className="flex gap-4 justify-start py-2  bg-opacity-30 shadow-md rounded-sm relative">
                   <h2 className="h-28 w-4 flex shadow-md items-center justify-center rounded-sm text-white bg-slate-400">
                     {startIndex + index + 1}
                   </h2>
@@ -154,14 +155,14 @@ const ManageCourse = () => {
                     <p className="text-gray-500 text-sm">
                       {course.ApprovedStatus}
                     </p>
-                    <div className="flex gap-1 items-center justify-center text-white text-xs mb-1 absolute bottom-0 -z-10">
+                    <div className="flex gap-1 items-center justify-center text-white text-xs mb-1 absolute bottom-0 ">
                       <button
                         className={`border px-4 py-1 rounded-2xl ${
-                          course.ApprovedStatus === "Approved"
+                          course.ApprovedStatus == "Approved"
                             ? "bg-gray-400"
                             : "bg-green-600"
                         }`}
-                        disabled={course.ApprovedStatus === "Approved"}
+                        disabled={course.ApprovedStatus == "Approved"}
                         onClick={() =>
                           updateCourseStatus(course._id, "Approved")
                         }
@@ -170,7 +171,7 @@ const ManageCourse = () => {
                       </button>
                       <button
                         className={`border px-4 py-1 rounded-2xl ${
-                          course.ApprovedStatus === "Deny"
+                          course.ApprovedStatus == "Deny"
                             ? "bg-gray-400"
                             : "bg-red-400"
                         }`}
