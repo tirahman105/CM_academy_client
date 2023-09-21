@@ -48,6 +48,7 @@ const ManageCourse = () => {
           }),
         }
       );
+      
 
       if (response.ok) {
         const updatedCourses = courses.map((course) =>

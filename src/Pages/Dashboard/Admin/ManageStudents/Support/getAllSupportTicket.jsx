@@ -33,25 +33,75 @@ const AllSupportTickets = () => {
 
   return (
     <div className="container mx-auto">
+   
       <h1 className="text-2xl font-bold mb-4">All Support Tickets</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {supportTickets.map((ticket) => (
-          <div key={ticket._id} className="bg-white rounded-md shadow-md p-4">
-            <h2 className="text-xl font-semibold mb-2">
-              Ticket Number: {ticket.TicketNumber}
-            </h2>
-            <p className="text-gray-600">Student Name: {ticket.StudentName}</p>
-            <p className="text-gray-600">Subject: {ticket.Subject}</p>
-            <p className="text-gray-600">Status: {ticket.status}</p>
-            <p className="text-gray-600">Date: {ticket.Date}</p>
+           <div
+           key={ticket._id}
+           className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
+         >
+           <div>
+             <div className="">
+               <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3 mobile:max-w-[200px] tablet:max-w-md truncate whitespace-nowrap">
+                 {ticket.Subject}
+               </h3>
+             </div>
+             <p className="text-gray-500 text-sm font-LeagueSpartan mb-4">
+               {" "}
+               Created on: {ticket.Date}
+             </p>
+             <div className="flex items-center text-sm justify-between ">
+               <p className="text-gray-500 text-sm font-LeagueSpartan">
+                 TN : {ticket.TicketNumber}
+               </p>
+               <p
+                 className={`  ${
+                   ticket.status === "pending"
+                     ? "text-[#61ba86] bg-[#e6fff2] border-green-300"
+                     : "text-[#f44336] bg-[#ffebee]"
+                 }  px-2 relative border rounded-[3px] `}
+               >
+                 {ticket.status === "pending" ? (
+                   <span className="absolute -right-[4px] -top-[5px]">
+                     <span className="relative flex h-3 w-3 ">
+                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#047734] opacity-75"></span>
+                       <span className="relative inline-flex rounded-full h-3 w-3 bg-[#61ba86]"></span>
+                     </span>
+                   </span>
+                 ) : (
+                   ""
+                 )}
 
-            <button
-              onClick={() => handleViewTicket(ticket.TicketNumber)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2"
-            >
-              View Ticket
-            </button>
-          </div>
+                 {ticket.status === "pending" ? "Active" : "Closed"}
+               </p>
+             </div>
+
+             <hr className="mt-5" />
+             <div className="flex items-center justify-between">
+               <button
+                 onClick={() => handleViewTicket(ticket.TicketNumber)}
+                 className="text-gray-700 border hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+               >
+                 View Ticket
+               </button>
+
+               {ticket.status === "pending" ? (
+                 <button
+                  //  onClick={() => handleCloseTicket(ticket.TicketNumber)}
+                   className="text-gray-700 border flex gap-1  items-center hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                 >
+                   Close Ticket
+                   <img className="h-4" src="{closeSupport}" alt="" />
+                 </button>
+               ) : (
+                 <p className=" font-mono text-sm text-[#f44336]">
+                   Ticket Closed!
+                 </p>
+               )}
+             </div>
+           </div>
+         </div>
         ))}
       </div>
     </div>
