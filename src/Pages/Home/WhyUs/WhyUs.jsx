@@ -15,7 +15,7 @@ const WhyUs = () => {
           Discover Excellence with Personalized Learning, Expert Educators, and
           Seamless Technology. Join us in Redefining Education.
         </p>
-      <div className="container mx-auto px-4">
+      <div className="">
 
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
           <div className="md:w-1/2 mb-6 md:mb-0">
