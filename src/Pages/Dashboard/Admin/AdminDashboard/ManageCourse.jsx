@@ -41,7 +41,7 @@ const ManageCourse = ({ courses, courseActions, handleActionChange, handlePerfor
           </div>
           <div className='flex flex-rown items-center'>
             <select
-              className='border-2 hover:bg-black hover:text-white border-black mobile:h-5 mobile:flex mobile:items-center mobile:px-0 text-black mobile:text-[9px] tablet:text-sm tablet:px-2 tablet:py-1 rounded-lg transition duration-300 font-LeagueSpartan'
+              className='border-2 hover:bg-gray-800 hover:text-white border-black mobile:h-5 mobile:flex mobile:items-center mobile:px-0 text-black mobile:text-[9px] tablet:text-sm tablet:px-2 tablet:py-1 rounded-lg transition duration-300 font-LeagueSpartan'
               onChange={(e) => handleActionChange(course._id, e.target.value)}
               value={courseActions[course._id] || ''}
             >
