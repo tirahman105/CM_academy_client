@@ -75,9 +75,9 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
         className="text-xs w-56    flex items-center gap-2  px-4 py-[4px]  "
       >
         <img
-          src="https://media.discordapp.net/attachments/1137192144587739287/1144607311084654622/videos-teachers-768x432.jpg"
+          src={instructorInfo.userImage}
           className="h-6  shadow-md w-6 rounded-full"
-          alt=""
+          alt={instructorInfo.userImage}
         />
 
 
@@ -148,7 +148,7 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
       {/* bg-[#1bbf7216] rounded-b-lg */}
       <div className="bg-[#1bbf722a] h-[1px] "></div>
 
-      <div className="py-2 flex justify-between px-4">
+      <div  className="py-2 flex justify-between px-4">
         {isEnrolled ? (
           <button
             className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-gray-700"
