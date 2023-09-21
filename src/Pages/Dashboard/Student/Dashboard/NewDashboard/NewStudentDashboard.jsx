@@ -12,10 +12,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useStudentCourses } from "../../../../../Context/StudentCoursesContext";
+import profile from "../../../../../assets/iconForDashboard/user.png";
+import logout from "../../../../../assets/iconForDashboard/logout_2.png";
+import support from "../../../../../assets/iconForDashboard/message.png";
 
 const NewStudentDashboard = () => {
   const [courses, setCourses] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   // const [studentCourses, setStudentCourses] = useState([]);
 
@@ -30,6 +33,12 @@ const NewStudentDashboard = () => {
     }
   }, [user]);
 
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
 
   useEffect(() => {
@@ -72,25 +81,23 @@ const NewStudentDashboard = () => {
                     <img src={user?.userImage} alt="User" />
                   </div>
                 </label>
-                <ul
-                  tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link
-                      to="/dashboard/student-profile"
-                      className="justify-between"
-                    >
-                      Profile
-                      <span className="badge">New</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <a>Logout</a>
-                  </li>
+                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
+                    <li>
+                        <Link to='/dashboard/student-profile' className="justify-between">
+                            <div className='flex gap-2'>
+                                <img className='h-5' src={profile} alt="" />
+                                <p>Profile</p>
+                            </div>
+                           
+                        </Link>
+                    </li>
+                    <li><Link to="/dashboard/student-support-center">
+                        
+                    <div  className='flex gap-2 items-center my-2'>
+                    <img className='h-5' src={support} alt="" /> <p>Support </p></div>
+                        </Link></li>
+                    <li onClick={handleLogOut}> <div  className='flex gap-2'>
+                    <img className='h-5' src={logout} alt="" /> <p>Logout</p></div></li>
                 </ul>
               </div>
               <AiOutlineDown className="text-base" />

@@ -164,7 +164,7 @@ const Dashboard = () => {
           } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
-            className={`text-5xl absolute cursor-pointer -right-6 md:-right-3 top-9 bg-slate-600 rounded-lg px-2 ${
+            className={`text-5xl absolute cursor-pointer -right-6 md:-right-7 border-white border-2 top-9 bg-slate-600 rounded-lg px-2 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
@@ -274,7 +274,7 @@ const Dashboard = () => {
             <hr className=" my-6" />
             <button
               onClick={handleLogOut}
-              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
+              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 ms-1 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
             >
               <p className="text-3xl">
                 <img src={logout} alt="" />

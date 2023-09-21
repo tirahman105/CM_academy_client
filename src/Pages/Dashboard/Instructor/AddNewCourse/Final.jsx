@@ -230,9 +230,41 @@ const Final = () => {
             Your knowledge can change lives. Begin your teaching journey by
             creating a course that reflects your expertise. The 'Create Course'
             page is where you lay the foundation. Define your course's title and
-            description, and let your passion for teaching shine through.
+            description, and let your passion for teaching shine through. See < span onClick={()=>document.getElementById('my_modal_3').showModal()} className="font-bold cursor-pointer text-blue-700">tutorial video</span> to add new course. 
           </p>
         </div>
+
+
+
+ {/* Modal for video starts */}
+
+{/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+<dialog id="my_modal_3" className="modal">
+      <div className="modal-box w-11/12 max-w-5xl">
+        <form method="dialog" className="modal-bottom   ">
+          {/* if there is a button in form, it will close the modal */}
+          <div className="relative overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src="https://www.youtube.com/embed/k1hI6Z7ktQ4"
+              title="How to add a new course?"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full "
+            ></iframe>
+          </div>
+          <div className="flex justify-end mt-4"><button className="btn bg-gray-700 text-white hover:text-black">Close</button></div>
+        </form>
+    
+      </div>
+    </dialog>
+
+
+
+
+
+
         <img className="h-1/4" src={InstructorImage} alt="" />
       </div>
       {/* <hr /> */}
