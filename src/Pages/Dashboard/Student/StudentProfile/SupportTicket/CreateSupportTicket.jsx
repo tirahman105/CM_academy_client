@@ -11,6 +11,7 @@ const CreateSupportTicket = () => {
   const { user } = useContext(AuthContext);
   const [supportTickets, setSupportTickets] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
+  const [scrollPosition, setScrollPosition] = useState(0); // Reference for scroll position
 
   const supportTicketDetailsRef = useRef(null);
   useEffect(() => {
@@ -76,8 +77,11 @@ const CreateSupportTicket = () => {
   };
 
   const handleViewTicket = async (ticketNumber) => {
+    // Store the current scroll position before scrolling
+    setScrollPosition(window.scrollY);
+
     setSelectedTicket(ticketNumber);
-    // Scroll to the SupportTicketDetails section when viewing a ticket
+
     if (supportTicketDetailsRef.current) {
       window.scrollTo({
         top: supportTicketDetailsRef.current.offsetTop,
@@ -86,30 +90,53 @@ const CreateSupportTicket = () => {
     }
   };
 
-  const handleCloseTicket = async (ticketNumber) => {
-    // Close the ticket and update its status
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/support-tickets/${ticketNumber}/close`,
-        {
-          method: "PUT",
-        }
-      );
+  const handleScrollBack = () => {
+    // Scroll back to the stored position
+    window.scrollTo({
+      top: scrollPosition,
+      behavior: "smooth",
+    });
 
-      if (response.status === 200) {
-        // Ticket closed successfully, update its status immediately
-        const updatedTickets = supportTickets.map((ticket) =>
-          ticket.TicketNumber === ticketNumber
-            ? { ...ticket, status: "closed" }
-            : ticket
-        );
-        setSupportTickets(updatedTickets);
-      }
-    } catch (error) {
-      console.error("Error closing support ticket:", error);
-    }
+    // Clear the selected ticket when scrolling back
+    setSelectedTicket(null);
   };
-  // Close the ticket and update its status
+
+  // ... (other functions)
+   useEffect(() => {
+      // Scroll to the SupportTicketDetails section when selectedTicket changes
+      if (selectedTicket && supportTicketDetailsRef.current) {
+        window.scrollTo({
+          top: supportTicketDetailsRef.current.offsetTop,
+          behavior: "smooth",
+        });
+      }
+      console.log("selectedTicket", selectedTicket);
+    }, [selectedTicket]);
+    
+    const handleCloseTicket = async (ticketNumber) => {
+      // Close the ticket and update its status
+      try {
+        const response = await fetch(
+          `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
+          {
+            method: "PUT",
+          }
+        );
+    
+        if (response.status === 200) {
+          // Ticket closed successfully, update its status immediately
+          const updatedTickets = supportTickets.map((ticket) =>
+            ticket.TicketNumber === ticketNumber
+              ? { ...ticket, status: "closed" }
+              : ticket
+          );
+          setSupportTickets(updatedTickets);
+        }
+      } catch (error) {
+        console.error("Error closing support ticket:", error);
+      }
+    };
+    // Close the ticket and update its status
 
   return (
     <div className="px-4">
@@ -135,7 +162,7 @@ const CreateSupportTicket = () => {
         Create a new support ticket +
       </button>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50 rounded-md">
           <div className="modal-overlay"></div>
           <div className="modal-container p-4 md:p-8">
             <div className="bg-white rounded shadow-lg p-4">
@@ -143,37 +170,37 @@ const CreateSupportTicket = () => {
                 Create a new support ticket
               </h2>
               <div className="mb-4">
-                <label htmlFor="subject" className="block mb-2">
+                <label htmlFor="subject" className="block mb-2 text-sm">
                   Subject:
                 </label>
                 <input
                   type="text"
                   id="subject"
-                  className="w-full border border-gray-300 rounded py-2 px-3"
+                  className="w-full border border-gray-300 rounded py-2 px-3 text-sm"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="message" className="block mb-2">
+                <label htmlFor="message" className="block mb-2 text-sm">
                   Message:
                 </label>
                 <textarea
                   id="message"
-                  className="w-full border border-gray-300 rounded py-2 px-3"
+                  className="w-full border border-gray-300 rounded py-2 px-3 text-sm"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
               <div className="text-right">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  className="bg-[#19b85bce] text-white font-bold py-2 px-4 text-sm rounded mr-2"
                   onClick={handleSubmit}
                 >
                   Submit
                 </button>
                 <button
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-600 font-bold py-2 px-4 rounded"
+                  className="bg-gray-300 hover:bg-gray-400 text-gray-600 font-bold py-2 px-4 text-sm rounded"
                   onClick={closeModal}
                 >
                   Cancel
@@ -196,9 +223,11 @@ const CreateSupportTicket = () => {
               className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
             >
               <div>
-                <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3">
-                  {ticket.Subject}
-                </h3>
+                <div className="">
+                  <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3 mobile:max-w-[200px] tablet:max-w-md truncate whitespace-nowrap">
+                    {ticket.Subject}
+                  </h3>
+                </div>
                 <p className="text-gray-500 text-sm font-LeagueSpartan mb-4">
                   {" "}
                   Created on: {ticket.Date}
@@ -208,7 +237,7 @@ const CreateSupportTicket = () => {
                     TN : {ticket.TicketNumber}
                   </p>
                   <p
-                    className={` ${
+                    className={`  ${
                       ticket.status === "pending"
                         ? "text-[#61ba86] bg-[#e6fff2] border-green-300"
                         : "text-[#f44336] bg-[#ffebee]"
@@ -260,9 +289,11 @@ const CreateSupportTicket = () => {
       {selectedTicket && (
         <div className="scroll-container" ref={supportTicketDetailsRef}>
           <SupportTicketDetails
+        
             ticketNumber={selectedTicket}
             onClose={() => {
-              setSelectedTicket(null);
+              // Scroll back to the previous position when closing SupportTicketDetails
+              handleScrollBack();
             }}
           />
         </div>
@@ -272,3 +303,47 @@ const CreateSupportTicket = () => {
 };
 
 export default CreateSupportTicket;
+
+
+
+
+
+
+
+
+
+// useEffect(() => {
+//   // Scroll to the SupportTicketDetails section when selectedTicket changes
+//   if (selectedTicket && supportTicketDetailsRef.current) {
+//     window.scrollTo({
+//       top: supportTicketDetailsRef.current.offsetTop,
+//       behavior: "smooth",
+//     });
+//   }
+//   console.log("selectedTicket", selectedTicket);
+// }, [selectedTicket]);
+
+// const handleCloseTicket = async (ticketNumber) => {
+//   // Close the ticket and update its status
+//   try {
+//     const response = await fetch(
+//       `http://localhost:5000/api/support-tickets/${ticketNumber}/close`,
+//       {
+//         method: "PUT",
+//       }
+//     );
+
+//     if (response.status === 200) {
+//       // Ticket closed successfully, update its status immediately
+//       const updatedTickets = supportTickets.map((ticket) =>
+//         ticket.TicketNumber === ticketNumber
+//           ? { ...ticket, status: "closed" }
+//           : ticket
+//       );
+//       setSupportTickets(updatedTickets);
+//     }
+//   } catch (error) {
+//     console.error("Error closing support ticket:", error);
+//   }
+// };
+// Close the ticket and update its status

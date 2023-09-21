@@ -73,7 +73,7 @@ export default {
       screens: {
         'mobile': {'min':'0px', 'max':'767px'}, // Mobile Phones
         'tablet': '768px',           // Tablets
-        'laptop': '1020px',          // Laptops
+        'laptop': '1000px',          // Laptops
         'desktop': '1280px',         // Desktop Monitors
         'large-desktop': '1920px',   // Large Desktop Monitors
         'xl-desktop': '2560px',      // Extra Large Desktop Monitors
