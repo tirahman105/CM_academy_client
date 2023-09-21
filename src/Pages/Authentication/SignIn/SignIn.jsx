@@ -46,8 +46,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="hero pt-24 ">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero pt-24 bg-gradient">
+      <div className="hero-content flex-col-reverse lg:flex-row-reverse">
         {/* Form on the right side */}
         <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-[#1bbf721e] border-2 border-[#1bbf726c]">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -107,9 +107,9 @@ const SignIn = () => {
         </div>
 
         {/* Login text on the left side */}
-        <div className="text-center md:w-1/2 lg:text-center  m-5 p-24">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6 font-Poppins">
+        <div className="text-center md:w-1/2 lg:text-center   ">
+          <h1 className="text-5xl font-bold ">Login now!</h1>
+          <p className="py-6  font-Poppins">
             Step into a realm of seamless access and personalized experiences.
             Your journey awaits—login now to embark on an adventure of discovery
             and connection. Embrace the power of Provident, where your desires
@@ -118,6 +118,7 @@ const SignIn = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
