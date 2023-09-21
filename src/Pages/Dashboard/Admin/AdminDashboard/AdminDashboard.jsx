@@ -161,7 +161,7 @@ const AdminDashboard = () => {
         <div className="laptop:order-1"></div>
       </div>
 
-      <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
+      <div className="grid grid-cols-1 laptop:gap-0 laptop:grid-cols-2">
         <div className="">
           <AdminManagement courses={courses} setCourses={setCourses} />
         </div>

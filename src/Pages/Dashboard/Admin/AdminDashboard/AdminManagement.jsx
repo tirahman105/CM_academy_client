@@ -145,7 +145,7 @@ const AdminManagement = ({ courses, setCourses }) => {
                         setSelectedCategory('Enrolled Students');
                         setShowWithdrawRequest(false);
                     }}
-                    className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend${selectedCategory === 'Enrolled Students'
+                    className={`cursor-pointer mobile:text-[12px] mobile:font-Lexend${selectedCategory === 'Enrolled Students'
                         ? 'border border-gray-600 px-2 mobile:py-0 mobile:px-1 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
                         : 'text-black'
                     }`}
