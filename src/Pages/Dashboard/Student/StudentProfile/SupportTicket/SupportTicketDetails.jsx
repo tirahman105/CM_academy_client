@@ -69,7 +69,7 @@ const SupportTicketDetails = ({ ticketNumber, onClose }) => {
 
   console.log("messages", messages);
   return (
-    <div className="mt-12 ">
+    <div className="mt-12  pb-20 ">
     
       <h2 className="text-xl font-semibold mb-4 font-Lexend ">
         Support Ticket Details of :{" "}

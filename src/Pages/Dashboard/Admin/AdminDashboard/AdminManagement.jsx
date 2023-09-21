@@ -76,6 +76,8 @@ const AdminManagement = ({ courses, setCourses }) => {
                             }
                         );
 
+                        console.log(response);
+
                         if (response.ok) {
                             const remainingCourses = courses.filter(
                                 (course) => course._id !== courseId
@@ -103,21 +105,24 @@ const AdminManagement = ({ courses, setCourses }) => {
                         );
                     }
                 }
+                setCourseActions({ ...courseActions, [courseId]: '' });
+               
+
             });
         }
     };
 
     return (
-        <div>
-            <h1 className='text-2xl text-left font-bold mt-20'>Courses</h1>
-            <div className='flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost'>
+        <div className=''>
+            <h1 className='text-2xl text-left font-bold mt-10 font-LeagueSpartan '>Courses</h1>
+            <div className='flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost laptop:text-sm'>
                 <h1
                     onClick={() => {
                         setSelectedCategory('Manage Course');
                         setShowWithdrawRequest(false);
                     }}
-                    className={`cursor-pointer ${selectedCategory === 'Manage Course'
-                        ? 'border border-gray-600 px-2 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
+                    className={`cursor-pointer mobile:text-[11px]   mobile:font-Lexend ${selectedCategory === 'Manage Course'
+                        ? 'border border-gray-600 px-2 mobile:py-0 mobile:px-1 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
                         : 'text-black'
                     }`}
                 >
@@ -128,8 +133,8 @@ const AdminManagement = ({ courses, setCourses }) => {
                         setSelectedCategory('Withdraw Requests');
                         setShowWithdrawRequest(true);
                     }}
-                    className={`cursor-pointer ${selectedCategory === 'Withdraw Requests'
-                        ? 'border border-gray-600 px-2 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
+                    className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend ${selectedCategory === 'Withdraw Requests'
+                        ? 'border border-gray-600 px-2 mobile:py-0 mobile:px-1 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
                         : 'text-black'
                     }`}
                 >
@@ -140,8 +145,8 @@ const AdminManagement = ({ courses, setCourses }) => {
                         setSelectedCategory('Enrolled Students');
                         setShowWithdrawRequest(false);
                     }}
-                    className={`cursor-pointer ${selectedCategory === 'Enrolled Students'
-                        ? 'border border-gray-600 px-2 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
+                    className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend${selectedCategory === 'Enrolled Students'
+                        ? 'border border-gray-600 px-2 mobile:py-0 mobile:px-1 py-1 rounded-lg bg-gray-700 text-white duration-300 transition-all'
                         : 'text-black'
                     }`}
                 >
