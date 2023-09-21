@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from "react";
-
 import Tiles from "./Tiles";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 
 const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
   const [selectedCourse, setSelectedCourse] = useState([]);
 
-  // console.log(selectedCategory);
-
   useEffect(() => {
+    // When the selected category changes, update selectedCourse accordingly
     if (selectedCategory === "All Courses") {
       setSelectedCourse(courses);
+    } else if (selectedCategory === "Top Rated") {
+      setSelectedCourse(topRated);
+    } else if (selectedCategory === "Most Popular") {
+      setSelectedCourse(popularCourse);
     }
-  }, [selectedCategory, courses]);
+  }, [selectedCategory, courses, popularCourse, topRated]);
 
-  console.log("popularCourse", popularCourse);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const itemsPerPage = isSmallScreen ? 5 : 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPageCount = Math.ceil(selectedCourse?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage - 1; 
+  const visibleCourses = selectedCourse?.slice(startIndex, endIndex + 1) 
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <div>
@@ -23,10 +36,7 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
       </h1>
       <div className="flex justify-start gap-4 text-lg items-center mb-2 mt-4 font-bold font-Jost laptop:text-base">
         <h1
-          onClick={() => {
-            setSelectedCategory("All Courses");
-            setSelectedCourse(courses);
-          }}
+          onClick={() => setSelectedCategory("All Courses")}
           className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend ${
             selectedCategory === "All Courses"
               ? "border border-gray-600 px-2 py-1 rounded-lg bg-black text-white duration-300 transition-all"
@@ -37,10 +47,7 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
         </h1>
 
         <h1
-          onClick={() => {
-            setSelectedCategory("Top Rated");
-            setSelectedCourse(topRated);
-          }}
+          onClick={() => setSelectedCategory("Top Rated")}
           className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend${
             selectedCategory === "Top Rated"
               ? "border border-gray-600 px-2 py-1 rounded-lg bg-black text-white duration-300 transition-all"
@@ -50,10 +57,7 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
           Top Rated
         </h1>
         <h1
-          onClick={() => {
-            setSelectedCategory("Most Popular");
-            setSelectedCourse(popularCourse);
-          }}
+          onClick={() => setSelectedCategory("Most Popular")}
           className={`cursor-pointer mobile:text-[11px] mobile:font-Lexend${
             selectedCategory === "Most Popular"
               ? "border border-gray-600 px-2 py-1 rounded-lg bg-black text-white duration-300 transition-all"
@@ -64,12 +68,46 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
         </h1>
       </div>
 
-      {selectedCourse &&
-        selectedCourse.length > 0 &&
-        selectedCourse.map((course, i) => (
+      {visibleCourses &&
+        visibleCourses.length > 0 &&
+        visibleCourses.map((course, i) => (
           // Your logic here to check and map goes inside this block
           <Tiles course={course.course || course} key={i}></Tiles>
         ))}
+
+   {
+    selectedCourse?    <div className="flex justify-center mt-4">
+    <button
+      onClick={() => handlePageChange(currentPage - 1)}
+      disabled={currentPage === 1}
+      className="mr-2 px-3 py-1 bg-gray-200 rounded-md"
+    >
+      <GrFormPrevious></GrFormPrevious>
+    </button>
+    {Array.from({ length: totalPageCount }, (_, index) => (
+      <button
+        key={index}
+        onClick={() => handlePageChange(index + 1)}
+        className={`mx-1 px-3 py-1 text-sm ${
+          currentPage === index + 1
+            ? "bg-green-600 text-white"
+            : "bg-gray-200"
+        } rounded-md`}
+      >
+        {index + 1}
+      </button>
+    ))}
+    <button
+      onClick={() => handlePageChange(currentPage + 1)}
+      disabled={currentPage === totalPageCount}
+      className="ml-2 px-3 py-1 bg-gray-200 rounded-md"
+    >
+      <p className="text-green-600">
+        <GrFormNext />
+      </p>
+    </button>
+  </div> : ''
+   }
     </div>
   );
 };

@@ -7,7 +7,6 @@ import Lottie from "react-lottie-player";
 const WhyUs = () => {
   return (
     <div className="pt-12 px-2 md:pt-20 home-container">
-      <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold mb-5  font-Poppins">
           Why Choose us?
         </h1>
@@ -16,6 +15,7 @@ const WhyUs = () => {
           Discover Excellence with Personalized Learning, Expert Educators, and
           Seamless Technology. Join us in Redefining Education.
         </p>
+      <div className="container mx-auto px-4">
 
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
           <div className="md:w-1/2 mb-6 md:mb-0">
