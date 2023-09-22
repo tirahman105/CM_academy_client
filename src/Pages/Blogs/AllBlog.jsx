@@ -25,8 +25,8 @@ const AllBlog = () => {
 
   return (
     <div className="bg-gray-100">
-      <div className="min-h-screen w-4/5 mx-auto">
-        <div className="flex flex-col md:flex-row p-6 container mx-auto gap-10">
+      <div className="min-h-screen w-full lg:w-4/5 mx-auto">
+        <div className="flex flex-col md:flex-row px-2 mx-auto lg:gap-10">
           <div className="w-full md:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-20">
             {filteredBlogs.map((blog, index) => (
               <Link to={`/blog-details/${blog._id}`} key={index}>
