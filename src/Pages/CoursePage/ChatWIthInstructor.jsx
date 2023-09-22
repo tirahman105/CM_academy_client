@@ -77,9 +77,12 @@ const ChatWithInstructor = ({ courseId, userId }) => {
   }, [chatData]);
 
   return (
-    <div className="chat-box">
+    <div className="chat-box relative">
+      <button 
+      onClick={fetchChatData}
+      className="absolute  -top-6 backdrop-blur-sm  right-[48%] z-10 bg-slate-500  text-sm border w-14 rounded-md">Refresh</button>
       <div
-        className="message-container pt-11  h-96 overflow-y-auto myComponentContainer"
+        className="message-container pt-11  h-96 overflow-y-auto myComponentContainer relative"
         ref={messageContainerRef}
       >
         <AnimatePresence initial={false}>

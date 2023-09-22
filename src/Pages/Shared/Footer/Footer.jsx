@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <div className="testBgForMyCourse">
-        <footer className="footer p-10  text-white ">
+        <footer className="footer p-10  text-white grid grid-cols-3 mx-auto ">
           <div>
             <span className="footer-title">Services</span>
             <Link to="/courseCategories?category=All" className="link link-hover">All Courses</Link>
