@@ -17,7 +17,14 @@ const AllSupportTickets = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setSupportTickets(data);
+        // Sort the support tickets by date in descending order (most recent first)
+        const sortedTickets = data.sort((a, b) => {
+          const dateA = new Date(a.Date);
+          const dateB = new Date(b.Date);
+          return dateB - dateA;
+        });
+
+        setSupportTickets(sortedTickets);
       })
       .catch((error) => {
         console.error("Error fetching support tickets:", error);
