@@ -48,7 +48,7 @@ const KeySponsor = () => {
           Our Esteemed Sponsor Companies Shaping the Future of Learning.
         </p>
       <div className=" mx-auto">
-        <Marquee className="mb-5" direction="left" speed={30}>
+        <Marquee className="" direction="left" speed={30}>
           {sponsors.map((sponsor, index) => (
             <a
               key={index}
