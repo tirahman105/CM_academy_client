@@ -26,7 +26,6 @@ const sponsors = [
   {
     logo: "https://cdn.logojoy.com/wp-content/uploads/2018/05/30162622/1628.png",
   },
-
   {
     logo: "https://cdn.logojoy.com/wp-content/uploads/2018/05/30162652/5_big7.png",
   },
@@ -55,12 +54,12 @@ const KeySponsor = () => {
               href={sponsor.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block p-4"
+              className="inline-block p-2 sm:p-4 md:p-4 lg:p-4 xl:p-4"
             >
               <img
                 src={sponsor.logo}
                 alt={`${sponsor.name} Logo`}
-                className="w-40 h-32"
+                className="w-auto h-auto max-w-full sm:w-32 md:w-40 lg:w-48 xl:w-56"
               />
             </a>
           ))}
