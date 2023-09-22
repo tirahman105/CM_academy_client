@@ -3,8 +3,6 @@ import logo from "../../../../public/cm-logo-png.ico";
 const Footer = () => {
   return (
     <>
-
-
       <div className="testBgForMyCourse">
         <footer className="footer p-10  text-white grid grid-cols-3 mx-auto ">
           <div>
@@ -29,9 +27,9 @@ const Footer = () => {
             <Link to="/policy" className="link link-hover">
               Privacy policy
             </Link>
-
+           
           </div>
-        </div>
+        </footer>
         <footer
           className="footer px-10 py-4 border-t text-white  
             border-white"
