@@ -216,12 +216,16 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useInstructor from "../../../Hooks/useInstructor";
 import { BiSolidChevronDown } from "react-icons/bi";
+import useStudent from "../../../Hooks/useStudent";
+import useAdmin from "../../../Hooks/useAdmin";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { user, logOut } = useContext(AuthContext);
-  const [isInstructor] = useInstructor();
+  const [isInstructor] = useInstructor();  
+    const [isStudent]= useStudent();
+    const[isAdmin]= useAdmin();
 
   const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -278,6 +282,18 @@ function Navbar() {
     // Navigate to AllCourseCategories with the selected category name as a query parameter
     navigate(`/courseCategories?category=${encodeURIComponent(categoryName)}`);
   };
+
+  let dashboardRoute = "";
+  if (isStudent){
+    dashboardRoute= "/dashboard/student-dashboard"
+  }
+  if (isInstructor){
+    dashboardRoute= "/dashboard/new-instructor-dashboard"
+  }
+  
+  if (isAdmin){
+    dashboardRoute= "/dashboard/admin-dashboard"
+  }
 
   return (
     <div className="  bg-opacity-70 backdrop-blur-lg fixed py-3 left-0 right-0 ">
@@ -361,7 +377,7 @@ function Navbar() {
                   className="absolute -left-2 bg-white p-3  w-44 rounded-lg shadow-lg "
                 >
                   {Categories.map((category, index) => (
-                    <li className=" mb-3   rounded px-2 py-1 " key={index}>
+                    <li className=" mb-3   rounded px-2 py-1 hover:text-green-600" key={index}>
                       <h1
                         onClick={() => handleCategoryClick(category.name)} // Close the dropdown when a category is clicked
                       >
@@ -384,7 +400,7 @@ function Navbar() {
             )}
             {user && (
               <NavLink
-                to="/dashboard"
+                to={dashboardRoute}
                 className="ml-auto   font-Raleway font-bold"
                 style={navLinkStyle}
               >
@@ -447,7 +463,7 @@ function Navbar() {
                   className=""
                 >
                   {Categories.map((category, index) => (
-                    <li className=" " key={index}>
+                    <li className=" ms-2 hover:text-green-600" key={index}>
                       <h1
                         onClick={() => {
                           handleCategoryClick(category.name);
