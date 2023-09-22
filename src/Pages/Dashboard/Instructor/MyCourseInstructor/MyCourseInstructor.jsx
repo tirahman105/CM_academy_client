@@ -41,11 +41,11 @@ const MyCourseInstructor = () => {
         <p className="text-base mb-4">All my courses</p>
         <hr />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {instructorCourses.map((category) => (
           <div
             key={category._id}
-            className="card  bg-base-100 shadow-xl  mx-auto"
+            className="card  bg-base-100 shadow-xl mr-7  mx-auto"
           >
             <figure>
               <img
@@ -55,21 +55,22 @@ const MyCourseInstructor = () => {
               />
             </figure>
             <div className="card-body">
+              
               <h2 className="card-title mb-2">
-                {category.title} - {category.courseCategory}
+                
+                {category.title} - 
+              
                 <div className="badge badge-warning">New</div>
               </h2>
-              <p className="text-xs tracking-wider">
-                Learn the basics of web development, including HTML, CSS, and
-                JavaScript.
-              </p>
+              <p className="text-sm">{category.courseCategory}</p>
+            
               <div className="flex justify-between mt-2 font-semibold text-sm text-gray-500">
                 <h1>Price:tk {category.coursePrice}</h1>
               </div>
 
               <div className="divider"></div>
 
-              <div className="flex justify-between items-center">
+              <div className="">
                 <button
                   onClick={() => handleDetailsClick(category)}
                   className="btn btn-sm bg-[#edfffc] 
