@@ -413,11 +413,11 @@ function Navbar() {
               <div className="flex justify-end gap-12">
                 <div className="bg-[#1bbf723b] border-2 border-[#1bbf726c] shadow-md sm:h-12 gap-2 rounded-full  flex items-center justify-between  px-1 py-1 ">
                   <p className="text-gray-700 text-xs font-bold  font-Poppins tracking-wider ml-1 hover:px-10 duration-500">
-                    {user.displayName}
+                    {user.fullName}
                   </p>
                   <img
                     className=" rounded-full h-9  sm:h-10 shadow-lg sm:block"
-                    src={user.photoURL}
+                    src={user.userImage}
                     alt=""
                   />
                 </div>
