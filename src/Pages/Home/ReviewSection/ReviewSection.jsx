@@ -183,12 +183,12 @@ const ReviewSection = () => {
   };
 
   return (
-    <div className="pt-12 px-2 lg:pb-1  bg-gradient mt-32 mb-32">
-      <h1 className="text-4xl font-bold mb-5  font-Poppins home-container">
+    <div className=" bg-gradient max-w-7xl mx-auto px-4 mt-28 pt-8">
+      <h1 className="text-4xl font-bold mb-5  font-Poppins mobile:text-xl ">
         What Our Student Are Saying
 
       </h1>
-      <p className=" font-semibold mb-10 home-container">
+      <p className=" mb-10  font-Jost">
         These testimonials often highlight the experiences, successes, and opinions of students to provide insight into the quality of the institution or program.
       </p>
       <div>

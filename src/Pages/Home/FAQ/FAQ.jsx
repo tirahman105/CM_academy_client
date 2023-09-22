@@ -42,15 +42,15 @@ const FAQ = () => {
   };
 
   return (
-    <div className="pt-12 px-2 lg:pb-1 home-container">
-      <h1 className="text-4xl font-bold mb-5  font-Poppins">
+    <div className="max-w-7xl mx-auto px-2 mt-28">
+      <h1 className="text-4xl font-bold mb-5  font-Poppins mobile:text-xl">
         Frequently Asked Questions
       </h1>
-      <p className=" font-semibold mb-10">
+      <p className="  mb-10 font-Jost">
         Common questions asked by students and instructors
       </p>
 
-      <div className="flex flex-col md:flex-row gap-5">
+      <div className="flex flex-col mobile:flex-col-reverse md:flex-row gap-5">
         <div className="w-full mx-auto px-6">
           <div className="lg:min-h-screen flex justify-center items-center">
             <div className="w-full ">
@@ -59,7 +59,7 @@ const FAQ = () => {
                   <div
                     key={index}
                     className=" border-b-4  border-b-[#1bbf723b] p-4 rounded-md cursor-pointer
-                                         hover:bg-[#1bbf723b]"
+                                         "
                     onClick={() => toggleFAQ(index)}
                   >
                     <div className="flex justify-between items-center">
@@ -72,14 +72,14 @@ const FAQ = () => {
                         )}
                       </span>
                     </div>
-                    {activeIndex === index && <p className=" ">{faq.answer}</p>}
+                    {activeIndex === index && <p className="font-Jost mt-4">{faq.answer}</p>}
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full h-96  mx-auto lg:px-6">
+        <div className="tablet:w-full tablet:h-96 mobile:h-16 mx-auto mobile:mb-14 lg:px-6">
           <Lottie animationData={FAQAnimation} loop={true} />
         </div>
       </div>

@@ -40,14 +40,14 @@ const sponsors = [
 
 const KeySponsor = () => {
   return (
-    <div className="pt-6 px-2 home-container">
-        <h1 className="text-4xl font-bold mb-5  font-Poppins">
+    <div className="max-w-7xl mx-auto px-4 mt-28 ">
+        <h1 className="text-4xl font-bold mb-5  font-Poppins mobile:text-xl">
           Leading Key Sponsor Companies
         </h1>
-        <p className=" font-semibold mb-10">
+        <p className=" font-Jost mb-10">
           Our Esteemed Sponsor Companies Shaping the Future of Learning.
         </p>
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <Marquee className="mb-5" direction="left" speed={30}>
           {sponsors.map((sponsor, index) => (
             <a
