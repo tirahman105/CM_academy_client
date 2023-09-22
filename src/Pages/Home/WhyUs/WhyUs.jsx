@@ -10,7 +10,7 @@ const WhyUs = () => {
         <h1 className="text-4xl font-bold mb-5  font-Poppins  mobile:text-xl">
           Why Choose us?
         </h1>
-        <p className=" font-semibold tablet:mb-10 mobile:text-sm" >
+        <p className="  tablet:mb-10 mobile:text-sm font-Jost text-gray-600" >
           Empowering Futures, One Click at a Time. <br />
           Discover Excellence with Personalized Learning, Expert Educators, and
           Seamless Technology. Join us in Redefining Education.
@@ -18,21 +18,21 @@ const WhyUs = () => {
       <div className="">
 
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
-          <div className="md:w-1/2 mb-6 md:mb-0">
+          <div className=" mb-6 md:mb-0 mobile:w-[250px] mx-auto tablet:h-[350px] tablet:w-[350px]">
             <Lottie
               animationData={animationData}
               play
               loop
 
-              style={{ width: 350, height: 350 }} // Adjust the dimensions as needed
+              // style={{ width: 350, height: 350 }} // Adjust the dimensions as needed
 
             />
           </div>
-          <div className="md:w-1/2 text-gray-800 font-Lexend ">
+          <div className="md:w-1/2 text-gray-800 font-Jost ">
             <div className="mb-8">
               <div className="flex gap-4 items-center justify-center">
                 <div>
-                  <h2 className="text-3xl font-semibold mb-2  mobile:text-xl">
+                  <h2 className="text-3xl font-semibold mb-2  mobile:text-xl text-gray-800">
                     Inspire Curiosity
                   </h2>
                   <p className="text-gray-600 mobile:text-sm">

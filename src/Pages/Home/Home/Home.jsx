@@ -24,9 +24,9 @@ const Home = () => {
       <Categories></Categories>
       <Features></Features>
       <WhyUs></WhyUs>
-      {/* <StatSection></StatSection>
+      <StatSection></StatSection>
       <FAQ></FAQ>
-      <HomeBlog></HomeBlog>
+      {/* <HomeBlog></HomeBlog>
       <ReviewSection></ReviewSection>
       <KeySponsor></KeySponsor> */}
     </motion.div>

@@ -33,16 +33,16 @@ const Features = () => {
   // const initialTitle = Object.keys(titleToData)[0];
 
   return (
-    <div className="max-w-7xl mx-auto px-2 mt-28">
+    <div className="max-w-7xl mx-auto px-2 mt-28 font-Poppins">
       <div>
         {/* <h2 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">
           Everything in CM Academic Program</h2>
         <p className="text-center font-semibold mb-10">
           Our Instructors give  you best resources for every course</p> */}
-        <h1 className="text-4xl font-bold mb-5  font-Poppins  mobile:text-xl">
+        <h1 className="text-4xl font-bold mb-5    mobile:text-xl">
           Everything in CM Academic Program
         </h1>
-        <p className=" font-semibold mb-10 mobile:text-sm">
+        <p className=" mb-10 mobile:text-sm font-Jost text-gray-600 ">
           Our Instructors give you best resources for every course
         </p>
       </div>
@@ -63,7 +63,7 @@ const Features = () => {
               </div>
 
               <div className="w-4/5">
-                <p className="text-gray-700 text-xl  font-bold ">
+                <p className="text-gray-700 text-xl font-Jost  font-bold ">
                   {title}
                 </p>
               </div>

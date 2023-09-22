@@ -87,7 +87,7 @@ const Categories = () => {
         <h1 className="text-4xl font-bold mb-5 font-Poppins mobile:text-xl">
           Explore Top Courses
         </h1>
-        <p className="font-semibold mb-10">
+        <p className=" mb-10 font-Jost text-gray-600">
           Choose your desired course and start learning online!
         </p>
         <div className="sticky top-[64px] md:top-[72px] z-[1]">
@@ -118,16 +118,20 @@ const Categories = () => {
 
         <div>
           <div className="sm:flex sm:gap-10 items-center     ">
-            <div className="sm:w-1/2  px-3 rounded-xl py-2   h-[135px] shadow-md">
+            <div className="sm:w-1/2  px-3 rounded-xl py-2   h-[135px] ">
               <h1 className="sm:text-2xl font-bold mb-2 sm:mb-5 font-LeagueSpartan text-gray-600">
                 {title}
               </h1>
-              <p className=" text-[12px] sm:text-base font-bold text-gray-600 sm:font-semibold font-LeagueSpartan   text-justify">
+              <p className=" text-[12px] sm:text-base text-gray-600  font-Jost   text-justify">
                 {description}
               </p>
             </div>
-            <div className="sm:w-1/2 mt-4 sm:mt-0 flex gap-4 px-3 rounded-xl py-2 sm:h-[135px]  shadow-md">
-              <img src={jobStatImg} alt="" className="hidden sm:block sm:h-[125px]" />
+            <div className="sm:w-1/2 mt-4 sm:mt-0 flex gap-4 px-3 rounded-xl py-2 sm:h-[135px]  ">
+              <img
+                src={jobStatImg}
+                alt=""
+                className="hidden sm:block sm:h-[125px]"
+              />
               {/* bg-[#fdfdd586] */}
               <div>
                 <p className="text-xl font-bold mb-2 font-LeagueSpartan  text-gray-600">
@@ -136,15 +140,15 @@ const Categories = () => {
                 <p className="text-xl font-bold mb-3 font-LeagueSpartan text-gray-600">
                   Projected 10 year growth : {projectedGrowth}
                 </p>
-                <h1 className="text-[11px] font-bold text-gray-500  ">
-                  **Growth rate data is sourced from United States Lightcast™ Job
-                  Postings Report(7/1/2022 - 6/30/2023)**
+                <h1 className="text-[11px]  text-gray-500  font-Jost ">
+                  **Growth rate data is sourced from United States Lightcast™
+                  Job Postings Report(7/1/2022 - 6/30/2023)**
                 </h1>
               </div>
             </div>
           </div>
           <motion.div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
-            {activeCourses.map((activeCourse, courseIndex) => (
+            {activeCourses.slice(0, 4).map((activeCourse, courseIndex) => (
               <CourseCard
                 key={courseIndex}
                 course={activeCourse}
