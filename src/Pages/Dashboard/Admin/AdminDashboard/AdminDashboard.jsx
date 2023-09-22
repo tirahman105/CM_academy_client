@@ -8,6 +8,11 @@ import { AuthContext } from "../../../../providers/AuthProvider";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineDown } from "react-icons/ai";
 
+import profile from "../../../../assets/iconForDashboard/user.png";
+import logout from "../../../../assets/iconForDashboard/logout_2.png";
+import support from "../../../../assets/iconForDashboard/message.png";
+
+
 const AdminDashboard = () => {
   // data fetch from DB
 
@@ -15,7 +20,7 @@ const AdminDashboard = () => {
   const [instructors, setInstructors] = useState([]);
   const [courses, setCourses] = useState([]);
   const [blogs, setBlogs] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   //   user fetch
   useEffect(() => {
@@ -66,6 +71,14 @@ const AdminDashboard = () => {
   );
   const totalDeniedCourses = deniedCourses.length;
 
+
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="mobile:px-2">
       <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
@@ -94,26 +107,16 @@ const AdminDashboard = () => {
                       <img src={user?.userImage} />
                     </div>
                   </label>
-                  <ul
-                    tabIndex={0}
-                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-                  >
-                    <li>
-                      <Link
-                        to="/dashboard/admin-dashboard"
-                        className="justify-between"
-                      >
-                        Profile
-                        <span className="badge">New</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <a>Settings</a>
-                    </li>
-                    <li>
-                      <a>Logout</a>
-                    </li>
-                  </ul>
+                  <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
+                   
+                    <li><Link to="/dashboard/support-tickets">
+                        
+                    <div  className='flex gap-2 items-center my-2'>
+                    <img className='h-5' src={support} alt="" /> <p>Support center </p></div>
+                        </Link></li>
+                    <li onClick={handleLogOut}> <div  className='flex gap-2'>
+                    <img className='h-5' src={logout} alt="" /> <p>Logout</p></div></li>
+                </ul>
                 </div>
                 <AiOutlineDown className="text-base" />
               </div>

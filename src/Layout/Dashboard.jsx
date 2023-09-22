@@ -100,7 +100,7 @@ const Dashboard = () => {
     {
       title: "Support Tickets",
       src: "/dashboard/support-tickets",
-      icon: addCourse,
+      icon: liveChat,
     },
   ];
 
@@ -146,11 +146,11 @@ const Dashboard = () => {
       src: "/dashboard/my-payments",
       icon: payment,
     },
-    {
-      title: "Support Request",
-      src: "/dashboard/support-request",
-      icon: liveChat,
-    },
+    // {
+    //   title: "Support Request",
+    //   src: "/dashboard/support-request",
+    //   icon: liveChat,
+    // },
   ];
 
   return (
