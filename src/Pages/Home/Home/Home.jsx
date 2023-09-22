@@ -26,9 +26,9 @@ const Home = () => {
       <WhyUs></WhyUs>
       <StatSection></StatSection>
       <FAQ></FAQ>
-      {/* <HomeBlog></HomeBlog>
+      <HomeBlog></HomeBlog>
       <ReviewSection></ReviewSection>
-      <KeySponsor></KeySponsor> */}
+      <KeySponsor></KeySponsor>
     </motion.div>
   );
 };
