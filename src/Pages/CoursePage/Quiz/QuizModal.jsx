@@ -8,7 +8,7 @@ const QuizModal = ({
   onClose,
   courseId,
   studentEmail,
-  setRefresh
+ 
 }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState(
@@ -34,7 +34,7 @@ const QuizModal = ({
     if (isConfirmed) {
       // User confirmed, close the modal
       onClose();
-      setRefresh(true);
+     
     }
   };
 
@@ -74,8 +74,7 @@ const QuizModal = ({
     }, 0);
 
     // Calculate the score percentage
-    const scorePercentage = (userScore / quizzes.length) * 100;
-
+    const scorePercentage = Math.round((userScore / quizzes.length) * 100);
     setScore(scorePercentage);
     setQuizCompleted(true);
 
@@ -99,7 +98,7 @@ const QuizModal = ({
     } catch (error) {
       console.error("Error storing quiz score:", error);
     }
-    window.location.reload();
+  
   };
 
   const handleShowCorrectAnswers = () => {
@@ -109,13 +108,13 @@ const QuizModal = ({
   const renderResult = () => {
     if (quizCompleted) {
       return (
-        <div className="mb-8 p-6 rounded-lg shadow-lg bg-gradient-to-r from-[#1a2c49] via-[#35406e] to-indigo-800 border border-[#36cbd330] text-white">
+        <div className="mb-8 font-Jost p-6 rounded-lg shadow-lg bg-gradient-to-r from-[#1a2c49] via-[#35406e] to-indigo-800 border border-[#36cbd330] text-white">
           <h2 className="text-4xl font-semibold mb-4">Quiz Result</h2>
           <p className="text-2xl mb-2">
             Your Score:{" "}
-            <span className="text-yellow-500 font-bold text-xl">{score}</span> /{" "}
+            <span className="text-yellow-500 font-bold text-xl">{score}</span> {" "}
             <span className="text-blue-500 font-bold text-xl">
-              {quizzes.length}
+              Out of 100
             </span>
           </p>
           {/* You can provide additional feedback based on the score */}
@@ -138,7 +137,7 @@ const QuizModal = ({
             <button
               onClick={() => {
                 onClose();
-                setRefresh(true);
+               
               }}
               className="mt-4 px-4 py-2 rounded-md bg-green-500 text-white hover:bg-green-600"
             >

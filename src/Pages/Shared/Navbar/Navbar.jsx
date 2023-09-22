@@ -296,7 +296,7 @@ function Navbar() {
   }
 
   return (
-    <div className="  bg-opacity-70 backdrop-blur-lg fixed py-3 left-0 right-0 ">
+    <div className="  bg-opacity-70 backdrop-blur-lg bg-gradient  fixed py-3 left-0 right-0 ">
       <div className=" px-4 mx-auto max-w-7xl  ">
         <div className=" mx-auto flex justify-between items-center">
           <Link
