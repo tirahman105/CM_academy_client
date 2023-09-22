@@ -39,7 +39,7 @@ const BlogDetails = () => {
 
   return (
     <div className="bg-gray-100">
-      <div className=" p-6">
+      <div className="mx-auto p-4">
         <div className="py-4 mt-16">
           <p className="text-gray-500">
             <Link to="/allBlog" className="text-blue-500 cursor-pointer hover:underline">
