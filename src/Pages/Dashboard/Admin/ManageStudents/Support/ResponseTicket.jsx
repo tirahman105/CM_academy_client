@@ -60,7 +60,9 @@ const ResponseTicket = () => {
         console.error("Error sending message:", error);
       });
   };
-
+  const handleClose = () => {
+    window.history.back(); // This will navigate back to the previous page
+  };
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">
@@ -97,8 +99,8 @@ const ResponseTicket = () => {
           Send
         </button>
         <button
+           onClick={handleClose}
           className="bg-gray-300 hover:bg-gray-400 text-gray-600 font-bold py-2 px-4 rounded"
-          
         >
           Close
         </button>
