@@ -19,6 +19,7 @@ const CourseDetailsDynamic = () => {
   const [isInstructor] = useInstructor();
   const location = useLocation();
   const { course } = location.state;
+  const [instructorInfo, setInstructorInfo] = useState([]);
 
   console.log(isInstructor);
   useEffect(() => {
@@ -37,6 +38,20 @@ const CourseDetailsDynamic = () => {
   // }, [instructormail]);
 
   // console.log('instructorInfo', instructorInfo);
+
+
+  const instructormail = course.instructorEmail;
+
+  useEffect(() => {
+    fetch(`https://cm-academy-test-server-production.up.railway.app/users/instructor/${instructormail}/info`)
+      .then((res) => res.json())
+      .then((data) => {
+        setInstructorInfo(data);
+      });
+  }, [instructormail]);
+
+  console.log('instructorInfo', instructorInfo);
+
 
   const [activeMilestones, setActiveMilestones] = useState(
     course.courseOutline.map(() => false)
@@ -66,7 +81,7 @@ const CourseDetailsDynamic = () => {
 
   //localhost:5000/users/instructor/${instructormail}/info
 
-  http: return (
+ return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 1.5 } }}
@@ -149,7 +164,7 @@ const CourseDetailsDynamic = () => {
               </div>
               <img
                 className="h-28 sm:w-28 "
-                src="https://cdn.discordapp.com/attachments/1139410376035930184/1139410449444642996/186503160_10219069026867086_5494482271146422387_n-removebg-preview.png"
+                src={instructorInfo.userImage}
                 alt=""
               />
 
