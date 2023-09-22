@@ -296,7 +296,7 @@ function Navbar() {
   }
 
   return (
-    <div className="  bg-opacity-70 backdrop-blur-lg fixed py-3 left-0 right-0 ">
+    <div className="  bg-opacity-70 backdrop-blur-lg bg-gradient  fixed py-3 left-0 right-0 ">
       <div className=" px-4 mx-auto max-w-7xl  ">
         <div className=" mx-auto flex justify-between items-center">
           <Link
@@ -432,7 +432,7 @@ function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="text-gray-700 font-Raleway border-2 font-bold  rounded-xl px-4 css-selector   hover:border-[#1bbf7246] duration-500 
+                className="text-gray-700 font-Raleway border-2 font-bold  rounded-md py-1 px-4 css-selector   hover:border-[#1bbf7246] duration-500 
               hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md "
               >
                 Login
@@ -444,7 +444,7 @@ function Navbar() {
         {/* Mobile menu */}
         {isOpen && (
           <div className="md:hidden mt-5 w-2/4 ">
-            <NavLink onClick={() => toggleNavbar()} style={navLinkStyle}>
+            <NavLink className='' onClick={() => toggleNavbar()} style={navLinkStyle}>
               Home
             </NavLink>
             <div  className="relative group">
@@ -463,7 +463,7 @@ function Navbar() {
                   className=""
                 >
                   {Categories.map((category, index) => (
-                    <li className=" ms-2 hover:text-green-600" key={index}>
+                    <li className=" ms-2 hover:text-green-600 mt-2" key={index}>
                       <h1
                         onClick={() => {
                           handleCategoryClick(category.name);
@@ -504,7 +504,7 @@ function Navbar() {
                       handleLogOut();
                       toggleNavbar(); // Close the menu when the Logout button is clicked
                     }}
-                    className="text-gray-700 font-Raleway border-2 font-bold rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md"
+                    className="text-gray-700 font-Raleway border-2 font-bold rounded-md px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md"
                   >
                     Logout
                   </button>
@@ -512,7 +512,7 @@ function Navbar() {
               ) : (
                 <Link
                   to="/login"
-                  className="text-gray-700 font-Raleway border-2 font-bold rounded-xl px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md my-4"
+                  className="text-gray-700 font-Raleway border-2 font-bold rounded-md px-4 py-1 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md my-4"
                 >
                   Login
                 </Link>

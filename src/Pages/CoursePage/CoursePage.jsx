@@ -29,7 +29,7 @@ const CoursePage = () => {
   const [milestone, setMilestone] = useState("");
 
 
-  const [refresh, setRefresh] = useState(false);
+  
 
   console.log("courseOutline", courseOutline);
   const handleSessionSelect = (sessionIndex) => {
@@ -128,7 +128,7 @@ const CoursePage = () => {
             milestone={milestone}
             courseId={courseId}
             email={user?.email}
-            setRefresh={setRefresh}
+            
           />
           <div className="flex justify-center">
             <button
@@ -162,7 +162,7 @@ const CoursePage = () => {
           milestoneName={milestone} // Pass the milestone name
           quizzes={selectedQuiz} // Pass all quiz questions
           onClose={() => setShowQuizModal(false)}
-          setRefresh={setRefresh}
+          
         />
       )}
     </div>

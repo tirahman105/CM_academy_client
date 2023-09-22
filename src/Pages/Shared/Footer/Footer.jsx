@@ -3,8 +3,10 @@ import logo from "../../../../public/cm-logo-png.ico";
 const Footer = () => {
   return (
     <>
+
+
       <div className="testBgForMyCourse">
-        <footer className="footer p-10  text-white ">
+        <footer className="footer p-10  text-white grid grid-cols-3 mx-auto ">
           <div>
             <span className="footer-title">Services</span>
             <Link to="/courseCategories?category=All" className="link link-hover">All Courses</Link>
@@ -27,9 +29,9 @@ const Footer = () => {
             <Link to="/policy" className="link link-hover">
               Privacy policy
             </Link>
-           
+
           </div>
-        </footer>
+        </div>
         <footer
           className="footer px-10 py-4 border-t text-white  
             border-white"

@@ -3,6 +3,8 @@ import { AuthContext } from "../../../../../providers/AuthProvider";
 import SupportTicketDetails from "./SupportTicketDetails";
 import supportImg from "../../../../../assets/iconForDashboard/support.png";
 import closeSupport from "../../../../../assets/iconForDashboard/closeSupport.png";
+import { motion } from "framer-motion";
+import { format } from "date-fns";
 
 const CreateSupportTicket = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +36,13 @@ const CreateSupportTicket = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setSupportTickets(data);
+        const sortedTickets = data.sort((a, b) => {
+          const dateA = new Date(a.Date);
+          const dateB = new Date(b.Date);
+          return dateB - dateA;
+        });
+
+        setSupportTickets(sortedTickets);
       })
       .catch((error) => {
         console.error("Error fetching support tickets:", error);
@@ -51,7 +59,7 @@ const CreateSupportTicket = () => {
       studentName: user?.fullName,
       studentEmail: user?.email,
       sender: "student",
-      timestamp: new Date().toLocaleString(),
+      timestamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
       subject,
       message,
     };
@@ -102,41 +110,41 @@ const CreateSupportTicket = () => {
   };
 
   // ... (other functions)
-   useEffect(() => {
-      // Scroll to the SupportTicketDetails section when selectedTicket changes
-      if (selectedTicket && supportTicketDetailsRef.current) {
-        window.scrollTo({
-          top: supportTicketDetailsRef.current.offsetTop,
-          behavior: "smooth",
-        });
-      }
-      console.log("selectedTicket", selectedTicket);
-    }, [selectedTicket]);
-    
-    const handleCloseTicket = async (ticketNumber) => {
-      // Close the ticket and update its status
-      try {
-        const response = await fetch(
-          `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
-          {
-            method: "PUT",
-          }
-        );
-    
-        if (response.status === 200) {
-          // Ticket closed successfully, update its status immediately
-          const updatedTickets = supportTickets.map((ticket) =>
-            ticket.TicketNumber === ticketNumber
-              ? { ...ticket, status: "closed" }
-              : ticket
-          );
-          setSupportTickets(updatedTickets);
-        }
-      } catch (error) {
-        console.error("Error closing support ticket:", error);
-      }
-    };
+  useEffect(() => {
+    // Scroll to the SupportTicketDetails section when selectedTicket changes
+    if (selectedTicket && supportTicketDetailsRef.current) {
+      window.scrollTo({
+        top: supportTicketDetailsRef.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+    console.log("selectedTicket", selectedTicket);
+  }, [selectedTicket]);
+
+  const handleCloseTicket = async (ticketNumber) => {
     // Close the ticket and update its status
+    try {
+      const response = await fetch(
+        `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
+        {
+          method: "PUT",
+        }
+      );
+
+      if (response.status === 200) {
+        // Ticket closed successfully, update its status immediately
+        const updatedTickets = supportTickets.map((ticket) =>
+          ticket.TicketNumber === ticketNumber
+            ? { ...ticket, status: "closed" }
+            : ticket
+        );
+        setSupportTickets(updatedTickets);
+      }
+    } catch (error) {
+      console.error("Error closing support ticket:", error);
+    }
+  };
+  // Close the ticket and update its status
 
   return (
     <div className="px-4">
@@ -218,9 +226,12 @@ const CreateSupportTicket = () => {
 
         <div className="grid tablet:grid-cols-2 gap-4">
           {supportTickets.map((ticket) => (
-            <div
+            <motion.div
               key={ticket._id}
               className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
+              initial={{ opacity: 0, y: 20 }} // Initial hidden state
+              animate={{ opacity: 1, y: 0 }} // Animation properties
+              transition={{ duration: 0.5 }} // Animation duration
             >
               <div>
                 <div className="">
@@ -282,14 +293,13 @@ const CreateSupportTicket = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
       {selectedTicket && (
         <div className="scroll-container" ref={supportTicketDetailsRef}>
           <SupportTicketDetails
-        
             ticketNumber={selectedTicket}
             onClose={() => {
               // Scroll back to the previous position when closing SupportTicketDetails
@@ -303,14 +313,6 @@ const CreateSupportTicket = () => {
 };
 
 export default CreateSupportTicket;
-
-
-
-
-
-
-
-
 
 // useEffect(() => {
 //   // Scroll to the SupportTicketDetails section when selectedTicket changes

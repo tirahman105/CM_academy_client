@@ -17,7 +17,14 @@ const AllSupportTickets = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setSupportTickets(data);
+        // Sort the support tickets by date in descending order (most recent first)
+        const sortedTickets = data.sort((a, b) => {
+          const dateA = new Date(a.Date);
+          const dateB = new Date(b.Date);
+          return dateB - dateA;
+        });
+
+        setSupportTickets(sortedTickets);
       })
       .catch((error) => {
         console.error("Error fetching support tickets:", error);
@@ -29,6 +36,30 @@ const AllSupportTickets = () => {
     //  send ticket number to the response ticket page with state  like this :  navigate("/courseDetailsDynamic", { state: { course } });
     console.log(ticketNumber);
     navigate("/dashboard/response-ticket ", { state: { ticketNumber } });
+  };
+
+  const handleCloseTicket = async (ticketNumber) => {
+    // Close the ticket and update its status
+    try {
+      const response = await fetch(
+        `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
+        {
+          method: "PUT",
+        }
+      );
+  
+      if (response.status === 200) {
+        // Ticket closed successfully, update its status immediately
+        const updatedTickets = supportTickets.map((ticket) =>
+          ticket.TicketNumber === ticketNumber
+            ? { ...ticket, status: "closed" }
+            : ticket
+        );
+        setSupportTickets(updatedTickets);
+      }
+    } catch (error) {
+      console.error("Error closing support ticket:", error);
+    }
   };
 
   return (
@@ -88,7 +119,7 @@ const AllSupportTickets = () => {
 
                {ticket.status === "pending" ? (
                  <button
-                  //  onClick={() => handleCloseTicket(ticket.TicketNumber)}
+                   onClick={() => handleCloseTicket(ticket.TicketNumber)}
                    className="text-gray-700 border flex gap-1  items-center hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
                  >
                    Close Ticket

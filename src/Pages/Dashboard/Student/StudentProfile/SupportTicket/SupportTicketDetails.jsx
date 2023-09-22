@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import iconSent from "../../../../../assets/iconForDashboard/iconSent.png";
+import { format } from "date-fns";
+
 const SupportTicketDetails = ({ ticketNumber, onClose }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -43,7 +45,7 @@ const SupportTicketDetails = ({ ticketNumber, onClose }) => {
     const messageData = {
       sender: "student", // Change to 'admin' if needed
       content: newMessage,
-      timestamp: new Date().toLocaleString(), // Add timestamp with date
+      timestamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
     };
 
     fetch(
