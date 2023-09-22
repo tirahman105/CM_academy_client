@@ -4,6 +4,7 @@ import SupportTicketDetails from "./SupportTicketDetails";
 import supportImg from "../../../../../assets/iconForDashboard/support.png";
 import closeSupport from "../../../../../assets/iconForDashboard/closeSupport.png";
 import { motion } from "framer-motion";
+import { format } from "date-fns";
 
 const CreateSupportTicket = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +59,7 @@ const CreateSupportTicket = () => {
       studentName: user?.fullName,
       studentEmail: user?.email,
       sender: "student",
-      timestamp: new Date().toLocaleString(),
+      timestamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
       subject,
       message,
     };
@@ -109,41 +110,41 @@ const CreateSupportTicket = () => {
   };
 
   // ... (other functions)
-   useEffect(() => {
-      // Scroll to the SupportTicketDetails section when selectedTicket changes
-      if (selectedTicket && supportTicketDetailsRef.current) {
-        window.scrollTo({
-          top: supportTicketDetailsRef.current.offsetTop,
-          behavior: "smooth",
-        });
-      }
-      console.log("selectedTicket", selectedTicket);
-    }, [selectedTicket]);
-    
-    const handleCloseTicket = async (ticketNumber) => {
-      // Close the ticket and update its status
-      try {
-        const response = await fetch(
-          `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
-          {
-            method: "PUT",
-          }
-        );
-    
-        if (response.status === 200) {
-          // Ticket closed successfully, update its status immediately
-          const updatedTickets = supportTickets.map((ticket) =>
-            ticket.TicketNumber === ticketNumber
-              ? { ...ticket, status: "closed" }
-              : ticket
-          );
-          setSupportTickets(updatedTickets);
-        }
-      } catch (error) {
-        console.error("Error closing support ticket:", error);
-      }
-    };
+  useEffect(() => {
+    // Scroll to the SupportTicketDetails section when selectedTicket changes
+    if (selectedTicket && supportTicketDetailsRef.current) {
+      window.scrollTo({
+        top: supportTicketDetailsRef.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+    console.log("selectedTicket", selectedTicket);
+  }, [selectedTicket]);
+
+  const handleCloseTicket = async (ticketNumber) => {
     // Close the ticket and update its status
+    try {
+      const response = await fetch(
+        `https://cm-academy-test-server-production.up.railway.app/api/support-tickets/${ticketNumber}/close`,
+        {
+          method: "PUT",
+        }
+      );
+
+      if (response.status === 200) {
+        // Ticket closed successfully, update its status immediately
+        const updatedTickets = supportTickets.map((ticket) =>
+          ticket.TicketNumber === ticketNumber
+            ? { ...ticket, status: "closed" }
+            : ticket
+        );
+        setSupportTickets(updatedTickets);
+      }
+    } catch (error) {
+      console.error("Error closing support ticket:", error);
+    }
+  };
+  // Close the ticket and update its status
 
   return (
     <div className="px-4">
@@ -225,81 +226,80 @@ const CreateSupportTicket = () => {
 
         <div className="grid tablet:grid-cols-2 gap-4">
           {supportTickets.map((ticket) => (
-                 <motion.div
-                 key={ticket._id}
-                 className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
-                 initial={{ opacity: 0, y: 20 }} // Initial hidden state
-                 animate={{ opacity: 1, y: 0 }} // Animation properties
-                 transition={{ duration: 0.5 }} // Animation duration
-               >
-                 <div>
-                   <div className="">
-                     <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3 mobile:max-w-[200px] tablet:max-w-md truncate whitespace-nowrap">
-                       {ticket.Subject}
-                     </h3>
-                   </div>
-                   <p className="text-gray-500 text-sm font-LeagueSpartan mb-4">
-                     {" "}
-                     Created on: {ticket.Date}
-                   </p>
-                   <div className="flex items-center text-sm justify-between ">
-                     <p className="text-gray-500 text-sm font-LeagueSpartan">
-                       TN : {ticket.TicketNumber}
-                     </p>
-                     <p
-                       className={`  ${
-                         ticket.status === "pending"
-                           ? "text-[#61ba86] bg-[#e6fff2] border-green-300"
-                           : "text-[#f44336] bg-[#ffebee]"
-                       }  px-2 relative border rounded-[3px] `}
-                     >
-                       {ticket.status === "pending" ? (
-                         <span className="absolute -right-[4px] -top-[5px]">
-                           <span className="relative flex h-3 w-3 ">
-                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#047734] opacity-75"></span>
-                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#61ba86]"></span>
-                           </span>
-                         </span>
-                       ) : (
-                         ""
-                       )}
-   
-                       {ticket.status === "pending" ? "Active" : "Closed"}
-                     </p>
-                   </div>
-   
-                   <hr className="mt-5" />
-                   <div className="flex items-center justify-between">
-                     <button
-                       onClick={() => handleViewTicket(ticket.TicketNumber)}
-                       className="text-gray-700 border hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
-                     >
-                       View Ticket
-                     </button>
-   
-                     {ticket.status === "pending" ? (
-                       <button
-                         onClick={() => handleCloseTicket(ticket.TicketNumber)}
-                         className="text-gray-700 border flex gap-1  items-center hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
-                       >
-                         Close Ticket
-                         <img className="h-4" src={closeSupport} alt="" />
-                       </button>
-                     ) : (
-                       <p className=" font-mono text-sm text-[#f44336]">
-                         Ticket Closed!
-                       </p>
-                     )}
-                   </div>
-                 </div>
-               </motion.div>
+            <motion.div
+              key={ticket._id}
+              className="bg-white rounded-lg shadow-md p-4 mb-4 border-8"
+              initial={{ opacity: 0, y: 20 }} // Initial hidden state
+              animate={{ opacity: 1, y: 0 }} // Animation properties
+              transition={{ duration: 0.5 }} // Animation duration
+            >
+              <div>
+                <div className="">
+                  <h3 className="text-2xl font-bold text-gray-700 font-LeagueSpartan text-left mb-3 mobile:max-w-[200px] tablet:max-w-md truncate whitespace-nowrap">
+                    {ticket.Subject}
+                  </h3>
+                </div>
+                <p className="text-gray-500 text-sm font-LeagueSpartan mb-4">
+                  {" "}
+                  Created on: {ticket.Date}
+                </p>
+                <div className="flex items-center text-sm justify-between ">
+                  <p className="text-gray-500 text-sm font-LeagueSpartan">
+                    TN : {ticket.TicketNumber}
+                  </p>
+                  <p
+                    className={`  ${
+                      ticket.status === "pending"
+                        ? "text-[#61ba86] bg-[#e6fff2] border-green-300"
+                        : "text-[#f44336] bg-[#ffebee]"
+                    }  px-2 relative border rounded-[3px] `}
+                  >
+                    {ticket.status === "pending" ? (
+                      <span className="absolute -right-[4px] -top-[5px]">
+                        <span className="relative flex h-3 w-3 ">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#047734] opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-[#61ba86]"></span>
+                        </span>
+                      </span>
+                    ) : (
+                      ""
+                    )}
+
+                    {ticket.status === "pending" ? "Active" : "Closed"}
+                  </p>
+                </div>
+
+                <hr className="mt-5" />
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => handleViewTicket(ticket.TicketNumber)}
+                    className="text-gray-700 border hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                  >
+                    View Ticket
+                  </button>
+
+                  {ticket.status === "pending" ? (
+                    <button
+                      onClick={() => handleCloseTicket(ticket.TicketNumber)}
+                      className="text-gray-700 border flex gap-1  items-center hover:bg-[#58ec9631] font-bold py-1 px-2 font-mono text-sm rounded mt-4"
+                    >
+                      Close Ticket
+                      <img className="h-4" src={closeSupport} alt="" />
+                    </button>
+                  ) : (
+                    <p className=" font-mono text-sm text-[#f44336]">
+                      Ticket Closed!
+                    </p>
+                  )}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
       {selectedTicket && (
         <div className="scroll-container" ref={supportTicketDetailsRef}>
           <SupportTicketDetails
-        
             ticketNumber={selectedTicket}
             onClose={() => {
               // Scroll back to the previous position when closing SupportTicketDetails
@@ -313,14 +313,6 @@ const CreateSupportTicket = () => {
 };
 
 export default CreateSupportTicket;
-
-
-
-
-
-
-
-
 
 // useEffect(() => {
 //   // Scroll to the SupportTicketDetails section when selectedTicket changes
