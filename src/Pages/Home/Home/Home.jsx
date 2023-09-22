@@ -23,7 +23,7 @@ const Home = () => {
       <AfterBanner></AfterBanner>
       <Categories></Categories>
       <Features></Features>
-      <WhyUs></WhyUs>
+      {/* <WhyUs></WhyUs> */}
       <StatSection></StatSection>
       <FAQ></FAQ>
       <HomeBlog></HomeBlog>
