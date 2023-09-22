@@ -34,9 +34,9 @@ const HomeBlog = () => {
   };
 
   return (
-    <div className="container mx-auto mt-96 md:mt-16 home-container">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-left mb-1 ml-2">Trending Blog post</h1>
+    <div className="max-w-7xl mx-auto px-2 mt-28">
+      <div className="flex justify-between items-center mb-2">
+        <h1 className="text-4xl font-bold text-left mb-1 ml-2 font-Jost mobile:text-xl">Trending Blog post</h1>
       </div>
 
       <Swiper
@@ -59,22 +59,22 @@ const HomeBlog = () => {
                     <img
                       src={blog.blogImage}
                       alt={blog.blogTitle}
-                      className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-110"
+                      className="w-full h-full mobile:h-20 object-cover transition-transform duration-300 transform hover:scale-110"
                     />
                   </div>
                   <div className="text-left">
                     <p className="my-2" ><span className={`bg-[#f3ef78] font-bold text-gray-600 px-2 py-1 rounded-lg text-sm ${categoryName== "Technology"? "bg-slate-500" : ""}`}>{blog.blogCategory}</span></p>
              
 
-                    <h2 className="text-xl font-semibold mb-1">{blog.blogTitle}</h2>
-                    <p className="text-gray-600 mb-2">
+                    <h2 className="mobile:text-sm font-Jost font-semibold mb-1">{blog.blogTitle}</h2>
+                    <p className="text-gray-600 mb-2 mobile:text-[12px]">
                       {blog.blogDetails.split(" ").slice(0, 15).join(" ")}{" "}
                       <span className="text-blue-600 font-bold">Read More..</span>
                     </p>
                   </div>
-                  <div className="flex justify-between items-center text-gray-400 text-sm">
+                  <div className="flex justify-between items-center gap-0 text-gray-400 mobile:text-[12px] text-sm font-Jost">
                     <p>{blog.blogDate}</p>
-                    <p className="font-semibold">{blog.blogAuthor}</p>
+                    <p className="font-Jost mobile:text-[12px] text-sm">{blog.blogAuthor}</p>
                   </div>
                 </div>
               </Link>
