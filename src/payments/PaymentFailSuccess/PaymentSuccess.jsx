@@ -83,7 +83,7 @@ const PaymentSuccess = () => {
 
 
 
-                <Link to="/dashboard/my-courses" className="mt-10">
+                <Link to="/dashboard/student-dashboard" className="mt-10">
                     <button
                         className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 mt-8"
                     >
