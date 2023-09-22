@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useEffect } from "react";
 import InstructorImage from "../../../../assets/IconForAddCourse/Instructor.png";
+import Swal from 'sweetalert2';
 const Final = () => {
   const [newQuizQuestion, setNewQuizQuestion] = useState("");
   const [quizOptions, setQuizOptions] = useState([]);
@@ -115,11 +116,27 @@ const Final = () => {
   const [courseOutline, setCourseOutline] = useState([]);
   const [courseRequirements, setCourseRequirements] = useState([]);
   const [whatYouWillLearn, setWhatYouWillLearn] = useState([]);
-  const onSubmit = async (data) => {
+
+
+
+const onSubmit = async (data) => {
+  // Display a confirmation dialog
+  const confirmResult = await Swal.fire({
+    title: 'Confirm Submission',
+    text: 'Are you sure you want to submit this course?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, submit it!',
+    confirmButtonColor: '#1BBF72', // Set the button color here
+    cancelButtonText: 'No, cancel',
+  });
+
+  // Check if the user confirmed the submission
+  if (confirmResult.isConfirmed) {
     const courseMilestones = courseOutline.map((milestone) => ({
       milestone: milestone.milestone,
       sessions: milestone.sessions,
-      quizzes: milestoneQuizzes[courseOutline.indexOf(milestone)] || [], // Include the quizzes data for each milestone
+      quizzes: milestoneQuizzes[courseOutline.indexOf(milestone)] || [],
     }));
 
     const faqList = faq.map((faqItem) => ({
@@ -139,13 +156,11 @@ const Final = () => {
       courseRequirements: courseRequirements,
       whatYouWillLearn: whatYouWillLearn,
       courseThumbnail: courseThumbnail,
-
       courseIntroVideo: courseIntroVideo,
       ApprovedStatus: "Deny",
       enrollCount: 0,
       rating: 0,
     };
-    console.log(formData);
 
     try {
       const response = await fetch(
@@ -160,15 +175,34 @@ const Final = () => {
       );
 
       if (response.ok) {
-        alert("Form data sent successfully");
+        Swal.fire({
+          title: 'Success',
+          text: 'Course submitted successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#1BBF72', // Set the button color here
+        });
         // Perform any necessary actions after successful data submission
       } else {
-        alert("Failed to send form data");
+        Swal.fire('Error', 'Failed to submit the course', 'error');
       }
     } catch (error) {
-      alert("Error sending form data:", error);
+      Swal.fire('Error', `Error submitting the course: ${error}`, 'error');
     }
-  };
+  } else {
+    Swal.fire({
+      title: 'Cancelled',
+      text: 'Course submission cancelled',
+      icon: 'info',
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#1BBF72', // Set the button color here
+    });
+  }
+};
+
+  
+  
+
 
   const [newMilestoneSessions, setNewMilestoneSessions] = useState([
     {
@@ -230,9 +264,41 @@ const Final = () => {
             Your knowledge can change lives. Begin your teaching journey by
             creating a course that reflects your expertise. The 'Create Course'
             page is where you lay the foundation. Define your course's title and
-            description, and let your passion for teaching shine through.
+            description, and let your passion for teaching shine through. See < span onClick={() => document.getElementById('my_modal_3').showModal()} className="font-bold cursor-pointer text-blue-700">tutorial video</span> to add new course.
           </p>
         </div>
+
+
+
+        {/* Modal for video starts */}
+
+        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+        <dialog id="my_modal_3" className="modal">
+          <div className="modal-box w-11/12 max-w-5xl">
+            <form method="dialog" className="modal-bottom   ">
+              {/* if there is a button in form, it will close the modal */}
+              <div className="relative overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  src="https://www.youtube.com/embed/k1hI6Z7ktQ4"
+                  title="How to add a new course?"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full "
+                ></iframe>
+              </div>
+              <div className="flex justify-end mt-4"><button className="btn bg-gray-700 text-white hover:text-black">Close</button></div>
+            </form>
+
+          </div>
+        </dialog>
+
+
+
+
+
+
         <img className="h-1/4" src={InstructorImage} alt="" />
       </div>
       {/* <hr /> */}
@@ -240,31 +306,28 @@ const Final = () => {
         <div className="bg-white pt-10 sticky top-[0px]">
           <div className="mb-4 text-base bg-white font-bold flex justify-center border rounded-md shadow-md  ">
             <div
-              className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${
-                activeTab === "basicInfo"
-                  ? "  rounded-md bg-[#1E1F1F] text-white  "
-                  : ""
-              }`}
+              className={`w-1/3 text-center  duration-300 cursor-pointer p-2  ${activeTab === "basicInfo"
+                ? "  rounded-md bg-[#1E1F1F] text-white  "
+                : ""
+                }`}
               onClick={() => switchTab("basicInfo")}
             >
               Basic Info
             </div>
             <div
-              className={`w-1/3 text-center duration-300  cursor-pointer p-2 ${
-                activeTab === "courseCurriculum"
-                  ? "rounded-md bg-[#1E1F1F] text-white "
-                  : ""
-              }`}
+              className={`w-1/3 text-center duration-300  cursor-pointer p-2 ${activeTab === "courseCurriculum"
+                ? "rounded-md bg-[#1E1F1F] text-white "
+                : ""
+                }`}
               onClick={() => switchTab("courseCurriculum")}
             >
               Course Curriculum
             </div>
             <div
-              className={` w-1/3 text-center duration-300  cursor-pointer p-2  ${
-                activeTab === "quiz"
-                  ? "  rounded-md bg-[#1E1F1F] text-white"
-                  : ""
-              }`}
+              className={` w-1/3 text-center duration-300  cursor-pointer p-2  ${activeTab === "quiz"
+                ? "  rounded-md bg-[#1E1F1F] text-white"
+                : ""
+                }`}
               onClick={() => switchTab("quiz")}
             >
               Quiz
@@ -631,9 +694,8 @@ const Final = () => {
                               <input
                                 type="text"
                                 className=" bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none border-2 focus:border-[#1e1f1f9f] ml-[37px] w-[95%]"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Title`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Title`}
                                 value={session.sessionTitle}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -645,9 +707,8 @@ const Final = () => {
                               {/* Add textarea for session description */}
                               <textarea
                                 className="bg-gray-200 h-20 text-sm font-Poppins font-semibold text-gray-700 px-5  resize-both overflow-auto min-h-[100px] min-w-[200px] max-w-full focus:border-[#1e1f1f9f] focus:outline-none border-2 ml-[37px] w-[95%]"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Description`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Description`}
                                 value={session.description}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -659,9 +720,8 @@ const Final = () => {
                               <input
                                 type="text"
                                 className="bg-gray-200 h-10 text-sm font-Poppins font-semibold text-gray-700 px-5 mb-5 focus:outline-none border-2 focus:border-[#1e1f1f9f] ml-[37px] w-[95%] mt-5"
-                                placeholder={`Session ${
-                                  sessionIndex + 1
-                                } Video Link`}
+                                placeholder={`Session ${sessionIndex + 1
+                                  } Video Link`}
                                 value={session.videoLink}
                                 onChange={(e) =>
                                   handleSessionChange(sessionIndex, {
@@ -746,9 +806,8 @@ const Final = () => {
                         key={index}
                         className="border p-4 mb-4 rounded-lg shadow-md"
                       >
-                        <h4 className="text-sm font-bold mb-2">{`Question ${
-                          index + 1
-                        }: ${quiz.question}`}</h4>
+                        <h4 className="text-sm font-bold mb-2">{`Question ${index + 1
+                          }: ${quiz.question}`}</h4>
                         <ul className="text-sm list-disc pl-6 mb-2">
                           {quiz.options.map((option, optionIndex) => (
                             <li key={optionIndex} className="mb-1">
@@ -842,9 +901,8 @@ const Final = () => {
                     }
                   >
                     {quizOptions.map((_, index) => (
-                      <option key={index} value={index}>{`Option ${
-                        index + 1
-                      }`}</option>
+                      <option key={index} value={index}>{`Option ${index + 1
+                        }`}</option>
                     ))}
                   </select>
                 </div>

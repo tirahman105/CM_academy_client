@@ -91,8 +91,8 @@ const SignUp = () => {
 
 
   return (
-    <div className="hero min-h-screen bg-base-200 pt-24">
-      <div className="hero-content flex-col lg:flex-row-reverse">
+    <div className="hero bg-gradient min-h-screen bg-base-200 pt-24">
+      <div className="hero-content flex-col-reverse lg:flex-row-reverse">
         {/* Form on the right side */}
         <div className="card  md:w-1/2 max-w-sm shadow-2xl bg-[#1bbf721e] border-2 border-[#1bbf726c]">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">

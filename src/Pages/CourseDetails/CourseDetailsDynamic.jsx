@@ -25,6 +25,19 @@ const CourseDetailsDynamic = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // fetch instructor info by instrcutor mail
+  // const instructormail = course.instructorEmail;
+  // const [instructorInfo, setInstructorInfo] = useState([]);
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/users/instructor/${instructormail}/info`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setInstructorInfo(data);
+  //     });
+  // }, [instructormail]);
+
+  // console.log('instructorInfo', instructorInfo);
+
   const [activeMilestones, setActiveMilestones] = useState(
     course.courseOutline.map(() => false)
   );
@@ -51,7 +64,9 @@ const CourseDetailsDynamic = () => {
   };
   console.log(course);
 
-  return (
+  //localhost:5000/users/instructor/${instructormail}/info
+
+  http: return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 1.5 } }}
@@ -155,7 +170,8 @@ const CourseDetailsDynamic = () => {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   className="text-gray-600 font-Lexend font-semibold text-sm"
                 >
-                  {/* COurse instrcutor about */}
+                  {/* COurse instrcutor about */} 
+                  <p>{course.about}</p>
                 </motion.p>
               </div>
             </div>

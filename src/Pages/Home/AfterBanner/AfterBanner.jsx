@@ -9,22 +9,22 @@ const AfterBanner = () => {
     >
       <div className="grid gap-4 md:grid-cols-3  ">
         {/* ///////////////// */}
-        <div className=" items-center gap-6 shadow-lg   rounded-md flex hover:scale-105 duration-500 px-6 py-5 md:w-96 bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
+        <div className=" items-center gap-6 shadow-lg   rounded-md flex hover:scale-105 duration-500 px-6 py-5 tablet:w-auto bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
           <img src="https://i.ibb.co/nLhxHCL/learning.png" alt="" />
 
           <div>
-            <h1 className="text-lg font-bold font-Roboto">Expedite Learning</h1>
+            <h1 className="desktop:text-lg font-bold font-Roboto">Expedite Learning</h1>
             <p className="text-gray-600 font-Roboto text-sm">
               Adopting fast learning techniques by real-world experts
             </p>
           </div>
         </div>
         {/* ////////////// */}
-        <div className=" items-center gap-6 border-2  shadow-lg rounded-md flex hover:scale-105 duration-500  px-6 py-5 md:w-96 bg-[#1bbf721f] border-[#1bbf7283]">
+        <div className=" items-center gap-6 border-2  shadow-lg rounded-md flex hover:scale-105 duration-500  px-6 py-5 tablet:w-auto bg-[#1bbf721f] border-[#1bbf7283]">
           <img src="https://i.ibb.co/fVJs3V6/source.png" alt="" />
 
           <div>
-            <h1 className="text-lg font-bold font-Roboto">
+            <h1 className="desktop:text-lg font-bold font-Roboto">
               Open-source Platform
             </h1>
             <p className="text-gray-600 font-Roboto text-sm">
@@ -33,11 +33,11 @@ const AfterBanner = () => {
           </div>
         </div>
         {/* ////////////// */}
-        <div className=" items-center gap-6 border-2 shadow-lg  rounded-md hover:scale-105 duration-500  flex px-6 py-5 md:w-96 bg-[#1bbf721f] border-[#1bbf7283]">
+        <div className=" items-center gap-6 border-2 shadow-lg  rounded-md hover:scale-105 duration-500  flex px-6 py-5 tablet:w-auto bg-[#1bbf721f] border-[#1bbf7283]">
           <img src="https://i.ibb.co/RBvknSC/out-line.png" alt="" />
 
           <div>
-            <h1 className="text-lg font-bold font-Roboto">
+            <h1 className="desktop:text-lg font-bold font-Roboto">
               Maximum Efficiency
             </h1>
             <p className="text-gray-600 font-Roboto text-sm">

@@ -6,7 +6,7 @@ import { IoMdCall } from "react-icons/io";
 const ManageStudents = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [students, setStudents] = useState([]);
-  const itemsPerPage = isSmallScreen ? 3 : 5;
+  const itemsPerPage = isSmallScreen ? 10 : 10;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPageCount = Math.ceil(students.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -51,12 +51,14 @@ const ManageStudents = () => {
       </div>
       {isSmallScreen ? (
         // Card for small screens
-        <div>
+        <div className="h-[400px] overflow-y-auto">
           {visibleStudents.map((student) => (
+            <div key={student._id}>
+
             <div
-              className="bg-white shadow-md rounded-lg p-4"
+              className="bg-white shadow-md rounded-lg p-4 mb-3 mt-3 "
               key={student._id}
-            >
+              >
               <h2 className="text-lg font-semibold">{student.fullName}</h2>
               <div className="flex gap-2">
                 <span>
@@ -71,15 +73,16 @@ const ManageStudents = () => {
                 <p className="text-[#12C29F] text-xl">{student?.phone}</p>
               </div>
             </div>
+              </div>
           ))}
         </div>
       ) : (
         // Table for large screens
-        <table className="table-auto w-full shadow-md text-base">
+        <table className="table-auto w-full shadow-md text-base font-Roboto">
           <thead>
-            <tr className="bg-gray-100 text-[#12C29F] text-left  divide-x-2">
+            <tr className="bg-gray-800 text-white text-center   divide-x-2">
               <th className="px-4 py-2 ">SL</th>
-              <th className=" py-2 ">Image</th>
+              <th className="px-4 py-2 ">Image</th>
               <th className="px-4 py-2 ">Name</th>
               <th className="px-4 py-2">Email</th>
               <th className="px-auto py-2">Contact</th>
@@ -92,10 +95,10 @@ const ManageStudents = () => {
                 className="hover:bg-slate-100 duration-150s"
               >
                 <td className="border px-4 py-2">{index + 1}</td>
-                <td className="border px-auto py-2">
+                <td className="border px-auto py-2 flex items-center justify-center">
                   <img
                     src={student.userImage}
-                    className="w-12 avatar rounded-full"
+                    className="w-12 h-12 avatar rounded-full "
                     alt=""
                   />
                 </td>
@@ -123,7 +126,7 @@ const ManageStudents = () => {
             onClick={() => handlePageChange(index + 1)}
             className={`mx-1 px-3 py-1 text-sm ${
               currentPage === index + 1
-                ? "bg-green-600 text-white"
+                ? "bg-gray-800 text-white"
                 : "bg-gray-200"
             } rounded-md`}
           >
