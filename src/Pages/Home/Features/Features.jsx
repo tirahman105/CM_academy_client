@@ -33,48 +33,44 @@ const Features = () => {
   // const initialTitle = Object.keys(titleToData)[0];
 
   return (
-    <div className="mt-16  home-container px-2">
+    <div className="max-w-7xl mx-auto px-2 mt-28">
       <div>
         {/* <h2 className="text-4xl font-bold mb-5 text-center text-[#12C29F]">
           Everything in CM Academic Program</h2>
         <p className="text-center font-semibold mb-10">
           Our Instructors give  you best resources for every course</p> */}
-        <h1 className="text-4xl font-bold mb-5  font-Poppins">
+        <h1 className="text-4xl font-bold mb-5  font-Poppins  mobile:text-xl">
           Everything in CM Academic Program
         </h1>
-        <p className=" font-semibold mb-10">
+        <p className=" font-semibold mb-10 mobile:text-sm">
           Our Instructors give you best resources for every course
         </p>
       </div>
-      <div className="flex flex-col-reverse  md:flex-row   gap-10 ">
+      <div className="flex flex-col-reverse  md:flex-row  ">
         <div className="w-4/5 md:w-3/5 mx-auto lg:pt-16">
           {Object.keys(titleToData).map((title) => (
             <div
               key={title}
-              className={`mt-10 md:mt-14 flex  items-center justify-center md:justify-start cursor-pointer shadow-lg rounded bg-[#1bbf721f] hover:scale-105 duration-500 border-2 border-[#1bbf723b] h-14 md:h-14  ${
-                selectedTitle === title
-                  ? "  text-white bg-[#1bbf721f]  border-2 border-[#1bbf723b]"
-                  : " text-black md:border border-gray-200"
-              }`}
+              className="mt-10 md:mt-14 flex px-4  items-center justify-center md:justify-start cursor-pointer shadow-md rounded font-LeagueSpartan  hover:scale-105 duration-500 border border-[#1bbf7269]  h-14 md:h-14  "
               onClick={() => handleTitleClick(title)}
             >
               <div className="w-2/5">
                 <img
                   src={titleToData[title].smallImage}
                   alt={`${title} Small Image`}
-                  className=" w-2/5 right-4 md:right-5"
+                  className=" w-10 "
                 />
               </div>
 
               <div className="w-4/5">
-                <p className="text-black md:text-gray-800 text-xl md:text-2xl font-bold ">
+                <p className="text-gray-700 text-xl  font-bold ">
                   {title}
                 </p>
               </div>
             </div>
           ))}
         </div>
-        <div className=" w-3/4">
+        <div className=" w-1/2 mobile:mx-auto">
           {/* <img
             src={selectedTitle ? titleToData[selectedTitle].image : titleToData[initialTitle].image}
             alt={`${selectedTitle || initialTitle} Image`}

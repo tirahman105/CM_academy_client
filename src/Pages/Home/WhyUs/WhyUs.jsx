@@ -6,11 +6,11 @@ import Lottie from "react-lottie-player";
 
 const WhyUs = () => {
   return (
-    <div className="pt-12 px-2 md:pt-20 home-container">
-        <h1 className="text-4xl font-bold mb-5  font-Poppins">
+    <div className="max-w-7xl mx-auto px-2 mt-28">
+        <h1 className="text-4xl font-bold mb-5  font-Poppins  mobile:text-xl">
           Why Choose us?
         </h1>
-        <p className=" font-semibold mb-10">
+        <p className=" font-semibold tablet:mb-10 mobile:text-sm" >
           Empowering Futures, One Click at a Time. <br />
           Discover Excellence with Personalized Learning, Expert Educators, and
           Seamless Technology. Join us in Redefining Education.
@@ -28,14 +28,14 @@ const WhyUs = () => {
 
             />
           </div>
-          <div className="md:w-1/2 text-gray-800">
+          <div className="md:w-1/2 text-gray-800 font-Lexend ">
             <div className="mb-8">
               <div className="flex gap-4 items-center justify-center">
                 <div>
-                  <h2 className="text-3xl font-semibold mb-2">
+                  <h2 className="text-3xl font-semibold mb-2  mobile:text-xl">
                     Inspire Curiosity
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mobile:text-sm">
                     Discover our platform that encourages curiosity and enhances
                     your learning experience. Our courses are designed to foster
                     critical thinking and creativity.
@@ -46,10 +46,10 @@ const WhyUs = () => {
             <div className="mb-8">
               <div className="flex gap-4 items-center justify-center">
                 <div>
-                  <h2 className="text-3xl font-semibold mb-2">
+                  <h2 className="text-3xl font-semibold mb-2 mobile:text-xl">
                     Learn from Experts
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mobile:text-sm">
                     Gain insights from experienced educators who are experts in
                     their fields. Engage in interactive lessons, real-world
                     projects, and peer collaboration.
@@ -60,10 +60,10 @@ const WhyUs = () => {
             <div>
               <div className="flex gap-4 items-center justify-center">
                 <div>
-                  <h2 className="text-3xl font-semibold mb-2">
+                  <h2 className="text-3xl font-semibold mb-2 mobile:text-xl">
                     Shape Your Future
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mobile:text-sm">
                     Explore a vast array of subjects and courses, from
                     technology and business to arts and sciences. Uncover your
                     passion and shape your future.

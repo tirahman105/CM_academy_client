@@ -23,12 +23,12 @@ const Home = () => {
       <AfterBanner></AfterBanner>
       <Categories></Categories>
       <Features></Features>
-      {/* <WhyUs></WhyUs> */}
-      <StatSection></StatSection>
+      <WhyUs></WhyUs>
+      {/* <StatSection></StatSection>
       <FAQ></FAQ>
       <HomeBlog></HomeBlog>
       <ReviewSection></ReviewSection>
-      <KeySponsor></KeySponsor>
+      <KeySponsor></KeySponsor> */}
     </motion.div>
   );
 };

@@ -280,7 +280,7 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white  bg-opacity-70 backdrop-blur-lg fixed py-3 left-0 right-0 ">
+    <div className="  bg-opacity-70 backdrop-blur-lg fixed py-3 left-0 right-0 ">
       <div className=" px-4 mx-auto max-w-7xl  ">
         <div className=" mx-auto flex justify-between items-center">
           <Link
@@ -343,7 +343,7 @@ function Navbar() {
               Home
             </NavLink>
             <div className="relative group">
-              <Link
+              <div
                 className="text-black font-semibold py-1 flex items-center gap-1"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -353,15 +353,15 @@ function Navbar() {
                 <span>
                   <BiSolidChevronDown></BiSolidChevronDown>
                 </span>
-              </Link>
+              </div>
               {isAboutDropdownOpen && (
                 <ul
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
-                  className="absolute -left-2 bg-white p-3  w-44 rounded-lg shadow-lg bg-opacity-70 backdrop-blur-lg"
+                  className="absolute -left-2 bg-white p-3  w-44 rounded-lg shadow-lg "
                 >
                   {Categories.map((category, index) => (
-                    <li className=" " key={index}>
+                    <li className=" mb-3   rounded px-2 py-1 " key={index}>
                       <h1
                         onClick={() => handleCategoryClick(category.name)} // Close the dropdown when a category is clicked
                       >
@@ -427,7 +427,7 @@ function Navbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden mt-5 w-2/4 bg-red-500">
+          <div className="md:hidden mt-5 w-2/4 ">
             <NavLink onClick={() => toggleNavbar()} style={navLinkStyle}>
               Home
             </NavLink>
