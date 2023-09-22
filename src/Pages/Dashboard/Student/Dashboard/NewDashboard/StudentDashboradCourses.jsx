@@ -74,7 +74,7 @@ const StudentDashboradCourses = ({ courses, popularCourse, topRated }) => {
       {visibleCourses &&
         visibleCourses.length > 0 &&
         visibleCourses.map((course, i) => (
-          <Tiles course={course.course || course} key={i}></Tiles>
+          <Tiles course={course.course || course} selectedCategory={selectedCategory} key={i}></Tiles>
         ))}
 
       {selectedCourse && selectedCourse.length > itemsPerPage && (

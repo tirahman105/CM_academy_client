@@ -129,6 +129,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { format } from "date-fns";
 
 import { motion } from "framer-motion";
 import iconSent from "../../../../../assets/iconForDashboard/iconSent.png";
@@ -139,7 +140,7 @@ const ResponseTicket = () => {
   const location = useLocation();
 
   const ticketNumber = location.state?.ticketNumber;
-  
+
 
   // Function to fetch ticket messages
   const fetchTicketMessages = () => {
@@ -180,7 +181,7 @@ const ResponseTicket = () => {
     const messageData = {
       sender: "admin", // Change to 'admin' if needed
       content: newMessage,
-      timestamp: new Date().toLocaleString(), // Add timestamp with date
+      timestamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
     };
 
     fetch(
