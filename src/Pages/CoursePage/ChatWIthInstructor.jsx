@@ -79,7 +79,7 @@ const ChatWithInstructor = ({ courseId, userId }) => {
   return (
     <div className="chat-box">
       <div
-        className="message-container  h-96 overflow-y-auto myComponentContainer"
+        className="message-container pt-11  h-96 overflow-y-auto myComponentContainer"
         ref={messageContainerRef}
       >
         <AnimatePresence initial={false}>
@@ -88,10 +88,10 @@ const ChatWithInstructor = ({ courseId, userId }) => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: -70 }}
+                animate={{ opacity: 1, y: -30 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.3 }}
-                className={`message ${
+                className={`message  ${
                   message.sender === "student"
                     ? "flex self-end justify-end "
                     : "flex self-start ml-6 justify-start"
