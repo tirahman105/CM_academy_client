@@ -15,7 +15,7 @@ import userManage from "../../src/assets/iconForDashboard/user_manage.png";
 import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
 import liveChat from "../../src/assets/iconForDashboard/live-chat-support.png";
 import logout from "../../src/assets/iconForDashboard/logout.png";
-import "./Dasboard.css";
+import "./Dashboard.css";
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
@@ -169,7 +169,7 @@ const Dashboard = () => {
           } pt-8 duration-500  bg-[#1c1e1f]  font-Jost tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
-            className={`text-2xl absolute font-PTSans select-none cursor-pointer boxShadow text-white -right-6 md:-right-7 border-white border top-9 bg-[#1c1e1f] rounded-lg px-2 ${
+            className={`text-2xl absolute font-PTSans select-none cursor-pointer boxShadowDashboard text-white -right-6 md:-right-7 border-white border top-9 bg-[#1c1e1f] rounded-lg px-2 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
@@ -222,7 +222,7 @@ const Dashboard = () => {
                       onClick={() => handleSelectedButton(menu.title)}
                     >
                       <li
-                        className={`text-white text-sm boxShadow ${
+                        className={`text-white text-sm boxShadowDashboard ${
                           selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
                         } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
@@ -252,7 +252,7 @@ const Dashboard = () => {
                     <Link to={menu.src} key={index}>
                       <li
                         key={index}
-                        className={`text-white text-sm boxShadow hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                        className={`text-white text-sm boxShadowDashboard hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
                         }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
                       >
@@ -282,7 +282,7 @@ const Dashboard = () => {
                     <Link to={menu.src} key={index}>
                       <li
                         key={index}
-                        className={`text-white text-sm  boxShadow hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                        className={`text-white text-sm  boxShadowDashboard hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
                         }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
                       >

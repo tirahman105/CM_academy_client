@@ -222,7 +222,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout/:id",
-        element: <CheckOut />,
+
+        element: (
+          <PrivateRoute>
+            <CheckOut />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment/success/:tranId",
@@ -287,43 +292,85 @@ const router = createBrowserRouter([
       },
       {
         path: "admin-dashboard",
-        element: <AdminRoute><AdminDashboard /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-students",
-        element: <AdminRoute><ManageStudents /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageStudents />
+          </AdminRoute>
+        ),
       },
       {
         path: "All-enrolled-students",
-        element: <AdminRoute><AllEnrolledStudent /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AllEnrolledStudent />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-instructors",
-        element: <AdminRoute><ManageInstructors /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageInstructors />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-course",
-        element: <AdminRoute><ManageCourse /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageCourse />
+          </AdminRoute>
+        ),
       },
       {
         path: "withdraw-request",
-        element: <AdminRoute><WithdrawRequest /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <WithdrawRequest />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-category",
-        element: <AdminRoute><AddCategory /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AddCategory />
+          </AdminRoute>
+        ),
       },
       {
         path: "instructor-dashboard",
-        element: <InstructorRoute> <InstructorDashboard></InstructorDashboard> </InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            {" "}
+            <InstructorDashboard></InstructorDashboard>{" "}
+          </InstructorRoute>
+        ),
       },
       {
         path: "new-instructor-dashboard",
-        element: <InstructorRoute><NewInstructorDashboard></NewInstructorDashboard></InstructorRoute> ,
+        element: (
+          <InstructorRoute>
+            <NewInstructorDashboard></NewInstructorDashboard>
+          </InstructorRoute>
+        ),
       },
       {
         path: "instructor-profile",
-        element: <InstructorRoute> <InstructorProfile /></InstructorRoute> ,
+        element: (
+          <InstructorRoute>
+            {" "}
+            <InstructorProfile />
+          </InstructorRoute>
+        ),
       },
       {
         path: "my-courses-instructor",
@@ -331,7 +378,11 @@ const router = createBrowserRouter([
       },
       {
         path: "my-blogs",
-        element: <InstructorRoute><MyBlogs /></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <MyBlogs />
+          </InstructorRoute>
+        ),
       },
       {
         path: "my-enrolled-students",
@@ -347,21 +398,33 @@ const router = createBrowserRouter([
       },
       {
         path: "acc-setup",
-        element: <InstructorRoute><BankAccountSetup /></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <BankAccountSetup />
+          </InstructorRoute>
+        ),
       },
       {
         path: "add-course",
-        element: <InstructorRoute><AddCourses /></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <AddCourses />
+          </InstructorRoute>
+        ),
       },
       {
         path: "add-blog",
-        element: <InstructorRoute><AddNewBlog /></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <AddNewBlog />
+          </InstructorRoute>
+        ),
       },
       {
         path: "quiz",
         element: <QuestionForm />,
       },
-     
+
       // {
 
       //   path: "student-dashboard",
@@ -371,8 +434,7 @@ const router = createBrowserRouter([
       //   path: "my-courses",
       //   element: <MyCourses />,
       // },
-     
-      
+
       {
         path: "chat-w-student",
         element: <ChatWithStudent />,
@@ -381,7 +443,7 @@ const router = createBrowserRouter([
         path: "msg-request",
         element: <ChatRequest></ChatRequest>,
       },
-     
+
       {
         path: "support-tickets",
         element: <AllSupportTickets></AllSupportTickets>,
@@ -391,23 +453,39 @@ const router = createBrowserRouter([
         element: <ResponseTicket></ResponseTicket>,
       },
 
-      /////////////////////////// student routes /////////////////////////// 
+      /////////////////////////// student routes ///////////////////////////
       {
         path: "student-dashboard",
-        element: <StudentRoute><NewStudentDashboard /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <NewStudentDashboard />
+          </StudentRoute>
+        ),
       },
       {
         path: "student-payment",
-        element: <StudentRoute><StudentPayment /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <StudentPayment />
+          </StudentRoute>
+        ),
       },
       {
         path: "student-profile",
-        element: <StudentRoute><StudentProfileUpdated /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <StudentProfileUpdated />
+          </StudentRoute>
+        ),
       },
       {
         path: "student-support-center",
-        element: <StudentRoute><CreateSupportTicket></CreateSupportTicket></StudentRoute>,
-      }
+        element: (
+          <StudentRoute>
+            <CreateSupportTicket></CreateSupportTicket>
+          </StudentRoute>
+        ),
+      },
     ],
   },
 ]);

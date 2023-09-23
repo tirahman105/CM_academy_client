@@ -211,7 +211,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../../public/cm-logo-png.ico";
+import logo from "../../../../public/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useInstructor from "../../../Hooks/useInstructor";
@@ -309,7 +309,7 @@ function Navbar() {
               className="w-8 h-8 md:h-14 md:w-14 sm:ml-8"
             />
             <p className="text-[#1BBF72] font-Jost font-bold">
-              <span className="text-gray-600">CM</span> Academy
+              <span className="text-gray-700">CM</span> Academy
             </p>
           </Link>
 
@@ -354,7 +354,7 @@ function Navbar() {
           </div>
 
           {/* Navbar links for desktop */}
-          <div className="hidden md:flex justify-center items-center space-x-6">
+          <div className="hidden md:flex justify-center text-sm font-Lexend items-center space-x-6">
             <NavLink to="/" style={navLinkStyle}>
               Home
             </NavLink>
@@ -392,7 +392,7 @@ function Navbar() {
             {!isInstructor && (
               <NavLink
                 to="/instructor"
-                className=" font-Raleway "
+                className="  "
                 style={navLinkStyle}
               >
                 Become an Instructor
@@ -401,7 +401,7 @@ function Navbar() {
             {user && (
               <NavLink
                 to={dashboardRoute}
-                className="ml-auto   font-Raleway font-bold"
+                className="ml-auto "
                 style={navLinkStyle}
               >
                 Dashboard
