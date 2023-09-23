@@ -10,6 +10,7 @@ import ResponseTicket from "../Pages/Dashboard/Admin/ManageStudents/Support/Resp
 import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
 import StudentRoute from "./StudentRoute";
+import { motion } from "framer-motion"; // Import motion and other necessary components
 
 // import NewInstructorDashboard from "../Pages/Dashboard/Instructor/Dashboard/NewInstructorDashboard/NewInstructorDashboard";
 
@@ -255,7 +256,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, transition: { duration: 1.5 } }}
+            transition={{ duration: 0.5 }}
+
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1 }}
+            // exit={{ opacity: 0 }}
+            // transition={{ duration: 1 }}
+          >
+            <AboutUs />,
+          </motion.div>
+        ),
       },
       {
         path: "/contact",
@@ -277,7 +292,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading></Loading>}>
         <PrivateRoute>
-          <Dashboard />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Dashboard />
+          </motion.div>
         </PrivateRoute>
       </Suspense>
     ),
@@ -458,7 +480,14 @@ const router = createBrowserRouter([
         path: "student-dashboard",
         element: (
           <StudentRoute>
-            <NewStudentDashboard />
+            <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, transition: { duration: 1.5 } }}
+            transition={{ duration: 0.5  }}
+            >
+              <NewStudentDashboard />
+            </motion.div>
           </StudentRoute>
         ),
       },
