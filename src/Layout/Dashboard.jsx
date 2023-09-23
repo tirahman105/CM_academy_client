@@ -161,9 +161,7 @@ const Dashboard = () => {
 
   return (
     <div className=" select-none">
-      <div
-        className={`   py-4 duration-500  ${open ? " " : " "}`}
-      >
+      <div className={`   py-4 duration-500  ${open ? " " : " "}`}>
         <div
           className={`${
             open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
@@ -179,7 +177,11 @@ const Dashboard = () => {
           </p>
           <Link to="/">
             <div className="flex items-center gap-2 justify-center   py-1 rounded-md bg-opacity-10  mx-3 ">
-              <img className="h-8 boxShadowDashboard rounded-full" src={logo} alt="" />
+              <img
+                className="h-8 boxShadowDashboard rounded-full"
+                src={logo}
+                alt=""
+              />
 
               <h1 className={`text-white ${!open ? "hidden" : ""} `}>
                 CM <span className="text-[#1BBF72]">Academy</span>
@@ -248,12 +250,18 @@ const Dashboard = () => {
               {isAdmin && (
                 <>
                   {AdminMenus.map((menu, index) => (
-                    <Link to={menu.src} key={index}>
+                    <Link
+                      to={menu.src}
+                      key={index}
+                      onClick={() => handleSelectedButton(menu.title)}
+                    >
                       <li
                         key={index}
-                        className={`text-white text-sm boxShadowDashboard hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                        className={`text-white text-sm boxShadowDashboard ${
+                          selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
+                        } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
-                        }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
+                        }  rounded-md flex items-center font-normal  gap-2 mb-4 cursor-pointer mx-2 `}
                       >
                         <Link to={menu.src} className="flex items-center my-2 ">
                           {" "}
@@ -278,12 +286,18 @@ const Dashboard = () => {
               {isInstructor && (
                 <>
                   {InstructorMenus.map((menu, index) => (
-                    <Link to={menu.src} key={index}>
+                    <Link
+                      to={menu.src}
+                      key={index}
+                      onClick={() => handleSelectedButton(menu.title)}
+                    >
                       <li
                         key={index}
-                        className={`text-white text-sm  boxShadowDashboard hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                        className={`text-white text-sm boxShadowDashboard ${
+                          selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
+                        } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
-                        }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
+                        }  rounded-md flex items-center font-normal  gap-2 mb-4 cursor-pointer mx-2 `}
                       >
                         <Link to={menu.src} className="flex my-2 items-center">
                           {" "}
