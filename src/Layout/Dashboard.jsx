@@ -176,12 +176,14 @@ const Dashboard = () => {
             &lt;
           </p>
           <Link to="/">
-            <div className="flex items-center gap-2 justify-center   py-1 rounded-md bg-opacity-10  mx-3 ">
-              <img
-                className="h-8 boxShadowDashboard rounded-full"
-                src={logo}
-                alt=""
-              />
+            <div className="flex items-center gap-2 justify-center bg-[#1bbf7233] boxShadowDashboard px-1 py-1 rounded-md bg-opacity-10  mx-3 ">
+              <div className="">
+                <img
+                  className="h-8 boxShadowDashboard rounded-full"
+                  src={logo}
+                  alt=""
+                />
+              </div>
 
               <h1 className={`text-white ${!open ? "hidden" : ""} `}>
                 CM <span className="text-[#1BBF72]">Academy</span>
