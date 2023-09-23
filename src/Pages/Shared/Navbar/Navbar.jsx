@@ -398,8 +398,8 @@ function Navbar() {
               )}
             </div>
 
-            {!isInstructor && (
-              <NavLink to="/instructor" className="  " style={navLinkStyle}>
+            {!isInstructor || !isAdmin && (
+              <NavLink to="/instructor"  style={navLinkStyle}>
                 Become an Instructor
               </NavLink>
             )}
@@ -500,14 +500,14 @@ function Navbar() {
                 </motion.ul>
               )}
             </div>
-            {!isInstructor && (
-              <NavLink
+            {!isInstructor  || !isAdmin &&  (
+              <p
                 to="/instructor"
-                className=" "
+                className=""
                 style={navLinkStyle}
               >
                 Become an Instructor
-              </NavLink>
+              </p>
             )}
             <br />
             {user && (

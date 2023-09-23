@@ -50,9 +50,9 @@ const FAQ = () => {
         Common questions asked by students and instructors
       </p>
 
-      <div className="flex flex-col mobile:flex-col-reverse md:flex-row gap-5">
+      <div className="flex flex-row mobile:flex-col-reverse   gap-5 border">
         <div className="w-full mx-auto px-6">
-          <div className="lg:min-h-screen flex justify-center items-center">
+          <div className=" flex justify-center items-center">
             <div className="w-full ">
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
@@ -79,7 +79,7 @@ const FAQ = () => {
             </div>
           </div>
         </div>
-        <div className="tablet:w-full tablet:h-96 mobile:h-16 mx-auto mobile:mb-14 lg:px-6">
+        <div className="tablet:w-[500px]  mobile:h-16 mx-auto mobile:mb-14 lg:px-6">
           <Lottie animationData={FAQAnimation} loop={true} />
         </div>
       </div>
