@@ -211,21 +211,22 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../../../../public/cm-logo-png.ico";
+import logo from "../../../../public/cmlogo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useInstructor from "../../../Hooks/useInstructor";
 import { BiSolidChevronDown } from "react-icons/bi";
 import useStudent from "../../../Hooks/useStudent";
 import useAdmin from "../../../Hooks/useAdmin";
+import { motion } from "framer-motion"; // Import motion and other necessary components
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { user, logOut } = useContext(AuthContext);
-  const [isInstructor] = useInstructor();  
-    const [isStudent]= useStudent();
-    const[isAdmin]= useAdmin();
+  const [isInstructor] = useInstructor();
+  const [isStudent] = useStudent();
+  const [isAdmin] = useAdmin();
 
   const [Categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -284,19 +285,19 @@ function Navbar() {
   };
 
   let dashboardRoute = "";
-  if (isStudent){
-    dashboardRoute= "/dashboard/student-dashboard"
+  if (isStudent) {
+    dashboardRoute = "/dashboard/student-dashboard";
   }
-  if (isInstructor){
-    dashboardRoute= "/dashboard/new-instructor-dashboard"
+  if (isInstructor) {
+    dashboardRoute = "/dashboard/new-instructor-dashboard";
   }
-  
-  if (isAdmin){
-    dashboardRoute= "/dashboard/admin-dashboard"
+
+  if (isAdmin) {
+    dashboardRoute = "/dashboard/admin-dashboard";
   }
 
   return (
-    <div className="  bg-opacity-70 backdrop-blur-lg bg-gradient  fixed py-3 left-0 right-0 ">
+    <div className="  bg-opacity-70 backdrop-blur-lg bg-gradient  fixed py-3 left-0 right-0 select-none ">
       <div className=" px-4 mx-auto max-w-7xl  ">
         <div className=" mx-auto flex justify-between items-center">
           <Link
@@ -306,10 +307,10 @@ function Navbar() {
             <img
               src={logo}
               alt=""
-              className="w-8 h-8 md:h-14 md:w-14 sm:ml-8"
+              className="w-8 h-8 md:h-14 md:w-14 sm:ml-8 "
             />
             <p className="text-[#1BBF72] font-Jost font-bold">
-              <span className="text-gray-600">CM</span> Academy
+              <span className="text-[#242424f6]">CM</span> Academy
             </p>
           </Link>
 
@@ -354,7 +355,7 @@ function Navbar() {
           </div>
 
           {/* Navbar links for desktop */}
-          <div className="hidden md:flex justify-center items-center space-x-6">
+          <div className="hidden md:flex justify-center text-sm font-Lexend items-center space-x-6">
             <NavLink to="/" style={navLinkStyle}>
               Home
             </NavLink>
@@ -371,37 +372,41 @@ function Navbar() {
                 </span>
               </div>
               {isAboutDropdownOpen && (
-                <ul
+                <motion.ul
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   className="absolute -left-2 bg-white p-3  w-44 rounded-lg shadow-lg "
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, transition: { duration: 1.5 } }}
+                  transition={{ duration: 0.5 }}
                 >
                   {Categories.map((category, index) => (
-                    <li className=" mb-3   rounded px-2 py-1 hover:text-green-600" key={index}>
-                      <h1
-                        onClick={() => handleCategoryClick(category.name)} // Close the dropdown when a category is clicked
-                      >
-                        <Link className="font-semibold"> {category.name}</Link>
+                    <motion.li
+                      className=" mb-3   rounded px-2 py-1 hover:text-green-600"
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      <h1 onClick={() => handleCategoryClick(category.name)}>
+                        <Link className="font-semibold">{category.name}</Link>
                       </h1>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               )}
             </div>
 
             {!isInstructor && (
-              <NavLink
-                to="/instructor"
-                className=" font-Raleway "
-                style={navLinkStyle}
-              >
+              <NavLink to="/instructor" className="  " style={navLinkStyle}>
                 Become an Instructor
               </NavLink>
             )}
             {user && (
               <NavLink
                 to={dashboardRoute}
-                className="ml-auto   font-Raleway font-bold"
+                className="ml-auto "
                 style={navLinkStyle}
               >
                 Dashboard
@@ -443,11 +448,20 @@ function Navbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden mt-5 w-2/4 ">
-            <NavLink className='' onClick={() => toggleNavbar()} style={navLinkStyle}>
+          <motion.div
+            className="md:hidden mt-5 w-2/4 font-TitilliumWeb"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <NavLink
+              className=""
+              onClick={() => toggleNavbar()}
+              style={navLinkStyle}
+            >
               Home
             </NavLink>
-            <div  className="relative group">
+            <div className="relative group ">
               <Link
                 className="text-black font-semibold py-1"
                 onMouseEnter={handleMouseEnter}
@@ -457,13 +471,22 @@ function Navbar() {
                 Course Categories
               </Link>
               {isAboutDropdownOpen && (
-                <ul
+                <motion.ul
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   className=""
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                 >
                   {Categories.map((category, index) => (
-                    <li className=" ms-2 hover:text-green-600 mt-2" key={index}>
+                    <motion.li
+                      className=" ms-2 hover:text-green-600 mt-2"
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
                       <h1
                         onClick={() => {
                           handleCategoryClick(category.name);
@@ -472,15 +495,15 @@ function Navbar() {
                       >
                         <Link className="font-semibold">{category.name}</Link>
                       </h1>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               )}
             </div>
             {!isInstructor && (
               <NavLink
                 to="/instructor"
-                className=" font-Raleway"
+                className=" "
                 style={navLinkStyle}
               >
                 Become an Instructor
@@ -489,8 +512,8 @@ function Navbar() {
             <br />
             {user && (
               <NavLink
-                to="/dashboard"
-                className="ml-auto font-Raleway font-bold"
+                to={dashboardRoute}
+                className="ml-auto  font-bold"
                 style={navLinkStyle}
               >
                 Dashboard
@@ -504,7 +527,7 @@ function Navbar() {
                       handleLogOut();
                       toggleNavbar(); // Close the menu when the Logout button is clicked
                     }}
-                    className="text-gray-700 font-Raleway border-2 font-bold rounded-md px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md"
+                    className="text-gray-700  border-2 font-bold rounded-md px-4 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md"
                   >
                     Logout
                   </button>
@@ -512,13 +535,13 @@ function Navbar() {
               ) : (
                 <Link
                   to="/login"
-                  className="text-gray-700 font-Raleway border-2 font-bold rounded-md px-4 py-1 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md my-4"
+                  className="text-gray-700  border-2 font-bold rounded-md px-4 py-1 css-selector hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-gray-600 shadow-md my-4"
                 >
                   Login
                 </Link>
               )}
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

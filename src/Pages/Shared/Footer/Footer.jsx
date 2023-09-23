@@ -1,25 +1,33 @@
 import { Link } from "react-router-dom";
-import logo from "../../../../public/cm-logo-png.ico";
+import logo from "../../../../public/cmlogo.png";
 const Footer = () => {
   return (
     <>
-      <div className="testBgForMyCourse">
-        <footer className="footer p-10  text-white grid grid-cols-3 mx-auto ">
-          <div>
-            <span className="footer-title">Services</span>
-            <Link to="/courseCategories?category=All" className="link link-hover">All Courses</Link>
-            <Link to="/allBlog" className="link link-hover">All Blogs</Link>
-        
+      <div className="bg-[#1C1E1F]">
+        <footer className="  py-10  text-white grid grid-cols-3  ">
+          <div className="flex flex-col items-center justify-center text-left">
+            <span className="footer-title ">Services</span>
+            <Link
+              to="/courseCategories?category=All"
+              className="link link-hover"
+            >
+              All Courses
+            </Link>
+            <Link to="/allBlog" className="link link-hover">
+              All Blogs
+            </Link>
           </div>
-          <div>
+          <div className="flex flex-col items-center  justify-center text-left">
             <span className="footer-title">Company</span>
-           
-            <Link to="/about" className="link link-hover">About Us</Link>
-            <Link to="/contact" className="link link-hover">Contact Us</Link>
-           
-          
+
+            <Link to="/about" className="link link-hover">
+              About Us
+            </Link>
+            <Link to="/contact" className="link link-hover">
+              Contact Us
+            </Link>
           </div>
-          <div>
+          <div className="flex flex-col items-center justify-center text-left">
             <span className="footer-title">Legal</span>
             <Link to="/terms" className="link link-hover">
               Terms of use
@@ -27,7 +35,6 @@ const Footer = () => {
             <Link to="/policy" className="link link-hover">
               Privacy policy
             </Link>
-           
           </div>
         </footer>
         <footer
@@ -35,17 +42,19 @@ const Footer = () => {
             border-white"
         >
           <div className="items-center grid-flow-col">
-            <img src={logo} alt="" className="h-10 w-10" />
+            <div className="rounded-full boxShadowFooter">
+              <img src={logo} alt="" className="h-10 w-10 boxShadowFooter rounded-full" />
+            </div>
 
             <p>
-              <span className="font-bold text-[#0AAE8D]  text-xl">
-                CM Academy
-              </span>{" "}
+              <span className="text-[#1BBF72]  font-bold text-xl">
+                <span className="text-[#fffffff6]">CM</span> Academy
+              </span>
               <br />
               Providing reliable tech since 2023
             </p>
           </div>
-          <div className="md:place-self-center md:justify-self-end">
+          <div className="md:place-self-center mobile:place-self-center md:justify-self-end">
             <div className="grid grid-flow-col gap-4">
               <a>
                 <svg

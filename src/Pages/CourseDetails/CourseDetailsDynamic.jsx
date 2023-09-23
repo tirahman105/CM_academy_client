@@ -91,8 +91,8 @@ const CourseDetailsDynamic = () => {
       {/* Banner section start */}
       <div className="pt-[74px]   ">
         <div className=" items-center      flex   bg-gradient  ">
-          <div className="flex items-center px-4 sm:px-6 py-5 gap-6  max-w-7xl mx-auto ">
-            <div className="sm:w-2/4">
+          <div className="flex items-center px-4 sm:px-6 py-10 gap-6  max-w-7xl mx-auto ">
+            <div className="">
               <motion.h1
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -117,7 +117,7 @@ const CourseDetailsDynamic = () => {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
-                className="flex items-center gap-2 font-bold"
+                className="flex items-center gap-2 font-bold mt-10"
               >
                 <Rating
                   className=""
@@ -163,7 +163,7 @@ const CourseDetailsDynamic = () => {
                 </motion.h1>{" "}
               </div>
               <img
-                className="h-28 sm:w-28 "
+                className="h-28 w-20 rounded-lg object-cover mt-4  "
                 src={instructorInfo.userImage}
                 alt=""
               />
@@ -186,7 +186,7 @@ const CourseDetailsDynamic = () => {
                   className="text-gray-600 font-Lexend font-semibold text-sm"
                 >
                   {/* COurse instrcutor about */} 
-                  <p>{course.about}</p>
+                  <p>{instructorInfo.aboutMe}   </p>
                 </motion.p>
               </div>
             </div>
