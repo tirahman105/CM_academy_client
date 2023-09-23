@@ -15,7 +15,8 @@ import userManage from "../../src/assets/iconForDashboard/user_manage.png";
 import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
 import liveChat from "../../src/assets/iconForDashboard/live-chat-support.png";
 import logout from "../../src/assets/iconForDashboard/logout.png";
-import "./Dasboard.css";
+import "./Dashboard.css";
+import logo from "../../src/assets/iconForDashboard/cmlogo.png";
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
@@ -160,51 +161,51 @@ const Dashboard = () => {
 
   return (
     <div className=" select-none">
-      <div
-        className={`fixed z-10 h-full   py-4 duration-500  ${open ? " " : " "}`}
-      >
+      <div className={`   py-4 duration-500  ${open ? " " : " "}`}>
         <div
           className={`${
             open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
-          } pt-8 duration-500  bg-[#1c1e1f]  font-Jost tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
+          } pt-8 duration-500  bg-[#1c1e1f] fixed z-10  font-Jost tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
-            className={`text-2xl absolute font-PTSans select-none cursor-pointer boxShadow text-white -right-6 md:-right-7 border-white border top-9 bg-[#1c1e1f] rounded-lg px-2 ${
+            className={`text-2xl absolute font-PTSans select-none cursor-pointer boxShadowDashboard text-white -right-6 md:-right-7 border-white border top-9 bg-[#1c1e1f] rounded-lg px-2 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
           >
             &lt;
           </p>
-          <div className="flex items-center gap-2 justify-center ">
-            <img
-              className="h-6"
-              src="https://i.ibb.co/xgF8nhd/cmLogo.png"
-              alt=""
-            />
+          <Link to="/">
+            <div className="flex items-center gap-2 justify-center   py-1 rounded-md bg-opacity-10  mx-3 ">
+              <img
+                className="h-8 boxShadowDashboard rounded-full"
+                src={logo}
+                alt=""
+              />
 
-            <h1 className={`text-white ${!open ? "hidden" : ""} `}>
-              <Link to="/"> CM Academy</Link>
-            </h1>
-          </div>
+              <h1 className={`text-white ${!open ? "hidden" : ""} `}>
+                CM <span className="text-[#1BBF72]">Academy</span>
+              </h1>
+            </div>
+          </Link>
 
           <div className=" h-full overflow-y-auto pb-20">
             <div className={` ${open ? "block duration-500" : ""} `}>
               <div
-                className={`flex flex-col items-center mt-10 mb-6  ${
+                className={`flex flex-col items-center mt-10 mb-6   ${
                   !open ? "mb-0" : ""
                 }`}
               >
                 <img
-                  className={`rounded-xl flex h-24 w-24 mb-2 mt-2 ${
+                  className={`rounded-xl flex h-24 w-24 mb-2 mt-2 boxShadowDashboard ${
                     !open ? "h-9 w-9" : ""
                   }`}
                   src={user?.userImage}
                   alt=""
                 />
                 <h1
-                  className={`laptop:text-base text-white font-semibold ${
-                    !open && "hidden"
+                  className={`laptop:text-base text-white font-semibold  ${
+                    !open && "hidden  "
                   }`}
                 >
                   {user?.fullName}
@@ -222,7 +223,7 @@ const Dashboard = () => {
                       onClick={() => handleSelectedButton(menu.title)}
                     >
                       <li
-                        className={`text-white text-sm boxShadow ${
+                        className={`text-white text-sm boxShadowDashboard ${
                           selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
                         } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
@@ -249,12 +250,18 @@ const Dashboard = () => {
               {isAdmin && (
                 <>
                   {AdminMenus.map((menu, index) => (
-                    <Link to={menu.src} key={index}>
+                    <Link
+                      to={menu.src}
+                      key={index}
+                      onClick={() => handleSelectedButton(menu.title)}
+                    >
                       <li
                         key={index}
-                        className={`text-white text-sm boxShadow hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                        className={`text-white text-sm boxShadowDashboard ${
+                          selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
+                        } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
-                        }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
+                        }  rounded-md flex items-center font-normal  gap-2 mb-4 cursor-pointer mx-2 `}
                       >
                         <Link to={menu.src} className="flex items-center my-2 ">
                           {" "}
@@ -279,12 +286,18 @@ const Dashboard = () => {
               {isInstructor && (
                 <>
                   {InstructorMenus.map((menu, index) => (
-                    <Link to={menu.src} key={index}>
+                    <Link
+                      to={menu.src}
+                      key={index}
+                      onClick={() => handleSelectedButton(menu.title)}
+                    >
                       <li
                         key={index}
-                        className={`text-white text-sm  boxShadow hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                        className={`text-white text-sm boxShadowDashboard ${
+                          selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
+                        } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
                           !open ? "justify-center mx-5" : ""
-                        }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
+                        }  rounded-md flex items-center font-normal  gap-2 mb-4 cursor-pointer mx-2 `}
                       >
                         <Link to={menu.src} className="flex my-2 items-center">
                           {" "}

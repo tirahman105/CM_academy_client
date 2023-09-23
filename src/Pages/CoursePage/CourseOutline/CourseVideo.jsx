@@ -59,13 +59,13 @@ const CourseVideo = ({
   };
 
   return (
-    <div className="p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]">
-      <div className="aspect-w-16 aspect-h-9 lg:aspect-h-[500px] ">
+    <div className="p-4 rounded-lg  sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]">
+      <div className="tablet:h-[600px] ">
         <ReactPlayer
           url={videoUrl}
           controls
           width="100%"
-          height="609px"
+          height="100%"
           key={videoUrl}
         />
       </div>
