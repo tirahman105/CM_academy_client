@@ -15,7 +15,7 @@ import userManage from "../../src/assets/iconForDashboard/user_manage.png";
 import enrolledCourse from "../../src/assets/iconForDashboard/page.png";
 import liveChat from "../../src/assets/iconForDashboard/live-chat-support.png";
 import logout from "../../src/assets/iconForDashboard/logout.png";
-
+import "./Dasboard.css";
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
@@ -152,43 +152,60 @@ const Dashboard = () => {
     //   icon: liveChat,
     // },
   ];
+  const [selectedButton, setSelectedButton] = useState("Dashboard");
+
+  const handleSelectedButton = (button) => {
+    setSelectedButton(button);
+  };
 
   return (
-    <div className="">
+    <div className=" select-none">
       <div
         className={`fixed z-10 h-full   py-4 duration-500  ${open ? " " : " "}`}
       >
         <div
           className={`${
             open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
-          } pt-8 duration-500  bg-[#2D2F31]  font-Poppins tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
+          } pt-8 duration-500  bg-[#1c1e1f]  font-Jost tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
         >
           <p
-            className={`text-5xl absolute cursor-pointer -right-6 md:-right-7 border-white border-2 top-9 bg-slate-600 rounded-lg px-2 ${
+            className={`text-2xl absolute font-PTSans select-none cursor-pointer boxShadow text-white -right-6 md:-right-7 border-white border top-9 bg-[#1c1e1f] rounded-lg px-2 ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
           >
             &lt;
           </p>
-          <div className="flex items-center ">
-            <img src="https://i.ibb.co/xgF8nhd/cmLogo.png" alt="" />
+          <div className="flex items-center gap-2 justify-center ">
+            <img
+              className="h-6"
+              src="https://i.ibb.co/xgF8nhd/cmLogo.png"
+              alt=""
+            />
 
-            <h1 className={`text-white ${!open && "scale-0"}`}>
+            <h1 className={`text-white ${!open ? "hidden" : ""} `}>
               <Link to="/"> CM Academy</Link>
             </h1>
           </div>
 
           <div className=" h-full overflow-y-auto pb-20">
-            <div className={` ${open ? "block duration-500" : "hidden"} `}>
-              <div className="flex flex-col items-center mt-10 mb-6">
+            <div className={` ${open ? "block duration-500" : ""} `}>
+              <div
+                className={`flex flex-col items-center mt-10 mb-6  ${
+                  !open ? "mb-0" : ""
+                }`}
+              >
                 <img
-                  className="rounded-xl flex h-24 w-24 mb-2 mt-2"
+                  className={`rounded-xl flex h-24 w-24 mb-2 mt-2 ${
+                    !open ? "h-9 w-9" : ""
+                  }`}
                   src={user?.userImage}
                   alt=""
                 />
                 <h1
-                  className={`laptop:text-base text-white font-semibold ${!open && "scale-0"}`}
+                  className={`laptop:text-base text-white font-semibold ${
+                    !open && "hidden"
+                  }`}
                 >
                   {user?.fullName}
                 </h1>
@@ -199,49 +216,62 @@ const Dashboard = () => {
               {isStudent && (
                 <>
                   {StudentMenus.map((menu, index) => (
-                    <li
+                    <Link
+                      to={menu.src}
                       key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
+                      onClick={() => handleSelectedButton(menu.title)}
                     >
-                      <Link to={menu.src} className="flex my-2 ">
-                        {" "}
-                        <span className="text-3xl me-2">
-                          <img src={menu?.icon} alt="" />{" "}
-                        </span>
-                        <span
-                          className={`${
-                            !open ? "hidden" : ""
-                          } origin-left duration-200 `}
-                        >
-                          {menu.title}
-                        </span>
-                      </Link>
-                    </li>
+                      <li
+                        className={`text-white text-sm boxShadow ${
+                          selectedButton == menu.title ? "bg-[#1bbf7231]" : ""
+                        } hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                          !open ? "justify-center mx-5" : ""
+                        }  rounded-md flex items-center font-normal  gap-2 mb-4 cursor-pointer mx-2 `}
+                      >
+                        <Link to={menu.src} className="flex my-2 items-center">
+                          {" "}
+                          <span className=" me-2">
+                            <img className="h-4" src={menu?.icon} alt="" />{" "}
+                          </span>
+                          <span
+                            className={`${
+                              !open ? "hidden" : ""
+                            } origin-left duration-200 `}
+                          >
+                            {menu.title}
+                          </span>
+                        </Link>
+                      </li>
+                    </Link>
                   ))}
                 </>
               )}
               {isAdmin && (
                 <>
                   {AdminMenus.map((menu, index) => (
-                    <li
-                      key={index}
-                      className="text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
-                    >
-                      <Link to={menu.src} className="flex items-center my-2 ">
-                        {" "}
-                        <span className="text-3xl me-2">
+                    <Link to={menu.src} key={index}>
+                      <li
+                        key={index}
+                        className={`text-white text-sm boxShadow hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                          !open ? "justify-center mx-5" : ""
+                        }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
+                      >
+                        <Link to={menu.src} className="flex items-center my-2 ">
                           {" "}
-                          <img src={menu?.icon} alt="" />{" "}
-                        </span>
-                        <span
-                          className={`${
-                            !open ? "hidden" : ""
-                          } origin-left duration-200 `}
-                        >
-                          {menu.title}
-                        </span>
-                      </Link>
-                    </li>
+                          <span className="text-3xl me-2">
+                            {" "}
+                            <img className="h-4" src={menu?.icon} alt="" />{" "}
+                          </span>
+                          <span
+                            className={`${
+                              !open ? "hidden" : ""
+                            } origin-left duration-200 `}
+                          >
+                            {menu.title}
+                          </span>
+                        </Link>
+                      </li>
+                    </Link>
                   ))}
                 </>
               )}
@@ -249,42 +279,50 @@ const Dashboard = () => {
               {isInstructor && (
                 <>
                   {InstructorMenus.map((menu, index) => (
-                    <li
-                      key={index}
-                      className="laptop:text-sm text-white font-normal hover:text-green-400 hover:bg-[#1bbf723b] border-2 border-[#1bbf726c] ps-2 rounded-md flex items-center gap-2 mb-2 cursor-pointer mx-2"
-                    >
-                      <Link to={menu.src} className="flex my-2 ">
-                        {" "}
-                        <span className="text-3xl me-2">
-                          <img src={menu?.icon} alt="" />{" "}
-                        </span>
-                        <span
-                          className={`${
-                            !open ? "hidden" : ""
-                          } origin-left duration-200`}
-                        >
-                          {menu.title}
-                        </span>
-                      </Link>
-                    </li>
+                    <Link to={menu.src} key={index}>
+                      <li
+                        key={index}
+                        className={`text-white text-sm  boxShadow hover:text-green-400 hover:bg-[#1bbf7231]  pl-2 ${
+                          !open ? "justify-center mx-5" : ""
+                        }  rounded-md flex items-center font-normal   gap-2 mb-4 cursor-pointer mx-2 `}
+                      >
+                        <Link to={menu.src} className="flex my-2 items-center">
+                          {" "}
+                          <span className="text-3xl me-2">
+                            <img className="h-4" src={menu?.icon} alt="" />{" "}
+                          </span>
+                          <span
+                            className={`${
+                              !open ? "hidden" : ""
+                            } origin-left duration-200`}
+                          >
+                            {menu.title}
+                          </span>
+                        </Link>
+                      </li>
+                    </Link>
                   ))}
                 </>
               )}
             </div>
             <hr className=" my-6" />
-            <button
-              onClick={handleLogOut}
-              className="laptop:text-base text-gray-700 flex gap-3 items-center font-Raleway border-2 ms-1 font-bold py-2 rounded-xl px-4 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
-            >
-              <p className="text-3xl">
-                <img src={logout} alt="" />
-              </p>
-              <span
-                className={`${!open ? "hidden" : ""} origin-left duration-200 `}
+            <div className=" flex items-center justify-center">
+              <button
+                onClick={handleLogOut}
+                className="text-sm text-gray-700 flex gap-1 items-center font-Raleway border-2 ms-1 font-bold py-1 rounded-xl px-2 bg-white hover:border-[#1bbf7246] duration-500 hover:bg-[#1bbf7249] hover:text-green-400 shadow-md "
               >
-                Logout
-              </span>
-            </button>
+                <p className="text-3xl">
+                  <img className="h-4" src={logout} alt="" />
+                </p>
+                <span
+                  className={`${
+                    !open ? "hidden" : ""
+                  } origin-left duration-200 `}
+                >
+                  Logout
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

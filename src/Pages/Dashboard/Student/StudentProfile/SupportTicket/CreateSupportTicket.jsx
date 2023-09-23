@@ -147,17 +147,14 @@ const CreateSupportTicket = () => {
   // Close the ticket and update its status
 
   return (
-    <div className="px-4">
-      <div className=" mobile: tablet:flex justify-around max-w-7xl mx-auto  pt-5 pb-1 gap-3  mb-6  bg-white">
+    <div className="px-4 max-w-7xl mx-auto ">
+      <div className=" mobile: tablet:flex justify-around   pt-5 pb-1 gap-3  mb-6  bg-white">
         <div className="">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
-            Empower Learning: Design Your Course
+          Student Helpdesk
           </h1>
           <p className="mt-4 mobile:text-[14px] laptop:text-[14px] tablet:text-[14px] desktop:text-[18px] text-gray-600 font-TitilliumWeb">
-            Your knowledge can change lives. Begin your teaching journey by
-            creating a course that reflects your expertise. The 'Create Course'
-            page is where you lay the foundation. Define your course's title and
-            description, and let your passion for teaching shine through.
+          Here, you can create support tickets, get assistance, and connect with our dedicated support team. Whether you have questions about your courses, technical issues, or need guidance, we're here to help. Reach out to us by creating a support ticket, and we'll ensure a smooth learning experience for you.
           </p>
         </div>
         <img className="h-32 mobile:hidden" src={supportImg} alt="" />
@@ -219,7 +216,7 @@ const CreateSupportTicket = () => {
         </div>
       )}
 
-      <div className=" mt-14">
+      <div className=" mt-14  ">
         <h2 className="text-2xl font-semibold mt-4 mb-2 font-Lexend">
           Your All Support Ticket
         </h2>
