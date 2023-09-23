@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import viewIcon from "../../../../../assets/iconForDashboard/icons8-video-clip-48.png";
 import { useState } from "react";
 
-const Tiles = ({ course, selectedCategory }) => {
+const Tiles = ({ course, selectedCategory} ) => {
   const navigate = useNavigate();
   console.log(typeof course);
-  console.log("Tiles", course);
+  console.log("Tilesgfd", course.ApprovedStatus);
   const handleViewCourse = (
     courseId,
     courseOutline,
@@ -71,10 +71,10 @@ const Tiles = ({ course, selectedCategory }) => {
       onClick={() =>
         handleViewCourse(
           course?.course?._id || course?._id,
-          course?.course?.courseOutline,
-          course?.course?.instructor,
-          course?.course?.title,
-          course?.course?.courseCategory
+          course?.course?.courseOutline || course?.courseOutline,
+          course?.course?.instructor || course?.instructor,
+          course?.course?.title || course?.title,
+          course?.course?.courseCategory || course?.courseCategory,
         )
       }
     >
