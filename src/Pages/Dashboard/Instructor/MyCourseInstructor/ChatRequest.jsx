@@ -41,8 +41,16 @@ const ChatRequest = () => {
 
   return (
     <div>
-      <h1> All request Chat</h1>
+      <h1 className="font-Lexend mb-5"> All Chat Request </h1>
+      <hr />
 
+      {messages.length === 0 && (
+        <div className="flex justify-center items-center h-96">
+          <h1 className="text-2xl font-bold text-gray-500">
+            There is no request yet!
+          </h1>
+        </div>
+      )}
       <div>
         {messages.map((message, index) => (
           <div

@@ -287,6 +287,16 @@ const MyPayments = () => {
       {isModalOpen && (
         <ModalComponent onClose={closeModal} totalAmount={totalAmount} email={user?.email} name={user?.displayName}  />
       )}
+      {
+        instructorPayment && instructorPayment.length === 0 && ( 
+          <div className="flex justify-center items-center h-96">
+            <h1 className="text-2xl font-bold text-gray-500">
+              Your course is not sold yet!
+            </h1>
+          </div>
+        )
+        
+      }
     </div>
   );
 };

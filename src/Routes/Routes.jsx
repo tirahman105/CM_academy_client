@@ -207,12 +207,24 @@ const router = createBrowserRouter([
       },
       {
         path: "coursepage",
-        element: <CoursePage />,
+        element: (
+          <StudentRoute>
+            <CoursePage />
+          </StudentRoute>
+        ),
       },
       {
         path: "coursepageUpdate",
         element: <CoursePageUpdate />,
       },
+      // <motion.div
+      //       initial={{ opacity: 0, y: 10 }}
+      //       animate={{ opacity: 1, y: 0 }}
+      //       exit={{ opacity: 0, transition: { duration: 1.5 } }}
+      //       transition={{ duration: 0.5  }}
+      //       >
+      //         <NewStudentDashboard />
+      //       </motion.div>
       {
         path: "/reset-password/:oobCode",
         element: <ResetPassword />,
@@ -481,10 +493,10 @@ const router = createBrowserRouter([
         element: (
           <StudentRoute>
             <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, transition: { duration: 1.5 } }}
-            transition={{ duration: 0.5  }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, transition: { duration: 1.5 } }}
+              transition={{ duration: 0.5 }}
             >
               <NewStudentDashboard />
             </motion.div>

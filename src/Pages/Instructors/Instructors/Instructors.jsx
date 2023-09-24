@@ -6,16 +6,16 @@ import Support from "../Support/Support";
 import Today from "../Today/Today";
 
 const Instructors = () => {
-    return (
-        <div>
-            <Banner></Banner>
-            <Reasons></Reasons>
-            <Begineer></Begineer>
-           <Review></Review>
-           <Support></Support>
-           <Today></Today>
-        </div>
-    );
+  return (
+    <div>
+      <Banner></Banner>
+      <Reasons></Reasons>
+      <Begineer></Begineer>
+      <Review></Review>
+      <Support></Support>
+      <Today></Today>
+    </div>
+  );
 };
 
 export default Instructors;

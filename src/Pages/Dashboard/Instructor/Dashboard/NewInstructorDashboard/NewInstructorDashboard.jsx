@@ -7,10 +7,48 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../../providers/AuthProvider";
 import InstructorNavProfile from "./InstructorNavProfile";
 import InstructorStatistics from "./InstructorStatistics";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const NewInstructorDashboard = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
+
+ 
+  const [blogs, setBlogs] = useState([]);
+  const userEmail = user?.email;
+
+  useEffect(() => {
+    // Fetch all blogs from your server
+    fetch("https://cm-academy-test-server-production.up.railway.app/all-blog")
+      .then((response) => response.json())
+      .then((data) => {
+        // Filter blogs based on the user's email
+        const filteredBlogs = data.filter((blog) => blog.email === userEmail);
+        setBlogs(filteredBlogs);
+      })
+      .catch((error) => {
+        console.error("Error fetching blogs:", error);
+      });
+  }, [userEmail]);
+  const [instructorCourses, setInstructorCourses] = useState([]);
+
+  console.log(user?.email);
+  useEffect(() => {
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/categories/instructor/${userEmail} `
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setInstructorCourses(data);
+      })
+
+      .catch((error) => {
+        console.error("Error fetching instructor courses:", error);
+      });
+  }, [userEmail]);
+
+
 
   return (
     <div className="mobile:px-4">
@@ -64,7 +102,7 @@ const NewInstructorDashboard = () => {
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4 laptop:text-base mobile:text-sm">
                   <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-xl">
-                    0
+                    {instructorCourses.length}
                   </p>
                   <p className="text-lg font-normal mobile:text-base">
                     Courses
@@ -72,7 +110,7 @@ const NewInstructorDashboard = () => {
                 </div>
                 <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4 laptop:text-base mobile:text-sm">
                   <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-xl">
-                    0
+                   {blogs.length}
                   </p>
                   <p className="text-lg font-normal mobile:text-base">Blogs</p>
                 </div>

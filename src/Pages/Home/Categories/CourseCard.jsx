@@ -115,7 +115,7 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
             itemStyles={myStyles}
           />
 
-          <p className="text-sm font-semibold text-gray-500">(78,546)</p>
+          <p className="text-sm font-semibold text-gray-500">({course.enrollCount})</p>
           {/* <FiUsers className="text-[#1bbf72fb]" /> */}
         </div>
       </motion.div>

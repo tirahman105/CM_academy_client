@@ -54,7 +54,7 @@ function AllCourseCategories() {
     const selectedCategory = new URLSearchParams(location.search).get(
       "category"
     );
-
+console.log(selectedCategory);
     
     if (selectedCategory && selectedCategory !== "All") {
       if (!cachedData[selectedCategory]) {
