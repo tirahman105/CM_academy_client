@@ -220,8 +220,8 @@ import useStudent from "../../../Hooks/useStudent";
 import useAdmin from "../../../Hooks/useAdmin";
 import { motion } from "framer-motion"; // Import motion and other necessary components
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(true);
 
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
