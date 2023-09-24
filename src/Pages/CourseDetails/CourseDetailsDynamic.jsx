@@ -320,11 +320,11 @@ const CourseDetailsDynamic = () => {
                 <Link to={`/checkout/${course._id}`}>
                   <button
                     disabled={isInstructor}
-                    className=" w-full bg-[#258d5c11] font-Lexend text-lg border-2 font-bold py-[9px]  rounded-md px-4  hover:css-selector  hover:border-[#1bbf7246] duration-500 
-                  text-gray-700 boxShadowBtn "
+                    className={`w-full bg-[#258d5c11] font-Lexend text-lg border-2 font-bold py-[9px]  rounded-md px-4  hover:css-selector  hover:border-[#1bbf7246] duration-500 
+                  text-gray-700 boxShadowBtn ${isInstructor?" text-red-500 text-sm":"" } `}
                   >
                     {" "}
-                    Enroll Now
+                     {isInstructor? "You cant buy course as Instructor":"Enroll Now"}
                   </button>
                 </Link>
                 <p className="text-center font-Lexend text-gray-500 text-[12px] mt-2">

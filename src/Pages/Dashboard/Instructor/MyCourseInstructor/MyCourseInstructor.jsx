@@ -33,13 +33,20 @@ const MyCourseInstructor = () => {
     navigate("/dashboard/msg-request", { state: { courseId } });
   };
 
-  console.log(instructorCourses[1]?._id);
+  console.log(instructorCourses.length);
   return (
     <div className="border p-4">
       <div className=" my-4 mt-4">
         <h1 className=" text-lg font-bold">My Courses</h1>
         <p className="text-base mb-4">All my courses</p>
         <hr />
+        {instructorCourses.length === 0 && (
+          <div className="flex justify-center items-center h-96">
+            <h1 className="text-2xl font-bold text-gray-500">
+              You haven't created any course yet!
+            </h1>
+          </div>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {instructorCourses.map((category) => (
@@ -55,15 +62,11 @@ const MyCourseInstructor = () => {
               />
             </figure>
             <div className="card-body">
-              
               <h2 className="card-title mb-2">
-                
-                {category.title} - 
-              
-                <div className="badge badge-warning">New</div>
+                {category.title} -<div className="badge badge-warning">New</div>
               </h2>
               <p className="text-sm">{category.courseCategory}</p>
-            
+
               <div className="flex justify-between mt-2 font-semibold text-sm text-gray-500">
                 <h1>Price:tk {category.coursePrice}</h1>
               </div>

@@ -170,9 +170,9 @@ const InstructorProfile = () => {
         <div className='px-2 pb-24'>
             <div className="tablet:w-3/5 p-4 flex items-center tablet:mx-auto">
                 <img
-                    src={selectedImage || userDataFromAPI.userImage || 'default-profile-picture-url.jpg'}
+                    src={selectedImage || userDataFromAPI.userImage || "https://via.placeholder.com/150" }
                     alt="Profile Picture"
-                    className="w-40 h-40 rounded-full object-cover mr-10 hover:scale-105 duration-500"
+                    className="w-40 h-40 rounded-full object-cover mr-10 hover:scale-105 duration-500 shadow-md "
                 />
 
                 <div className="mb-4">

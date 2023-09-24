@@ -7,11 +7,13 @@ import Skeleton from "react-loading-skeleton";
 import { MdNotStarted } from "react-icons/md";
 import { Rating, StickerStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-
+import useInstructor from "../../../Hooks/useInstructor";
+import { tr } from "date-fns/locale";
 
 const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
   console.log(isEnrolled);
-
+  const [isInstructor] = useInstructor();
+  console.log(isInstructor);
   const navigate = useNavigate();
 
   const handleViewCourse = (courseOutline) => {
@@ -24,19 +26,20 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
     inactiveFillColor: "#1bbf7240",
   };
 
-
   const instructormail = course.instructorEmail;
   const [instructorInfo, setInstructorInfo] = useState([]);
 
   useEffect(() => {
-    fetch(`https://cm-academy-test-server-production.up.railway.app/users/instructor/${instructormail}/info`)
+    fetch(
+      `https://cm-academy-test-server-production.up.railway.app/users/instructor/${instructormail}/info`
+    )
       .then((res) => res.json())
       .then((data) => {
         setInstructorInfo(data);
       });
   }, [instructormail]);
 
-  console.log('instructorInfo', instructorInfo);
+  console.log("instructorInfo", instructorInfo);
 
   return (
     <motion.div
@@ -80,7 +83,6 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
           alt={instructorInfo.userImage}
         />
 
-
         <Link
           to={`/instructorProfile/${instructorInfo._id}`}
           state={{ instructorInfo }}
@@ -89,8 +91,6 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
             {course.instructor || <Skeleton count={10}></Skeleton>}
           </p>
         </Link>
-
-
       </motion.div>
       <motion.div className=" flex justify-between px-4 items-center">
         <div className="flex items-center justify-center gap-1">
@@ -120,7 +120,6 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
         </div>
       </motion.div>
 
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -144,11 +143,10 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
         </div>
       </motion.div>
 
-
       {/* bg-[#1bbf7216] rounded-b-lg */}
       <div className="bg-[#1bbf722a] h-[1px] "></div>
 
-      <div  className="py-2 flex justify-between px-4">
+      <div className="py-2 flex justify-between px-4">
         {isEnrolled ? (
           <button
             className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-gray-700"
@@ -159,11 +157,20 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
             <p className="font-bold font-mono">View Course</p>
           </button>
         ) : (
-          <button className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]">
+          <button
+            disabled={true}
+            className="flex items-center justify-center gap-1 px-2 py-1 rounded-md shadow-md border border-[#1bbf726c] duration-500 hover:bg-[#1bbf723d] hover:text-[#1bbf72fa]"
+          >
             <FaCartPlus className="text-[#1bbf72fb]" />
-            <Link to={`/checkout/${course._id}`}>
-              <p className="font-bold font-mono">Enroll Now</p>
-            </Link>
+            {isInstructor ? (
+              <p className="font-bold font-mono text-[12px] text-gray-500">
+                You can't buy{" "}
+              </p>
+            ) : (
+              <Link to={`/checkout/${course._id}`}>
+                <p className="font-bold font-mono">Enroll Now</p>
+              </Link>
+            )}
           </button>
         )}
 
@@ -174,7 +181,6 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
           Details
         </button>
       </div>
-
     </motion.div>
   );
 };

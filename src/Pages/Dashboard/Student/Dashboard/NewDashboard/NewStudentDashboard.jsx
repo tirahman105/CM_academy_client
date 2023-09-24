@@ -33,13 +33,11 @@ const NewStudentDashboard = () => {
     }
   }, [user]);
 
-
   const handleLogOut = () => {
     logOut()
       .then(() => {})
       .catch((error) => console.log(error));
   };
-
 
   useEffect(() => {
     // Fetch data from the API
@@ -56,16 +54,16 @@ const NewStudentDashboard = () => {
 
   return (
     <div className="mobile:px-4">
-
-
       <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
         <div className=" laptop:order-2">
-
           {/* search bar with profile */}
           <div className="flex items-center gap-6 justify-start mb-4 ">
             <div className="relative flex items-center mobile:ml-4 flex-grow rounded-md mobile:text-sm text-lg bg-gray-100">
               <span className="flex items-center pl-4">
-                <FaSearch size={24} className="text-gray-700 mobile:text-[12px] tablet:text-[14px] laptop:text-[16px]" />
+                <FaSearch
+                  size={24}
+                  className="text-gray-700 mobile:text-[12px] tablet:text-[14px] laptop:text-[16px]"
+                />
               </span>
               <input
                 type="text"
@@ -77,30 +75,42 @@ const NewStudentDashboard = () => {
               <MdNotificationsActive className="text-4xl mr-4 mobile:w-6 tablet:w-7 laptop:w-9" />
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="mobile:w-7 laptop:w-12 tablet:w-9  rounded-full flex">
-                    <img src={user?.userImage} alt="User" />
+                  <div className="mobile:w-7 laptop:w-12 tablet:w-9  rounded-full flex relative">
+                    <img src={user.userImage} />
                   </div>
+                  <AiOutlineDown className="text-base  dropdown dropdown-end absolute z-10 mobile:-right-2 -right-4" />
                 </label>
-                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
-                    <li>
-                        <Link to='/dashboard/student-profile' className="justify-between">
-                            <div className='flex gap-2'>
-                                <img className='h-5' src={profile} alt="" />
-                                <p>Profile</p>
-                            </div>
-                           
-                        </Link>
-                    </li>
-                    <li><Link to="/dashboard/student-support-center">
-                        
-                    <div  className='flex gap-2 items-center my-2'>
-                    <img className='h-5' src={support} alt="" /> <p>Support </p></div>
-                        </Link></li>
-                    <li onClick={handleLogOut}> <div  className='flex gap-2'>
-                    <img className='h-5' src={logout} alt="" /> <p>Logout</p></div></li>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52"
+                >
+                  <li>
+                    <Link
+                      to="/dashboard/student-profile"
+                      className="justify-between"
+                    >
+                      <div className="flex gap-2">
+                        <img className="h-5" src={profile} alt="" />
+                        <p>Profile</p>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/student-support-center">
+                      <div className="flex gap-2 items-center my-2">
+                        <img className="h-5" src={support} alt="" />{" "}
+                        <p>Support </p>
+                      </div>
+                    </Link>
+                  </li>
+                  <li onClick={handleLogOut}>
+                    {" "}
+                    <div className="flex gap-2">
+                      <img className="h-5" src={logout} alt="" /> <p>Logout</p>
+                    </div>
+                  </li>
                 </ul>
               </div>
-              <AiOutlineDown className="text-base" />
             </div>
           </div>
           {/* search bar with profile  end*/}
@@ -112,7 +122,9 @@ const NewStudentDashboard = () => {
               <h1 className="text-4xl font-extrabold font-Jost tracking-wider laptop:text-2xl mobile:text-xl">
                 Hello! {user?.fullName}
               </h1>
-              <p className="text-base font-semibold laptop:text-sm mobile:text-xs">It’s good to see you again.</p>
+              <p className="text-base font-semibold laptop:text-sm mobile:text-xs">
+                It’s good to see you again.
+              </p>
             </div>
 
             <div className="-mt-11">
@@ -122,32 +134,33 @@ const NewStudentDashboard = () => {
         </div>
       </div>
 
-
       <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
         <div className="order-1 laptop:order-2">
           <div className="grid grid-cols-2 gap-4 ">
             <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-1 laptop:text-base mobile:text-sm">
-              <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">10</p>
-              <p className="text-lg font-normal mobile:text-base">Courses Completed</p>
+              <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">
+                0
+              </p>
+              <p className="text-lg font-normal mobile:text-base">
+                Courses Completed
+              </p>
             </div>
 
             <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-1 laptop:text-base mobile:text-sm">
-              <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">7</p>
-              <p className="text-lg font-normal mobile:text-base">Courses in Progress</p>
+              <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">
+                0
+              </p>
+              <p className="text-lg font-normal mobile:text-base">
+                Courses in Progress
+              </p>
             </div>
           </div>
-
         </div>
 
         <div className="mobile:order-2 tablet:order-2 laptop:order-none rounded-lg w-full bg-white">
-          
-            <CourseProgress courses={studentCourses}></CourseProgress>
-         
+          <CourseProgress courses={studentCourses}></CourseProgress>
         </div>
       </div>
-
-      
-
 
       <div className="grid grid-cols-1 laptop:gap-6 laptop:grid-cols-2">
         <div>
@@ -160,9 +173,6 @@ const NewStudentDashboard = () => {
           <YourStatistics></YourStatistics>
         </div>
       </div>
-
-
-
     </div>
   );
 };

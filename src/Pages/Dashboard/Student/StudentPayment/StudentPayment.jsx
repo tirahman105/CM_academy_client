@@ -53,7 +53,7 @@ const StudentPayment = () => {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-
+console.log(paymentHistory.length);
   return (
     <div className="p-4 desktop:w-4/5 desktop:mx-auto">
       <div className="border p-4">
@@ -61,6 +61,9 @@ const StudentPayment = () => {
           <h1 className=" text-lg">Payment History</h1>
           <p className="text-base mb-4">Payment histories of student</p>
           <hr />
+
+        
+
         </div>
         {isSmallScreen ? (
           // Card for small screens
@@ -182,7 +185,14 @@ const StudentPayment = () => {
             </p>
           </button>
         </div>
+        {paymentHistory.length === 0 && ( <div className="flex justify-center items-center h-96"> 
+            
+            <p className="text-2xl font-bold text-gray-500">No Payment History</p>
+            </div>)
+
+          }
       </div>
+     
     </div>
   );
 };
