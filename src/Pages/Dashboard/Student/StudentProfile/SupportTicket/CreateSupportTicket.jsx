@@ -146,15 +146,21 @@ const CreateSupportTicket = () => {
   };
   // Close the ticket and update its status
 
+  console.log(supportTickets.length);
+
   return (
     <div className="px-4 max-w-7xl mx-auto ">
       <div className=" mobile: tablet:flex justify-around   pt-5 pb-1 gap-3  mb-6  bg-white">
         <div className="">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
-          Student Helpdesk
+            Student Helpdesk
           </h1>
           <p className="mt-4 mobile:text-[14px] laptop:text-[14px] tablet:text-[14px] desktop:text-[18px] text-gray-600 font-TitilliumWeb">
-          Here, you can create support tickets, get assistance, and connect with our dedicated support team. Whether you have questions about your courses, technical issues, or need guidance, we're here to help. Reach out to us by creating a support ticket, and we'll ensure a smooth learning experience for you.
+            Here, you can create support tickets, get assistance, and connect
+            with our dedicated support team. Whether you have questions about
+            your courses, technical issues, or need guidance, we're here to
+            help. Reach out to us by creating a support ticket, and we'll ensure
+            a smooth learning experience for you.
           </p>
         </div>
         <img className="h-32 mobile:hidden" src={supportImg} alt="" />
@@ -220,7 +226,13 @@ const CreateSupportTicket = () => {
         <h2 className="text-2xl font-semibold mt-4 mb-2 font-Lexend">
           Your All Support Ticket
         </h2>
-
+        {supportTickets.length === 0 && (
+          <div className="flex justify-center items-center h-96">
+            <p className="text-2xl font-bold text-gray-500">
+              No Support Ticket
+            </p>
+          </div>
+        )}
         <div className="grid tablet:grid-cols-2 gap-4">
           {supportTickets.map((ticket) => (
             <motion.div

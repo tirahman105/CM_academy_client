@@ -64,7 +64,7 @@ const NewInstructorDashboard = () => {
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4 laptop:text-base mobile:text-sm">
                   <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-xl">
-                    10
+                    0
                   </p>
                   <p className="text-lg font-normal mobile:text-base">
                     Courses
@@ -72,7 +72,7 @@ const NewInstructorDashboard = () => {
                 </div>
                 <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-4 laptop:text-base mobile:text-sm">
                   <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-xl">
-                    5
+                    0
                   </p>
                   <p className="text-lg font-normal mobile:text-base">Blogs</p>
                 </div>

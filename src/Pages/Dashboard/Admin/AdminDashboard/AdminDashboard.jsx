@@ -12,7 +12,6 @@ import profile from "../../../../assets/iconForDashboard/user.png";
 import logout from "../../../../assets/iconForDashboard/logout_2.png";
 import support from "../../../../assets/iconForDashboard/message.png";
 
-
 const AdminDashboard = () => {
   // data fetch from DB
 
@@ -71,8 +70,6 @@ const AdminDashboard = () => {
   );
   const totalDeniedCourses = deniedCourses.length;
 
-
-
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -103,22 +100,32 @@ const AdminDashboard = () => {
                     tabIndex={0}
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="mobile:w-7 laptop:w-12 tablet:w-9  rounded-full flex">
-                      <img src={user?.userImage} />
+                    <div className="mobile:w-7 laptop:w-12 tablet:w-9  rounded-full flex relative">
+                      <img src={user.userImage} />
                     </div>
+                    <AiOutlineDown className="text-base  dropdown dropdown-end absolute z-10 mobile:-right-2 -right-4" />
                   </label>
-                  <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
-                   
-                    <li><Link to="/dashboard/support-tickets">
-                        
-                    <div  className='flex gap-2 items-center my-2'>
-                    <img className='h-5' src={support} alt="" /> <p>Support center </p></div>
-                        </Link></li>
-                    <li onClick={handleLogOut}> <div  className='flex gap-2'>
-                    <img className='h-5' src={logout} alt="" /> <p>Logout</p></div></li>
-                </ul>
+                  <ul
+                    tabIndex={0}
+                    className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-base-200 rounded-box w-52"
+                  >
+                    <li>
+                      <Link to="/dashboard/support-tickets">
+                        <div className="flex gap-2 items-center my-2">
+                          <img className="h-5" src={support} alt="" />{" "}
+                          <p>Support center </p>
+                        </div>
+                      </Link>
+                    </li>
+                    <li onClick={handleLogOut}>
+                      {" "}
+                      <div className="flex gap-2">
+                        <img className="h-5" src={logout} alt="" />{" "}
+                        <p>Logout</p>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-                <AiOutlineDown className="text-base" />
               </div>
             </div>
           </div>
@@ -150,12 +157,18 @@ const AdminDashboard = () => {
                 <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">
                   {totalApprovedCourses}
                 </p>
-                <p className="text-lg font-normal mobile:text-base laptop:text-sm desktop:text-lg">Approved Courses</p>
+                <p className="text-lg font-normal mobile:text-base laptop:text-sm desktop:text-lg">
+                  Approved Courses
+                </p>
               </div>
 
               <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-1 laptop:text-base mobile:text-sm">
-                <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">{totalDeniedCourses}</p>
-                <p className="text-lg font-normal mobile:text-base laptop:text-sm desktop:text-lg">Requested Courses</p>
+                <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">
+                  {totalDeniedCourses}
+                </p>
+                <p className="text-lg font-normal mobile:text-base laptop:text-sm desktop:text-lg">
+                  Requested Courses
+                </p>
               </div>
             </div>
           </div>

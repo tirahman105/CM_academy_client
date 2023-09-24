@@ -464,8 +464,7 @@ function Navbar() {
             <div className="relative group ">
               <Link
                 className="text-black font-semibold py-1"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+              
                 onClick={handleCategoriesButtonClick}
               >
                 Course Categories

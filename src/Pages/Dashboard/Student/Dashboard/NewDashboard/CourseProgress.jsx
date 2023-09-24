@@ -32,10 +32,13 @@ const CourseProgress = ({ courses }) => {
             <p className="text-gray-900 mobile:text-[14px] laptop:text-[14px]  font-bold desktop:text-lg truncate tablet:hidden">
               {courses[currentCourseIndex]?.course.title}
             </p>
-            
+
             <div className="flex justify-start laptop:gap-2 desktop:gap-0 items-center desktop:space-x-10 tablet:space-x-10 laptop:space-x-0 bg-gray-100 p-2 rounded-md">
               <img
-                src={courses[currentCourseIndex]?.course.courseThumbnail}
+                src={
+                  courses[currentCourseIndex]?.course.courseThumbnail ||
+                  "https://via.placeholder.com/150"
+                }
                 alt={courses[currentCourseIndex]?.course.title}
                 className="tablet:w-20 tablet:h-20 mobile:w-10 mobile:h-10 laptop:w-12 laptop:h-12 desktop:w-20 desktop:h-20 object-cover rounded-md transition-transform duration-300 transform hover:scale-110"
               />
@@ -44,11 +47,11 @@ const CourseProgress = ({ courses }) => {
                   {courses[currentCourseIndex]?.course.title}
                 </p>
                 <p className="desktop:text-sm mobile:text-[10px] laptop:text-[12px] text-gray-600 truncate mobile:hidden">
-                  by {courses[currentCourseIndex]?.course.instructor}
+                  by{" "}
+                  {courses[currentCourseIndex]?.course.instructor ||
+                    "No Enrolled Courses"}
                 </p>
               </div>
-
-
 
               <div className="mobile:ml-4 flex items-center gap-2">
                 <svg
@@ -66,8 +69,7 @@ const CourseProgress = ({ courses }) => {
                     strokeDasharray="251.2"
                     strokeDashoffset={
                       251.2 -
-                      (251.2 * 70 || courses[currentCourseIndex]?.progress) /
-                        100
+                      (251.2 * courses[currentCourseIndex]?.progress) / 100
                     }
                   />
                   <text
@@ -77,7 +79,7 @@ const CourseProgress = ({ courses }) => {
                     textAnchor="middle"
                     className="text-gray-900 text-2xl font-bold"
                   >
-                    {courses[currentCourseIndex]?.course.progress || 70}%
+                    {courses[currentCourseIndex]?.course.progress || 0}%
                   </text>
                 </svg>
               </div>

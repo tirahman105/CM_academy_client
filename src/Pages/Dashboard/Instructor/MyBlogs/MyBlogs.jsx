@@ -27,6 +27,17 @@ const MyBlogs = () => {
         <h1 className=" text-lg font-bold">My Blogs</h1>
         <p className="text-base mb-4">All my posted blogs</p>
         <hr />
+
+        {
+          // If the user has not posted any blog, show this message
+          blogs.length === 0 && (
+            <div className="flex justify-center items-center h-96">
+              <h1 className="text-2xl font-bold text-gray-500">
+                You haven't posted any blog yet!
+              </h1>
+            </div>
+          )
+        }
       </div>
       <div className="w-full border mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-6 ">
         {blogs.map((blog, index) => (
