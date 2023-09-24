@@ -220,8 +220,8 @@ import useStudent from "../../../Hooks/useStudent";
 import useAdmin from "../../../Hooks/useAdmin";
 import { motion } from "framer-motion"; // Import motion and other necessary components
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   const { user, logOut } = useContext(AuthContext);
   const [isInstructor] = useInstructor();
@@ -398,8 +398,8 @@ const Navbar = () => {
               )}
             </div>
 
-            {!isInstructor || !isAdmin && (
-              <NavLink to="/instructor"  style={navLinkStyle}>
+            {!isInstructor && (
+              <NavLink to="/instructor" className="  " style={navLinkStyle}>
                 Become an Instructor
               </NavLink>
             )}
@@ -500,14 +500,14 @@ const Navbar = () => {
                 </motion.ul>
               )}
             </div>
-            {!isInstructor  || !isAdmin &&  (
-              <p
+            {!isInstructor && (
+              <NavLink
                 to="/instructor"
-                className=""
+                className=" "
                 style={navLinkStyle}
               >
                 Become an Instructor
-              </p>
+              </NavLink>
             )}
             <br />
             {user && (
