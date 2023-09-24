@@ -148,7 +148,7 @@ const NewStudentDashboard = () => {
 
             <div className="bg-gray-100 p-4 text-center rounded-lg flex items-center justify-center gap-1 laptop:text-base mobile:text-sm">
               <p className="text-6xl font-extrabold laptop:text-3xl mobile:text-3xl">
-                0
+                {studentCourses.length}
               </p>
               <p className="text-lg font-normal mobile:text-base">
                 Courses in Progress
