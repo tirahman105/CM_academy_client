@@ -27,7 +27,7 @@ const Slider = ({ items }) => {
                 <div className="flex flex-col md:flex-row items-center px-4 md:px-6 lg:px-10 xl:px-20 gap-4 md:gap-6 lg:gap-8">
 
                     <div className="w-1/2">
-                        <img src={item.imageUrl} alt={`Slide ${index}`} className=" h-52 md:h-64 lg:h-72 xl:h-80" />
+                        <img src={item.imageUrl} alt={`Slide ${index}`} className=" h-48 md:h-64 lg:h-72 xl:h-80" />
                     </div>
                     <div className="w-full md:w-1/2 pr-4">
                         <p className="text-base md:text-lg lg:text-xl xl:text-2xl">{item.caption}</p>
