@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "date-fns";
 
 const ModalComponent = ({ onClose, totalAmount, email, name }) => {
   console.log("email", email);
@@ -15,22 +16,28 @@ const ModalComponent = ({ onClose, totalAmount, email, name }) => {
         totalAmount,
         email,
         withdrawStatus: false,
+        timestamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
       };
 
       // Send a POST request to your backend API endpoint
-      const response = await fetch("https://cm-academy-test-server-production.up.railway.app/storeWData", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      });
+      const response = await fetch(
+        "https://cm-academy-test-server-production.up.railway.app/storeWData",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        }
+      );
 
       if (response.ok) {
         // Data stored successfully, close the modal or perform other actions
 
         onClose();
-        alert("Withdrawal request submitted successfully")
+        alert("Withdrawal request submitted successfully,Reload page to see the your updated withdraw request!");
+        // reload page to see the updated withdraw request 
+        window.location.reload();
       } else {
         console.error("Error confirming withdrawal");
         // Handle errors as needed

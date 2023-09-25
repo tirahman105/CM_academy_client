@@ -47,7 +47,7 @@ const ManageCourse = ({ courses, courseActions, handleActionChange, handlePerfor
             >
               <option value=''>Select Action</option>
               <option value='Approved'>Approve</option>
-              <option value='Denied'>Deny</option>
+              <option value='Deny'>Deny</option>
               <option value='delete'>Delete</option>
             </select>
           </div>

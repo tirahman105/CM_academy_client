@@ -143,7 +143,7 @@ const Dashboard = () => {
       icon: paymentSetup,
     },
     {
-      title: "Payment History",
+      title: "Payments",
       src: "/dashboard/my-payments",
       icon: payment,
     },

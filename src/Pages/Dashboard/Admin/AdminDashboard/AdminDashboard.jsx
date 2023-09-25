@@ -66,7 +66,7 @@ const AdminDashboard = () => {
   );
   const totalApprovedCourses = approvedCourses.length;
   const deniedCourses = courses.filter(
-    (course) => course.ApprovedStatus === "Denied"
+    (course) =>  course.ApprovedStatus === "Deny"
   );
   const totalDeniedCourses = deniedCourses.length;
 
