@@ -26,18 +26,7 @@ const CourseDetailsDynamic = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // fetch instructor info by instrcutor mail
-  // const instructormail = course.instructorEmail;
-  // const [instructorInfo, setInstructorInfo] = useState([]);
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/users/instructor/${instructormail}/info`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setInstructorInfo(data);
-  //     });
-  // }, [instructormail]);
 
-  // console.log('instructorInfo', instructorInfo);
 
 
   const instructormail = course.instructorEmail;
@@ -79,7 +68,6 @@ const CourseDetailsDynamic = () => {
   };
   console.log(course);
 
-  //localhost:5000/users/instructor/${instructormail}/info
 
  return (
     <motion.div

@@ -47,7 +47,7 @@ const AddNewBlog = () => {
     <div className="p-6 ">
       <div className=" my-4 mt-4">
         <h1 className=" mobile:text-lg tablet:text-2xl text-gray-700 font-Lexend font-bold ">Add New blog</h1>
-        <p className="mobile:text-sm tablet:text-base font-Lexend text-gray-700 mb-4">Add the necessary details and post you blog.</p>
+        <p className="text-lg font-light mb-4 text-gray-700 font-Lexend mt-4">Add the necessary details and post you blog.</p>
         <hr />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="tablet:w-3/5 mx-auto">

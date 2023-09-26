@@ -24,8 +24,8 @@ const MyBlogs = () => {
   return (
     <div className=" p-4 font-Lexend text-gray-700">
       <div className=" mt-4">
-        <h1 className=" text-lg font-bold">My Blogs</h1>
-        <p className="text-base mb-4 mt-3">Your posted blog</p>
+        <h1 className=" text-gray-700 font-bold">Instructor Blog Posts</h1>
+        <p className="text-base mb-4 mt-3 font-light">Instructors have the ability to share their insights, experiences, and knowledge through blog posts. You can create and publish your blog posts to share valuable content with your students and the community. Share your expertise and engage with your audience through your blog. </p>
 
 
         <hr />

@@ -128,7 +128,7 @@ const Dashboard = () => {
       icon: addCourse,
     },
     {
-      title: "My Blogs",
+      title: "Instructor Blogs",
       src: "/dashboard/my-blogs",
       icon: blog,
     },
@@ -160,12 +160,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className=" select-none">
-      <div className={`   py-4 duration-500  ${open ? " " : " "}`}>
+    <div className="   select-none">
+      <div className={`  pt-10 duration-500  ${open ? " " : " "}`}>
         <div
           className={`${
             open ? "w-72 laptop:w-60 px-5" : "md:w-[80px]  mobile:w-0"
-          } pt-8 duration-500  bg-[#1c1e1f] fixed z-10  font-Jost tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full  transform translate-x-0 md:translate-x-0 `}
+          } pt-8 duration-500  bg-[#1c1e1f]  fixed z-10 bottom-0 font-Jost tracking-wider font-bold text-lg text-white shadow-lg rounded-xl ml-4 h-full   transform translate-x-0 md:translate-x-0 `}
         >
           <p
             className={`text-2xl absolute font-PTSans select-none cursor-pointer boxShadowDashboard text-white -right-6 md:-right-7 border-white border top-9 bg-[#1c1e1f] rounded-lg px-2 ${
@@ -191,7 +191,7 @@ const Dashboard = () => {
             </div>
           </Link>
 
-          <div className=" h-full overflow-y-auto pb-20">
+          <div className=" h-full  overflow-y-auto pb-20">
             <div className={` ${open ? "block duration-500" : ""} `}>
               <div
                 className={`flex flex-col items-center mt-10 mb-6   ${
@@ -341,9 +341,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen tablet:pr-8 desktop:pr-20 laptop:pt-10 ">
+        
+      <div className="h-screen tablet:pr-8 desktop:pr-20 laptop:pt-6 ">
         <div
-          className={`pt-7 text-2xl font-semibold flex-1 ${
+          className={` text-2xl font-semibold flex-1 ${
             open ? "md:ml-72" : "md:ml-32"
           } duration-700 mx-auto  `}
         >

@@ -95,7 +95,7 @@ const MyPayments = () => {
       <h1 className="text-xl text-gray-700 font-bold font-Lexend mb-4">
         My Payments
       </h1>
-      <p className="text-gray-600 mb-4 font-Lexend">
+      <p className="text-lg font-light mb-4 text-gray-700 font-Lexend mt-4">
         Here you can see your payment history and can withdraw your earning!{" "}
       </p>
       <div className="divider mb-4"></div>

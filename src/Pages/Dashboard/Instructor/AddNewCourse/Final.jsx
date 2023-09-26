@@ -253,14 +253,14 @@ const onSubmit = async (data) => {
   return (
 
 
-    <div className="laptop:mt-4 desktop:mt-8">
-      <div className="   flex justify-around max-w-7xl mx-auto  pt-5 pb-1  bg-white">
+    <div className=" ">
+      <div className="   flex justify-around max-w-7xl mx-auto  pb-1  bg-white">
 
         <div className="w-[70%]">
           <h1 className=" text-4xl font-bold text-gray-700 font-TitilliumWeb ">
             Empower Learning: Design Your Course
           </h1>
-          <p className="mt-4 text-[18px] text-gray-600 font-TitilliumWeb">
+          <p className="mt-4 text-[18px] font-medium text-gray-600 font-TitilliumWeb">
             Your knowledge can change lives. Begin your teaching journey by
             creating a course that reflects your expertise. The 'Create Course'
             page is where you lay the foundation. Define your course's title and

@@ -69,14 +69,16 @@ const BankAccountSetup = () => {
   }, [user?.email]);
 
   return (
-    <div className="max-w-7xl mx-auto  flex items-center justify-center">
+    <div className="  ">
       <div className="  pt-10  ">
         {showForm ? (
           <>
-            <h1 className="text-center text-2xl text-gray-700 font-Lexend  my-2 mb-5">
+            <h1 className="    py-2 rounded  text-2xl text-gray-700  font-Lexend  my-2 mb-5">
               Setup Bank Account/Payment Information
             </h1>
-            <form className="font-Jost text-gray-700  w-full" onSubmit={handleSubmit}>
+            <p className="text-lg font-light mb-4 text-gray-700 font-Lexend mt-4"> Please enter your bank account information to receive payments for your courses. </p>
+            <hr />
+            <form className="font-Jost text-gray-700  max-w-2xl mx-auto mt-8 " onSubmit={handleSubmit}>
               <div className=" mx-auto mb-2">
                 <h1 className="w-1/2">Email</h1>
                 <input
@@ -154,7 +156,7 @@ const BankAccountSetup = () => {
                   className="w-1/2 border text-sm px-2 h-8"
                 />
               </div>
-              <div className="flex justify-center">
+              <div className="">
                 <button
                   type="submit"
                   className="text-lg px-2 my-2 bg-gray-700 text-white rounded"

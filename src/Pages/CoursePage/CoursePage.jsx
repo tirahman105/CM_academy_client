@@ -113,6 +113,8 @@ const CoursePage = () => {
             <ChatWIthInstructor
               courseId={courseId}
               userId={user?._id}
+              userEmail={user?.email}
+              userName={user?.fullName || user?.displayName}
             ></ChatWIthInstructor>
           </div>
         </div>

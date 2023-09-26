@@ -323,38 +323,3 @@ const CreateSupportTicket = () => {
 
 export default CreateSupportTicket;
 
-// useEffect(() => {
-//   // Scroll to the SupportTicketDetails section when selectedTicket changes
-//   if (selectedTicket && supportTicketDetailsRef.current) {
-//     window.scrollTo({
-//       top: supportTicketDetailsRef.current.offsetTop,
-//       behavior: "smooth",
-//     });
-//   }
-//   console.log("selectedTicket", selectedTicket);
-// }, [selectedTicket]);
-
-// const handleCloseTicket = async (ticketNumber) => {
-//   // Close the ticket and update its status
-//   try {
-//     const response = await fetch(
-//       `http://localhost:5000/api/support-tickets/${ticketNumber}/close`,
-//       {
-//         method: "PUT",
-//       }
-//     );
-
-//     if (response.status === 200) {
-//       // Ticket closed successfully, update its status immediately
-//       const updatedTickets = supportTickets.map((ticket) =>
-//         ticket.TicketNumber === ticketNumber
-//           ? { ...ticket, status: "closed" }
-//           : ticket
-//       );
-//       setSupportTickets(updatedTickets);
-//     }
-//   } catch (error) {
-//     console.error("Error closing support ticket:", error);
-//   }
-// };
-// Close the ticket and update its status
