@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import ChatRequest from "./chatRequest";
+import dteailsIcon from "../../../../assets/iconForDashboard/details.png";
+import msgReq from "../../../../assets/iconForDashboard/messagereq.png";
+import enrolledIcon from "../../../../assets/iconForDashboard/enrolled.png";
 const MyCourseInstructor = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const MyCourseInstructor = () => {
   console.log(user?.email);
   useEffect(() => {
     fetch(
-      `https://cm-academy-test-server-production.up.railway.app/categories/instructor/${user?.email} `
+      `https://cm-academy-test-server-production.up.railway.app/categories/instructor/${user?.email}/Approved`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -29,16 +31,23 @@ const MyCourseInstructor = () => {
     console.log(course._id);
   };
 
-  const handleMsgReq = (courseId) => {
-    navigate("/dashboard/msg-request", { state: { courseId } });
+  const handleMsgReq = ({ courseId, courseTitle }) => {
+    navigate("/dashboard/msg-request", { state: { courseId, courseTitle } });
   };
 
-  console.log(instructorCourses.length);
+  console.log(instructorCourses);
   return (
-    <div className="border p-4">
+    <div className=" p-4">
       <div className=" my-4 mt-4">
-        <h1 className=" text-lg font-bold">My Courses</h1>
-        <p className="text-base mb-4">All my courses</p>
+        <h1 className="  font-bold text-gray-700 font-Lexend">My Courses</h1>
+        <p className="text-lg font-light mb-4 text-gray-700 font-Lexend mt-4">
+          {" "}
+          You can view the courses you are currently instructing. Keep track of
+          how many students have enrolled in each course, and easily access any
+          message requests from your students. Stay connected and provide
+          valuable guidance to your learners.{" "}
+        </p>
+
         <hr />
         {instructorCourses.length === 0 && (
           <div className="flex justify-center items-center h-96">
@@ -48,46 +57,54 @@ const MyCourseInstructor = () => {
           </div>
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className=" ">
         {instructorCourses.map((category) => (
           <div
             key={category._id}
-            className="card  bg-base-100 shadow-xl mr-7  mx-auto"
+            className=" flex gap-2 border rounded-md p-1 mb-8 max-w-3xl"
           >
-            <figure>
-              <img
-                className="h-48 w-full"
-                src={category.courseThumbnail}
-                alt=""
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title mb-2">
-                {category.title} -<div className="badge badge-warning">New</div>
-              </h2>
-              <p className="text-sm">{category.courseCategory}</p>
+            <img
+              className=" w-36 object-cover rounded-md"
+              src={category.courseThumbnail}
+              alt=""
+            />
 
-              <div className="flex justify-between mt-2 font-semibold text-sm text-gray-500">
-                <h1>Price:tk {category.coursePrice}</h1>
+            <div className=" flex flex-col gap-2 justify-around">
+              <h2 className=" font-Lexend mobile:text-sm text-lg text-gray-700 mb-2">
+                {category.title}
+              </h2>
+              <p className="text-sm mobile:text-[12px] text-gray-700  font-PTSans font-light">
+                {category.courseCategory}
+              </p>
+
+              <div className="flex  gap-6 mobile:gap-1 mt-2 font-semibold font-PTSans mobile:text-[12px] text-sm text-gray-500">
+                <h1>Price : Tk {category.coursePrice}</h1>
+                <h1 className=" flex items-center gap-1 ">
+                  {" "}
+                  <img className="h-[14px]" src={enrolledIcon} alt="" />{" "}
+                  Enrolled : {category.enrollCount}
+                </h1>
               </div>
 
-              <div className="divider"></div>
-
-              <div className="">
+              <div className=" tablet:flex gap-2">
                 <button
                   onClick={() => handleDetailsClick(category)}
-                  className="btn btn-sm bg-[#edfffc] 
-                border-2 border-[#12C29F] text-[#12C29F]
-                "
+                  className=" mobile:text-[12px] mobile:mb-2 flex items-center gap-1 text-sm px-2 rounded font-PTSans font-light
+                border-2 "
                 >
+                  <img className="h-4" src={dteailsIcon} alt="" />
                   Details
                 </button>
                 <button
-                  onClick={() => handleMsgReq(category._id)}
-                  className="btn btn-sm bg-[#edfffc] 
-                border-2 border-[#12C29F] text-[#12C29F]
-                "
+                  onClick={() =>
+                    handleMsgReq({
+                      courseId: category._id,
+                      courseTitle: category.title,
+                    })
+                  }
+                  className="text-sm mobile:text-[12px] border-2 px-2 rounded font-PTSans font-light flex items-center gap-1"
                 >
+                  <img className="h-4" src={msgReq} alt="" />
                   View Message Request
                 </button>
               </div>

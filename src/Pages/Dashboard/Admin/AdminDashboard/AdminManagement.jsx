@@ -50,7 +50,7 @@ const AdminManagement = ({ courses, setCourses }) => {
     const handlePerformAction = async (courseId) => {
         const selectedAction = courseActions[courseId];
 
-        if (selectedAction === 'Approved' || selectedAction === 'Denied') {
+        if (selectedAction === 'Approved' || selectedAction === 'Deny') {
             try {
                 await updateCourseStatus(courseId, selectedAction);
                 setCourseActions({ ...courseActions, [courseId]: '' });

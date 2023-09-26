@@ -22,10 +22,12 @@ const MyBlogs = () => {
   }, [userEmail]);
 
   return (
-    <div className="border p-4">
+    <div className=" p-4 font-Lexend text-gray-700">
       <div className=" mt-4">
-        <h1 className=" text-lg font-bold">My Blogs</h1>
-        <p className="text-base mb-4">All my posted blogs</p>
+        <h1 className=" text-gray-700 font-bold">Instructor Blog Posts</h1>
+        <p className="text-base mb-4 mt-3 font-light">Instructors have the ability to share their insights, experiences, and knowledge through blog posts. You can create and publish your blog posts to share valuable content with your students and the community. Share your expertise and engage with your audience through your blog. </p>
+
+
         <hr />
 
         {
@@ -39,7 +41,7 @@ const MyBlogs = () => {
           )
         }
       </div>
-      <div className="w-full border mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-6 ">
+      <div className="w-full mt-7  mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-6 ">
         {blogs.map((blog, index) => (
           <Link to={`/blog-details/${blog._id}`} key={index}>
             <div className="bg-white rounded-lg shadow-md p-4 transform transition duration-300 hover:shadow-lg">

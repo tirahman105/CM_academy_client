@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { format } from "date-fns";
 
-const ChatWithInstructor = ({ courseId, userId }) => {
+const ChatWithInstructor = ({ courseId, userId ,userEmail ,userName }) => {
   const [chatData, setChatData] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messageContainerRef = useRef(null);
 
+  console.log(courseId, userId, userEmail, userName)
   // Function to fetch chat data
   const fetchChatData = () => {
     fetch(`https://cm-academy-test-server-production.up.railway.app/api/messages/${courseId}/${userId}`)
@@ -36,7 +38,7 @@ const ChatWithInstructor = ({ courseId, userId }) => {
     const message = {
       sender: "student",
       content: newMessage,
-      timestamp: new Date().toISOString(),
+      timestamp: format(new Date(), "dd/MM/yyyy HH:mm"),
     };
 
     // Clear the input field
@@ -49,6 +51,8 @@ const ChatWithInstructor = ({ courseId, userId }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        userName: userName,
+        userEmail: userEmail,
         userId: userId,
         courseId: courseId,
         message,
