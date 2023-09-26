@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 
-const ModalComponent = ({ onClose, totalAmount, email, name }) => {
+const ModalComponent = ({ onClose, email, name }) => {
   console.log("email", email);
   // Function to handle closing the modal
   const handleClose = () => {
     onClose();
   };
 
+  const [totalAmount, setTotalAmount] = useState("");
+
+  const handleTotalAmountChange = (event) => {
+    setTotalAmount(event.target.value);
+  };
+
   const handleConfirm = async () => {
     try {
+      // Check if the total amount is at least 1000
+      if (totalAmount < 1000) {
+        alert("Minimum amount is 1000, you cannot withdraw less than that.");
+        return;
+      }
+      const totalAmountNumber = parseFloat(totalAmount);
+
       // Add the withdrawStatus field
       const dataToSend = {
         name,
-        totalAmount,
+        totalAmount: totalAmountNumber,
         email,
         withdrawStatus: false,
         timestamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
@@ -35,8 +48,10 @@ const ModalComponent = ({ onClose, totalAmount, email, name }) => {
         // Data stored successfully, close the modal or perform other actions
 
         onClose();
-        alert("Withdrawal request submitted successfully,Reload page to see the your updated withdraw request!");
-        // reload page to see the updated withdraw request 
+        alert(
+          "Withdrawal request submitted successfully,Reload page to see the your updated withdraw request!"
+        );
+        // reload page to see the updated withdraw request
         window.location.reload();
       } else {
         console.error("Error confirming withdrawal");
@@ -69,7 +84,14 @@ const ModalComponent = ({ onClose, totalAmount, email, name }) => {
           <div className="p-4">
             <div className="mb-4">
               <p className="text-gray-600 text-sm">Total Amount:</p>
-              <p className="text-lg font-semibold">{totalAmount} BDT</p>
+              {/* <p className="text-lg font-semibold">{totalAmount} BDT</p> */}
+
+              <input
+                className="border-2 border-gray-300 rounded-md px-2 py-1.5 w-full"
+                type="text"
+                value={totalAmount}
+                onChange={handleTotalAmountChange}
+              />
             </div>
             <p className="text-lg font-semibold text-center mb-4">
               Are you sure you want to withdraw this amount?

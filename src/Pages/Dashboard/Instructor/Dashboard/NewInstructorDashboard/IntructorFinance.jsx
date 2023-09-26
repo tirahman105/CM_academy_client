@@ -7,11 +7,10 @@ import withdrawIcon from "../../../../../assets/iconForDashboard/withdraw.png";
 import { Link } from "react-router-dom";
 const InstructorFinance = () => {
   const [balance, setBalance] = useState(1500); // Replace with your balance data
-  const [withdrawn, setWithdrawn] = useState(0); // Replace with your withdrawn data
-
-  const { user } = useContext(AuthContext);
-
+  const [withdrawn, setWithdrawn] = useState(0);
+  const [approvedWithdrawRequest, setApprovedWithdrawRequests] = useState([]);
   const [instructorPayment, setInstructorPayment] = useState([]);
+  const { user } = useContext(AuthContext);
 
   console.log(instructorPayment);
 
@@ -33,10 +32,11 @@ const InstructorFinance = () => {
       }
     };
     fetchPaymentHistory();
-  }, [user?.email ]);
+  }, [user?.email]);
 
   console.log(instructorPayment);
-
+  /////////////////////////////////////////////
+  // total amount of instructor payment
   const totalAmount = instructorPayment.reduce((total, payment) => {
     if (payment.paidStatus) {
       return total + payment.course.coursePrice;
@@ -44,6 +44,13 @@ const InstructorFinance = () => {
     return total;
   }, 0);
 
+  ///////////////////////////////////////
+  // total amount of approved withdraw request
+  const totalWithdrawn = approvedWithdrawRequest.reduce((total, request) => {
+    return total + request.totalAmount;
+  }, 0);
+
+  ////////////////////////////////////////////////////////////////////////
   // store the total amount , Current balance , totalwithdrawn in database
   const sendPaymentDataToServer = async () => {
     try {
@@ -53,7 +60,7 @@ const InstructorFinance = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/updateFinance/${user?.email}`,
+        `https://cm-academy-test-server-production.up.railway.app/updateFinance/${user?.email}`,
         {
           method: "POST",
           headers: {
@@ -61,8 +68,8 @@ const InstructorFinance = () => {
           },
           body: JSON.stringify({
             totalAmount,
-            balance: totalAmount - withdrawn,
-            withdrawn,
+            balance: totalAmount - totalWithdrawn,
+            totalWithdrawn,
           }),
         }
       );
@@ -81,8 +88,37 @@ const InstructorFinance = () => {
   // Watch for changes in payment-related state variables and trigger the sendPaymentDataToServer function
   useEffect(() => {
     sendPaymentDataToServer();
-  }, [totalAmount, withdrawn, user?.email]);
-  console.log(totalAmount);
+  }, [totalAmount, totalWithdrawn, user?.email]);
+
+  // get all approve withdraw request which withdrawStatus is true from database by email by using useEffect hook
+
+  useEffect(() => {
+    const fetchApprovedWithdrawRequests = async () => {
+      try {
+        const response = await fetch(
+          `https://cm-academy-test-server-production.up.railway.app/getWithdrawRequests/${user?.email}`
+        );
+        const data = await response.json();
+
+        // Filter approved withdraw requests based on withdrawStatus
+        const approvedWithdrawRequests = data.filter(
+          (request) => request.withdrawStatus === true
+        );
+        setApprovedWithdrawRequests(approvedWithdrawRequests);
+        console.log(approvedWithdrawRequests);
+      } catch (error) {
+        console.error("Error fetching approved withdraw requests:", error);
+      }
+    };
+    fetchApprovedWithdrawRequests();
+  }, []);
+
+  console.log(approvedWithdrawRequest);
+
+  console.log("totalAmount", totalAmount, "totalWithdrawn", totalWithdrawn);
+
+
+  
   return (
     <div className="flex justify-between mt-6 space-x-4">
       <div className="w-1/2 bg-green-100 rounded-lg mobile:px-2 tablet:px-4 tablet:py-2 shadow-md">
@@ -90,7 +126,7 @@ const InstructorFinance = () => {
           <HiCurrencyBangladeshi className="text-[#1bbf72fa] mobile:text-[24px] laptop:text-3xl desktop:text-5xl" />
           <span className="text-4xl laptop:text-3xl mobile:text-2xl   font-bold text-green-600">
             {" "}
-            {totalAmount}
+            {totalAmount-totalWithdrawn}
           </span>
         </div>
         <h2 className="text-xl mobile:text-[12px] font-Montserrat laptop:text-[14px] font-semibold tablet:mb-4 text-green-800 mobile:text-center">
@@ -107,7 +143,7 @@ const InstructorFinance = () => {
         <div className="flex items-center mobile:justify-center ">
           <HiCurrencyBangladeshi className="text-gray-600 mobile:text-[24px] laptop:text-3xl desktop:text-5xl" />
           <span className="text-4xl laptop:text-3xl mobile:text-2xl font-bold text-gray-600">
-            {withdrawn}
+            {totalWithdrawn}
           </span>
         </div>
         <h2 className="text-xl mobile:text-[12px] font-Montserrat  laptop:text-[14px] font-semibold tablet:mb-4 text-gray-700 mobile:text-center">

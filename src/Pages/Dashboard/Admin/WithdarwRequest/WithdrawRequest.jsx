@@ -92,11 +92,11 @@ const WithdrawRequest = () => {
           <h1 className="text-lg font-Lexend">
             Total Withdraw Request so far : {withdrawalRequests.length || 0}{" "}
           </h1>
-          <h1 className="text-lg font-Lexend">
+          <h1 className="text-lg font-Lexend text-green-500">
             Total Approved Withdraw Request : {totalApprovedWithdrawals || 0}{" "}
           </h1>
 
-          <h1 className="text-lg font-Lexend">
+          <h1 className="text-lg font-Lexend text-[#bf1b1bb6]">
             Total Unapproved Withdraw Request :{" "}
             {totalUnapprovedWithdrawals || 0}{" "}
           </h1>

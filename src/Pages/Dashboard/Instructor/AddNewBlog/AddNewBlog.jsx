@@ -170,7 +170,7 @@ const AddNewBlog = () => {
         </div>
         <button
           type="submit"
-          className=" bg-[#40BF72] font-Lexend text-white px-2 py-1 rounded-md mt-4 mb-5 hover:bg-green-600"
+          className=" bg-gray-700 text-lg font-Lexend text-white px-2  rounded-md mt-4 mb-5 hover:bg-green-600"
         >
           Add Blog
         </button>
