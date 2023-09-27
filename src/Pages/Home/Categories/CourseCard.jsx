@@ -47,7 +47,7 @@ const CourseCard = ({ course, handleDetailsClick, isEnrolled }) => {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="rounded-lg h-[450px]   max-w-[300px] mx-auto border-2 w-full  space-y-2 hover:shadow-md duration-300"
+      className="rounded-lg h-[450px] mt-8   max-w-[300px] mx-auto border-2 w-full  space-y-2 hover:shadow-md duration-300"
     >
       <motion.div
         initial={{ opacity: 0 }}

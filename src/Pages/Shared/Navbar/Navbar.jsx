@@ -298,7 +298,7 @@ function Navbar() {
 
   return (
     <div className="  bg-opacity-70 backdrop-blur-lg bg-gradient  fixed py-3 left-0 right-0 select-none ">
-      <div className=" px-4 mx-auto max-w-7xl  ">
+      <div className=" px-4 mx-auto laptop:max-w-7xl  ">
         <div className=" mx-auto flex justify-between items-center">
           <Link
             to="/"
@@ -315,7 +315,7 @@ function Navbar() {
           </Link>
 
           {/* Hamburger menu button for mobile */}
-          <div className="md:hidden  mr-4">
+          <div className="laptop:hidden  mr-4">
             <button
               onClick={toggleNavbar}
               className="text-white hover:text-gray-400 focus:outline-none focus:text-gray-400"
@@ -355,7 +355,7 @@ function Navbar() {
           </div>
 
           {/* Navbar links for desktop */}
-          <div className="hidden md:flex justify-center text-sm font-Lexend items-center space-x-6">
+          <div className="hidden laptop:flex justify-center text-sm font-Lexend items-center space-x-6">
             <NavLink to="/" style={navLinkStyle}>
               Home
             </NavLink>
@@ -413,7 +413,7 @@ function Navbar() {
               </NavLink>
             )}
           </div>
-          <div className="hidden md:flex justify-center items-center ">
+          <div className="hidden laptop:flex justify-center items-center ">
             {user?.email ? (
               <div className="flex justify-end gap-12">
                 <div className="bg-[#1bbf723b] border-2 border-[#1bbf726c] shadow-md sm:h-12 gap-2 rounded-full  flex items-center justify-between  px-1 py-1 ">
@@ -449,7 +449,7 @@ function Navbar() {
         {/* Mobile menu */}
         {isOpen && (
           <motion.div
-            className="md:hidden mt-5 w-2/4 font-TitilliumWeb"
+            className="laptop:hidden mt-5 w-2/4 font-TitilliumWeb"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}

@@ -147,7 +147,7 @@ const Categories = () => {
               </div>
             </div>
           </div>
-          <motion.div className="mt-4 duration-700 grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
+          <motion.div className="mt-4 duration-700 grid tablet:grid-cols-2 laptop:grid-cols-4 gap-4 md:px-10 py-6 rounded-xl">
             {activeCourses.slice(0, 4).map((activeCourse, courseIndex) => (
               <CourseCard
                 key={courseIndex}

@@ -2,7 +2,7 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 import React, { useContext, useEffect, useState } from "react";
-import { MdCheckCircle, MdLibraryBooks, MdQuiz } from "react-icons/md";
+import { MdCheckCircle, MdLibraryBooks, MdQuiz ,MdChat } from "react-icons/md";
 import { useLocation } from "react-router";
 import "./CourseDetails.css";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
@@ -324,19 +324,19 @@ const CourseDetailsDynamic = () => {
                 <div className="flex items-center  gap-1 ">
                   <FaPlayCircle className="text-[#1bbf72fa] "></FaPlayCircle>
                   <p className="font-bold font-Lexend leading-10  text-gray-700 ">
-                    7 Hours Video
+                  {course.courseOutline.length *2 } Hours Video
                   </p>
                 </div>
                 <div className="flex items-center  gap-1 ">
                   <MdQuiz className=" text-[#1bbf72fa]"></MdQuiz>
                   <p className="font-bold font-Lexend leading-10  text-gray-700 ">
-                    10 Quiz
+                    {course.courseOutline.length * 5} Quiz
                   </p>
                 </div>
                 <div className="flex items-center  gap-1 ">
-                  <MdLibraryBooks className="text-[#1bbf72fa] "></MdLibraryBooks>
+                  <MdChat className="text-[#1bbf72fa] "></MdChat>
                   <p className="font-bold font-Lexend leading-10  text-gray-700 ">
-                    7 Lecture
+                  Chat with course instructor
                   </p>
                 </div>
                 <div className="flex items-center  gap-1 ">

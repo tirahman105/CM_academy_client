@@ -19,6 +19,7 @@ const RatingFeedbackForm = ({
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState("");
   const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState(false);
+  const [showThankYouMessage, setShowThankYouMessage] = useState(false); // Add state for displaying thank you message
 
   const { user } = useContext(AuthContext);
   const handleRatingChange = (newRating) => {
@@ -86,6 +87,10 @@ const RatingFeedbackForm = ({
       if (response.status === 200) {
         // Feedback submitted successfully
         setHasSubmittedFeedback(true); // Update the state to trigger UI change
+        setShowThankYouMessage(true);
+        setTimeout(() => {
+          setShowThankYouMessage(false);
+        }, 3000); // 3 seconds (3000 milliseconds)
       } else {
         // Handle other response statuses (e.g., error handling)
         console.error("Failed to submit feedback.");
@@ -95,29 +100,46 @@ const RatingFeedbackForm = ({
     }
   };
 
+  console.log("hasSubmittedFeedback", hasSubmittedFeedback);
   return (
-    <div>
-      {hasSubmittedFeedback ? (
-        <p>Thank you for your feedback and rating.</p>
-      ) : (
-        <div>
-          <h2 className="font-Raleway">Provide Feedback and Rating</h2>
-          <ReactStars
-            count={5}
-            onChange={handleRatingChange}
-            size={40}
-            value={rating}
-          />
-          <textarea
-            placeholder="Enter your feedback"
-            value={feedback}
-            onChange={handleFeedbackChange}
-            className="w-full h-32 p-2 border border-gray-300 rounded-lg focus:outline-none text-gray-700 font-mono "
-          />
-          <button className="font-Lexend font-bold grBg   border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3" onClick={handleSubmit}>Submit Feedback and Rating</button>
+    <>
+     {showThankYouMessage && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center duration-700">
+          <div className="bg-white p-4 rounded-lg text-center">
+            <h2 className="font-Raleway">Thank you for your feedback!</h2>
+          </div>
         </div>
       )}
+
+    <div
+      className={`${
+        hasSubmittedFeedback ? "hidden" : ""
+      } mt-10  p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330] `}
+      >
+     
+      <div className={`${hasSubmittedFeedback ? "hidden" : ""}`}>
+        <h2 className="font-Raleway">Provide Feedback and Rating</h2>
+        <ReactStars
+          count={5}
+          onChange={handleRatingChange}
+          size={40}
+          value={rating}
+          />
+        <textarea
+          placeholder="Enter your feedback"
+          value={feedback}
+          onChange={handleFeedbackChange}
+          className="w-full h-32 p-2 border border-gray-300 rounded-lg focus:outline-none text-gray-700 font-mono "
+          />
+        <button
+          className="font-Lexend font-bold grBg   border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3"
+          onClick={handleSubmit}
+          >
+          Submit Feedback and Rating
+        </button>
+      </div>
     </div>
+          </>
   );
 };
 

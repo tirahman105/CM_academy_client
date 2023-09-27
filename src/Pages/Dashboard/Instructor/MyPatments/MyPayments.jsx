@@ -102,13 +102,22 @@ const MyPayments = () => {
 
       <div className="flex justify-between items-center mb-4">
         {/* add a title and description    */}
-
-        <h1 className="px-4 py-2 rounded-lg tablet:text-xl mobile:text-[14px] font-Lexend text-gray-700">
-          Total amount:{" "}
-          <span className="text-[#1bbf72f6] font-bold">
-            {financeData[0]?.currentBalance} BDT
-          </span>
-        </h1>
+        <div>
+          <h1 className="px-4 py-2 rounded-lg tablet:text-xl mobile:text-[14px] font-Lexend text-gray-700">
+            Total amount:{" "}
+            <span className="text-[#1bbf72f6] font-bold">
+              {financeData[0]?.currentBalance} BDT
+            </span>
+          </h1>
+          {status && ( // if there is a withdraw request then show withdraw request message
+            <div
+              className="w-full px-4 py-1 text-sm border rounded mb-6 text-center border-amber-100 bg-amber-50 text-amber-500"
+              role="alert"
+            >
+              <p>Your balance will be adjusted after a successful withdraw!</p>
+            </div>
+          )}
+        </div>
         <button
           disabled={status}
           className={`bg-[#1bbf723b] tablet:text-sm mobile:text-[12px] border-2 border-[#1bbf726c]  text-gray-700 font-bold font-Poppins tablet:px-6 tablet:py-2 mobile:px-1 rounded-md shadow-md ${
@@ -141,14 +150,7 @@ const MyPayments = () => {
           </Link>
         </p>
       </div>
-      {status && ( // if there is a withdraw request then show withdraw request message
-        <div
-          className="w-full px-4 py-3 text-sm border rounded mb-6 text-center border-amber-100 bg-amber-50 text-amber-500"
-          role="alert"
-        >
-          <p>Your balance will be adjusted after a successful withdraw!</p>
-        </div>
-      )}
+
       {
         // if there is no withdraw request then show no withdraw request message
         withdrawHistory.length === 0 && (
