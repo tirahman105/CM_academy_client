@@ -60,7 +60,7 @@ const CourseVideo = ({
 
   return (
     <div className="p-4 rounded-lg  sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]">
-      <div className="tablet:h-[600px] ">
+      <div className="tablet:h-[500px] mobile:h-[300px] ">
         <ReactPlayer
           url={videoUrl}
           controls
@@ -69,7 +69,7 @@ const CourseVideo = ({
           key={videoUrl}
         />
       </div>
-      <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex flex-col md:flex-row px-4 py-2 border-[#36cbd330]  border mt-4 justify-between  font-Lexend">
+      <div className=" bg-opacity-10 rounded-lg backdrop-blur-sm shadow-md flex  md:flex-row px-4 py-2 border-[#36cbd330]  border mt-4 justify-between  font-Lexend">
         <div className="flex items-center gap-3">
           <p className="text-[12px] sm:text-sm font-bold">Feedback</p>
           {likeStatus === "liked" ? (
@@ -119,13 +119,13 @@ const CourseVideo = ({
         </div>
         <div className="mt-3 w-full md:w-2/5 flex sm:flex-col justify-end md:flex-row gap-2">
           <button
-            className=" font-Lexend font-bold grBg   border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3"
+            className=" font-Lexend font-bold grBg mobile:text-[12px] tablet:text-[12px]  border border-[#36cbd3e6] hover:border-white duration-300 rounded-md py-1 md:py-1 px-2 md:w-1/3"
             onClick={handlePrevious}
           >
             Previous
           </button>
           <button
-            className=" font-Lexend font-bold grBg  border-[#36cbd3e6] border text-white rounded-md py-1 md:py-1 px-2 md:w-1/3"
+            className=" font-Lexend font-bold grBg mobile:text-[12px] tablet:text-[12px]  border-[#36cbd3e6] border text-white rounded-md py-1 md:py-1 px-2 md:w-1/3"
             onClick={handleNext}
           >
             Next

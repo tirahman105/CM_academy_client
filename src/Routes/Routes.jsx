@@ -207,11 +207,9 @@ const router = createBrowserRouter([
       },
       {
         path: "coursepage",
-        element: (
-          <StudentRoute>
+        element: 
             <CoursePage />
-          </StudentRoute>
-        ),
+      
       },
       {
         path: "coursepageUpdate",

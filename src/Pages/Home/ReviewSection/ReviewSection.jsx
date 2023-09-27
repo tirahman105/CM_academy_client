@@ -185,12 +185,12 @@ const ReviewSection = () => {
           institution or program.
         </p>
         <div>
-          <div style={CONTAINER_STYLE} className="px-80">
+          <div style={CONTAINER_STYLE} className="px-96">
             <ReactCardCarousel autoplay={true} autoplay_speed={3000}>
               {reviews.map((review) => (
                 <div
                   key={review._id}
-                  className="card w-60 mobile:w-56  md:w-[700px] bg-white shadow-xl "
+                  className="card w-60 mobile:w-56 tablet:w-[500px]  laptop:w-[700px] bg-white shadow-xl "
                 >
                   <h2 className="text-4xl md:text-7xl pl-8 pt-8 text-[#1BBF72]">
                     <BiSolidQuoteLeft></BiSolidQuoteLeft>{" "}

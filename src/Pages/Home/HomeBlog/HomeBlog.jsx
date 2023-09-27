@@ -26,7 +26,7 @@ const HomeBlog = () => {
   // Swiper breakpoints for responsive design
   const breakpoints = {
     768: {
-      slidesPerView: 3,
+      slidesPerView: 2,
     },
     0: {
       slidesPerView: 1,
@@ -40,7 +40,7 @@ const HomeBlog = () => {
       </div>
 
       <Swiper
-        spaceBetween={30}
+        spaceBetween={3}
         loop={true}
         pagination={{
           clickable: true, // Make sure this is set to true
@@ -50,7 +50,7 @@ const HomeBlog = () => {
         className="mySwiper"
         breakpoints={breakpoints}
       >
-        <div className="w-full mx-auto md:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="w-full mx-auto md:w-3/4 grid grid-cols-1 md:grid-cols-2  gap-6">
           {blogs.map((blog, index) => (
             <SwiperSlide key={index}>
               <Link to={`/blog-details/${blog._id}`}>

@@ -89,7 +89,7 @@ const CoursePage = () => {
   console.log("selectedMilestone", selectedMilestone);
   return (
     <div className="relative">
-      <div className="lg:flex pt-36 cb pb-32">
+      <div className="lg:flex mobile:pt-16 tablet:pt-36 cb pb-32">
         <div className="lg:w-3/4 p-4">
           <CourseVideo
             sessionList={courseOutline[selectedMilestone]?.sessions || []}
@@ -98,7 +98,7 @@ const CoursePage = () => {
             onSessionChange={handleSessionSelect}
             onPreviousSession={handlePreviousSession}
           />
-          <div className=" mt-10  p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]  ">
+          <div className="  ">
             <RatingFeedbackForm
               courseId={courseId}
               user={user?.email}
@@ -109,7 +109,7 @@ const CoursePage = () => {
               {" "}
             </RatingFeedbackForm>
           </div>
-          <div className=" mt-10  p-4 rounded-lg sm:w-5/6 sm:mx-auto backdrop-blur-md border bg-[#ced2d810] text-white boxShadowCourse border-[#36cbd330]  ">
+          <div className=" ">
             <ChatWIthInstructor
               courseId={courseId}
               userId={user?._id}

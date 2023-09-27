@@ -7,7 +7,7 @@ const AfterBanner = () => {
       whileInView={{ opacity: 1 }}
       className="max-w-7xl px-2 mx-auto  mt-16   "
     >
-      <div className="grid gap-4 md:grid-cols-3  ">
+      <div className="grid gap-4 laptop:grid-cols-3  ">
         {/* ///////////////// */}
         <div className=" items-center gap-6 shadow-lg   rounded-md flex hover:scale-105 duration-500 px-6 py-5 tablet:w-auto bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
           <img src="https://i.ibb.co/nLhxHCL/learning.png" alt="" />
