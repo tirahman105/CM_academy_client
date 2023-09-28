@@ -189,3 +189,15 @@ body {
 
   box-shadow: 0px 0px 10px 0px #000000a9;
 }
+
+
+
+.cbb {
+  background-color: hsla(222, 47%, 11%, 1);
+  background-image: radial-gradient(
+    circle at 60% 54%,
+    hsla(189, 100%, 56%, 0.3) 10px,
+    transparent 40%
+  );
+  background-attachment: fixed; 
+}

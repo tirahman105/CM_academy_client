@@ -1,5 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
+import learning from "../../../assets/iconForAfterBanner/learning.png";
+import source from "../../../assets/iconForAfterBanner/source.png";
+import outline from "../../../assets/iconForAfterBanner/out-line.png";
+
+
 const AfterBanner = () => {
   return (
     <motion.div
@@ -10,7 +15,7 @@ const AfterBanner = () => {
       <div className="grid gap-4 laptop:grid-cols-3  ">
         {/* ///////////////// */}
         <div className=" items-center gap-6 shadow-lg   rounded-md flex hover:scale-105 duration-500 px-6 py-5 tablet:w-auto bg-[#1bbf721f]  border-2 border-[#1bbf7283]">
-          <img src="https://i.ibb.co/nLhxHCL/learning.png" alt="" />
+          <img src={learning} alt="" />
 
           <div>
             <h1 className="desktop:text-lg font-bold font-Roboto">Expedite Learning</h1>
@@ -21,7 +26,7 @@ const AfterBanner = () => {
         </div>
         {/* ////////////// */}
         <div className=" items-center gap-6 border-2  shadow-lg rounded-md flex hover:scale-105 duration-500  px-6 py-5 tablet:w-auto bg-[#1bbf721f] border-[#1bbf7283]">
-          <img src="https://i.ibb.co/fVJs3V6/source.png" alt="" />
+          <img src={source} alt="" />
 
           <div>
             <h1 className="desktop:text-lg font-bold font-Roboto">
@@ -34,7 +39,7 @@ const AfterBanner = () => {
         </div>
         {/* ////////////// */}
         <div className=" items-center gap-6 border-2 shadow-lg  rounded-md hover:scale-105 duration-500  flex px-6 py-5 tablet:w-auto bg-[#1bbf721f] border-[#1bbf7283]">
-          <img src="https://i.ibb.co/RBvknSC/out-line.png" alt="" />
+          <img src={outline} alt="" />
 
           <div>
             <h1 className="desktop:text-lg font-bold font-Roboto">
